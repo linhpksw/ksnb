@@ -1,0 +1,33 @@
+# ==========================
+# File tạm hệ thống (OS)
+# ==========================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+desktop.ini
+$RECYCLE.BIN/
+
+# ==========================
+# Thư mục build / cache
+# ==========================
+node_modules/
+__pycache__/
+.cache/
+*.pyc
+*.pyo
+*.pyd
+.Python
+dist/
+build/
+*.egg-info/
+
+# ==========================
+# Tất cả file còn lại
+# đều được commit bình thường
+# ==========================

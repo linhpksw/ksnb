@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KTKS Phòng Dự án v1.5 – Kiểm tra kiểm soát nội bộ (Kèm QĐ 11/2025/QĐ-HNT Lưu kho)</title>
+<title>KTKS Phòng Dự án v1.5.2 – Kiểm tra kiểm soát nội bộ (Kèm QĐ 11/2025/QĐ-HNT Lưu kho)</title>
 <style>
 :root{
   --ink:#16232b;--ink2:#41525e;--mute:#6b7b87;--line:#dbe2e7;--line2:#e9eef1;
@@ -238,6 +238,15 @@ table.t th:last-child{position:sticky;right:0;z-index:2}
 table.t tr:hover td.tr{background:#f7fafb}
 table.t tr.lock td.tr{background:#fafafa}
 input[type=file]{border:1px solid #c9d3d9;border-radius:var(--rad);padding:6px 8px;background:#fff;width:100%;font-size:13px}
+/* JSON Sync */
+.jsync-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--rad);border:1px solid var(--line2);background:#f8fbff;margin-bottom:12px;font-size:13.5px;flex-wrap:wrap}
+.jsync-bar .jlabel{font-weight:600;color:var(--ink2);white-space:nowrap}
+.jsync-bar .jfile{flex:1;min-width:140px;color:var(--pri);font-weight:550;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jsync-bar .jfile.none{color:var(--mute);font-weight:400;font-style:italic}
+.jsync-st{font-size:12px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.jsync-st.ok{background:var(--g-bg);color:var(--g)}.jsync-st.saving{background:var(--y-bg);color:var(--y)}.jsync-st.err{background:var(--r-bg);color:var(--r)}.jsync-st.idle{background:var(--s-bg);color:var(--s)}
+#syncInd{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:4px;white-space:nowrap;min-width:0}
+#syncInd.saving{color:var(--y)}#syncInd.ok{color:var(--g)}#syncInd.err{color:var(--r)}
 </style>
 </head>
 <body>
@@ -252,6 +261,7 @@ input[type=file]{border:1px solid #c9d3d9;border-radius:var(--rad);padding:6px 8
       <div class="period-pill" id="topPeriod"></div>
       <span class="tb-sp"></span>
       <span class="savestat" id="saveStat"><i></i> Tự động lưu mọi thay đổi</span>
+      <span id="syncInd" title="Đồng bộ file JSON"></span>
       <button class="btn sm" data-act="bk-all">Sao lưu toàn bộ</button>
       <button class="btn sm" data-act="export-all">Xuất Excel đối chiếu</button>
       <span class="userchip" id="userChip" title="Bấm để đổi tên người thực hiện"></span>
@@ -267,7 +277,8 @@ input[type=file]{border:1px solid #c9d3d9;border-radius:var(--rad);padding:6px 8
    KTKS Phòng Dự án – Ứng dụng kiểm tra kiểm soát nội bộ hàng quý
    Chạy hoàn toàn offline • Dữ liệu lưu trong IndexedDB của trình duyệt
    ===================================================================== */
-const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.1',BACKUP_VERSION=1,DB_VERSION=6;
+const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.2',BACKUP_VERSION=1,DB_VERSION=7;
+const HANDLE_STORE='_handles';
 const STORES=['periods','catalogs','docreqs','projects','investments','progcosts','payments','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','prices','renewals','revenues','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal','meta'];
 const DATA_STORES=STORES.filter(s=>s!=='meta');
 const PERIOD_STORES=['docreqs','investments','progcosts','payments','prices','renewals','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal'];
@@ -335,7 +346,7 @@ const DB={db:null,mem:false,err:null,c:{},meta:{},
    if(!window.indexedDB)throw new Error('Trình duyệt không hỗ trợ IndexedDB');
    this.db=await new Promise((res,rej)=>{
     const rq=indexedDB.open(APP_ID,DB_VERSION);
-    rq.onupgradeneeded=()=>{const db=rq.result;STORES.forEach(s=>{if(!db.objectStoreNames.contains(s))db.createObjectStore(s,{keyPath:'id'})})};
+    rq.onupgradeneeded=()=>{const db=rq.result;STORES.forEach(s=>{if(!db.objectStoreNames.contains(s))db.createObjectStore(s,{keyPath:'id'})});if(!db.objectStoreNames.contains(HANDLE_STORE))db.createObjectStore(HANDLE_STORE,{keyPath:'id'})};
     rq.onsuccess=()=>res(rq.result);rq.onerror=()=>rej(rq.error||new Error('Không mở được IndexedDB'));rq.onblocked=()=>rej(new Error('IndexedDB bị chặn'));
    });
    for(const s of STORES){const arr=await this._all(s);if(s==='meta')arr.forEach(m=>this.meta[m.id]=m.v);else this.c[s]=arr}
@@ -346,7 +357,7 @@ const DB={db:null,mem:false,err:null,c:{},meta:{},
  all(s){return this.c[s]},
  get(s,id){return id?this.c[s].find(r=>r.id===id):undefined},
  _up(s,rec){const a=this.c[s],i=a.findIndex(r=>r.id===rec.id);if(i>=0)a[i]=rec;else a.push(rec)},
- async _run(fn){if(this.mem){UI.saved();return}try{await fn();UI.saved()}catch(e){console.error(e);UI.saved(true);toast('Lỗi lưu dữ liệu: '+(e&&e.message||e),'err')}},
+ async _run(fn){if(this.mem){UI.saved();return}try{await fn();UI.saved();if(typeof JSYNC!=='undefined')JSYNC.schedule()}catch(e){console.error(e);UI.saved(true);toast('Lỗi lưu dữ liệu: '+(e&&e.message||e),'err')}},
  async put(s,rec){this._up(s,rec);await this._run(()=>this._tx(s,tx=>tx.objectStore(s).put(rec)));return rec},
  async putMany(s,recs){recs.forEach(r=>this._up(s,r));await this._run(()=>this._tx(s,tx=>{const o=tx.objectStore(s);recs.forEach(r=>o.put(r))}))},
  async del(s,id){this.c[s]=this.c[s].filter(r=>r.id!==id);await this._run(()=>this._tx(s,tx=>tx.objectStore(s).delete(id)))},
@@ -360,9 +371,93 @@ const DB={db:null,mem:false,err:null,c:{},meta:{},
   const ss=Object.keys(map);
   if(!this.mem)await this._tx(ss,tx=>ss.forEach(s=>{const o=tx.objectStore(s);map[s].forEach(r=>o.put(r))}));
   ss.forEach(s=>map[s].forEach(r=>this._up(s,r)));UI.saved();
+ },
+ /* ----- File System Access API ----- */
+ async getHandle(){
+  if(this.mem||!this.db)return null;
+  try{return await new Promise((res,rej)=>{const tx=this.db.transaction(HANDLE_STORE,'readonly');const rq=tx.objectStore(HANDLE_STORE).get('jsonSync');rq.onsuccess=()=>res(rq.result?rq.result.handle:null);rq.onerror=()=>rej(rq.error)})}
+  catch(e){console.warn('getHandle:',e);return null}
+ },
+ async saveHandle(handle){
+  if(this.mem||!this.db)return;
+  try{await this._tx(HANDLE_STORE,tx=>tx.objectStore(HANDLE_STORE).put({id:'jsonSync',handle}))}
+  catch(e){console.warn('saveHandle:',e)}
+ },
+ async clearHandle(){
+  if(this.mem||!this.db)return;
+  try{await this._tx(HANDLE_STORE,tx=>tx.objectStore(HANDLE_STORE).delete('jsonSync'))}
+  catch(e){console.warn('clearHandle:',e)}
  }
 };
 
+/* ---------- JSON File Sync (File System Access API – Chrome/Edge) ---------- */
+const JSYNC={
+ handle:null,fileName:null,lastSync:null,status:'idle',_dt:null,
+ sup(){return typeof window.showOpenFilePicker==='function'},
+ _p(n){return String(n).padStart(2,'0')},
+ _fmt(iso){if(!iso)return'—';const d=new Date(iso);return this._p(d.getHours())+':'+this._p(d.getMinutes())+':'+this._p(d.getSeconds())},
+ ui(){
+  const el=document.getElementById('syncInd');if(!el)return;
+  if(!this.fileName||this.status==='idle'){el.textContent='';el.className='';el.title='Chưa kết nối file JSON sync';return}
+  const map={ok:'💾 Sync '+this._fmt(this.lastSync),saving:'⏳ Đang lưu…',err:'⚠️ Lỗi sync',idle:''};
+  el.className=this.status;el.textContent=map[this.status]||'';
+  el.title='File JSON: '+this.fileName+(this.lastSync?'\nSync lần cuối: '+this._fmt(this.lastSync):'');
+ },
+ async connect(){
+  if(!this.sup()){alert('Tính năng chỉ hoạt động trên Chrome/Edge.');return false}
+  let hs;try{hs=await window.showOpenFilePicker({types:[{description:'JSON backup',accept:{'application/json':['.json']}}],multiple:false})}
+  catch(e){if(e.name!=='AbortError')console.error(e);return false}
+  const h=hs[0],perm=await h.requestPermission({mode:'readwrite'});
+  if(perm!=='granted'){toast('Chưa được cấp quyền đọc/ghi file','warn');return false}
+  this.handle=h;this.fileName=h.name;await DB.saveHandle(h);
+  toast('Đã kết nối file '+h.name+'. Sẽ tự đồng bộ khi bạn thay đổi dữ liệu.');
+  await this.read();this.status='ok';this.ui();
+  if(typeof renderMain==='function')renderMain();return true;
+ },
+ async disconnect(){
+  this.handle=null;this.fileName=null;this.lastSync=null;this.status='idle';
+  await DB.clearHandle();this.ui();
+  if(typeof renderMain==='function')renderMain();
+  toast('Đã ngắt kết nối file JSON sync');
+ },
+ async read(){
+  if(!this.handle)return;
+  try{
+   if(await this.handle.queryPermission({mode:'readwrite'})!=='granted')return;
+   const txt=await(await this.handle.getFile()).text(),obj=JSON.parse(txt);
+   const v=validateBackup(obj);if(!v.ok){console.warn('JSYNC read invalid:',v.errors);return}
+   const map={};
+   DATA_STORES.forEach(s=>{const a=obj.data[s];if(!Array.isArray(a)||!a.length)return;
+    const ex=new Set(DB.all(s).map(r=>r.id));const nw=a.filter(r=>!ex.has(r.id));if(nw.length)map[s]=nw});
+   if(Object.keys(map).length)await DB.mergeMany(map);
+   this.lastSync=new Date().toISOString();this.status='ok';this.ui();
+  }catch(e){console.error('JSYNC read err:',e);this.status='err';this.ui()}
+ },
+ schedule(){
+  if(!this.handle)return;
+  if(this._dt)clearTimeout(this._dt);
+  this.status='saving';this.ui();
+  this._dt=setTimeout(()=>this._write(),2000);
+ },
+ async _write(){
+  if(!this.handle)return;
+  try{
+   if(await this.handle.queryPermission({mode:'readwrite'})!=='granted'){this.status='err';this.ui();return}
+   const w=await this.handle.createWritable();
+   await w.write(JSON.stringify(buildBackup('all'),null,2));await w.close();
+   this.lastSync=new Date().toISOString();this.status='ok';this.ui();
+  }catch(e){console.error('JSYNC write err:',e);this.status='err';this.ui();toast('Lỗi ghi file sync: '+e.message,'err')}
+ },
+ async restore(){
+  if(!this.sup())return;
+  const h=await DB.getHandle();if(!h)return;
+  try{
+   const perm=await h.queryPermission({mode:'readwrite'});
+   if(perm==='granted'){this.handle=h;this.fileName=h.name;await this.read();this.status='ok';this.ui();toast('Đã tự đồng bộ từ file '+h.name)}
+   else if(perm==='prompt'){this.handle=h;this.fileName=h.name;this.status='idle';this.ui()}
+  }catch(e){console.warn('JSYNC restore err:',e)}
+ }
+};
 /* ---------- Cài đặt & danh mục ---------- */
 const DEF_SET={expiryDays:90,backupDays:7,priceTol:0.5,delayPts:10,kpiPass:100,pageSize:15,commPeriods:1};
 const S=k=>(DB.meta.settings&&DB.meta.settings[k]!=null&&DB.meta.settings[k]!=='')?Number(DB.meta.settings[k]):DEF_SET[k];
@@ -2121,6 +2216,25 @@ VIEWS.backup={render(){
    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)"><div class="fld"><label>Sao lưu riêng một kỳ</label><div style="display:flex;gap:8px"><select id="bkPeriod">${per.map(p=>`<option value="${p.id}">${pLabel(p)}</option>`).join('')}</select><button class="btn" data-act="bk-period">${ic('download')} Sao lưu kỳ</button></div><div class="hp">Gồm dữ liệu của kỳ + dữ liệu dùng chung (dự án, khách hàng, hợp đồng, công nợ, danh mục).</div></div></div></div></div>
   <div class="card"><h3>${ic('upload')} Phục hồi</h3><div class="cb"><div class="dz"><p style="margin:0 0 8px">Chọn file <b>.json</b> đã sao lưu. Ứng dụng sẽ kiểm tra cấu trúc và cho xem trước trước khi phục hồi.</p><input type="file" id="rsFile" accept=".json,application/json" data-chg="restore-file"></div>
    <p class="note" style="margin-bottom:0">Trước khi thay thế dữ liệu, ứng dụng tự tải về bản sao lưu an toàn. File lỗi sẽ không làm thay đổi dữ liệu hiện có.</p></div></div></div>`;
+  /* Card JSON Sync */
+  const _jsup=JSYNC.sup(),_jfn=JSYNC.fileName,_jst=JSYNC.status,_jts=JSYNC.lastSync;
+  h+=`<div class="card" style="margin-top:14px"><h3>${ic('link')} Đồng bộ file JSON tự động</h3><div class="cb">`;
+  if(!_jsup){
+   h+=`<div class="banner y">${ic('alert')}<div>Tính năng <b>Đồng bộ file JSON</b> chỉ hoạt động trên <b>Google Chrome</b> hoặc <b>Microsoft Edge</b>. Hiện tại bạn dùng trình duyệt chưa hỗ trợ.</div></div>`;
+  }else{
+   const _stlbl={idle:'Chờ thay đổi',ok:'Đã sync '+JSYNC._fmt(_jts),saving:'Đang lưu…',err:'Lỗi đồng bộ'};
+   h+=`<div class="jsync-bar"><span class="jlabel">${ic('link')} File đang kết nối:</span><span class="jfile ${_jfn?'':'none'}">${_jfn?esc(_jfn):'Chưa kết nối file nào'}</span>`;
+   if(_jfn){h+=`<span class="jsync-st ${_jst}">${_stlbl[_jst]||''}</span><button class="btn sm" data-act="jsync-reconnect">${ic('refresh')} Kết nối lại</button><button class="btn sm ghost" data-act="jsync-disconnect">${ic('x')} Ngắt</button>`}
+   h+=`</div><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start">`;
+   if(!_jfn){
+    h+=`<div><button class="btn pri" data-act="jsync-connect">${ic('link')} Kết nối file JSON</button><p class="note" style="margin-top:8px">Chọn file <b>.json</b> sao lưu để kết nối. Ứng dụng sẽ <b>tự đọc dữ liệu từ file khi khởi động</b> và <b>tự ghi lại file sau mỗi thay đổi</b> (~2 giây).</p></div>`;
+   }else{
+    h+=`<div><button class="btn" data-act="jsync-read-now">${ic('download')} Đọc file ngay</button><p class="note" style="margin-top:8px">Nhập bản ghi mới từ file vào ứng dụng (bản ghi đã có giữ nguyên).</p></div>`;
+    h+=`<div><button class="btn" data-act="jsync-write-now">${ic('upload')} Ghi file ngay</button><p class="note" style="margin-top:8px">Ghi toàn bộ dữ liệu hiện tại ra file JSON ngay lập tức.</p></div>`;
+   }
+   h+=`</div><div class="banner b" style="margin-top:10px">${ic('alert')}<div>File JSON sẽ <b>bị ghi đè</b> tự động sau mỗi lần lưu. Hãy giữ bản sao lưu thủ công định kỳ. Chỉ hỗ trợ <b>Chrome / Edge</b>.</div></div>`;
+  }
+  h+=`</div></div>`;
   if(R)h+=restorePanel(R);
   return h;
 }};
@@ -2182,6 +2296,20 @@ ACT['rs-apply']=async()=>{
   await ensureCatalogMigrations();await migrateContractModel();
   UI.restore=null;toast('Phục hồi hoàn tất');go('dashboard');renderMain();
 };
+
+/* ---------- JSON Sync ACT ---------- */
+ACT['jsync-connect']=async()=>JSYNC.connect();
+ACT['jsync-reconnect']=async()=>{
+ if(!JSYNC.handle){await JSYNC.connect();return}
+ try{const p=await JSYNC.handle.requestPermission({mode:'readwrite'});if(p==='granted'){await JSYNC.read();renderMain();toast('Đã kết nối lại và đọc file '+JSYNC.fileName)}else toast('Không được cấp quyền','warn')}
+ catch(e){toast('Lỗi kết nối lại: '+e.message,'err')}
+};
+ACT['jsync-disconnect']=async()=>{
+ if(!await confirmBox({title:'Ngắt kết nối file JSON',msg:'Ứng dụng sẽ không tự đọc/ghi file đó nữa. Dữ liệu hiện tại không bị xóa.',ok:'Ngắt kết nối'}))return;
+ await JSYNC.disconnect();
+};
+ACT['jsync-read-now']=async()=>{if(!JSYNC.handle){toast('Chưa kết nối file nào','warn');return}await JSYNC.read();renderMain();toast('Đã đọc và nhập bản ghi mới từ file JSON')};
+ACT['jsync-write-now']=async()=>{if(!JSYNC.handle){toast('Chưa kết nối file nào','warn');return}if(JSYNC._dt)clearTimeout(JSYNC._dt);await JSYNC._write();toast('Đã ghi toàn bộ dữ liệu ra file JSON')};
 
 /* ---------- Tạo kỳ mới ---------- */
 VIEWS.newperiod={render(){
@@ -2555,6 +2683,7 @@ async function boot(){
   await DB.init();
   if(!DB.all('catalogs').length){await seedCatalogs();await DB.setMeta('catMig','1.5')}
   else{await ensureCatalogMigrations()}
+  await JSYNC.restore();
   if(!DB.meta.seeded){await DB.setMeta('seeded',true)}
   await seedHntStoragePolicy();
   await migrateContractModel();
