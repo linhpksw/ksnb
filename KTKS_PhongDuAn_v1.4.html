@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KTKS Phòng Dự án v1.5.2 – Kiểm tra kiểm soát nội bộ (Kèm QĐ 11/2025/QĐ-HNT Lưu kho)</title>
+<title>KTKS Phòng Dự án v1.5.3 – Kiểm tra kiểm soát nội bộ (Kèm QĐ 11 Lưu kho &amp; QĐ 176 Gia hạn HĐ)</title>
 <style>
 :root{
   --ink:#16232b;--ink2:#41525e;--mute:#6b7b87;--line:#dbe2e7;--line2:#e9eef1;
@@ -277,7 +277,7 @@ input[type=file]{border:1px solid #c9d3d9;border-radius:var(--rad);padding:6px 8
    KTKS Phòng Dự án – Ứng dụng kiểm tra kiểm soát nội bộ hàng quý
    Chạy hoàn toàn offline • Dữ liệu lưu trong IndexedDB của trình duyệt
    ===================================================================== */
-const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.2',BACKUP_VERSION=1,DB_VERSION=7;
+const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.3',BACKUP_VERSION=1,DB_VERSION=7;
 const HANDLE_STORE='_handles';
 const STORES=['periods','catalogs','docreqs','projects','investments','progcosts','payments','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','prices','renewals','revenues','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal','meta'];
 const DATA_STORES=STORES.filter(s=>s!=='meta');
@@ -1015,8 +1015,8 @@ const docFields=(list,tab)=>list.map(([k,l])=>F(k,l,'yn',{tab}));
 /* ---------- Chính sách giá theo dự án/kho & bậc chiết khấu ----------
    Nhập 1 lần: giá bán chuẩn của kho + các bậc chiết khấu tối đa theo giá bán, cho từng đối tượng
    (Phòng Dự án / Môi giới). Hệ thống dùng để tự gợi ý và đối chiếu với giá/chiết khấu thực tế trên hợp đồng. */
-const POLICY_TYPES=[['lease','Thuê kho (thuê đứt)'],['storage','Lưu kho trọn gói']];
-const DURATIONS=[['lt3','HĐ dưới 3 tháng'],['3to6','HĐ từ 3 đến dưới 6 tháng'],['6to24','HĐ từ 6 đến dưới 24 tháng'],['ge24','HĐ từ 24 tháng trở lên']];
+const POLICY_TYPES=[['lease','Thuê kho (thuê đứt)'],['storage','Lưu kho trọn gói'],['renewal','Gia hạn HĐ (QĐ 176/2024/QĐ-HNT)']];
+const DURATIONS=[['lt3','HĐ dưới 3 tháng'],['3to6','HĐ từ 3 đến dưới 6 tháng'],['6to24','HĐ từ 6 đến dưới 24 tháng'],['ge24','HĐ từ 24 tháng trở lên'],['6to12','Gia hạn 6–12 tháng (QĐ 176)'],['13to35','Gia hạn 13–35 tháng (QĐ 176)'],['ge36','Gia hạn ≥ 36 tháng (QĐ 176)']];
 const VOL_TIERS=[['1','Bậc 1 (sản lượng thấp nhất)'],['2','Bậc 2 (trung bình)'],['3','Bậc 3 (sản lượng cao nhất)']];
 const VOL_UNIT_FIELDS={'m³':'m3','tấn':'tan','pallet':'pallet','m²':'m2'};
 const durationName=k=>(DURATIONS.find(x=>x[0]===k)||['',''])[1];
@@ -1042,6 +1042,33 @@ function firstMonthRule(c){
   return`Tháng đầu có ${days} ngày (≥ 20 ngày) ➔ Tính CK theo DOANH THU LƯU KHO THÁNG ĐẦU TIÊN`;
 }
 const durationBucket=m=>m==null?'':m<3?'lt3':m<6?'3to6':m<24?'6to24':'ge24';
+
+/* --- Helpers chính sách gia hạn HĐ theo QĐ 176/2024/QĐ-HNT --- */
+function custContractHistory(customerId){
+  if(!customerId)return{years:0,months:0,count:0,firstDate:'',isGe3Years:false,contracts:[]};
+  const cts=DB.all('contracts').filter(c=>c.customerId===customerId&&(c.effDate||c.signDate));
+  if(!cts.length)return{years:0,months:0,count:0,firstDate:'',isGe3Years:false,contracts:[]};
+  const sorted=cts.slice().sort((a,b)=>(a.effDate||a.signDate).localeCompare(b.effDate||b.signDate));
+  const firstDate=sorted[0].effDate||sorted[0].signDate;
+  const d1=new Date(firstDate),now=new Date();
+  const months=Math.max(0,(now.getFullYear()-d1.getFullYear())*12+(now.getMonth()-d1.getMonth()));
+  const years=+(months/12).toFixed(1);
+  return{years,months,count:cts.length,firstDate,isGe3Years:months>=35,contracts:sorted};
+}
+function qd176Tier(months){
+  if(months==null||months===''||N(months)<6)return{tier:'lt6',label:'Dưới 6 tháng',rate:0,valid:false};
+  const m=N(months);
+  if(m<=12)return{tier:'6to12',label:'Từ 6 đến 12 tháng',rate:10,valid:true};
+  if(m<=35)return{tier:'13to35',label:'Từ 13 đến 35 tháng',rate:20,valid:true};
+  return{tier:'ge36',label:'Từ 36 tháng trở lên',rate:30,valid:true};
+}
+function calcQd176Clawback(actualRate,oneMonthRent,actualMonths){
+  if(!isNum(actualRate)||!isNum(oneMonthRent)||!isNum(actualMonths))return 0;
+  const earnedTier=qd176Tier(actualMonths);
+  const diffRate=Math.max(0,N(actualRate)-earnedTier.rate);
+  return Math.round(N(oneMonthRent)*diffRate/100);
+}
+
 const policyServicesFor=id=>id?DB.all('policyservices').filter(x=>x.policyId===id):[];
 const policyVolTiersFor=id=>id?DB.all('policyvoltiers').filter(x=>x.policyId===id):[];
 function volTierOf(policyId,unit,qty){
@@ -1056,6 +1083,11 @@ function ckAllowedForStorage(policyId,durationKey,tierNo,object){
 }
 function suggestDiscRate(v){
   const c=ctr(v.contractId);if(!c)return null;
+  if(v.termCase==='renew_qd176'||v.termCase==='extension'){
+    const dm=isNum(v.renewMonths)?N(v.renewMonths):ctrDurationMonths(c);
+    const tier=qd176Tier(dm);
+    return isNum(tier.rate)?tier.rate:null;
+  }
   const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!p||!v.type)return null;
   if(ctrModel(c)==='storage'){
     if(!isNum(v.volQty)||!v.volUnit)return null;
@@ -1103,6 +1135,11 @@ function policyTiersHtml(v){
     const sorted=tiers.slice().sort((a,b)=>DURATIONS.findIndex(x=>x[0]===a.durationLabel)-DURATIONS.findIndex(x=>x[0]===b.durationLabel)||N(a.volTier)-N(b.volTier)||catName('discType',a.object).localeCompare(catName('discType',b.object),'vi'));
     if(!sorted.length)h+=`<div class="note">Chưa có bậc chiết khấu nào.</div>`;
     sorted.forEach(t=>{h+=line(`${esc(durationName(t.durationLabel))} – ${esc(volTierName(t.volTier))} – ${esc(catName('discType',t.object))}: tối đa <b>${esc(fmtNum(t.maxCkPct))}%</b>`,btn('Sửa',`data-e="policytiers" data-id="${t.id}"`))});
+  }else if(type==='renewal'){
+    h+=`<div class="ih">Bậc chiết khấu gia hạn HĐ (QĐ 176/2024/QĐ-HNT)</div><div class="note" style="margin-bottom:8px">Áp dụng cho mọi HĐ đã ký từ 3 năm trở lên tiếp tục gia hạn hoặc tái ký. Chiết khấu 1 lần trên doanh thu thuê kho bãi 1 tháng.</div>`;
+    const sorted=tiers.slice().sort((a,b)=>DURATIONS.findIndex(x=>x[0]===a.durationLabel)-DURATIONS.findIndex(x=>x[0]===b.durationLabel));
+    if(!sorted.length)h+=`<div class="note">Chưa có bậc chiết khấu nào.</div>`;
+    sorted.forEach(t=>{h+=line(`${esc(t.note||durationName(t.durationLabel))} – ${esc(catName('discType',t.object))}: tối đa <b>${esc(fmtNum(t.maxCkPct))}%</b>`,btn('Sửa',`data-e="policytiers" data-id="${t.id}"`))});
   }else{
     h+=`<div class="ih">Bậc chiết khấu theo giá bán</div>`;
     const sorted=tiers.slice().sort((a,b)=>N(a.priceLevel)-N(b.priceLevel));
@@ -1180,7 +1217,7 @@ defEnt({key:'policytiers',title:'Bậc chiết khấu CS',singular:'Bậc chiế
   F('object','Đối tượng hưởng CK','cat',{g:'discType',req:1,f:1}),
   F('maxCkPct','Mức CK tối đa (%)','pct',{req:1,min:0,max:100})],
  cols:['policyId','priceLevel','durationLabel','volTier','object','maxCkPct'],sort:{k:'priceLevel',dir:'asc'},
- validate:v=>{const p=policy(v.policyId);if(!p)return{};const st=p.policyType==='storage';const e={};if(st&&(!v.durationLabel||!v.volTier))e.durationLabel=e.durationLabel||'Bắt buộc chọn Thời hạn HĐ và Bậc sản lượng cho chính sách Lưu kho';if(!st&&!isNum(v.priceLevel))e.priceLevel='Bắt buộc nhập Mức giá bán cho chính sách Thuê kho';return e}});
+ validate:v=>{const p=policy(v.policyId);if(!p)return{};const st=p.policyType==='storage',rn=p.policyType==='renewal';const e={};if(st&&(!v.durationLabel||!v.volTier))e.durationLabel=e.durationLabel||'Bắt buộc chọn Thời hạn HĐ và Bậc sản lượng cho chính sách Lưu kho';if(rn&&!v.durationLabel)e.durationLabel='Bắt buộc chọn khung thời hạn gia hạn cho chính sách QĐ 176';if(!st&&!rn&&!isNum(v.priceLevel))e.priceLevel='Bắt buộc nhập Mức giá bán cho chính sách Thuê kho';return e}});
 defEnt({key:'policyservices',title:'Bảng giá dịch vụ CS',singular:'Giá dịch vụ',store:'policyservices',
  desc:'Đơn giá dịch vụ lưu kho/bốc xếp (min – bình quân – max) theo từng đơn vị tính, thuộc một Chính sách giá Lưu kho. Dùng để đối chiếu với đơn giá thực tế trên hợp đồng.',
  label:r=>r?`${policyName(r.policyId)} – ${r.service} (${r.unit})`:'',
@@ -1320,6 +1357,10 @@ defEnt({key:'contracts',title:'Hợp đồng',singular:'Hợp đồng',store:'co
   F('signDate','Ngày ký','date',{tab:0}),F('effDate','Ngày hiệu lực','date',{tab:0}),
   F('endDate','Ngày hết hạn','date',{tab:0,help:'Bắt buộc, trừ khi tích "Vô thời hạn" bên dưới'}),
   F('indefinite','Vô thời hạn (không có ngày hết hạn)','checkbox',{tab:0,checkText:'Hợp đồng có hiệu lực đến khi khách hàng chấm dứt, không đặt ngày hết hạn',help:'Khi tích chọn: bỏ trống Ngày hết hạn, hệ thống không tính "sắp hết hạn"/"quá hạn" và không nhắc tái tục cho hợp đồng này'}),
+  F('isRenewal','Loại hợp đồng theo chu kỳ','select',{opts:[['new','Hợp đồng ký mới'],['renewal','Gia hạn / Tái ký hợp đồng cũ']],def:'new',tab:0,help:'Chọn Gia hạn/Tái ký nếu đây là hợp đồng gia hạn từ hợp đồng trước đó'}),
+  F('priorYears','Thâm niên hợp đồng trước đó (năm)','number',{min:0,tab:0,help:'Số năm khách hàng đã ký hợp đồng trước lần gia hạn này (xét điều kiện ≥ 3 năm theo QĐ 176)'}),
+  F('priorContractRef','Căn cứ HĐ cũ / HĐ liền trước','text',{tab:0,ph:'VD: HĐ số 25/2021/HĐTK-HNT ký 01/08/2021',help:'Ghi rõ số HĐ cũ để phục vụ đối chiếu KTKS'}),
+  F('qd176Eligible','Điều kiện CK gia hạn QĐ 176','computed',{fmt:'badge',tab:0,calc:r=>{const hist=custContractHistory(r.customerId);return(hist.isGe3Years||(isNum(r.priorYears)&&N(r.priorYears)>=3))?['Đủ ĐK ≥ 3 năm (QĐ 176)','green']:['Chưa đủ 3 năm','gray']}}),
   F('status','Trạng thái hợp đồng','cat',{g:'contractStatus',def:'active',f:1,inl:1,req:1,tab:0}),
   F('signer','Người ký','text',{tab:0}),F('signerTitle','Chức danh','text',{tab:0}),F('authOK','Đúng thẩm quyền?','yn',{tab:0}),
   F('daysLeft','Thời hạn còn lại','computed',{fmt:'badge',tab:0,sv:r=>{const d=daysLeft(r);return d==null?9e9:d},calc:r=>{if(r.status==='ended')return['Đã kết thúc','gray'];if(r.indefinite==='y')return['Vô thời hạn','blue'];const d=daysLeft(r);if(d==null)return'';return d<0?[`Quá hạn ${-d} ngày`,'red']:[d+' ngày',d<=30?'red':d<=90?'yellow':'gray']}}),
@@ -1390,6 +1431,9 @@ defEnt({key:'prices',title:'Giá & Báo giá',singular:'Kiểm tra giá',store:'
  validate:uniqPerPeriod('prices','contractId','Hợp đồng này đã có bản ghi kiểm tra giá trong kỳ')});
 
 defEnt({key:'renewals',title:'Tái tục hợp đồng',singular:'Theo dõi tái tục',store:'renewals',period:true,
+ banner:()=>`<div class="banner b" style="font-size:12.5px;display:block">
+  <b>Lưu ý KTKS Tái tục (QĐ 176/2024/QĐ-HNT):</b> Hợp đồng đã ký từ <b>3 năm trở lên</b> tiếp tục gia hạn hoặc tái ký được hưởng chính sách chiết khấu cho Phòng Dự án (10% cho 6–12 tháng; 20% cho 13–35 tháng; 30% cho ≥ 36 tháng, tính trên 1 tháng doanh thu thuê kho bãi). Yêu cầu đề xuất của GĐĐH và HĐQT thông qua.
+ </div>`,
  desc:'Theo dõi hợp đồng sắp/đã hết hạn và việc đàm phán, ký tái tục. Dùng nút “Tạo từ hợp đồng sắp hết hạn” để lấy nhanh danh sách.',label:r=>'Tái tục '+ctrNo(r.contractId),
  toolbar:()=>`<button class="btn" data-act="renew-auto">${ic('refresh')} Tạo từ hợp đồng sắp hết hạn</button>`,
  top:(rows,all)=>`<div class="tiles">${BUCKETS.map(([k,l,t])=>{const n=all.filter(r=>renewBucket(r)===k).length;return`<button class="tile ${n?t:'zero'}" data-act="go" data-go="renewals" data-f="bucket=${k}"><div class="n">${n}</div><div class="l">${l}</div></button>`}).join('')}</div>`,
@@ -1397,12 +1441,13 @@ defEnt({key:'renewals',title:'Tái tục hợp đồng',singular:'Theo dõi tái
  fields:[ctrRef({tab:0}),ctrInfo,F('endDate','Ngày hết hạn','computed',{fmt:'date',tab:0,sv:r=>(ctr(r.contractId)||{}).endDate||'',calc:r=>(ctr(r.contractId)||{}).endDate}),
   F('left','Số ngày còn lại','computed',{fmt:'badge',tab:0,sv:r=>{const d=daysLeft(ctr(r.contractId));return d==null?9e9:d},calc:r=>{const d=daysLeft(ctr(r.contractId));return d==null?'':d<0?[`Quá ${-d} ngày`,'red']:[d+' ngày',d<=30?'red':d<=90?'yellow':'gray']}}),
   F('bucket','Nhóm thời hạn','computed',{fmt:'select',opts:BUCKETS.map(x=>[x[0],x[1]]),f:1,tab:0,calc:renewBucket}),
+  F('qd176Eligible','Điều kiện CK QĐ 176','computed',{fmt:'badge',tab:0,calc:r=>{const c=ctr(r.contractId);if(!c)return'';const hist=custContractHistory(c.customerId);return(hist.isGe3Years||(isNum(c.priorYears)&&N(c.priorYears)>=3))?['Đủ ĐK ≥ 3 năm (QĐ 176)','green']:['Chưa đủ 3 năm','gray']}}),
   F('startNego','Ngày bắt đầu đàm phán','date',{tab:0}),person('owner','Người phụ trách',{tab:0,f:1}),
   F('status','Trạng thái','cat',{g:'renewStatus',def:'notstart',req:1,f:1,inl:1,tab:0}),areaOf('reason','Lý do chưa hoàn thành',{tab:0,rows:2}),
   F('curPrice','Giá hiện tại (VND)','money',{tab:1,min:0}),F('upRate','Tỷ lệ tăng giá quy định (%)','pct',{tab:1,min:0}),
   F('expPrice','Giá dự kiến sau tăng (VND)','computed',{fmt:'money',tab:1,calc:r=>isNum(r.curPrice)?Math.round(N(r.curPrice)*(1+N(r.upRate)/100)):''}),
   F('actPrice','Giá tái tục thực tế (VND)','money',{tab:1,min:0}),F('newSign','Ngày ký HĐ/phụ lục mới','date',{tab:1}),areaOf('note','Ghi chú / nhận xét KTKS',{tab:1})],
- cols:['contractId','endDate','left','owner','curPrice','upRate','expPrice','actPrice','status'],sort:{k:'left',dir:'asc'},
+ cols:['contractId','endDate','left','qd176Eligible','owner','curPrice','upRate','expPrice','actPrice','status'],sort:{k:'left',dir:'asc'},
  onChange:{contractId:v=>{const c=ctr(v.contractId);if(!c)return null;const o={};if(!isNum(v.curPrice)&&isNum(ctrPrice(c)))o.curPrice=ctrPrice(c);if(!isNum(v.upRate)&&isNum(c.upRate))o.upRate=c.upRate;return o}},
  validate:uniqPerPeriod('renewals','contractId','Hợp đồng này đã có bản ghi tái tục trong kỳ')});
 
@@ -1421,31 +1466,150 @@ defEnt({key:'revenues',title:'Doanh thu & Công nợ',singular:'Doanh thu/công 
  validate:v=>isNum(v.collected)&&isNum(v.receivable)&&v.collected>v.receivable?{collected:'Đã thu lớn hơn phải thu – kiểm tra lại'}:{}});
 
 defEnt({key:'discounts',title:'Chiết khấu',singular:'Chiết khấu',store:'discounts',period:true,
+ banner:()=>`<div class="banner b" style="font-size:12.5px;display:block">
+  <b>Chính sách chiết khấu hiện hành:</b><br>
+  • <b>QĐ 11/2025/QĐ-HNT (Lưu kho trọn gói):</b> Doanh thu ≥ 5 tr/tháng; Bậc CK theo thời hạn &amp; sản lượng; Ký tháng đầu &lt; 20 ngày tính doanh thu tháng kế tiếp; HĐ ≤ 3 tháng do GĐĐH duyệt trả vào lương.<br>
+  • <b>QĐ 176/2024/QĐ-HNT (Gia hạn HĐ Phòng Dự án):</b> Áp dụng cho HĐ đã ký từ 3 năm trở lên; Chiết khấu 1 lần trên 1 tháng doanh thu thuê kho bãi; Mức tối đa: <b>6–12 tháng (10%)</b>, <b>13–35 tháng (20%)</b>, <b>≥ 36 tháng (30%)</b>; GĐĐH đề xuất + HĐQT thông qua; Khách chủ động chấm dứt trước hạn: truy thu về mức thời hạn thực tế.
+ </div>`,
  desc:'Kiểm tra chiết khấu/hoa hồng theo chính sách: tỷ lệ được phép, tỷ lệ thực tế, phê duyệt và chứng từ.',label:r=>'Chiết khấu '+ctrNo(r.contractId),
  tabs:['Chiết khấu','Phê duyệt & kiểm tra'],
- fields:[ctrRef({tab:0}),ctrInfo,F('cust','Khách hàng','computed',{noForm:1,calc:r=>ctrCust(ctr(r.contractId))}),F('related','Doanh thu liên quan (VND)','money',{tab:0,min:0}),F('receiver','Đối tượng nhận (tên cụ thể)','text',{tab:0}),
+ fields:[ctrRef({tab:0}),ctrInfo,F('cust','Khách hàng','computed',{noForm:1,calc:r=>ctrCust(ctr(r.contractId))}),
+  F('termCase','Trường hợp thời hạn & chấm dứt HĐ','select',{opts:[
+    ['normal','Bình thường (HĐ mới)'],
+    ['renew_qd176','Khách gia hạn HĐ - Phòng Dự án (QĐ 176/2024/QĐ-HNT)'],
+    ['extension','Khách gia hạn HĐ (chung)'],
+    ['early_client','Khách chủ động chấm dứt trước hạn (phải truy thu CK)'],
+    ['early_hnt','HNT chủ động thỏa thuận chấm dứt (giữ nguyên CK)'],
+    ['short','HĐ ≤ 3 tháng (GĐĐH duyệt trả thưởng vào lương)']
+  ],def:'normal',tab:0,help:'Theo Khoản 7 QĐ 11 & QĐ 176/2024/QĐ-HNT'}),
+  F('related','Doanh thu liên quan (VND)','money',{tab:0,min:0,help:'Theo QĐ 176: Là doanh thu thuê kho bãi 1 tháng của HĐ/phụ lục gia hạn'}),
+  F('receiver','Đối tượng nhận (tên cụ thể)','text',{tab:0}),
   F('type','Loại (đối tượng hưởng CK)','cat',{g:'discType',f:1,tab:0,help:'Dùng để đối chiếu đúng bậc chiết khấu Phòng Dự án/Môi giới trong Chính sách giá'}),
+  F('isPrior3Years','Khách hàng đã ký HĐ từ ≥ 3 năm trở lên (QĐ 176)?','select',{opts:[
+    ['auto','Tự động nhận diện từ hệ thống (≥ 3 năm)'],
+    ['yes_manual','Xác nhận thủ công từ hồ sơ ngoài hệ thống (≥ 3 năm)'],
+    ['no','Không / Chưa đủ 3 năm']
+  ],def:'no',tab:0,help:'Điều kiện tiên quyết QĐ 176: Áp dụng cho hợp đồng đã ký từ 3 năm trở lên'}),
+  F('priorProof','Căn cứ thâm niên / Số HĐ cũ (nếu xác nhận thủ công)','text',{tab:0,ph:'VD: HĐ số 12/2021/HĐTK-HNT ký ngày 15/05/2021',help:'Bắt buộc khi chọn Xác nhận thủ công từ hồ sơ ngoài hệ thống'}),
+  F('renewMonths','Thời hạn gia hạn HĐ (tháng)','number',{tab:0,min:0,help:'Khung tối đa QĐ 176: 6–12 tháng (10%), 13–35 tháng (20%), ≥ 36 tháng (30%)'}),
+  F('oneMonthRentBase','Doanh thu thuê kho bãi 1 tháng (chuẩn)','money',{tab:0,min:0,help:'Theo QĐ 176: Căn cứ tính chiết khấu là doanh thu thuê kho bãi 1 tháng của HĐ/phụ lục gia hạn'}),
+  F('qd176RuleNote','Kiểm tra chính sách gia hạn QĐ 176','computed',{tab:0,full:1,calc:r=>{
+    if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return'';
+    const c=ctr(r.contractId);const hist=c?custContractHistory(c.customerId):null;
+    const dm=isNum(r.renewMonths)?N(r.renewMonths):(c?ctrDurationMonths(c):null);
+    const tier=qd176Tier(dm);
+    let s=`<b>QĐ 176/2024/QĐ-HNT:</b> Thời hạn gia hạn: <b>${dm!=null?dm+' tháng':'Chưa xác định'}</b> ➔ Khung CK tối đa: <b>${tier.rate}%</b> (${tier.label}).`;
+    if(hist&&hist.count>0){
+      s+=`<br>Lịch sử hệ thống: Khách hàng có <b>${hist.count}</b> HĐ từ <b>${fmtDate(hist.firstDate)}</b> (~${hist.years} năm) ➔ ${hist.isGe3Years?'<span class="g">Đủ điều kiện ≥ 3 năm</span>':'<span class="r">Chưa đủ 3 năm trên hệ thống</span>'}.`;
+    }
+    return s;
+  }}),
   F('volQty','Sản lượng lưu kho trong kỳ tính CK','number',{tab:0,min:0,help:'Chỉ nhập khi hợp đồng là Lưu kho trọn gói – dùng để xác định Bậc sản lượng'}),
   F('volUnit','Đơn vị sản lượng','select',{opts:[['m³','m³'],['tấn','tấn'],['pallet','pallet'],['m²','m²']],tab:0}),
   F('firstMonthDays','Số ngày tháng đầu ký HĐ','computed',{tab:0,sv:r=>{const c=ctr(r.contractId);return c&&c.effDate?daysInFirstMonth(c.effDate):''},calc:r=>{const c=ctr(r.contractId);const d=c&&c.effDate?daysInFirstMonth(c.effDate):null;return d!=null?d+' ngày':''}}),
   F('firstMonthApplied','Tính CK trên doanh thu tháng đầu tiên?','select',{opts:[['y','Có (tháng đầu ≥ 20 ngày)'],['n','Không (tính trên doanh thu tháng kế tiếp do tháng đầu < 20 ngày)']],def:'y',tab:0,help:'Theo Khoản 6 QĐ 11: Nếu KH ký HĐ tháng đầu dưới 20 ngày thì mức hưởng tính dựa trên doanh số lưu kho tháng kế tiếp'}),
   F('firstMonthRuleNote','Quy tắc tính tháng đầu (QĐ 11)','computed',{tab:0,full:1,calc:r=>{const c=ctr(r.contractId);return c&&ctrModel(c)==='storage'?firstMonthRule(c):''}}),
-  F('termCase','Trường hợp thời hạn & chấm dứt HĐ','select',{opts:[['normal','Bình thường'],['early_client','Khách chủ động chấm dứt trước hạn (phải truy thu CK)'],['early_hnt','HNT chủ động thỏa thuận chấm dứt (giữ nguyên CK)'],['extension','Khách gia hạn HĐ (CK bổ sung theo tháng đầu gia hạn)'],['short','HĐ ≤ 3 tháng (GĐĐH duyệt trả thưởng vào lương)']],def:'normal',tab:0,help:'Theo Khoản 7 QĐ 11'}),
-  F('clawbackAmt','Số tiền chiết khấu phải truy thu (VND)','money',{tab:0,min:0,help:'Nhập khi khách chủ động chấm dứt trước hạn theo Khoản 7 QĐ 11'}),
-  F('policyRef','Chính sách áp dụng','computed',{fmt:'text',noForm:1,tab:0,calc:r=>{const c=ctr(r.contractId),p=c&&sitePolicyFor(c.site,c.effDate||todayStr());return p?policyName(p.id):'(chưa có chính sách phù hợp cho kho này)'}}),
+  F('policyRef','Chính sách áp dụng','computed',{fmt:'text',noForm:1,tab:0,calc:r=>{
+    if(r.termCase==='renew_qd176'||r.termCase==='extension')return'QĐ số 176/2024/QĐ-HNT (Gia hạn HĐ Phòng Dự án)';
+    const c=ctr(r.contractId),p=c&&sitePolicyFor(c.site,c.effDate||todayStr());return p?policyName(p.id):'(chưa có chính sách phù hợp cho kho này)';
+  }}),
   F('volTierRef','Bậc sản lượng khớp (Lưu kho)','computed',{fmt:'text',noForm:1,tab:0,calc:r=>{const c=ctr(r.contractId);if(!c||ctrModel(c)!=='storage')return'';const p=c&&sitePolicyFor(c.site,c.effDate||todayStr());if(!p)return'';if(!isNum(r.volQty)||!r.volUnit)return'(nhập sản lượng + đơn vị để xác định bậc)';const t=volTierOf(p.id,r.volUnit,r.volQty);return t?volTierName(t)+' – '+durationName(durationBucket(ctrDurationMonths(c))):'Không khớp bậc sản lượng nào (kiểm tra lại Bậc sản lượng của chính sách)'}}),
-  F('policy','Ghi chú chính sách (nếu cần diễn giải thêm)','text',{tab:0}),F('allowedRate','Tỷ lệ được phép (%)','pct',{tab:0,min:0,help:'Tự lấy theo Chính sách giá (giá bán, hoặc thời hạn HĐ + sản lượng với Lưu kho), có thể sửa tay'}),F('actualRate','Tỷ lệ thực tế (%)','pct',{tab:0,min:0}),
-  F('amount','Số tiền chiết khấu (VND)','money',{tab:0,min:0}),F('over','Vượt mức?','computed',{fmt:'yn',bad:1,tab:0,calc:r=>isNum(r.actualRate)&&isNum(r.allowedRate)?(N(r.actualRate)>N(r.allowedRate)?'y':'n'):''}),
-  F('gddhApproved','GĐĐH phê duyệt trả thưởng lương (HĐ ≤ 3 tháng)?','yn',{tab:1,help:'Theo Khoản 7 QĐ 11: HĐ từ 3 tháng trở xuống do GĐĐH phê duyệt và trả thưởng vào lương'}),
+  F('policy','Ghi chú chính sách (nếu cần diễn giải thêm)','text',{tab:0}),
+  F('allowedRate','Tỷ lệ được phép (%)','pct',{tab:0,min:0,help:'Tự lấy theo Chính sách giá (hoặc theo khung QĐ 176 với HĐ gia hạn), có thể sửa tay'}),
+  F('actualRate','Tỷ lệ thực tế (%)','pct',{tab:0,min:0}),
+  F('amount','Số tiền chiết khấu (VND)','money',{tab:0,min:0}),
+  F('over','Vượt mức?','computed',{fmt:'yn',bad:1,tab:0,calc:r=>isNum(r.actualRate)&&isNum(r.allowedRate)?(N(r.actualRate)>N(r.allowedRate)?'y':'n'):''}),
+  F('gddhProposed','GĐĐH có đề xuất chiết khấu gia hạn (QĐ 176)?','yn',{tab:1,help:'Theo Khoản 6 QĐ 176: Thanh toán theo đề xuất của Giám Đốc điều hành'}),
+  F('gddhProposalDoc','Số/Ngày tờ trình GĐĐH đề xuất','text',{tab:1,ph:'VD: Tờ trình số 45/TTr-GĐĐH ngày 28/10/2024'}),
+  F('hdqtApproved','HĐQT đã thông qua chiết khấu gia hạn (QĐ 176)?','yn',{tab:1,help:'Theo Khoản 6 QĐ 176: Phải được HĐQT thông qua'}),
+  F('hdqtApprovalDoc','Số QĐ/Nghị quyết HĐQT thông qua','text',{tab:1,ph:'VD: NQ số 12/NQ-HĐQT ngày 02/11/2024'}),
+  F('gddhApproved','GĐĐH phê duyệt trả thưởng lương (HĐ ≤ 3 tháng theo QĐ 11)?','yn',{tab:1,help:'Theo Khoản 7 QĐ 11: HĐ từ 3 tháng trở xuống do GĐĐH phê duyệt và trả thưởng vào lương'}),
+  F('earlyTermBy','Đối tượng chủ động chấm dứt HĐ','select',{opts:[
+    ['none','Không có chấm dứt trước hạn'],
+    ['client','Khách hàng chủ động yêu cầu (phải truy thu CK về mức thực tế)'],
+    ['hnt','HNT chủ động thỏa thuận (được giữ nguyên CK)']
+  ],def:'none',tab:1,help:'Theo Khoản 7 QĐ 176 & Khoản 7 QĐ 11'}),
+  F('actualMonthsUsed','Thời gian thực tế khách đã thuê trước khi chấm dứt (tháng)','number',{tab:1,min:0,help:'Dùng để tính mức chiết khấu được hưởng thực tế và số tiền truy thu'}),
+  F('clawbackAmt','Số tiền chiết khấu phải truy thu (VND)','money',{tab:1,min:0,help:'Nhập số tiền truy thu thu hồi về cho công ty theo Khoản 7 QĐ 176'}),
+  F('clawbackNote','Tính toán truy thu (QĐ 176)','computed',{tab:1,full:1,calc:r=>{
+    if(r.earlyTermBy!=='client'&&r.termCase!=='early_client')return'';
+    const rent=isNum(r.oneMonthRentBase)?N(r.oneMonthRentBase):(isNum(r.related)?N(r.related):0);
+    const cb=calcQd176Clawback(r.actualRate,rent,r.actualMonthsUsed);
+    const tier=qd176Tier(r.actualMonthsUsed);
+    return`<b>Khoản 7 QĐ 176 Truy thu:</b> Thời gian thực tế: <b>${r.actualMonthsUsed||0} tháng</b> (khung thực tế: <b>${tier.rate}%</b>). Đã chi: <b>${r.actualRate||0}%</b>. Chênh lệch cần truy thu: <b>${Math.max(0,(r.actualRate||0)-tier.rate)}%</b> trên DT 1 tháng = <b>${fmtMoney(cb)} đ</b>.`;
+  }}),
   person('proposer','Người đề xuất',{tab:1}),person('approver','Người phê duyệt',{tab:1}),F('approveDate','Ngày phê duyệt','date',{tab:1}),areaOf('docs','Chứng từ',{tab:1,rows:2}),
   F('okPolicy','Đúng chính sách?','yn',{tab:1}),F('exception','Có phê duyệt ngoại lệ?','yn',{tab:1}),areaOf('note','Nhận xét KTKS',{tab:1})],
- cols:['contractId','cust','type','related','allowedRate','actualRate','amount','over','exception'],sort:{k:'contractId',dir:'asc'},
+ cols:['contractId','cust','type','termCase','related','allowedRate','actualRate','amount','over','exception'],sort:{k:'contractId',dir:'asc'},
  onChange:{related:v=>isNum(v.related)&&isNum(v.actualRate)?{amount:Math.round(v.related*v.actualRate/100)}:null,
-  actualRate:v=>isNum(v.related)&&isNum(v.actualRate)?{amount:Math.round(v.related*v.actualRate/100)}:null,
-  contractId:v=>{if(isNum(v.allowedRate))return null;const a=suggestDiscRate(v);return a!=null?{allowedRate:a}:null},
+  actualRate:v=>{
+    const o={};
+    if(isNum(v.related)&&isNum(v.actualRate))o.amount=Math.round(v.related*v.actualRate/100);
+    if((v.termCase==='renew_qd176'||v.termCase==='extension'||v.earlyTermBy==='client')&&isNum(v.actualMonthsUsed)){
+      const rent=isNum(v.oneMonthRentBase)?N(v.oneMonthRentBase):(isNum(v.related)?N(v.related):0);
+      o.clawbackAmt=calcQd176Clawback(v.actualRate,rent,v.actualMonthsUsed);
+    }
+    return Object.keys(o).length?o:null;
+  },
+  actualMonthsUsed:v=>{
+    if(!isNum(v.actualMonthsUsed))return null;
+    const rent=isNum(v.oneMonthRentBase)?N(v.oneMonthRentBase):(isNum(v.related)?N(v.related):0);
+    return {clawbackAmt:calcQd176Clawback(v.actualRate,rent,v.actualMonthsUsed)};
+  },
+  contractId:v=>{
+    const c=ctr(v.contractId);if(!c)return null;
+    const o={};
+    const hist=custContractHistory(c.customerId);
+    if(hist.isGe3Years||(isNum(c.priorYears)&&N(c.priorYears)>=3))o.isPrior3Years='auto';
+    const dm=ctrDurationMonths(c);
+    if(dm!=null)o.renewMonths=dm;
+    const mo=ctrMonthly(c);
+    if(isNum(mo)&&N(mo)>0)o.oneMonthRentBase=mo;
+    if(v.termCase==='renew_qd176'||v.termCase==='extension'){
+      if(isNum(mo)&&N(mo)>0&&(!isNum(v.related)||N(v.related)===0))o.related=mo;
+      const tier=qd176Tier(dm);
+      o.allowedRate=tier.rate;
+      o.type=catKeyByName('discType','Phòng Dự án')||v.type;
+      if(isNum(o.related)&&isNum(v.actualRate))o.amount=Math.round(o.related*v.actualRate/100);
+    }else{
+      const a=suggestDiscRate(v);
+      if(a!=null)o.allowedRate=a;
+    }
+    return Object.keys(o).length?o:null;
+  },
+  termCase:v=>{
+    const c=ctr(v.contractId);const o={};
+    if(v.termCase==='renew_qd176'||v.termCase==='extension'){
+      o.type=catKeyByName('discType','Phòng Dự án')||v.type;
+      if(c){
+        const hist=custContractHistory(c.customerId);
+        if(hist.isGe3Years||(isNum(c.priorYears)&&N(c.priorYears)>=3))o.isPrior3Years='auto';
+        const dm=ctrDurationMonths(c);
+        if(dm!=null)o.renewMonths=dm;
+        const mo=ctrMonthly(c);
+        if(isNum(mo)&&N(mo)>0){
+          o.oneMonthRentBase=mo;
+          if(!isNum(v.related)||N(v.related)===0)o.related=mo;
+        }
+        const tier=qd176Tier(dm);
+        o.allowedRate=tier.rate;
+        const rel=o.related||v.related;
+        if(isNum(rel)&&isNum(v.actualRate))o.amount=Math.round(rel*v.actualRate/100);
+      }
+    }
+    return Object.keys(o).length?o:null;
+  },
+  renewMonths:v=>{
+    if(v.termCase==='renew_qd176'||v.termCase==='extension'){
+      const tier=qd176Tier(v.renewMonths);
+      return {allowedRate:tier.rate};
+    }
+    return null;
+  },
   type:v=>{if(isNum(v.allowedRate))return null;const a=suggestDiscRate(v);return a!=null?{allowedRate:a}:null},
   volQty:v=>{if(isNum(v.allowedRate))return null;const a=suggestDiscRate(v);return a!=null?{allowedRate:a}:null},
-  volUnit:v=>{if(isNum(v.allowedRate))return null;const a=suggestDiscRate(v);return a!=null?{allowedRate:a}:null}},
+  volUnit:v=>{if(isNum(v.allowedRate))return null;const a=suggestDiscRate(v);return a!=null?{allowedRate:a}:null}
+ },
  validate:(v,c,b)=>{
    const e={};
    const ct=ctr(v.contractId);
@@ -1454,6 +1618,20 @@ defEnt({key:'discounts',title:'Chiết khấu',singular:'Chiết khấu',store:'
        e.related='Doanh thu lưu kho dưới 5.000.000 đ – không đủ điều kiện hưởng chiết khấu (Điều 2 QĐ 11)';
      if(v.termCase==='early_client'&&(!isNum(v.clawbackAmt)||N(v.clawbackAmt)<=0)&&v.exception!=='y')
        e.clawbackAmt='Khách chủ động chấm dứt trước hạn: Phải nhập số tiền chiết khấu truy thu (Khoản 7 QĐ 11)';
+   }
+   if(v.termCase==='renew_qd176'||v.termCase==='extension'){
+     if(v.isPrior3Years==='no'&&v.exception!=='y')
+       e.isPrior3Years='Khách hàng chưa đủ điều kiện đã ký từ 3 năm trở lên theo QĐ 176/2024/QĐ-HNT';
+     if(v.isPrior3Years==='yes_manual'&&!v.priorProof&&v.exception!=='y')
+       e.priorProof='Xác nhận thủ công ≥ 3 năm: Bắt buộc nhập căn cứ số HĐ cũ hoặc ngày ký gốc';
+     if(isNum(v.renewMonths)&&N(v.renewMonths)<6&&isNum(v.amount)&&N(v.amount)>0&&v.exception!=='y')
+       e.renewMonths='HĐ gia hạn dưới 6 tháng không thuộc khung hưởng chiết khấu theo QĐ 176';
+     if(v.earlyTermBy==='client'||v.termCase==='early_client'){
+       const rent=isNum(v.oneMonthRentBase)?N(v.oneMonthRentBase):(isNum(v.related)?N(v.related):0);
+       const req=calcQd176Clawback(v.actualRate,rent,v.actualMonthsUsed);
+       if((!isNum(v.clawbackAmt)||N(v.clawbackAmt)<req)&&v.exception!=='y')
+         e.clawbackAmt=`Khách chủ động chấm dứt trước hạn: Cần truy thu tối thiểu ${fmtMoney(req)} đ (về mức thực tế ${v.actualMonthsUsed||0} tháng)`;
+     }
    }
    return e;
  }});
@@ -1683,6 +1861,65 @@ Rl('storage_short_term_gddh','discounts','HĐ lưu kho ≤ 3 tháng chưa có G�
   const c=ctr(r.contractId);if(!c||ctrModel(c)!=='storage')return false;
   const dm=ctrDurationMonths(c);
   return dm!=null&&dm<=3&&r.type===catKeyByName('discType','Phòng Dự án')&&r.gddhApproved!=='y';
+},{dash:1});
+
+/* ---------- Rules Kiểm soát Nội bộ theo QĐ 176/2024/QĐ-HNT (Gia hạn HĐ Phòng Dự án) ---------- */
+Rl('qd176_not_3yr','discounts','HĐ gia hạn hưởng CK QĐ 176 nhưng chưa đủ điều kiện đã ký ≥ 3 năm','Gia hạn < 3 năm hưởng CK','r',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(r.exception==='y'||!isNum(r.amount)||N(r.amount)<=0)return false;
+  const c=ctr(r.contractId);
+  const hist=c?custContractHistory(c.customerId):null;
+  const db3yr=hist&&hist.isGe3Years;
+  const manual3yr=r.isPrior3Years==='yes_manual'||r.isPrior3Years==='auto'||(c&&isNum(c.priorYears)&&N(c.priorYears)>=3);
+  return !db3yr&&!manual3yr;
+},{dash:1});
+
+Rl('qd176_manual_no_proof','discounts','Xác nhận thủ công thâm niên ≥ 3 năm nhưng thiếu căn cứ HĐ cũ/ngày ký gốc (QĐ 176)','Thiếu căn cứ HĐ cũ','y',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(!isNum(r.amount)||N(r.amount)<=0||r.exception==='y')return false;
+  return r.isPrior3Years==='yes_manual'&&!r.priorProof;
+},{dash:1});
+
+Rl('qd176_under_6m','discounts','HĐ gia hạn dưới 6 tháng hưởng chiết khấu chưa có phê duyệt ngoại lệ (QĐ 176)','Gia hạn < 6th hưởng CK','r',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(!isNum(r.amount)||N(r.amount)<=0||r.exception==='y')return false;
+  const c=ctr(r.contractId);
+  const m=isNum(r.renewMonths)?N(r.renewMonths):(c?ctrDurationMonths(c):null);
+  return m!=null&&m<6;
+},{dash:1});
+
+Rl('qd176_rate_over','discounts','Tỷ lệ chiết khấu gia hạn vượt khung tối đa QĐ 176 (10% / 20% / 30%)','CK gia hạn vượt trần','r',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(!isNum(r.actualRate)||r.exception==='y')return false;
+  const c=ctr(r.contractId);
+  const m=isNum(r.renewMonths)?N(r.renewMonths):(c?ctrDurationMonths(c):null);
+  const maxAllowed=qd176Tier(m).rate;
+  return N(r.actualRate)>maxAllowed;
+},{dash:1});
+
+Rl('qd176_base_mismatch','discounts','Doanh thu tính chiết khấu gia hạn khác doanh thu thuê kho bãi 1 tháng (QĐ 176)','DT tính CK ≠ 1th kho bãi','y',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(!isNum(r.related)||!isNum(r.amount)||N(r.amount)<=0||r.exception==='y')return false;
+  const c=ctr(r.contractId);
+  const base=isNum(r.oneMonthRentBase)?N(r.oneMonthRentBase):(c&&isNum(ctrMonthly(c))?N(ctrMonthly(c)):null);
+  return base!=null&&base>0&&Math.abs(N(r.related)-base)>1000;
+},{dash:1});
+
+Rl('qd176_auth_missing','discounts','Chiết khấu gia hạn thiếu đề xuất của GĐĐH hoặc chưa được HĐQT thông qua (QĐ 176)','Thiếu duyệt GĐĐH/HĐQT','r',r=>{
+  if(r.termCase!=='renew_qd176'&&r.termCase!=='extension')return false;
+  if(!isNum(r.amount)||N(r.amount)<=0||r.exception==='y')return false;
+  return r.gddhProposed!=='y'||r.hdqtApproved!=='y';
+},{dash:1});
+
+Rl('qd176_clawback_missing','discounts','Khách chủ động chấm dứt HĐ gia hạn trước hạn: chưa truy thu hoặc thu thiếu CK (QĐ 176)','Chưa truy thu CK trước hạn','r',r=>{
+  const isQd176=r.termCase==='renew_qd176'||r.termCase==='extension';
+  const c=ctr(r.contractId);
+  const isClientEarly=r.earlyTermBy==='client'||r.termCase==='early_client'||(c&&c.earlyTermination==='client');
+  if(!isQd176||!isClientEarly||r.exception==='y')return false;
+  if(!isNum(r.actualMonthsUsed))return true;
+  const rent=isNum(r.oneMonthRentBase)?N(r.oneMonthRentBase):(isNum(r.related)?N(r.related):0);
+  const reqClawback=calcQd176Clawback(r.actualRate,rent,r.actualMonthsUsed);
+  return reqClawback>0&&(!isNum(r.clawbackAmt)||N(r.clawbackAmt)<reqClawback);
 },{dash:1});
 
 function ruleRows(rule){
@@ -2460,6 +2697,30 @@ async function seedHntStoragePolicy(){
   await DB.putMany('policyservices',svcs.map((s,idx)=>({id:pid+'_s'+(idx+1),policyId:pid,...s,createdAt:now,updatedAt:now})));
 }
 
+async function seedHntRenewalPolicy(){
+  const pid='policy_hnt_renewal_qd176';
+  if(DB.get('pricepolicies',pid))return;
+  const now=new Date().toISOString();
+  const sites=DB.all('catalogs').filter(c=>c.group==='site').map(c=>c.key);
+  const daSite=catKeyByName('site','Kho chung HNT Đông Anh')||sites[0]||'site_hnt_da';
+  const pol={
+    id:pid,no:'176/2024/QĐ-HNT',site:daSite,sites:sites,policyType:'renewal',
+    issueDate:'2024-10-25',effFrom:'2024-10-01',effTo:'',unit:'tháng',basePrice:'',
+    minRevenue:0,referralMin:0,referralMax:0,signer:'Chủ tịch HĐQT Nguyễn Ngọc Hải',
+    specialTerms:'1. Điều kiện áp dụng: Áp dụng cho mọi hợp đồng đã ký từ 3 năm trở lên và tiếp tục gia hạn hoặc tái ký.\n2. Dành cho: Phòng Dự án thuộc Công ty CP Logistics HNT tại tất cả các Trung tâm Logistics.\n3. Khung chiết khấu tối đa:\n   - Từ 6 tháng đến 12 tháng: tối đa 10%\n   - Từ 13 tháng đến 35 tháng: tối đa 20%\n   - Từ 36 tháng trở lên: tối đa 30%\n   - Dưới 6 tháng: 0% (không thuộc khung chiết khấu gia hạn theo QĐ 176).\n4. Hình thức nhận chiết khấu: Chiết khấu 1 lần sau khi ký HĐ (phụ lục) gia hạn hoặc tái ký mới. Tính dựa trên doanh thu thuê kho bãi 1 tháng của hợp đồng mới.\n5. Thẩm quyền: Thanh toán theo đề xuất của GĐĐH và được HĐQT thông qua.\n6. Chấm dứt hợp đồng trước hạn:\n   - Khách chủ động chấm dứt: Mức chiết khấu bị truy thu về mức thời hạn thực tế.\n   - HNT chủ động thỏa thuận chấm dứt: Mức chiết khấu được giữ nguyên.',
+    note:'Chính sách bán khi khách hàng gia hạn hợp đồng cho Phòng Dự án theo Quyết định số 176/2024/QĐ-HNT ngày 25/10/2024 của HĐQT Công ty Cổ phần Logistics HNT áp dụng cho tất cả các Trung tâm Logistics HNT.',
+    createdAt:now,updatedAt:now
+  };
+  await DB.put('pricepolicies',pol);
+  const pdaKey=catKeyByName('discType','Phòng Dự án')||'k1';
+  const tiers=[
+    {id:pid+'_t1',policyId:pid,durationLabel:'6to12',volTier:'',object:pdaKey,maxCkPct:10,priceLevel:'',note:'Từ 6 đến 12 tháng (tối đa 10%)',createdAt:now,updatedAt:now},
+    {id:pid+'_t2',policyId:pid,durationLabel:'13to35',volTier:'',object:pdaKey,maxCkPct:20,priceLevel:'',note:'Từ 13 đến 35 tháng (tối đa 20%)',createdAt:now,updatedAt:now},
+    {id:pid+'_t3',policyId:pid,durationLabel:'ge36',volTier:'',object:pdaKey,maxCkPct:30,priceLevel:'',note:'Từ 36 tháng trở lên (tối đa 30%)',createdAt:now,updatedAt:now}
+  ];
+  await DB.putMany('policytiers',tiers);
+}
+
 async function ensureCatalogMigrations(){
   const need=[
     ['site','Kho chung HNT Đông Anh'],['site','Kho chung HNT Nguyên Khê'],['site','Kho chung HNT Thanh Oai'],
@@ -2484,6 +2745,7 @@ async function ensureCatalogMigrations(){
     added++;
   }
   await seedHntStoragePolicy();
+  await seedHntRenewalPolicy();
   return added;
 }
 
@@ -2646,6 +2908,7 @@ async function seedDemo(){
    ['CN-03',G7,'Đối chiếu công nợ cuối kỳ với khách hàng','Quy trình doanh thu','','','todo',''],
    ['CK-01',G8,'Chiết khấu môi giới đúng chính sách','Quy chế hoa hồng môi giới','','HD-2025-030','fail','Tỷ lệ thực tế 5% vượt mức 3% được phép'],
    ['CK-02',G8,'Chiết khấu Phòng Dự án trong hạn mức','Chính sách CK','','HD-2024-001','pass','Đúng hạn mức'],
+   ['CK-03',G8,'Chiết khấu gia hạn HĐ đúng khung và thẩm quyền theo QĐ 176 (GĐĐH đề xuất + HĐQT thông qua)','QĐ 176/2024/QĐ-HNT','','HD-2024-001','pass','Đủ đề xuất GĐĐH và phê duyệt HĐQT'],
    ['KP-01',G9,'KPI được giao đầy đủ và đo lường được','Kế hoạch KPI năm','','','pass','Đầy đủ'],
    ['KP-02',G9,'KPI không đạt có giải trình','Quy chế đánh giá KPI','','','warn','Giải trình chưa đầy đủ với 2/4 KPI không đạt'],
    ['KP-03',G9,'Nhiệm vụ hoàn thành đúng hạn','Danh mục nhiệm vụ','','','warn','2 nhiệm vụ chậm/bỏ sót'],
@@ -2686,6 +2949,7 @@ async function boot(){
   await JSYNC.restore();
   if(!DB.meta.seeded){await DB.setMeta('seeded',true)}
   await seedHntStoragePolicy();
+  await seedHntRenewalPolicy();
   await migrateContractModel();
   await syncFollowups();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
