@@ -1070,6 +1070,21 @@ function calcQd176Clawback(actualRate,oneMonthRent,actualMonths){
 }
 
 const policyServicesFor=id=>id?DB.all('policyservices').filter(x=>x.policyId===id):[];
+function matchPolicyService(psvs,unit,per){
+  if(!psvs||!psvs.length)return null;
+  const u=norm(unit||''), p=(per||'month').toLowerCase();
+  const exact=psvs.find(s=>{
+    const su=norm(s.unit||''), sp=(s.per||'').toLowerCase(), sn=norm(s.service||'');
+    const uMatch=su===u||sn.includes(u)||(u==='m3'&&sn.includes('m³'))||(u==='m³'&&sn.includes('m3'));
+    const pMatch=sp===p||(p==='day'&&sn.includes('ngay'))||(p==='month'&&sn.includes('thang'));
+    return uMatch&&pMatch;
+  });
+  if(exact)return exact;
+  return psvs.find(s=>{
+    const su=norm(s.unit||''), sn=norm(s.service||'');
+    return su===u||sn.includes(u)||(u==='m3'&&sn.includes('m³'))||(u==='m³'&&sn.includes('m3'));
+  })||null;
+}
 const policyVolTiersFor=id=>id?DB.all('policyvoltiers').filter(x=>x.policyId===id):[];
 function volTierOf(policyId,unit,qty){
   const f=VOL_UNIT_FIELDS[unit]||(['m3','tan','pallet','m2'].includes(unit)?unit:null);if(!f||!isNum(qty))return'';
@@ -1427,7 +1442,7 @@ defEnt({key:'prices',title:'Giá & Báo giá',singular:'Kiểm tra giá',store:'
   F('diffMarket','% chênh lệch so với thị trường','computed',{fmt:'pct',tab:0,calc:r=>priceDiff(r.contractPrice,r.marketPrice)}),
   areaOf('reason','Lý do giảm giá',{tab:1}),F('exception','Có phê duyệt ngoại lệ?','yn',{tab:1}),person('approver','Người phê duyệt',{tab:1}),areaOf('note','Nhận xét KTKS',{tab:1})],
  cols:['contractId','cust','policyPrice','quotedPrice','negoPrice','contractPrice','marketPrice','diffPolicy','exception'],sort:{k:'contractId',dir:'asc'},
- onChange:{contractId:v=>{const c=ctr(v.contractId);if(!c)return null;const o={};if(!isNum(v.contractPrice)&&isNum(ctrPrice(c)))o.contractPrice=ctrPrice(c);const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!isNum(v.policyPrice)&&p&&isNum(p.basePrice))o.policyPrice=p.basePrice;return Object.keys(o).length?o:null}},
+ onChange:{contractId:v=>{const c=ctr(v.contractId);if(!c)return null;const o={};if(!isNum(v.contractPrice)&&isNum(ctrPrice(c)))o.contractPrice=ctrPrice(c);const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!isNum(v.policyPrice)&&p){if(ctrModel(c)==='storage'){const r=ctrRentals(c.id).find(x=>x.kind==='luukho'&&isNum(x.unitPrice));const m=r&&matchPolicyService(policyServicesFor(p.id),r.unit,r.per);if(m&&isNum(m.priceMin))o.policyPrice=m.priceMin;else if(isNum(p.basePrice))o.policyPrice=r&&r.per==='day'?Math.round(p.basePrice/30):p.basePrice}else if(isNum(p.basePrice)){o.policyPrice=p.basePrice}}return Object.keys(o).length?o:null}},
  validate:uniqPerPeriod('prices','contractId','Hợp đồng này đã có bản ghi kiểm tra giá trong kỳ')});
 
 defEnt({key:'renewals',title:'Tái tục hợp đồng',singular:'Theo dõi tái tục',store:'renewals',period:true,
@@ -1825,7 +1840,23 @@ Rl('ct_no_price','contracts','Hợp đồng chưa có đơn giá chính (thuê k
 Rl('ct_no_handling','contracts','Lưu kho trọn gói chưa có đơn giá bốc xếp nhập/xuất','Thiếu giá bốc xếp','b',c=>!!c.id&&c.status==='active'&&ctrModel(c)==='storage'&&(!svcHas(c.id,'boc xep nhap')||!svcHas(c.id,'boc xep xuat')),{dash:1});
 Rl('rt_kind_mismatch','rentals','Loại đơn giá không phù hợp mô hình hợp đồng','Sai mô hình HĐ','y',r=>{const c=ctr(r.contractId);return!!c&&isActiveLine(r)&&!KIND_OK[ctrModel(c)].includes(r.kind)},{dash:1});
 Rl('ct_no_policy','contracts','Kho/dự án của hợp đồng chưa có Chính sách giá nào áp dụng','Chưa có chính sách giá','y',c=>!!c.id&&c.status==='active'&&!sitePolicyFor(c.site,c.effDate||todayStr()),{dash:1});
-Rl('ct_below_policy','contracts','Giá thuê/lưu kho trong hợp đồng thấp hơn giá bán chuẩn theo Chính sách giá','Giá dưới chính sách','y',c=>{if(!c.id||c.status!=='active')return false;const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!p||!isNum(p.basePrice))return false;const price=ctrPrice(c);return isNum(price)&&N(price)>0&&N(price)<N(p.basePrice)},{dash:1});
+Rl('ct_below_policy','contracts','Giá thuê/lưu kho trong hợp đồng thấp hơn giá bán chuẩn theo Chính sách giá','Giá dưới chính sách','y',c=>{
+  if(!c.id||c.status!=='active')return false;
+  const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!p)return false;
+  if(ctrModel(c)==='storage'){
+    const rs=ctrRentals(c.id).filter(r=>r.kind==='luukho'&&isNum(r.unitPrice)&&N(r.unitPrice)>0);if(!rs.length)return false;
+    const psvs=policyServicesFor(p.id);
+    for(const r of rs){
+      const match=matchPolicyService(psvs,r.unit,r.per);
+      const minP=match&&isNum(match.priceMin)?match.priceMin:(r.per==='day'&&isNum(p.basePrice)?Math.round(N(p.basePrice)/30):p.basePrice);
+      if(isNum(minP)&&N(minP)>0&&N(r.unitPrice)<N(minP))return true;
+    }
+    return false;
+  }
+  if(!isNum(p.basePrice))return false;
+  const price=ctrPrice(c);
+  return isNum(price)&&N(price)>0&&N(price)<N(p.basePrice);
+},{dash:1});
 Rl('storage_min_rev','discounts','Doanh thu lưu kho < 5.000.000 đ không đủ điều kiện hưởng chiết khấu (QĐ 11)','DT lưu kho < 5tr','r',r=>{
   const c=ctr(r.contractId);return c&&ctrModel(c)==='storage'&&isNum(r.related)&&N(r.related)<5000000&&isNum(r.amount)&&N(r.amount)>0&&r.exception!=='y';
 },{dash:1});
@@ -1839,8 +1870,8 @@ Rl('storage_price_board_5pct','contracts','Đơn giá lưu kho thấp hơn 5% so
   const rs=ctrRentals(c.id).filter(r=>r.kind==='luukho'&&isNum(r.unitPrice)&&N(r.unitPrice)>0);if(!rs.length)return false;
   const psvs=policyServicesFor(p.id);
   for(const r of rs){
-    const match=psvs.find(s=>norm(s.service).includes(norm(r.unit))||s.unit===r.unit);
-    const minPrice=match&&isNum(match.priceMin)?match.priceMin:p.basePrice;
+    const match=matchPolicyService(psvs,r.unit,r.per);
+    const minPrice=match&&isNum(match.priceMin)?match.priceMin:(r.per==='day'&&isNum(p.basePrice)?Math.round(N(p.basePrice)/30):p.basePrice);
     if(isNum(minPrice)&&N(minPrice)>0){const diff=(N(r.unitPrice)-N(minPrice))/N(minPrice)*100;if(diff<-5.0)return true}
   }
   return false;
