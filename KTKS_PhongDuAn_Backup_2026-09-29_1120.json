@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-09-29T04:20:09.185Z",
+    "backupDate": "2026-10-01T02:15:43.764Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 0,
       "followups": 0
     },
-    "checksum": "a8972c50"
+    "checksum": "647355e2"
   },
   "settings": {},
   "data": {
@@ -5215,7 +5215,7 @@
         "signer": "",
         "signerTitle": "",
         "authOK": "",
-        "deposit": "",
+        "deposit": 10000000,
         "payCycle": "",
         "payDueDays": "",
         "priceUp": "",
@@ -5238,12 +5238,15 @@
         "docOther": "",
         "id": "mugnndgcg5pz2ab",
         "createdAt": "2026-09-25T07:44:20.700Z",
-        "updatedAt": "2026-09-27T15:33:08.945Z",
+        "updatedAt": "2026-10-01T02:15:41.745Z",
         "cargoType": "",
         "dangerSurApplied": "",
         "indefinite": "",
         "storageMinRev": "",
-        "earlyTermination": ""
+        "earlyTermination": "",
+        "isRenewal": "",
+        "priorYears": "",
+        "priorContractRef": ""
       },
       {
         "model": "lease",
@@ -19819,6 +19822,32 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-09-29T04:20:07.177Z"
+      },
+      {
+        "id": "muowifwysno2tk1",
+        "periodId": "mufq31zn245cq0d",
+        "ts": "2026-10-01T02:14:36.562Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 15042025/HĐTK/HNT-PND-KC – CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ KỸ THUẬT PND VIỆT NAM | Tiền đặt cọc (VND): ∅ → 10.000.000",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-10-01T02:14:36.562Z"
+      },
+      {
+        "id": "muowju7m03fozdg",
+        "periodId": "mufq31zn245cq0d",
+        "ts": "2026-10-01T02:15:41.746Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 15042025/HĐTK/HNT-PND-KC – CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ KỸ THUẬT PND VIỆT NAM",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-10-01T02:15:41.746Z"
       }
     ]
   }
