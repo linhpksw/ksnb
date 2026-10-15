@@ -1,0 +1,83 @@
+================================================================================
+CÔNG TY CỔ PHẦN LOGISTICS HNT
+BỘ PHẬN KIỂM SOÁT NỘI BỘ (KSNB)
+Mã đợt kiểm tra: KTKS-PDA-2026-Q3
+================================================================================
+
+GIẤY YÊU CẦU CUNG CẤP HỒ SƠ, TÀI LIỆU PHỤC VỤ CÔNG TÁC KTKS
+(Gửi: Lãnh đạo và Cán bộ nhân viên Phòng Dự án)
+
+Kính gửi: Phòng Dự án - Công ty Cổ phần Logistics HNT.
+
+Thực hiện Kế hoạch kiểm tra kiểm soát nội bộ định kỳ Quý 3/2026 đối với hoạt động của Phòng Dự án, để công tác kiểm tra diễn ra nhanh chóng, đúng trọng tâm và không làm gián đoạn công việc thường nhật của Bộ phận, Đoàn Kiểm tra đề nghị Phòng Dự án chuẩn bị trước các hồ sơ, tài liệu nghiệp vụ nội bộ theo danh mục dưới đây.
+
+LƯU Ý: 
+- Đối với danh mục 69 Hợp đồng thuê kho/lưu kho và Bảng giá niêm yết chuẩn tại các Trung tâm (Site), Đoàn kiểm tra ĐÃ CÓ DỮ LIỆU ĐẦY ĐỦ, Phòng Dự án KHÔNG CẦN chuẩn bị lại.
+- Bộ phận chỉ cần chuẩn bị các hồ sơ phê duyệt nội bộ, hồ sơ phát sinh đặc thù theo 12 đầu mục sau:
+
+--------------------------------------------------------------------------------
+I. HỒ SƠ NGOẠI LỆ HỢP ĐỒNG & HOA HỒNG (CÁC TRƯỜNG HỢP PHÁT SINH)
+--------------------------------------------------------------------------------
+1. Tờ trình phê duyệt ngoại lệ giá / chiết khấu:
+   - Nội dung: Các văn bản, tờ trình phê duyệt áp dụng đơn giá ngoài biểu niêm yết hoặc mức chiết khấu vượt thẩm quyền theo Quyết định 176/2024/QĐ-HNT và Quyết định 11/2025/QĐ-TGĐ.
+   - Hình thức: Bản gốc có phê duyệt của Ban Tổng Giám đốc / HĐQT (hoặc file scan đầy đủ chữ ký).
+
+2. Hồ sơ chi trả hoa hồng Môi giới / Sale:
+   - Nội dung: Hợp đồng dịch vụ môi giới, tờ trình đề xuất tỷ lệ hoa hồng, bảng tính hoa hồng các đợt và văn bản phê duyệt chi (kèm bản sao CCCD, MST cá nhân của môi giới ngoài).
+   - Hình thức: Bản gốc / File scan ký duyệt.
+
+3. Biên bản thanh lý hợp đồng & Hồ sơ giải tỏa cọc:
+   - Nội dung: Toàn bộ Biên bản thanh lý hợp đồng của các khách hàng chấm dứt hoặc trả kho trong kỳ; Hồ sơ tính toán khấu trừ công nợ, truy thu chiết khấu (clawback) trước khi giải tỏa cọc.
+   - Hình thức: Bản gốc / File scan.
+
+4. Bản sao Biên bản bàn giao mặt bằng kho từ Trung tâm (Kho):
+   - Nội dung: Các biên bản bàn giao kho do Trung tâm/Kho ký thực địa với khách hàng và gửi về lưu trữ tại Phòng Dự án (làm căn cứ tính ngày bắt đầu tính tiền thuê và đối soát diện tích).
+   - Hình thức: Bản sao / Bản scan.
+
+--------------------------------------------------------------------------------
+II. HỒ SƠ DỰ ÁN ĐẦU TƯ XÂY DỰNG & CẢI TẠO HẠ TẦNG (DỰ ÁN DA-001 CAPEX)
+--------------------------------------------------------------------------------
+5. Hồ sơ phê duyệt chủ trương & Tổng mức đầu tư (TMĐT):
+   - Nội dung: Tờ trình đầu tư, Nghị quyết HĐQT/QĐ của TGĐ phê duyệt dự án, Báo cáo nghiên cứu khả thi (FS), dự toán TMĐT chi tiết từng hạng mục.
+   - Hình thức: Bản gốc phê duyệt.
+
+6. Hồ sơ cấp phép & Thẩm duyệt thiết kế PCCC:
+   - Nội dung: Giấy phép xây dựng/văn bản chấp thuận cải tạo, Giấy chứng nhận thẩm duyệt thiết kế PCCC của Cảnh sát PCCC (Đặc biệt dự án DA-001 nâng hạng E lên C tại Nguyên Khê II).
+   - Hình thức: Bản sao công chứng hoặc bản gốc đối chiếu.
+
+7. Hợp đồng nhà thầu thi công & Tiến độ WBS:
+   - Nội dung: Hợp đồng giao thầu thi công xây lắp/cơ điện, chứng thư bảo lãnh thực hiện HĐ, tiến độ thi công cam kết chi tiết (Master Schedule WBS).
+   - Hình thức: Bản gốc hợp đồng.
+
+8. Hồ sơ nghiệm thu kỹ thuật & Đề nghị thanh toán nhà thầu:
+   - Nội dung: Biên bản nghiệm thu công việc xây dựng theo giai đoạn, bản vẽ hoàn công, bảng xác nhận giá trị khối lượng hoàn thành trình duyệt thanh toán, đối trừ tạm ứng.
+   - Hình thức: Bộ hồ sơ nghiệm thu thanh toán bản gốc.
+
+--------------------------------------------------------------------------------
+III. HỒ SƠ PHỐI HỢP CÔNG NỢ & XỬ LÝ PHÁT SINH
+--------------------------------------------------------------------------------
+9. Văn bản/Email đôn đốc phối hợp xử lý nợ quá hạn:
+   - Nội dung: Các thư nhắc nợ, biên bản làm việc hoặc thông báo tạm dừng dịch vụ do chuyên viên kinh doanh/hợp đồng của Phòng Dự án phối hợp cùng Kế toán gửi khách nợ quá hạn.
+   - Hình thức: Bản in có xác nhận / File scan / Email trao đổi.
+
+10. Hồ sơ xử lý sự cố / Khiếu nại tranh chấp hợp đồng (nếu có):
+    - Nội dung: Biên bản làm việc xử lý các sự cố kho bãi, tranh chấp điều khoản hợp đồng hoặc các thỏa thuận bồi hoàn thiệt hại phát sinh.
+    - Hình thức: Văn bản giải quyết vụ việc.
+
+--------------------------------------------------------------------------------
+IV. QUẢN TRỊ NỘI BỘ & ĐÁNH GIÁ KPI NHÂN SỰ (QUY MÔ 5 NHÂN SỰ)
+--------------------------------------------------------------------------------
+11. Bảng phân công nhiệm vụ (JD) & Sổ/File theo dõi giao việc:
+    - Nội dung: Bảng mô tả công việc phân công nhiệm vụ chi tiết của 5 nhân sự Phòng Dự án; Sổ/File theo dõi tiến độ thực hiện nhiệm vụ trọng tâm hàng tuần/tháng của Trưởng phòng.
+    - Hình thức: File Excel / Bản in ký duyệt.
+
+12. Báo cáo kết quả công việc & Bảng tự chấm điểm KPI:
+    - Nội dung: Bảng đăng ký chỉ tiêu đầu kỳ và Báo cáo tự chấm điểm, kết quả đánh giá hoàn thành nhiệm vụ theo 5 nhóm chỉ tiêu KPI của 5 nhân sự trong kỳ kiểm tra.
+    - Hình thức: Bản ký duyệt của Trưởng bộ phận.
+
+================================================================================
+THỜI HẠN & PHƯƠNG THỨC CUNG CẤP:
+- Thời hạn gửi hồ sơ: Trong vòng 03 ngày làm việc kể từ ngày nhận thông báo này.
+- Phương thức cung cấp: Bàn giao trực tiếp hồ sơ giấy hoặc chia sẻ qua thư mục số hóa nội bộ Đoàn KTKS.
+- Đầu mối tiếp nhận: Đoàn Kiểm tra Kiểm soát Nội bộ HNT.
+================================================================================

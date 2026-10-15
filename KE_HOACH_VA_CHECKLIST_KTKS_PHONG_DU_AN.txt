@@ -498,3 +498,31 @@ PHẦN III: HƯỚNG DẪN THỰC THI & SỐ HÓA TRÊN ỨNG DỤNG KTKS
 - Quyết định ngày 07/05/2025 (QĐ 11): "QD VE VIEC SUA DOI GIA VA CHINH SACH BAN HNG KHO CHUNG CAC DA_20250507_0001.pdf"
 - File dữ liệu hệ thống: "KTKS_PhongDuAn_Backup_2026-09-29_1120.json"
 ================================================================================
+
+
+================================================================================
+PHẦN IV: DANH MỤC HỒ SƠ YÊU CẦU PHÒNG DỰ ÁN CHUẨN BỊ TRƯỚC (12 ĐẦU MỤC)
+(Đã lược bỏ 69 HĐ và Biểu giá chuẩn Đoàn KTKS đã có sẵn; Quy mô 5 nhân sự)
+================================================================================
+
+I. HỒ SƠ NGOẠI LỆ HỢP ĐỒNG & HOA HỒNG (CÁC TRƯỜNG HỢP PHÁT SINH):
+1. Tờ trình phê duyệt ngoại lệ giá / chiết khấu: Các văn bản phê duyệt giảm giá ngoài biểu mẫu hoặc chiết khấu vượt thẩm quyền theo QĐ 176 & QĐ 11.
+2. Hồ sơ chi trả hoa hồng Môi giới / Sale: Hợp đồng dịch vụ môi giới, đề xuất tính thưởng hoa hồng và phê duyệt chi (kèm định danh CCCD/MST môi giới).
+3. Biên bản thanh lý HĐ & Hồ sơ giải tỏa cọc: Toàn bộ biên bản thanh lý và hồ sơ cấn trừ nợ/truy thu chiết khấu khi trả kho trong kỳ.
+4. Bản sao Biên bản bàn giao kho: Bản sao/scan do Trung tâm Kho bàn giao thực địa gửi về lưu hồ sơ hợp đồng.
+
+II. HỒ SƠ DỰ ÁN ĐẦU TƯ XÂY DỰNG & CẢI TẠO HẠ TẦNG (DỰ ÁN DA-001 CAPEX):
+5. Hồ sơ phê duyệt chủ trương & TMĐT: Quyết định phê duyệt dự án, Tổng mức đầu tư (TMĐT), Báo cáo nghiên cứu khả thi (FS).
+6. Hồ sơ cấp phép & Thẩm duyệt thiết kế PCCC: Giấy phép xây dựng, Giấy chứng nhận thẩm duyệt thiết kế PCCC (DA-001 PCCC Nguyên Khê II...).
+7. Hợp đồng nhà thầu thi công & Tiến độ: Hợp đồng thi công, bảo lãnh thực hiện HĐ, tiến độ cam kết chi tiết (Master WBS).
+8. Hồ sơ nghiệm thu kỹ thuật & Đề nghị thanh toán: Biên bản nghiệm thu từng giai đoạn kỹ thuật, bảng xác nhận khối lượng trình duyệt thanh toán.
+
+III. HỒ SƠ PHỐI HỢP CÔNG NỢ & XỬ LÝ PHÁT SINH:
+9. Văn bản/Email đôn đốc phối hợp xử lý nợ quá hạn: Các thông báo nhắc nợ, biên bản làm việc mà chuyên viên Dự án phối hợp cùng Kế toán gửi khách nợ quá hạn.
+10. Hồ sơ xử lý sự cố / tranh chấp (nếu có): Biên bản làm việc xử lý hư hỏng, sự cố kho bãi hoặc khiếu nại hợp đồng phát sinh.
+
+IV. QUẢN TRỊ NỘI BỘ & ĐÁNH GIÁ KPI NHÂN SỰ (QUY MÔ 5 NHÂN SỰ):
+11. Bảng phân công nhiệm vụ (JD) & Sổ/File theo dõi giao việc: Phân công nhiệm vụ chi tiết của 5 nhân sự và bảng theo dõi tiến độ công việc hàng tuần/tháng của Trưởng phòng.
+12. Báo cáo kết quả công việc & Bảng tự chấm điểm KPI: Bảng chấm điểm KPI kỳ kiểm tra của 5 nhân sự theo 5 nhóm chỉ tiêu.
+================================================================================
+
