@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
@@ -2820,8 +2820,13 @@ const PDA_CHECKLIST = [{"code":"CHK-DT-01","group":"k1","content":"Kiểm tra t�
 async function ensurePdaChecklist(){
   const P = curPeriod() || DB.all('periods')[0];
   if(!P) return;
-  const existing = DB.all('checklist').filter(x => x.periodId === P.id);
-  if(!existing.length){
+  const allChk = DB.all('checklist').filter(x => x.periodId === P.id);
+  const allowed = new Set(PDA_CHECKLIST.map(x => x.code));
+  const obsolete = allChk.filter(x => !allowed.has(x.code));
+  if(obsolete.length){
+    for(const r of obsolete) await DB.del('checklist', r.id);
+  }
+  if(!allChk.length){
     const now = new Date().toISOString();
     const p0 = DB.all('projects')[0];
     const rows = PDA_CHECKLIST.map((it, idx) => ({
@@ -2843,41 +2848,69 @@ async function ensurePdaChecklist(){
     }));
     await DB.putMany('checklist', rows);
     await logAct('Cập nhật', 'Checklist', 'Nạp tự động ' + rows.length + ' tiêu chí kiểm tra KSNB chuẩn cho kỳ ' + pLabel(P), '', P.id);
+  } else if(obsolete.length || allChk.some(x => x.group === 'k7' && x.code === 'CHK-CN-02' && x.content.includes('xuất hóa đơn'))){
+    const g7Defs = PDA_CHECKLIST.filter(x => x.group === 'k7');
+    for(const def of g7Defs){
+      const cur = allChk.find(x => x.code === def.code);
+      if(cur){
+        cur.content = def.content;
+        cur.criteria = def.criteria;
+        cur.evidence = def.evidence;
+        cur.risk = def.risk;
+        cur.rec = def.rec;
+        cur.updatedAt = new Date().toISOString();
+        await DB.put('checklist', cur);
+      }
+    }
+    await logAct('Cập nhật', 'Checklist', 'Đồng bộ lại tiêu chí Nhóm 7 (3 tiêu chí) theo chuẩn nhiệm vụ Phòng Dự án', '', P.id);
   }
 }
 
 ACT['seed-pda-chk'] = async () => {
   const P = curPeriod();
   if(!P){ toast('Chưa chọn kỳ kiểm tra.', 'warn'); return; }
-  const ok = await confirmBox({title: 'Nạp Checklist KSNB', msg: 'Nạp 36 tiêu chí kiểm tra chuẩn cho kỳ <b>' + esc(pLabel(P)) + '</b>? Các tiêu chí chưa có sẽ được thêm mới.'});
+  const ok = await confirmBox({title: 'Nạp Checklist KSNB', msg: 'Đồng bộ lại toàn bộ 36 tiêu chí kiểm tra chuẩn cho kỳ <b>' + esc(pLabel(P)) + '</b>? Các tiêu chí cũ không còn áp dụng (như CHK-CN-04) sẽ được xóa bỏ.'});
   if(!ok) return;
   const now = new Date().toISOString();
   const p0 = DB.all('projects')[0];
-  const ex = new Set(DB.all('checklist').filter(x => x.periodId === P.id).map(x => x.code));
-  const toAdd = PDA_CHECKLIST.filter(x => !ex.has(x.code)).map((it, idx) => ({
-    id: 'chk_' + String(idx + 1).padStart(2, '0') + '_' + it.code.toLowerCase().replace(/-/g, '_'),
-    periodId: P.id,
-    code: it.code,
-    group: it.group,
-    content: it.content,
-    criteria: it.criteria,
-    projectId: it.code === 'CHK-DT-04' && p0 ? p0.id : '',
-    contractId: '',
-    result: 'todo',
-    evidence: it.evidence || '',
-    comment: '',
-    risk: it.risk || '',
-    rec: it.rec || '',
-    createdAt: now,
-    updatedAt: now
-  }));
-  if(toAdd.length){
-    await DB.putMany('checklist', toAdd);
-    toast('Đã nạp thành công ' + toAdd.length + ' tiêu chí kiểm tra KSNB');
-    renderMain();
-  } else {
-    toast('Tất cả 36 tiêu chí đã tồn tại trong kỳ này');
+  const allChk = DB.all('checklist').filter(x => x.periodId === P.id);
+  const allowed = new Set(PDA_CHECKLIST.map(x => x.code));
+  for(const r of allChk){
+    if(!allowed.has(r.code)) await DB.del('checklist', r.id);
   }
+  const curMap = new Map(DB.all('checklist').filter(x => x.periodId === P.id).map(x => [x.code, x]));
+  const rows = PDA_CHECKLIST.map((it, idx) => {
+    const cur = curMap.get(it.code);
+    if(cur){
+      cur.content = it.content;
+      cur.criteria = it.criteria;
+      cur.evidence = it.evidence;
+      cur.risk = it.risk;
+      cur.rec = it.rec;
+      cur.updatedAt = now;
+      return cur;
+    }
+    return {
+      id: 'chk_' + String(idx + 1).padStart(2, '0') + '_' + it.code.toLowerCase().replace(/-/g, '_'),
+      periodId: P.id,
+      code: it.code,
+      group: it.group,
+      content: it.content,
+      criteria: it.criteria,
+      projectId: it.code === 'CHK-DT-04' && p0 ? p0.id : '',
+      contractId: '',
+      result: 'todo',
+      evidence: it.evidence || '',
+      comment: '',
+      risk: it.risk || '',
+      rec: it.rec || '',
+      createdAt: now,
+      updatedAt: now
+    };
+  });
+  await DB.putMany('checklist', rows);
+  toast('Đã đồng bộ đủ 36 tiêu chí kiểm tra KSNB');
+  renderMain();
 };
 
 /* ---------- Dữ liệu demo ---------- */
