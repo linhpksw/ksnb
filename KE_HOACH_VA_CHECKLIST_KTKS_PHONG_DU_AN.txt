@@ -1,0 +1,510 @@
+================================================================================
+KẾ HOẠCH & BỘ CHECKLIST KIỂM TRA KIỂM SOÁT NỘI BỘ BỘ PHẬN DỰ ÁN
+Hệ thống: Kiểm tra Kiểm soát Nội bộ Phòng Dự Án (KTKS v1.5.3)
+Mã đợt kiểm tra: KTKS-PDA-2026-Q3
+Thời kỳ kiểm tra: Năm 2023 - 2026 (Trọng tâm Quý 3/2026)
+Đơn vị thực hiện: Bộ phận Kiểm soát Nội bộ (KSNB) / Ban Kiểm soát
+================================================================================
+
+================================================================================
+PHẦN I: KẾ HOẠCH KIỂM TRA KIỂM SOÁT NỘI BỘ TOÀN DIỆN
+================================================================================
+
+1. MỤC ĐÍCH & YÊU CẦU:
+--------------------------------------------------------------------------------
+1.1. Mục đích:
+- Đánh giá tính tuân thủ pháp luật, Điều lệ, Quy chế phân quyền tài chính và các quy định nội bộ của Ban Tổng Giám đốc/Hội đồng Quản trị ban hành.
+- Đánh giá tính hiệu lực và hiệu quả của hệ thống kiểm soát nội bộ tại Phòng Dự án đối với cả 2 mảng: Đầu tư hạ tầng dự án và Khai thác thương mại kho bãi / dịch vụ logistics.
+- Nhận diện các kẽ hở rủi ro trọng yếu: Thất thoát chi phí đầu tư, áp sai đơn giá, chiết khấu vượt thẩm quyền, công nợ tồn đọng, thiếu sót hồ sơ pháp lý & PCCC.
+- Đưa ra các kiến nghị khắc phục khả thi (Recommendations) nhằm chấn chỉnh trách nhiệm cá nhân/bộ phận và tối ưu hóa hệ thống vận hành.
+
+1.2. Yêu cầu:
+- Khách quan, độc lập, mọi phát hiện (Findings) phải gắn liền với chứng từ gốc, số hợp đồng, quyết định phê duyệt và biên bản xác nhận cụ thể.
+- Phủ kín 100% chức năng, nhiệm vụ của Phòng Dự án (từ khâu chuẩn bị đầu tư công trình, quản lý hợp đồng khách hàng, đến kiểm soát doanh thu, chiết khấu và KPI nhân sự).
+- Kết hợp công nghệ: Rà quét tự động toàn bộ 30+ bộ quy tắc cảnh báo (Validation Rules) tích hợp sẵn trong ứng dụng KTKS để phát hiện các dấu hiệu bất thường trước khi kiểm tra thực địa.
+
+2. CĂN CỨ KIỂM TRA:
+--------------------------------------------------------------------------------
+- Luật Doanh nghiệp, Luật Xây dựng, Luật PCCC, Luật Thương mại và các chuẩn mực kế toán liên quan.
+- Quyết định số 176/2024/QĐ-HNT ngày 25/10/2024 về việc bổ sung chính sách bán hàng khi khách hàng gia hạn hợp đồng (Phòng Dự án).
+- Quyết định ngày 07/05/2025 (QĐ 11) về việc sửa đổi giá và chính sách bán hàng kho chung các dự án.
+- Quy chế thẩm quyền phê duyệt Tổng mức đầu tư (TMĐT), chi phí phát sinh và điều chỉnh thiết kế.
+- Hợp đồng mẫu cho thuê kho/bãi và dịch vụ lưu kho chung kèm các phụ lục kỹ thuật, biên bản bàn giao.
+- Bảng chính sách giá ban hành còn hiệu lực tại từng trung tâm (Site) logistics.
+- Bản phân công nhiệm vụ và chỉ tiêu đánh giá KPI của nhân sự Phòng Dự án.
+
+3. PHẠM VI & ĐỐI TƯỢNG KIỂM TRA:
+--------------------------------------------------------------------------------
+3.1. Thời kỳ kiểm tra: Toàn bộ các vụ việc, dự án đầu tư và 69 hợp đồng kinh tế đang hiệu lực hoặc phát sinh trong giai đoạn 2023 - 2026.
+3.2. Phạm vi địa bàn: 9 trung tâm logistics và kho trực thuộc:
+  - Trung tâm Logistics HNT Đông Anh
+  - Trung tâm Logistics HNT Nguyên Khê
+  - Trung tâm Logistics HNT Nguyên Khê II
+  - Trung tâm Logistics HNT Sóc Sơn
+  - Trung tâm Logistics HNT Thanh Oai
+  - Trung tâm Logistics HNT Thanh Oai II
+  - Hệ thống Kho chung HNT: Đông Anh, Nguyên Khê, Thanh Oai
+3.3. Đối tượng nhân sự: Toàn bộ cán bộ nhân viên Phòng Dự án (Trưởng phòng, Quản lý dự án, Chuyên viên kinh doanh/hợp đồng, Kỹ thuật giám sát, Thanh quyết toán).
+
+4. NỘI DUNG 5 PHÂN HỆ TRỌNG TÂM:
+--------------------------------------------------------------------------------
+- Phân hệ 1: Quản lý Đầu tư & Triển khai Dự án Hạ tầng (Dự án DA-001 PCCC Nguyên Khê II, TMĐT, tiến độ WBS, phát sinh chi phí, nghiệm thu kỹ thuật, hoàn công PCCC).
+- Phân hệ 2: Khai thác Kinh doanh & Hợp đồng (Thẩm quyền ký kết, 7 tài liệu bắt buộc, đối chiếu đơn giá chuẩn theo Site, biên độ giảm giá <= 5% theo QĐ 11, phụ thu hàng nặng/nguy hiểm).
+- Phân hệ 3: Tái tục, Chiết khấu & Hoa hồng (Gia hạn HĐ theo QĐ 176, chiết khấu lưu kho theo QĐ 11, truy thu chiết khấu khi hủy trước hạn, định mức hoa hồng Sale & Môi giới).
+- Phân hệ 4: Doanh thu, Dịch vụ & Công nợ (Biên bản nghiệm thu dịch vụ, đơn giá bốc xếp, tiền đặt cọc, công nợ quá hạn, phạt chậm nộp 0.05%/ngày).
+- Phân hệ 5: Quản trị Nội bộ, Kế hoạch & KPI (Nhiệm vụ trọng tâm, đánh giá 5 nhóm chỉ tiêu KPI, theo dõi đóng kiến nghị kỳ trước - Follow-up).
+
+5. LỊCH TRÌNH THỰC HIỆN DỰ KIẾN (15 NGÀY LÀM VIỆC):
+--------------------------------------------------------------------------------
+- Ngày 1 - 2: Chuẩn bị, thiết lập kỳ kiểm tra trên app, gửi văn bản yêu cầu hồ sơ (docreqs) và chạy rà quét tự động toàn bộ dữ liệu.
+- Ngày 3 - 6: Kiểm tra chi tiết 69 hợp đồng, biểu đơn giá, chính sách chiết khấu QĐ 176, QĐ 11 và hoa hồng môi giới.
+- Ngày 7 - 9: Kiểm tra hồ sơ dự án đầu tư DA-001, hồ sơ nghiệm thu PCCC, tiến độ, dự toán và khảo sát hiện trường thực tế.
+- Ngày 10 - 11: Kiểm tra doanh thu, dịch vụ phụ trợ, công nợ tồn đọng, tiến độ nhiệm vụ và KPI nhân sự.
+- Ngày 12 - 13: Đối thoại, trao đổi làm việc sơ bộ với Lãnh đạo Phòng Dự án về các điểm phát hiện (Findings).
+- Ngày 14 - 15: Hoàn thiện danh mục Finding, lập Kiến nghị khắc phục (recs), xuất Báo cáo kiểm tra KSNB chính thức trình Ban Giám đốc.
+
+
+================================================================================
+PHẦN II: BỘ CHECKLIST 37 TIÊU CHÍ TRỌNG YẾU (KHỚP 100% CẤU TRÚC APP)
+================================================================================
+
+--------------------------------------------------------------------------------
+NHÓM 1: ĐẦU TƯ & PHÊ DUYỆT DỰ ÁN (Mã nhóm trong app: k1)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 01]
+- Mã tiêu chí: CHK-DT-01
+- Nhóm: k1 (Đầu tư & phê duyệt dự án)
+- Nội dung kiểm tra: Kiểm tra tính đầy đủ của hồ sơ chủ trương đầu tư và Báo cáo nghiên cứu khả thi (FS) cho các dự án mới/nâng cấp kho.
+- Tiêu chí / Căn cứ: Luật Xây dựng; Quy chế đầu tư của Công ty; Tờ trình đầu tư của Phòng Dự án.
+- Bằng chứng cần thu thập: Tờ trình xin chủ trương đầu tư; Báo cáo nghiên cứu khả thi (FS); Bảng tính toán hiệu quả tài chính (IRR, NPV, thời gian hoàn vốn).
+- Rủi ro nếu vi phạm: Đầu tư dàn trải, không hiệu quả, thiếu cơ sở pháp lý ban đầu.
+- Kiến nghị KSNB: Hoàn thiện Báo cáo FS và phê duyệt chủ trương trước khi chi ngân sách.
+- Rule App liên kết: inv_missing
+
+[Tiêu chí 02]
+- Mã tiêu chí: CHK-DT-02
+- Nhóm: k1 (Đầu tư & phê duyệt dự án)
+- Nội dung kiểm tra: Kiểm tra thẩm quyền phê duyệt Tổng mức đầu tư (TMĐT) và quyết định đầu tư dự án.
+- Tiêu chí / Căn cứ: Điều lệ Công ty; Quy chế phân quyền tài chính của HĐQT / Ban Tổng Giám đốc.
+- Bằng chứng cần thu thập: Nghị quyết HĐQT hoặc Quyết định phê duyệt dự án của TGĐ; Dự toán TMĐT chi tiết từng hạng mục.
+- Rủi ro nếu vi phạm: Vượt thẩm quyền phân cấp tài chính, cam kết vượt khả năng cân đối vốn của Công ty.
+- Kiến nghị KSNB: Trình cấp thẩm quyền phê duyệt lại TMĐT theo đúng hạn mức phân quyền.
+- Rule App liên kết: inv_value
+
+[Tiêu chí 03]
+- Mã tiêu chí: CHK-DT-03
+- Nhóm: k1 (Đầu tư & phê duyệt dự án)
+- Nội dung kiểm tra: Kiểm tra tính pháp lý về quyền sử dụng đất, quy hoạch xây dựng và hợp đồng thuê tài sản để đầu tư hạ tầng.
+- Tiêu chí / Căn cứ: Luật Đất đai; Hợp đồng thuê mặt bằng kho xưởng giữa Công ty và Chủ sở hữu đất.
+- Bằng chứng cần thu thập: Giấy chứng nhận QSDĐ / Hợp đồng thuê đất dài hạn; Văn bản của Chủ sở hữu cho phép cải tạo/xây dựng; Bản vẽ quy hoạch tổng thể.
+- Rủi ro nếu vi phạm: Tranh chấp pháp lý mặt bằng, bị đình chỉ thi công hoặc không được bồi hoàn khi thu hồi.
+- Kiến nghị KSNB: Bổ sung văn bản chấp thuận của chủ đất và hồ sơ quy hoạch chuẩn.
+- Rule App liên kết: doc_wait
+
+[Tiêu chí 04]
+- Mã tiêu chí: CHK-DT-04
+- Nhóm: k1 (Đầu tư & phê duyệt dự án)
+- Nội dung kiểm tra: Kiểm tra hồ sơ thẩm duyệt thiết kế PCCC và giấy phép môi trường/xây dựng (Đặc biệt dự án DA-001 nâng hạng E lên C tại Nguyên Khê II).
+- Tiêu chí / Căn cứ: Luật PCCC; Tiêu chuẩn QCVN 06:2022/BXD; Hồ sơ thẩm duyệt PCCC Công an TP Hà Nội.
+- Bằng chứng cần thu thập: Giấy chứng nhận thẩm duyệt thiết kế PCCC; Bản vẽ thẩm duyệt có đóng dấu của Cảnh sát PCCC; Giấy phép xây dựng/văn bản chấp thuận cải tạo.
+- Rủi ro nếu vi phạm: Bị đình chỉ hoạt động kho, phạt vi phạm hành chính nặng, không thể nghiệm thu đưa vào khai thác thương mại.
+- Kiến nghị KSNB: Đẩy nhanh tiến độ thẩm duyệt PCCC với cơ quan chức năng, không triển khai khi chưa có phê duyệt PCCC.
+- Rule App liên kết: inv_missing
+
+
+--------------------------------------------------------------------------------
+NHÓM 2: TIẾN ĐỘ & CHI PHÍ DỰ ÁN (Mã nhóm trong app: k2)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 05]
+- Mã tiêu chí: CHK-CP-01
+- Nhóm: k2 (Tiến độ & chi phí dự án)
+- Nội dung kiểm tra: Kiểm tra tiến độ tổng thể dự án (Master Schedule WBS) và đánh giá độ trễ so với kế hoạch được duyệt.
+- Tiêu chí / Căn cứ: Kế hoạch tiến độ đính kèm Quyết định đầu tư; Báo cáo tuần/tháng của Quản lý dự án.
+- Bằng chứng cần thu thập: Bảng tiến độ thi công WBS; Báo cáo giám sát tiến độ thực tế (Actual % vs Plan %); Biên bản ghi nhận nguyên nhân chậm trễ.
+- Rủi ro nếu vi phạm: Chậm đưa kho vào khai thác, mất cơ hội kinh doanh, phát sinh chi phí phạt hợp đồng với khách thuê.
+- Kiến nghị KSNB: Lập kế hoạch bù tiến độ, tăng cường nguồn lực nhà thầu và đôn đốc giám sát hàng tuần.
+- Rule App liên kết: proj_delay
+
+[Tiêu chí 06]
+- Mã tiêu chí: CHK-CP-02
+- Nhóm: k2 (Tiến độ & chi phí dự án)
+- Nội dung kiểm tra: Kiểm soát chi phí thực tế phát sinh so với dự toán ngân sách từng gói thầu/hạng mục được duyệt.
+- Tiêu chí / Căn cứ: Dự toán chi phí được duyệt; Bảng đối chiếu chi phí thực tế luỹ kế (Actual Cost).
+- Bằng chứng cần thu thập: Bảng tổng hợp chi phí dự án luỹ kế; Hồ sơ phát sinh tăng/giảm khối lượng thi công so với thiết kế ban đầu.
+- Rủi ro nếu vi phạm: Vượt dự toán, thâm hụt dòng tiền đầu tư, đội vốn dự án.
+- Kiến nghị KSNB: Rà soát cắt giảm các hạng mục không thiết yếu, kiểm soát chặt chi phí dự toán.
+- Rule App liên kết: cost_over
+
+[Tiêu chí 07]
+- Mã tiêu chí: CHK-CP-03
+- Nhóm: k2 (Tiến độ & chi phí dự án)
+- Nội dung kiểm tra: Kiểm tra tính hợp lệ và thẩm quyền phê duyệt đối với các chi phí vượt dự toán hoặc điều chỉnh thiết kế.
+- Tiêu chí / Căn cứ: Quy chế quản lý chi phí đầu tư; Thẩm quyền phê duyệt bổ sung TMĐT của Ban Tổng Giám đốc / HĐQT.
+- Bằng chứng cần thu thập: Tờ trình xin bổ sung kinh phí / điều chỉnh thiết kế; Quyết định phê duyệt bổ sung của cấp có thẩm quyền; Phụ lục hợp đồng điều chỉnh giá trị.
+- Rủi ro nếu vi phạm: Tự ý duyệt phát sinh sai thẩm quyền, chi tiêu không có ngân sách hợp lệ.
+- Kiến nghị KSNB: Đình chỉ thanh toán phần vượt dự toán cho đến khi có phê duyệt chính thức bằng văn bản.
+- Rule App liên kết: cost_unapp, adj_unapp
+
+[Tiêu chí 08]
+- Mã tiêu chí: CHK-CP-04
+- Nhóm: k2 (Tiến độ & chi phí dự án)
+- Nội dung kiểm tra: Kiểm tra công tác quản lý an toàn lao động, vệ sinh môi trường và bảo hiểm rủi ro xây dựng trên công trường.
+- Tiêu chí / Căn cứ: Quy định an toàn lao động; Hợp đồng bảo hiểm mọi rủi ro xây dựng/lắp đặt (CAR).
+- Bằng chứng cần thu thập: Hợp đồng bảo hiểm công trình & biên lai nộp phí; Nhật ký an toàn lao động trên công trường; Biên bản kiểm tra an toàn định kỳ.
+- Rủi ro nếu vi phạm: Tai nạn lao động, thiệt hại tài sản không được bảo hiểm chi trả, đình chỉ công trường.
+- Kiến nghị KSNB: Mua bảo hiểm bắt buộc và chấn chỉnh công tác bảo hộ lao động ngay lập tức.
+- Rule App liên kết: doc_wait
+
+
+--------------------------------------------------------------------------------
+NHÓM 3: NGHIỆM THU & THANH TOÁN (Mã nhóm trong app: k3)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 09]
+- Mã tiêu chí: CHK-NT-01
+- Nhóm: k3 (Nghiệm thu & thanh toán)
+- Nội dung kiểm tra: Kiểm tra tính đầy đủ và hợp lệ của hồ sơ nghiệm thu kỹ thuật, khối lượng hoàn thành từng giai đoạn.
+- Tiêu chí / Căn cứ: Tiêu chuẩn kỹ thuật nghiệm thu; Hợp đồng kinh tế với nhà thầu/đơn vị tư vấn.
+- Bằng chứng cần thu thập: Biên bản nghiệm thu công việc xây dựng; Bản vẽ hoàn công từng giai đoạn; Phiếu kết quả thí nghiệm vật liệu, chứng chỉ xuất xưởng (CO/CQ).
+- Rủi ro nếu vi phạm: Nghiệm thu khống khối lượng, chất lượng công trình không đạt yêu cầu kỹ thuật.
+- Kiến nghị KSNB: Bắt buộc nghiệm thu thực địa có xác nhận độc lập của Tư vấn giám sát trước khi xác nhận khối lượng.
+- Rule App liên kết: pay_docs
+
+[Tiêu chí 10]
+- Mã tiêu chí: CHK-NT-02
+- Nhóm: k3 (Nghiệm thu & thanh toán)
+- Nội dung kiểm tra: Kiểm tra biên bản nghiệm thu PCCC của Cơ quan Cảnh sát PCCC trước khi đưa công trình vào vận hành.
+- Tiêu chí / Căn cứ: Điều 15 Nghị định 136/2020/NĐ-CP; Văn bản chấp thuận kết quả nghiệm thu PCCC.
+- Bằng chứng cần thu thập: Văn bản chấp thuận kết quả nghiệm thu về PCCC của Cục/Phòng Cảnh sát PCCC; Biên bản thử nghiệm liên động hệ thống chữa cháy tự động.
+- Rủi ro nếu vi phạm: Vận hành kho trái phép, nguy cơ cháy nổ cao, bị xử phạt và đình chỉ hoạt động.
+- Kiến nghị KSNB: Tuyệt đối không bàn giao kho cho khách hàng khi chưa có văn bản chấp thuận nghiệm thu PCCC.
+- Rule App liên kết: pay_flag
+
+[Tiêu chí 11]
+- Mã tiêu chí: CHK-NT-03
+- Nhóm: k3 (Nghiệm thu & thanh toán)
+- Nội dung kiểm tra: Kiểm tra điều kiện tạm ứng, chứng thư bảo lãnh tạm ứng và bảo lãnh thực hiện hợp đồng của nhà thầu.
+- Tiêu chí / Căn cứ: Điều khoản bảo lãnh trong Hợp đồng thi công/cung cấp dịch vụ.
+- Bằng chứng cần thu thập: Thư bảo lãnh tạm ứng của Ngân hàng (bản gốc); Thư bảo lãnh thực hiện hợp đồng; Thời hạn hiệu lực của chứng thư bảo lãnh.
+- Rủi ro nếu vi phạm: Nhà thầu chiếm dụng vốn tạm ứng, mất khả năng thu hồi vốn khi nhà thầu vi phạm nghĩa vụ.
+- Kiến nghị KSNB: Theo dõi chặt thời hạn bảo lãnh, yêu cầu gia hạn kịp thời trước khi hết hạn 15 ngày.
+- Rule App liên kết: pay_flag
+
+[Tiêu chí 12]
+- Mã tiêu chí: CHK-NT-04
+- Nhóm: k3 (Nghiệm thu & thanh toán)
+- Nội dung kiểm tra: Kiểm tra tính chính xác của hồ sơ đề nghị thanh toán và đối chiếu giữa giá trị đề nghị với giá trị nghiệm thu thực tế.
+- Tiêu chí / Căn cứ: Quy trình thanh toán của Công ty; Bảng xác nhận giá trị khối lượng công việc hoàn thành.
+- Bằng chứng cần thu thập: Giấy đề nghị thanh toán; Bảng tính giá trị thanh toán đợt kèm hóa đơn GTGT; Bảng đối trừ tạm ứng và giữ lại tiền bảo hành (5% - 10%).
+- Rủi ro nếu vi phạm: Thanh toán vượt giá trị thực tế hoàn thành (paidAmount > apprAmount), thanh toán trùng lắp.
+- Kiến nghị KSNB: Kế toán thanh toán chỉ chi đúng giá trị nghiệm thu thực tế sau khi đã đối trừ tạm ứng đầy đủ.
+- Rule App liên kết: pay_flag
+
+
+--------------------------------------------------------------------------------
+NHÓM 4: HỢP ĐỒNG & THẨM QUYỀN (Mã nhóm trong app: k4)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 13]
+- Mã tiêu chí: CHK-HD-01
+- Nhóm: k4 (Hợp đồng & thẩm quyền)
+- Nội dung kiểm tra: Kiểm tra thẩm quyền ký kết hợp đồng thuê kho/lưu kho của cả Bên A và Bên B.
+- Tiêu chí / Căn cứ: Luật Doanh nghiệp; Giấy ủy quyền (GUQ); Điều lệ Công ty.
+- Bằng chứng cần thu thập: Chữ ký, chức danh người ký trên hợp đồng; Giấy ủy quyền hợp lệ còn hiệu lực (nếu là cấp Phó/Đại diện ký); ĐKKD của khách hàng.
+- Rủi ro nếu vi phạm: Hợp đồng vô hiệu do người ký không đúng thẩm quyền, khó khăn khi xử lý tranh chấp pháp lý.
+- Kiến nghị KSNB: Yêu cầu ký phụ lục bổ sung xác nhận của Người đại diện theo pháp luật đối với các HĐ thiếu ủy quyền.
+- Rule App liên kết: ct_auth
+
+[Tiêu chí 14]
+- Mã tiêu chí: CHK-HD-02
+- Nhóm: k4 (Hợp đồng & thẩm quyền)
+- Nội dung kiểm tra: Kiểm tra tính đầy đủ của 7 thành phần tài liệu hồ sơ bắt buộc đi kèm theo hợp đồng.
+- Tiêu chí / Căn cứ: Quy trình quản lý hợp đồng Phòng Dự án; Tiêu chuẩn hồ sơ lưu trữ KSNB.
+- Bằng chứng cần thu thập: Đủ 7 mục: Hợp đồng, Phụ lục, Báo giá, Biên bản thương thảo, Hồ sơ giá, Biên bản bàn giao, Hồ sơ pháp lý quyền cho thuê lại.
+- Rủi ro nếu vi phạm: Thiếu bằng chứng pháp lý khi đối soát diện tích, giá và quyền sở hữu kho bãi.
+- Kiến nghị KSNB: Thu hồi và số hóa đầy đủ hồ sơ còn thiếu vào hệ thống lưu trữ trong vòng 7 ngày làm việc.
+- Rule App liên kết: doc_wait
+
+[Tiêu chí 15]
+- Mã tiêu chí: CHK-HD-03
+- Nhóm: k4 (Hợp đồng & thẩm quyền)
+- Nội dung kiểm tra: Kiểm tra sự phù hợp giữa mô hình hợp đồng (lease vs storage) với biểu đơn giá chính đính kèm.
+- Tiêu chí / Căn cứ: Quy định phân loại dịch vụ logistics; Danh mục loại đơn giá chuẩn của Công ty.
+- Bằng chứng cần thu thập: Hợp đồng thuê khoán diện tích (lease) phải có đơn giá theo m2/tháng; Hợp đồng lưu kho chung (storage) phải có đơn giá theo pallet/m3/tấn/ngày.
+- Rủi ro nếu vi phạm: Áp sai mô hình hợp đồng, thất thu phí dịch vụ lưu kho và sai lệch phương pháp ghi nhận doanh thu.
+- Kiến nghị KSNB: Điều chỉnh lại hợp đồng và đơn giá chính phù hợp với mô hình hoạt động thực tế.
+- Rule App liên kết: rt_kind_mismatch, ct_no_price
+
+[Tiêu chí 16]
+- Mã tiêu chí: CHK-HD-04
+- Nhóm: k4 (Hợp đồng & thẩm quyền)
+- Nội dung kiểm tra: Kiểm tra tính chặt chẽ của các điều khoản cam kết: Đặt cọc, phạt vi phạm, bồi thường thiệt hại và chấm dứt hợp đồng.
+- Tiêu chí / Căn cứ: Bộ điều khoản mẫu HĐ thuê kho HNT; Quy định pháp lý về bảo đảm thực hiện nghĩa vụ.
+- Bằng chứng cần thu thập: Điều khoản tiền cọc (tối thiểu 1 - 3 tháng tiền thuê); Mức phạt vi phạm nghĩa vụ & phạt chậm nộp (0.05%/ngày); Quy định xử lý khi đơn phương chấm dứt hợp đồng trước hạn.
+- Rủi ro nếu vi phạm: Không có chế tài xử lý khi khách hàng nợ tiền hoặc đơn phương bỏ kho, mất cọc.
+- Kiến nghị KSNB: Cập nhật điều khoản bảo vệ quyền lợi doanh nghiệp theo mẫu HĐ chuẩn đã phê duyệt.
+- Rule App liên kết: ct_no_price
+
+
+--------------------------------------------------------------------------------
+NHÓM 5: GIÁ & CHÍNH SÁCH (Mã nhóm trong app: k5)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 17]
+- Mã tiêu chí: CHK-GIA-01
+- Nhóm: k5 (Giá & chính sách)
+- Nội dung kiểm tra: Kiểm tra đơn giá thuê kho/lưu kho so với Bảng giá chuẩn ban hành áp dụng cho từng Trung tâm (Site).
+- Tiêu chí / Căn cứ: Bảng chính sách giá ban hành còn hiệu lực của từng Trung tâm (Đông Anh, Nguyên Khê, Thanh Oai, v.v.).
+- Bằng chứng cần thu thập: Hợp đồng kinh tế và Bảng báo giá gửi khách hàng; Quyết định ban hành bảng giá niêm yết của Công ty tại ngày ký.
+- Rủi ro nếu vi phạm: Ký dưới giá sàn mà không có lý do chính đáng, gây thiệt hại doanh thu của Công ty.
+- Kiến nghị KSNB: Yêu cầu giải trình các hợp đồng có giá thấp hơn giá sàn quy định; báo cáo TGĐ xử lý.
+- Rule App liên kết: ct_no_policy, ct_below_policy
+
+[Tiêu chí 18]
+- Mã tiêu chí: CHK-GIA-02
+- Nhóm: k5 (Giá & chính sách)
+- Nội dung kiểm tra: Kiểm soát biên độ giảm giá so với giá công bố (Tối đa 5% theo quy định tại Quyết định 11).
+- Tiêu chí / Căn cứ: Quyết định ngày 07/05/2025 (QĐ 11) về sửa đổi giá và CSBH kho chung.
+- Bằng chứng cần thu thập: Đơn giá ký trên hợp đồng so với giá niêm yết; Văn bản phê duyệt của HĐQT nếu giảm giá vượt quá 5%.
+- Rủi ro nếu vi phạm: Vượt thẩm quyền quyết định giá của cấp điều hành, vi phạm quy định của HĐQT.
+- Kiến nghị KSNB: Trình HĐQT phê duyệt hồi tố ngoại lệ hoặc đàm phán điều chỉnh lại đơn giá chuẩn.
+- Rule App liên kết: storage_price_board_5pct, price_off
+
+[Tiêu chí 19]
+- Mã tiêu chí: CHK-GIA-03
+- Nhóm: k5 (Giá & chính sách)
+- Nội dung kiểm tra: Kiểm tra việc phân loại và tính phụ thu đối với hàng nặng và hàng nguy hiểm theo đúng Quyết định 11.
+- Tiêu chí / Căn cứ: Khoản 3, Khoản 4 Quyết định ngày 07/05/2025 (QĐ 11).
+- Bằng chứng cần thu thập: Đặc tính kỹ thuật hàng hóa lưu kho (tỷ trọng kg/m3, MSDS); Đơn giá tính theo Tấn đối với hàng >= 667 kg/m3; Đơn giá có cộng +10% phụ thu đối với hàng nguy hiểm/giá trị cao.
+- Rủi ro nếu vi phạm: Tính thiếu tiền thuê hàng nặng (chiếm tải trọng sàn kho), không bù đắp rủi ro bảo hiểm hàng nguy hiểm.
+- Kiến nghị KSNB: Ký phụ lục điều chỉnh cách tính cước theo Tấn và truy thu phụ thu 10% theo quy định.
+- Rule App liên kết: storage_heavy_cargo_mismatch, storage_danger_cargo_rate
+
+[Tiêu chí 20]
+- Mã tiêu chí: CHK-GIA-04
+- Nhóm: k5 (Giá & chính sách)
+- Nội dung kiểm tra: Kiểm tra tính đầy đủ của đơn giá các dịch vụ phát sinh bắt buộc (Bốc xếp nhập/xuất, điện 3 pha, nước, phí quản lý).
+- Tiêu chí / Căn cứ: Biểu phí dịch vụ logistics đính kèm Chính sách giá; Phụ lục dịch vụ hợp đồng.
+- Bằng chứng cần thu thập: Đơn giá bốc xếp nhập/xuất trong HĐ lưu kho trọn gói; Đơn giá dịch vụ xe nâng, kiểm đếm, đóng gói, điện lạnh phát sinh.
+- Rủi ro nếu vi phạm: Thất thu chi phí nhân công bốc xếp, thất thoát tiền điện nước do không quy định rõ đơn giá.
+- Kiến nghị KSNB: Bổ sung ngay phụ lục đơn giá dịch vụ bốc xếp và biểu giá điện nước tiêu thụ cho các HĐ còn thiếu.
+- Rule App liên kết: svc_no_price, ct_no_handling
+
+
+--------------------------------------------------------------------------------
+NHÓM 6: TÁI TỤC HỢP ĐỒNG (Mã nhóm trong app: k6)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 21]
+- Mã tiêu chí: CHK-TT-01
+- Nhóm: k6 (Tái tục hợp đồng)
+- Nội dung kiểm tra: Kiểm tra tiến độ đàm phán tái tục đối với các hợp đồng sắp hết hạn (trong vòng 30 - 60 ngày).
+- Tiêu chí / Căn cứ: Quy trình tái tục hợp đồng Phòng Dự án; Báo cáo danh sách hợp đồng đến hạn.
+- Bằng chứng cần thu thập: Danh sách hợp đồng sắp đến hạn theo dõi trên hệ thống; Thông báo đề nghị gia hạn gửi khách hàng trước 30 - 60 ngày; Biên bản làm việc đàm phán gia hạn.
+- Rủi ro nếu vi phạm: Khách hàng đột ngột trả kho gây trống mặt bằng, đứt gãy dòng tiền cho thuê.
+- Kiến nghị KSNB: Thiết lập cảnh báo tự động trước 60 ngày và giao chỉ tiêu tái tục cho từng chuyên viên phụ trách.
+- Rule App liên kết: ct_expiring
+
+[Tiêu chí 22]
+- Mã tiêu chí: CHK-TT-02
+- Nhóm: k6 (Tái tục hợp đồng)
+- Nội dung kiểm tra: Kiểm tra việc áp dụng biên độ tăng giá định kỳ khi ký phụ lục gia hạn (thông thường >= 10%/24 tháng).
+- Tiêu chí / Căn cứ: Điều khoản điều chỉnh giá trong hợp đồng gốc; Chính sách tái tục của Công ty.
+- Bằng chứng cần thu thập: Đơn giá ký trên phụ lục gia hạn; Đơn giá hợp đồng kỳ trước và tỷ lệ % tăng giá thực tế (actPrice vs curPrice * (1 + upRate)).
+- Rủi ro nếu vi phạm: Giữ nguyên giá cũ hoặc tăng giá thấp hơn quy định, làm suy giảm biên lợi nhuận do trượt giá.
+- Kiến nghị KSNB: Áp đúng tỷ lệ tăng giá hợp đồng; trường hợp giữ nguyên giá phải có phê duyệt văn bản của TGĐ.
+- Rule App liên kết: renew_lower
+
+[Tiêu chí 23]
+- Mã tiêu chí: CHK-TT-03
+- Nhóm: k6 (Tái tục hợp đồng)
+- Nội dung kiểm tra: Rà soát và xử lý dứt điểm các hợp đồng đã hết hạn nhưng chưa ký phụ lục gia hạn hoặc chưa thanh lý trả kho.
+- Tiêu chí / Căn cứ: Quy định pháp lý về chấm dứt HĐ; Biên bản thanh lý và bàn giao hoàn trả mặt bằng.
+- Bằng chứng cần thu thập: Danh sách hợp đồng quá hạn chưa tái tục trên app; Biên bản thanh lý hợp đồng / Biên bản kiểm tra hiện trạng bàn giao kho trả lại.
+- Rủi ro nếu vi phạm: Khách hàng sử dụng kho bất hợp pháp không có ràng buộc hợp đồng, nguy cơ không thu được tiền thuê.
+- Kiến nghị KSNB: Khẩn trương ký phụ lục gia hạn hoặc tiến hành lập biên bản niêm phong kho, thu hồi mặt bằng.
+- Rule App liên kết: ct_expired
+
+
+--------------------------------------------------------------------------------
+NHÓM 7: DOANH THU & CÔNG NỢ (Mã nhóm trong app: k7)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 24]
+- Mã tiêu chí: CHK-CN-01
+- Nhóm: k7 (Doanh thu & công nợ)
+- Nội dung kiểm tra: Kiểm tra việc thu tiền đặt cọc đầy đủ trước khi bàn giao mặt bằng kho bãi thực tế cho khách hàng.
+- Tiêu chí / Căn cứ: Điều khoản đặt cọc trong Hợp đồng; Giấy báo Có ngân hàng / Phiếu thu tiền cọc.
+- Bằng chứng cần thu thập: Biên lai chuyển khoản tiền đặt cọc của khách hàng; Biên bản bàn giao kho bãi thực tế (ngày bàn giao vs ngày nộp cọc).
+- Rủi ro nếu vi phạm: Bàn giao kho khi chưa thu cọc, dẫn đến rủi ro khách hàng chiếm dụng tài sản và quỵt nợ.
+- Kiến nghị KSNB: Nghiêm cấm bàn giao chìa khóa kho khi Kế toán chưa xác nhận đã nổi tiền cọc trên tài khoản.
+- Rule App liên kết: pay_flag
+
+[Tiêu chí 25]
+- Mã tiêu chí: CHK-CN-02
+- Nhóm: k7 (Doanh thu & công nợ)
+- Nội dung kiểm tra: Kiểm tra công tác đối soát sản lượng và xuất hóa đơn doanh thu dịch vụ phát sinh hàng tháng.
+- Tiêu chí / Căn cứ: Quy chế phát hành hóa đơn GTGT; Biên bản xác nhận sản lượng dịch vụ lưu kho.
+- Bằng chứng cần thu thập: Bảng kê sản lượng lưu kho, bốc xếp, điện nước hàng tháng có 2 bên ký; Hóa đơn GTGT xuất đúng kỳ doanh thu.
+- Rủi ro nếu vi phạm: Ghi nhận chậm doanh thu, sót hóa đơn dịch vụ phát sinh, vi phạm quy định pháp luật về thuế.
+- Kiến nghị KSNB: Chốt số liệu dịch vụ vào ngày cuối tháng và phát hành hóa đơn trước ngày mùng 5 tháng sau.
+- Rule App liên kết: ar_overdue
+
+[Tiêu chí 26]
+- Mã tiêu chí: CHK-CN-03
+- Nhóm: k7 (Doanh thu & công nợ)
+- Nội dung kiểm tra: Kiểm soát tình trạng công nợ quá hạn và việc áp dụng chế tài phạt chậm nộp (0.05%/ngày).
+- Tiêu chí / Căn cứ: Báo cáo tuổi nợ của Phòng Kế toán & Phòng Dự án; Thông báo đôn đốc nợ.
+- Bằng chứng cần thu thập: Bảng tổng hợp công nợ quá hạn chi tiết theo từng khách hàng; Thư thông báo nhắc nợ đợt 1, 2, 3; Bảng tính tiền phạt chậm thanh toán.
+- Rủi ro nếu vi phạm: Nợ xấu kéo dài, thất thoát vốn lưu động của Công ty.
+- Kiến nghị KSNB: Áp dụng chế tài tính lãi phạt chậm nộp và tạm dừng cung cấp dịch vụ/khóa kho nếu nợ quá 30 ngày.
+- Rule App liên kết: ar_overdue
+
+[Tiêu chí 27]
+- Mã tiêu chí: CHK-CN-04
+- Nhóm: k7 (Doanh thu & công nợ)
+- Nội dung kiểm tra: Kiểm tra việc thanh lý, cấn trừ công nợ tồn đọng vào tiền đặt cọc khi khách hàng chấm dứt hợp đồng.
+- Tiêu chí / Căn cứ: Hồ sơ thanh lý hợp đồng; Bảng đối chiếu công nợ cuối cùng.
+- Bằng chứng cần thu thập: Biên bản thanh lý hợp đồng kinh tế; Bảng quyết toán công nợ cấn trừ tiền cọc, tiền điện nước và chi phí sửa chữa hư hỏng kho.
+- Rủi ro nếu vi phạm: Trả lại tiền cọc khi khách hàng vẫn còn nợ tiền điện, phí dịch vụ hoặc làm hư hỏng kết cấu kho.
+- Kiến nghị KSNB: Chỉ hoàn cọc sau khi đã khấu trừ toàn bộ công nợ tồn và chi phí hoàn trả hiện trạng.
+- Rule App liên kết: ar_overdue
+
+
+--------------------------------------------------------------------------------
+NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 28]
+- Mã tiêu chí: CHK-CK-01
+- Nhóm: k8 (Chiết khấu)
+- Nội dung kiểm tra: Kiểm tra điều kiện thâm niên >= 3 năm khi áp dụng chính sách chiết khấu gia hạn theo Quyết định 176.
+- Tiêu chí / Căn cứ: Quyết định số 176/2024/QĐ-HNT ngày 25/10/2024 của Tổng Giám đốc.
+- Bằng chứng cần thu thập: Lịch sử hợp đồng thuê kho liên tục của khách hàng >= 3 năm; Số hợp đồng cũ, ngày ký gốc đính kèm trên hồ sơ chiết khấu.
+- Rủi ro nếu vi phạm: Khách hàng chưa đủ thâm niên 3 năm nhưng vẫn được giảm giá/chiết khấu sai quy định.
+- Kiến nghị KSNB: Thu hồi khoản chiết khấu đã chi sai và kiểm điểm trách nhiệm chuyên viên đề xuất.
+- Rule App liên kết: qd176_not_3yr, qd176_manual_no_proof
+
+[Tiêu chí 29]
+- Mã tiêu chí: CHK-CK-02
+- Nhóm: k8 (Chiết khấu)
+- Nội dung kiểm tra: Kiểm tra thời hạn gia hạn hợp đồng tối thiểu >= 6 tháng để được hưởng chiết khấu theo Quyết định 176.
+- Tiêu chí / Căn cứ: Điều khoản về thời hạn hợp đồng tại Quyết định 176/2024/QĐ-HNT.
+- Bằng chứng cần thu thập: Thời hạn gia hạn ký trên Phụ lục hợp đồng (renewMonths); Văn bản phê duyệt ngoại lệ của TGĐ (nếu gia hạn dưới 6 tháng).
+- Rủi ro nếu vi phạm: Chiết khấu cho hợp đồng ngắn hạn gây giảm doanh thu mà không giữ chân được khách hàng.
+- Kiến nghị KSNB: Không áp dụng chính sách chiết khấu cho các hợp đồng gia hạn dưới 6 tháng.
+- Rule App liên kết: qd176_under_6m
+
+[Tiêu chí 30]
+- Mã tiêu chí: CHK-CK-03
+- Nhóm: k8 (Chiết khấu)
+- Nội dung kiểm tra: Kiểm tra điều kiện hưởng chiết khấu dịch vụ lưu kho chung theo QĐ 11 (Doanh thu >= 5 triệu và tháng đầu >= 20 ngày).
+- Tiêu chí / Căn cứ: Khoản 5, Khoản 6 Quyết định ngày 07/05/2025 (QĐ 11).
+- Bằng chứng cần thu thập: Doanh thu lưu kho thực tế trong tháng của khách hàng (related); Số ngày hoạt động thực tế trong tháng đầu tiên (daysInFirstMonth).
+- Rủi ro nếu vi phạm: Cho hưởng chiết khấu khi doanh thu không đạt ngưỡng 5 triệu hoặc tháng đầu < 20 ngày.
+- Kiến nghị KSNB: Chỉ duyệt chiết khấu khi doanh thu đạt chuẩn; tháng đầu < 20 ngày dời sang tháng kế tiếp.
+- Rule App liên kết: storage_min_rev, storage_first_month_days
+
+[Tiêu chí 31]
+- Mã tiêu chí: CHK-CK-04
+- Nhóm: k8 (Chiết khấu)
+- Nội dung kiểm tra: Kiểm tra việc truy thu lại tiền chiết khấu khi khách hàng chủ động chấm dứt hợp đồng trước hạn.
+- Tiêu chí / Căn cứ: Quy định thu hồi chiết khấu tại QĐ 11 và Điều khoản chấm dứt HĐ.
+- Bằng chứng cần thu thập: Thông báo chấm dứt hợp đồng trước hạn của khách hàng; Bảng tính số tiền chiết khấu phải truy thu (clawbackAmt); Khấu trừ tiền truy thu vào tiền đặt cọc hoàn trả.
+- Rủi ro nếu vi phạm: Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.
+- Kiến nghị KSNB: Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.
+- Rule App liên kết: storage_early_term_clawback
+
+
+--------------------------------------------------------------------------------
+NHÓM 9: HOA HỒNG KHÁCH HÀNG MỚI (Mã nhóm trong app: k9)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 32]
+- Mã tiêu chí: CHK-HH-01
+- Nhóm: k9 (Hoa hồng khách hàng mới)
+- Nội dung kiểm tra: Kiểm tra tỷ lệ trích hoa hồng cho chuyên viên kinh doanh (Sale) và môi giới ngoài: Đảm bảo không vượt khung quy định.
+- Tiêu chí / Căn cứ: Quy chế hoa hồng bán hàng của Công ty; Chính sách phát triển khách hàng mới.
+- Bằng chứng cần thu thập: Tờ trình chi hoa hồng khách hàng mới; Bảng so sánh tỷ lệ đề xuất so với tỷ lệ trần được phép (saleActualRate vs saleAllowedRate).
+- Rủi ro nếu vi phạm: Chi vượt khung hoa hồng cho phép, làm tăng chi phí bán hàng và giảm lợi nhuận ròng.
+- Kiến nghị KSNB: Cắt giảm khoản hoa hồng vượt định mức về đúng tỷ lệ tối đa quy định.
+- Rule App liên kết: comm_sale_over, comm_broker_over
+
+[Tiêu chí 33]
+- Mã tiêu chí: CHK-HH-02
+- Nhóm: k9 (Hoa hồng khách hàng mới)
+- Nội dung kiểm tra: Kiểm tra tính minh bạch thông tin môi giới và thẩm quyền phê duyệt chi trả hoa hồng.
+- Tiêu chí / Căn cứ: Quy chế phê duyệt chi phí bán hàng; Quy định về chứng từ thuế TNCN môi giới.
+- Bằng chứng cần thu thập: Hợp đồng môi giới / Thỏa thuận giới thiệu khách hàng; Bản sao CCCD, MST cá nhân của môi giới (brokerName); Chữ ký phê duyệt của TGĐ và Kế toán trưởng (approver).
+- Rủi ro nếu vi phạm: Rủi ro gian lận lập môi giới "ma" để rút tiền hoa hồng, rủi ro phạt thuế TNCN.
+- Kiến nghị KSNB: Bắt buộc khấu trừ thuế TNCN 10% tại nguồn và lưu đầy đủ định danh cá nhân môi giới.
+- Rule App liên kết: comm_unapp, comm_broker_noname
+
+[Tiêu chí 34]
+- Mã tiêu chí: CHK-HH-03
+- Nhóm: k9 (Hoa hồng khách hàng mới)
+- Nội dung kiểm tra: Kiểm tra số kỳ được chi trả hoa hồng: Đảm bảo không chi vượt quá số kỳ quy định trong chính sách.
+- Tiêu chí / Căn cứ: Quy định thời gian hưởng hoa hồng (thường chỉ chi trong 1 - 3 tháng đầu của HĐ mới).
+- Bằng chứng cần thu thập: Bảng kê các đợt chi trả hoa hồng luỹ kế cho từng hợp đồng; Thời gian bắt đầu tính hoa hồng (periodStart).
+- Rủi ro nếu vi phạm: Chi trả hoa hồng kéo dài nhiều tháng ngoài chính sách cho một hợp đồng cũ.
+- Kiến nghị KSNB: Chấm dứt chi hoa hồng khi đã đủ số kỳ được hưởng; thu hồi các kỳ chi thừa.
+- Rule App liên kết: comm_extra_period
+
+
+--------------------------------------------------------------------------------
+NHÓM 10: KPI & NHIỆM VỤ PHÒNG DỰ ÁN (Mã nhóm trong app: k10)
+--------------------------------------------------------------------------------
+
+[Tiêu chí 35]
+- Mã tiêu chí: CHK-KPI-01
+- Nhóm: k10 (KPI & nhiệm vụ)
+- Nội dung kiểm tra: Kiểm tra tiến độ và chất lượng hoàn thành các nhiệm vụ trọng tâm được giao cho Phòng Dự án trong kỳ.
+- Tiêu chí / Căn cứ: Kế hoạch công tác quý của Phòng Dự án; Chỉ đạo giao việc của Ban Giám đốc (tasks).
+- Bằng chứng cần thu thập: Bảng theo dõi phân công nhiệm vụ nhân sự; Kết quả sản phẩm bàn giao của từng đầu việc; Tỷ lệ nhiệm vụ bị chậm hạn (late), bỏ sót (miss) hoặc làm sai quy trình (proc).
+- Rủi ro nếu vi phạm: Tồn đọng công việc chiến lược, trì trệ tiến độ chung của toàn Công ty.
+- Kiến nghị KSNB: Rà soát năng lực nhân sự, tái phân bổ đầu việc và đưa vào đánh giá xếp loại thi đua.
+- Rule App liên kết: task_bad
+
+[Tiêu chí 36]
+- Mã tiêu chí: CHK-KPI-02
+- Nhóm: k10 (KPI & nhiệm vụ)
+- Nội dung kiểm tra: Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.
+- Tiêu chí / Căn cứ: Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 8 nhân sự.
+- Bằng chứng cần thu thập: Số liệu thực hiện so với chỉ tiêu giao: Doanh thu, Tiến độ dự án, Chi phí, Khách hàng, Tuân thủ; Bằng chứng đối chiếu chéo với số liệu kế toán/doanh thu thực tế.
+- Rủi ro nếu vi phạm: Báo cáo KPI ảo, khai vọt số liệu để nhận thưởng hiệu quả công việc.
+- Kiến nghị KSNB: Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.
+- Rule App liên kết: kpi_fail
+
+[Tiêu chí 37]
+- Mã tiêu chí: CHK-KPI-03
+- Nhóm: k10 (KPI & nhiệm vụ)
+- Nội dung kiểm tra: Kiểm tra kết quả thực hiện và tình trạng đóng các kiến nghị kiểm tra kiểm soát nội bộ của các kỳ trước (Follow-up).
+- Tiêu chí / Căn cứ: Báo cáo kiểm tra KSNB kỳ trước; Kế hoạch hành động khắc phục của Phòng Dự án (followups).
+- Bằng chứng cần thu thập: Bảng theo dõi tình trạng xử lý kiến nghị (recs); Bằng chứng khắc phục thực tế đã nộp (biên bản sửa chữa, phụ lục HĐ ký lại...); Số lượng kiến nghị quá hạn chưa đóng.
+- Rủi ro nếu vi phạm: Lỗi vi phạm lặp đi lặp lại nhiều kỳ, kiến nghị kiểm tra không có tính răn đe.
+- Kiến nghị KSNB: Báo cáo trực tiếp Ban Tổng Giám đốc chế tài kỷ luật đối với các cá nhân chây ì không khắc phục.
+- Rule App liên kết: fu_open, rec_overdue
+
+
+================================================================================
+PHẦN III: HƯỚNG DẪN THỰC THI & SỐ HÓA TRÊN ỨNG DỤNG KTKS
+================================================================================
+
+1. CÁCH THỨC VẬN HÀNH TRÊN APP:
+- Mở ứng dụng KTKS Phòng Dự Án (file index.html hoặc KTKS_PhongDuAn_v1.4.html).
+- Chọn menu "Kiểm tra" -> "Checklist".
+- Đổi trạng thái kiểm tra trực tiếp trên bảng:
+  + "Đạt" (pass): Màu xanh lá.
+  + "Có lưu ý" (warn): Màu vàng -> Xuất hiện nút "Tạo Finding".
+  + "Không đạt" (fail): Màu đỏ -> Xuất hiện nút "Tạo Finding".
+  + "N/A" (na): Tiêu chí không phát sinh trong kỳ.
+- Bấm nút "Tạo Finding" (icon lá cờ) để hệ thống tự động trích xuất tiêu chí sang màn hình Finding và chỉ định mức độ rủi ro tương ứng (Trung bình / Cao).
+- Vào menu "Báo cáo" -> "Báo cáo kiểm tra quý" (report) để xem tự động bảng tổng hợp kết quả đạt/không đạt của 10 nhóm tiêu chí trên.
+
+2. CÁC TÀI LIỆU VĂN BẢN ĐÍNH KÈM THAM KHẢO TRONG THƯ MỤC DỰ ÁN:
+- Quyết định số 176/2024/QĐ-HNT: "QD SO 176 VE VIEC BO SUNG CSBH KHI KH GIA HAN HD_20241025_0001.pdf"
+- Quyết định ngày 07/05/2025 (QĐ 11): "QD VE VIEC SUA DOI GIA VA CHINH SACH BAN HNG KHO CHUNG CAC DA_20250507_0001.pdf"
+- File dữ liệu hệ thống: "KTKS_PhongDuAn_Backup_2026-09-29_1120.json"
+================================================================================
