@@ -1,4 +1,4 @@
-﻿================================================================================
+================================================================================
 KẾ HOẠCH & BỘ CHECKLIST KIỂM TRA KIỂM SOÁT NỘI BỘ BỘ PHẬN DỰ ÁN
 Hệ thống: Kiểm tra Kiểm soát Nội bộ Phòng Dự Án (KTKS v1.5.3)
 Mã đợt kiểm tra: KTKS-PDA-2026-Q3
@@ -461,7 +461,7 @@ NHÓM 10: KPI & NHIỆM VỤ PHÒNG DỰ ÁN (Mã nhóm trong app: k10)
 - Mã tiêu chí: CHK-KPI-02
 - Nhóm: k10 (KPI & nhiệm vụ)
 - Nội dung kiểm tra: Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.
-- Tiêu chí / Căn cứ: Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 8 nhân sự.
+- Tiêu chí / Căn cứ: Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 5 nhân sự.
 - Bằng chứng cần thu thập: Số liệu thực hiện so với chỉ tiêu giao: Doanh thu, Tiến độ dự án, Chi phí, Khách hàng, Tuân thủ; Bằng chứng đối chiếu chéo với số liệu kế toán/doanh thu thực tế.
 - Rủi ro nếu vi phạm: Báo cáo KPI ảo, khai vọt số liệu để nhận thưởng hiệu quả công việc.
 - Kiến nghị KSNB: Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.

@@ -13791,7 +13791,7 @@
                                        "code":  "CHK-KPI-02",
                                        "group":  "k10",
                                        "content":  "Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.",
-                                       "criteria":  "Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 8 nhân sự.",
+                                       "criteria":  "Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 5 nhân sự.",
                                        "projectId":  "",
                                        "contractId":  "",
                                        "result":  "todo",
