@@ -1,4 +1,4 @@
-================================================================================
+﻿================================================================================
 KẾ HOẠCH & BỘ CHECKLIST KIỂM TRA KIỂM SOÁT NỘI BỘ BỘ PHẬN DỰ ÁN
 Hệ thống: Kiểm tra Kiểm soát Nội bộ Phòng Dự Án (KTKS v1.5.3)
 Mã đợt kiểm tra: KTKS-PDA-2026-Q3
@@ -65,7 +65,7 @@ PHẦN I: KẾ HOẠCH KIỂM TRA KIỂM SOÁT NỘI BỘ TOÀN DIỆN
 
 
 ================================================================================
-PHẦN II: BỘ CHECKLIST 37 TIÊU CHÍ TRỌNG YẾU (KHỚP 100% CẤU TRÚC APP)
+PHẦN II: BỘ CHECKLIST 36 TIÊU CHÍ TRỌNG YẾU (KHỚP 100% CẤU TRÚC APP)
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -335,41 +335,31 @@ NHÓM 7: DOANH THU & CÔNG NỢ (Mã nhóm trong app: k7)
 [Tiêu chí 24]
 - Mã tiêu chí: CHK-CN-01
 - Nhóm: k7 (Doanh thu & công nợ)
-- Nội dung kiểm tra: Kiểm tra việc thu tiền đặt cọc đầy đủ trước khi bàn giao mặt bằng kho bãi thực tế cho khách hàng.
-- Tiêu chí / Căn cứ: Điều khoản đặt cọc trong Hợp đồng; Giấy báo Có ngân hàng / Phiếu thu tiền cọc.
-- Bằng chứng cần thu thập: Biên lai chuyển khoản tiền đặt cọc của khách hàng; Biên bản bàn giao kho bãi thực tế (ngày bàn giao vs ngày nộp cọc).
-- Rủi ro nếu vi phạm: Bàn giao kho khi chưa thu cọc, dẫn đến rủi ro khách hàng chiếm dụng tài sản và quỵt nợ.
-- Kiến nghị KSNB: Nghiêm cấm bàn giao chìa khóa kho khi Kế toán chưa xác nhận đã nổi tiền cọc trên tài khoản.
+- Nội dung kiểm tra: Kiểm tra tính đầy đủ của Biên bản bàn giao kho (do Trung tâm/Kho ký với khách hàng) và thông báo xác nhận tiền cọc được lưu trong hồ sơ hợp đồng của Phòng Dự án.
+- Tiêu chí / Căn cứ: Quy trình quản lý hồ sơ hợp đồng Phòng Dự án; Điều khoản đặt cọc và điều kiện bàn giao mặt bằng trong Hợp đồng.
+- Bằng chứng cần thu thập: Bản sao/bản gốc Biên bản bàn giao kho có chữ ký giữa Trung tâm (Kho) và khách hàng; Giấy báo Có/Xác nhận của Kế toán về việc đã thu đủ tiền cọc trước thời điểm kho bàn giao.
+- Rủi ro nếu vi phạm: Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.
+- Kiến nghị KSNB: Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.
 - Rule App liên kết: pay_flag
 
 [Tiêu chí 25]
 - Mã tiêu chí: CHK-CN-02
 - Nhóm: k7 (Doanh thu & công nợ)
-- Nội dung kiểm tra: Kiểm tra công tác đối soát sản lượng và xuất hóa đơn doanh thu dịch vụ phát sinh hàng tháng.
-- Tiêu chí / Căn cứ: Quy chế phát hành hóa đơn GTGT; Biên bản xác nhận sản lượng dịch vụ lưu kho.
-- Bằng chứng cần thu thập: Bảng kê sản lượng lưu kho, bốc xếp, điện nước hàng tháng có 2 bên ký; Hóa đơn GTGT xuất đúng kỳ doanh thu.
-- Rủi ro nếu vi phạm: Ghi nhận chậm doanh thu, sót hóa đơn dịch vụ phát sinh, vi phạm quy định pháp luật về thuế.
-- Kiến nghị KSNB: Chốt số liệu dịch vụ vào ngày cuối tháng và phát hành hóa đơn trước ngày mùng 5 tháng sau.
+- Nội dung kiểm tra: Kiểm tra trách nhiệm của chuyên viên Phòng Dự án trong việc phối hợp với Phòng Kế toán đôn đốc công nợ quá hạn và kích hoạt điều khoản phạt chậm nộp/dừng cung cấp dịch vụ theo hợp đồng.
+- Tiêu chí / Căn cứ: Quy trình phối hợp thu hồi nợ giữa Phòng Dự án và Phòng Kế toán; Điều khoản phạt chậm nộp (0.05%/ngày) và quyền đơn phương tạm dừng dịch vụ trong Hợp đồng.
+- Bằng chứng cần thu thập: Báo cáo công nợ quá hạn do Kế toán gửi sang Phòng Dự án; Thư nhắc nợ, email đôn đốc hoặc biên bản làm việc của chuyên viên Dự án với khách hàng; Thông báo phạt chậm nộp / cảnh báo tạm dừng dịch vụ.
+- Rủi ro nếu vi phạm: Chuyên viên kinh doanh bỏ mặc công nợ cho Kế toán, không dùng quyền hạn hợp đồng để thúc đẩy thanh toán, nợ đọng kéo dài khó đòi.
+- Kiến nghị KSNB: Định kỳ hàng tháng chuyên viên phụ trách hợp đồng phải đối chiếu danh sách nợ quá hạn với Kế toán và gửi văn bản đôn đốc nợ/áp dụng chế tài chậm nộp theo đúng hợp đồng.
 - Rule App liên kết: ar_overdue
 
 [Tiêu chí 26]
 - Mã tiêu chí: CHK-CN-03
 - Nhóm: k7 (Doanh thu & công nợ)
-- Nội dung kiểm tra: Kiểm soát tình trạng công nợ quá hạn và việc áp dụng chế tài phạt chậm nộp (0.05%/ngày).
-- Tiêu chí / Căn cứ: Báo cáo tuổi nợ của Phòng Kế toán & Phòng Dự án; Thông báo đôn đốc nợ.
-- Bằng chứng cần thu thập: Bảng tổng hợp công nợ quá hạn chi tiết theo từng khách hàng; Thư thông báo nhắc nợ đợt 1, 2, 3; Bảng tính tiền phạt chậm thanh toán.
-- Rủi ro nếu vi phạm: Nợ xấu kéo dài, thất thoát vốn lưu động của Công ty.
-- Kiến nghị KSNB: Áp dụng chế tài tính lãi phạt chậm nộp và tạm dừng cung cấp dịch vụ/khóa kho nếu nợ quá 30 ngày.
-- Rule App liên kết: ar_overdue
-
-[Tiêu chí 27]
-- Mã tiêu chí: CHK-CN-04
-- Nhóm: k7 (Doanh thu & công nợ)
-- Nội dung kiểm tra: Kiểm tra việc thanh lý, cấn trừ công nợ tồn đọng vào tiền đặt cọc khi khách hàng chấm dứt hợp đồng.
-- Tiêu chí / Căn cứ: Hồ sơ thanh lý hợp đồng; Bảng đối chiếu công nợ cuối cùng.
-- Bằng chứng cần thu thập: Biên bản thanh lý hợp đồng kinh tế; Bảng quyết toán công nợ cấn trừ tiền cọc, tiền điện nước và chi phí sửa chữa hư hỏng kho.
-- Rủi ro nếu vi phạm: Trả lại tiền cọc khi khách hàng vẫn còn nợ tiền điện, phí dịch vụ hoặc làm hư hỏng kết cấu kho.
-- Kiến nghị KSNB: Chỉ hoàn cọc sau khi đã khấu trừ toàn bộ công nợ tồn và chi phí hoàn trả hiện trạng.
+- Nội dung kiểm tra: Kiểm tra việc lập hồ sơ thanh lý hợp đồng: Đảm bảo có đầy đủ Biên bản hoàn trả mặt bằng từ Trung tâm (Kho) và Biên bản đối soát cấn trừ công nợ từ Phòng Kế toán trước khi ký thanh lý.
+- Tiêu chí / Căn cứ: Quy định chấm dứt và thanh lý hợp đồng; Quy trình hoàn trả mặt bằng và cấn trừ tiền cọc.
+- Bằng chứng cần thu thập: Biên bản kiểm tra hiện trạng và nhận lại mặt bằng do Trung tâm (Kho) lập với khách hàng; Bảng đối chiếu công nợ cuối cùng của Kế toán (cấn trừ tiền thuê, điện nước, bốc xếp và phạt vi phạm vào tiền cọc); Biên bản thanh lý HĐ ký bởi Người đại diện có thẩm quyền.
+- Rủi ro nếu vi phạm: Ký thanh lý hợp đồng khi Trung tâm chưa nhận lại kho hoặc Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến mất quyền thu hồi nợ/chi phí hư hỏng kho.
+- Kiến nghị KSNB: Phòng Dự án chỉ trình ký Biên bản thanh lý sau khi nhận đủ Biên bản hoàn trả mặt bằng từ Trung tâm (Kho) và Bảng xác nhận hết nợ/cấn trừ cọc từ Phòng Kế toán.
 - Rule App liên kết: ar_overdue
 
 
@@ -377,7 +367,7 @@ NHÓM 7: DOANH THU & CÔNG NỢ (Mã nhóm trong app: k7)
 NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
 --------------------------------------------------------------------------------
 
-[Tiêu chí 28]
+[Tiêu chí 27]
 - Mã tiêu chí: CHK-CK-01
 - Nhóm: k8 (Chiết khấu)
 - Nội dung kiểm tra: Kiểm tra điều kiện thâm niên >= 3 năm khi áp dụng chính sách chiết khấu gia hạn theo Quyết định 176.
@@ -387,7 +377,7 @@ NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
 - Kiến nghị KSNB: Thu hồi khoản chiết khấu đã chi sai và kiểm điểm trách nhiệm chuyên viên đề xuất.
 - Rule App liên kết: qd176_not_3yr, qd176_manual_no_proof
 
-[Tiêu chí 29]
+[Tiêu chí 28]
 - Mã tiêu chí: CHK-CK-02
 - Nhóm: k8 (Chiết khấu)
 - Nội dung kiểm tra: Kiểm tra thời hạn gia hạn hợp đồng tối thiểu >= 6 tháng để được hưởng chiết khấu theo Quyết định 176.
@@ -397,7 +387,7 @@ NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
 - Kiến nghị KSNB: Không áp dụng chính sách chiết khấu cho các hợp đồng gia hạn dưới 6 tháng.
 - Rule App liên kết: qd176_under_6m
 
-[Tiêu chí 30]
+[Tiêu chí 29]
 - Mã tiêu chí: CHK-CK-03
 - Nhóm: k8 (Chiết khấu)
 - Nội dung kiểm tra: Kiểm tra điều kiện hưởng chiết khấu dịch vụ lưu kho chung theo QĐ 11 (Doanh thu >= 5 triệu và tháng đầu >= 20 ngày).
@@ -407,7 +397,7 @@ NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
 - Kiến nghị KSNB: Chỉ duyệt chiết khấu khi doanh thu đạt chuẩn; tháng đầu < 20 ngày dời sang tháng kế tiếp.
 - Rule App liên kết: storage_min_rev, storage_first_month_days
 
-[Tiêu chí 31]
+[Tiêu chí 30]
 - Mã tiêu chí: CHK-CK-04
 - Nhóm: k8 (Chiết khấu)
 - Nội dung kiểm tra: Kiểm tra việc truy thu lại tiền chiết khấu khi khách hàng chủ động chấm dứt hợp đồng trước hạn.
@@ -422,7 +412,7 @@ NHÓM 8: CHIẾT KHẤU (Mã nhóm trong app: k8)
 NHÓM 9: HOA HỒNG KHÁCH HÀNG MỚI (Mã nhóm trong app: k9)
 --------------------------------------------------------------------------------
 
-[Tiêu chí 32]
+[Tiêu chí 31]
 - Mã tiêu chí: CHK-HH-01
 - Nhóm: k9 (Hoa hồng khách hàng mới)
 - Nội dung kiểm tra: Kiểm tra tỷ lệ trích hoa hồng cho chuyên viên kinh doanh (Sale) và môi giới ngoài: Đảm bảo không vượt khung quy định.
@@ -432,7 +422,7 @@ NHÓM 9: HOA HỒNG KHÁCH HÀNG MỚI (Mã nhóm trong app: k9)
 - Kiến nghị KSNB: Cắt giảm khoản hoa hồng vượt định mức về đúng tỷ lệ tối đa quy định.
 - Rule App liên kết: comm_sale_over, comm_broker_over
 
-[Tiêu chí 33]
+[Tiêu chí 32]
 - Mã tiêu chí: CHK-HH-02
 - Nhóm: k9 (Hoa hồng khách hàng mới)
 - Nội dung kiểm tra: Kiểm tra tính minh bạch thông tin môi giới và thẩm quyền phê duyệt chi trả hoa hồng.
@@ -442,7 +432,7 @@ NHÓM 9: HOA HỒNG KHÁCH HÀNG MỚI (Mã nhóm trong app: k9)
 - Kiến nghị KSNB: Bắt buộc khấu trừ thuế TNCN 10% tại nguồn và lưu đầy đủ định danh cá nhân môi giới.
 - Rule App liên kết: comm_unapp, comm_broker_noname
 
-[Tiêu chí 34]
+[Tiêu chí 33]
 - Mã tiêu chí: CHK-HH-03
 - Nhóm: k9 (Hoa hồng khách hàng mới)
 - Nội dung kiểm tra: Kiểm tra số kỳ được chi trả hoa hồng: Đảm bảo không chi vượt quá số kỳ quy định trong chính sách.
@@ -457,7 +447,7 @@ NHÓM 9: HOA HỒNG KHÁCH HÀNG MỚI (Mã nhóm trong app: k9)
 NHÓM 10: KPI & NHIỆM VỤ PHÒNG DỰ ÁN (Mã nhóm trong app: k10)
 --------------------------------------------------------------------------------
 
-[Tiêu chí 35]
+[Tiêu chí 34]
 - Mã tiêu chí: CHK-KPI-01
 - Nhóm: k10 (KPI & nhiệm vụ)
 - Nội dung kiểm tra: Kiểm tra tiến độ và chất lượng hoàn thành các nhiệm vụ trọng tâm được giao cho Phòng Dự án trong kỳ.
@@ -467,7 +457,7 @@ NHÓM 10: KPI & NHIỆM VỤ PHÒNG DỰ ÁN (Mã nhóm trong app: k10)
 - Kiến nghị KSNB: Rà soát năng lực nhân sự, tái phân bổ đầu việc và đưa vào đánh giá xếp loại thi đua.
 - Rule App liên kết: task_bad
 
-[Tiêu chí 36]
+[Tiêu chí 35]
 - Mã tiêu chí: CHK-KPI-02
 - Nhóm: k10 (KPI & nhiệm vụ)
 - Nội dung kiểm tra: Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.
@@ -477,7 +467,7 @@ NHÓM 10: KPI & NHIỆM VỤ PHÒNG DỰ ÁN (Mã nhóm trong app: k10)
 - Kiến nghị KSNB: Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.
 - Rule App liên kết: kpi_fail
 
-[Tiêu chí 37]
+[Tiêu chí 36]
 - Mã tiêu chí: CHK-KPI-03
 - Nhóm: k10 (KPI & nhiệm vụ)
 - Nội dung kiểm tra: Kiểm tra kết quả thực hiện và tình trạng đóng các kiến nghị kiểm tra kiểm soát nội bộ của các kỳ trước (Follow-up).

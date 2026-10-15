@@ -3,7 +3,7 @@
                  "app":  "KTKS_PhongDuAn",
                  "appVersion":  "1.5.3",
                  "backupVersion":  1,
-                 "backupDate":  "2026-10-15T07:51:54.996Z",
+                 "backupDate":  "2026-10-15T08:14:16.495Z",
                  "scope":  "all",
                  "periodId":  null,
                  "periodLabel":  null,
@@ -12,7 +12,7 @@
                                 "projects":  1,
                                 "contracts":  69,
                                 "customers":  65,
-                                "checklist":  37,
+                                "checklist":  36,
                                 "findings":  0,
                                 "recs":  0,
                                 "followups":  0
@@ -13221,8 +13221,8 @@
                                        "comment":  "",
                                        "risk":  "Đầu tư dàn trải, không hiệu quả, thiếu cơ sở pháp lý ban đầu.",
                                        "rec":  "Hoàn thiện Báo cáo FS và phê duyệt chủ trương trước khi chi ngân sách.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_02_chk_dt_02",
@@ -13238,8 +13238,8 @@
                                        "comment":  "",
                                        "risk":  "Vượt thẩm quyền phân cấp tài chính, cam kết vượt khả năng cân đối vốn của Công ty.",
                                        "rec":  "Trình cấp thẩm quyền phê duyệt lại TMĐT theo đúng hạn mức phân quyền.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_03_chk_dt_03",
@@ -13255,8 +13255,8 @@
                                        "comment":  "",
                                        "risk":  "Tranh chấp pháp lý mặt bằng, bị đình chỉ thi công hoặc không được bồi hoàn khi thu hồi.",
                                        "rec":  "Bổ sung văn bản chấp thuận của chủ đất và hồ sơ quy hoạch chuẩn.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_04_chk_dt_04",
@@ -13272,8 +13272,8 @@
                                        "comment":  "",
                                        "risk":  "Bị đình chỉ hoạt động kho, phạt vi phạm hành chính nặng, không thể nghiệm thu đưa vào khai thác thương mại.",
                                        "rec":  "Đẩy nhanh tiến độ thẩm duyệt PCCC với cơ quan chức năng, không triển khai khi chưa có phê duyệt PCCC.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_05_chk_cp_01",
@@ -13289,8 +13289,8 @@
                                        "comment":  "",
                                        "risk":  "Chậm đưa kho vào khai thác, mất cơ hội kinh doanh, phát sinh chi phí phạt hợp đồng với khách thuê.",
                                        "rec":  "Lập kế hoạch bù tiến độ, tăng cường nguồn lực nhà thầu và đôn đốc giám sát hàng tuần.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_06_chk_cp_02",
@@ -13306,8 +13306,8 @@
                                        "comment":  "",
                                        "risk":  "Vượt dự toán, thâm hụt dòng tiền đầu tư, đội vốn dự án.",
                                        "rec":  "Rà soát cắt giảm các hạng mục không thiết yếu, kiểm soát chặt chi phí dự toán.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_07_chk_cp_03",
@@ -13323,8 +13323,8 @@
                                        "comment":  "",
                                        "risk":  "Tự ý duyệt phát sinh sai thẩm quyền, chi tiêu không có ngân sách hợp lệ.",
                                        "rec":  "Đình chỉ thanh toán phần vượt dự toán cho đến khi có phê duyệt chính thức bằng văn bản.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_08_chk_cp_04",
@@ -13340,8 +13340,8 @@
                                        "comment":  "",
                                        "risk":  "Tai nạn lao động, thiệt hại tài sản không được bảo hiểm chi trả, đình chỉ công trường.",
                                        "rec":  "Mua bảo hiểm bắt buộc và chấn chỉnh công tác bảo hộ lao động ngay lập tức.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_09_chk_nt_01",
@@ -13357,8 +13357,8 @@
                                        "comment":  "",
                                        "risk":  "Nghiệm thu khống khối lượng, chất lượng công trình không đạt yêu cầu kỹ thuật.",
                                        "rec":  "Bắt buộc nghiệm thu thực địa có xác nhận độc lập của Tư vấn giám sát trước khi xác nhận khối lượng.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_10_chk_nt_02",
@@ -13374,8 +13374,8 @@
                                        "comment":  "",
                                        "risk":  "Vận hành kho trái phép, nguy cơ cháy nổ cao, bị xử phạt và đình chỉ hoạt động.",
                                        "rec":  "Tuyệt đối không bàn giao kho cho khách hàng khi chưa có văn bản chấp thuận nghiệm thu PCCC.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_11_chk_nt_03",
@@ -13391,8 +13391,8 @@
                                        "comment":  "",
                                        "risk":  "Nhà thầu chiếm dụng vốn tạm ứng, mất khả năng thu hồi vốn khi nhà thầu vi phạm nghĩa vụ.",
                                        "rec":  "Theo dõi chặt thời hạn bảo lãnh, yêu cầu gia hạn kịp thời trước khi hết hạn 15 ngày.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_12_chk_nt_04",
@@ -13408,8 +13408,8 @@
                                        "comment":  "",
                                        "risk":  "Thanh toán vượt giá trị thực tế hoàn thành (paidAmount \u003e apprAmount), thanh toán trùng lắp.",
                                        "rec":  "Kế toán thanh toán chỉ chi đúng giá trị nghiệm thu thực tế sau khi đã đối trừ tạm ứng đầy đủ.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_13_chk_hd_01",
@@ -13425,8 +13425,8 @@
                                        "comment":  "",
                                        "risk":  "Hợp đồng vô hiệu do người ký không đúng thẩm quyền, khó khăn khi xử lý tranh chấp pháp lý.",
                                        "rec":  "Yêu cầu ký phụ lục bổ sung xác nhận của Người đại diện theo pháp luật đối với các HĐ thiếu ủy quyền.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_14_chk_hd_02",
@@ -13442,8 +13442,8 @@
                                        "comment":  "",
                                        "risk":  "Thiếu bằng chứng pháp lý khi đối soát diện tích, giá và quyền sở hữu kho bãi.",
                                        "rec":  "Thu hồi và số hóa đầy đủ hồ sơ còn thiếu vào hệ thống lưu trữ trong vòng 7 ngày làm việc.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_15_chk_hd_03",
@@ -13459,8 +13459,8 @@
                                        "comment":  "",
                                        "risk":  "Áp sai mô hình hợp đồng, thất thu phí dịch vụ lưu kho và sai lệch phương pháp ghi nhận doanh thu.",
                                        "rec":  "Điều chỉnh lại hợp đồng và đơn giá chính phù hợp với mô hình hoạt động thực tế.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_16_chk_hd_04",
@@ -13476,8 +13476,8 @@
                                        "comment":  "",
                                        "risk":  "Không có chế tài xử lý khi khách hàng nợ tiền hoặc đơn phương bỏ kho, mất cọc.",
                                        "rec":  "Cập nhật điều khoản bảo vệ quyền lợi doanh nghiệp theo mẫu HĐ chuẩn đã phê duyệt.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_17_chk_gia_01",
@@ -13493,8 +13493,8 @@
                                        "comment":  "",
                                        "risk":  "Ký dưới giá sàn mà không có lý do chính đáng, gây thiệt hại doanh thu của Công ty.",
                                        "rec":  "Yêu cầu giải trình các hợp đồng có giá thấp hơn giá sàn quy định; báo cáo TGĐ xử lý.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_18_chk_gia_02",
@@ -13510,8 +13510,8 @@
                                        "comment":  "",
                                        "risk":  "Vượt thẩm quyền quyết định giá của cấp điều hành, vi phạm quy định của HĐQT.",
                                        "rec":  "Trình HĐQT phê duyệt hồi tố ngoại lệ hoặc đàm phán điều chỉnh lại đơn giá chuẩn.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_19_chk_gia_03",
@@ -13527,8 +13527,8 @@
                                        "comment":  "",
                                        "risk":  "Tính thiếu tiền thuê hàng nặng (chiếm tải trọng sàn kho), không bù đắp rủi ro bảo hiểm hàng nguy hiểm.",
                                        "rec":  "Ký phụ lục điều chỉnh cách tính cước theo Tấn và truy thu phụ thu 10% theo quy định.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_20_chk_gia_04",
@@ -13544,8 +13544,8 @@
                                        "comment":  "",
                                        "risk":  "Thất thu chi phí nhân công bốc xếp, thất thoát tiền điện nước do không quy định rõ đơn giá.",
                                        "rec":  "Bổ sung ngay phụ lục đơn giá dịch vụ bốc xếp và biểu giá điện nước tiêu thụ cho các HĐ còn thiếu.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_21_chk_tt_01",
@@ -13561,8 +13561,8 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng đột ngột trả kho gây trống mặt bằng, đứt gãy dòng tiền cho thuê.",
                                        "rec":  "Thiết lập cảnh báo tự động trước 60 ngày và giao chỉ tiêu tái tục cho từng chuyên viên phụ trách.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_22_chk_tt_02",
@@ -13578,8 +13578,8 @@
                                        "comment":  "",
                                        "risk":  "Giữ nguyên giá cũ hoặc tăng giá thấp hơn quy định, làm suy giảm biên lợi nhuận do trượt giá.",
                                        "rec":  "Áp đúng tỷ lệ tăng giá hợp đồng; trường hợp giữ nguyên giá phải có phê duyệt văn bản của TGĐ.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_23_chk_tt_03",
@@ -13595,79 +13595,62 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng sử dụng kho bất hợp pháp không có ràng buộc hợp đồng, nguy cơ không thu được tiền thuê.",
                                        "rec":  "Khẩn trương ký phụ lục gia hạn hoặc tiến hành lập biên bản niêm phong kho, thu hồi mặt bằng.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_24_chk_cn_01",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CN-01",
                                        "group":  "k7",
-                                       "content":  "Kiểm tra việc thu tiền đặt cọc đầy đủ trước khi bàn giao mặt bằng kho bãi thực tế cho khách hàng.",
-                                       "criteria":  "Điều khoản đặt cọc trong Hợp đồng; Giấy báo Có ngân hàng / Phiếu thu tiền cọc.",
+                                       "content":  "Kiểm tra tính đầy đủ của Biên bản bàn giao kho (do Trung tâm/Kho ký với khách hàng) và thông báo xác nhận tiền cọc được lưu trong hồ sơ hợp đồng của Phòng Dự án.",
+                                       "criteria":  "Quy trình quản lý hồ sơ hợp đồng Phòng Dự án; Điều khoản đặt cọc và điều kiện bàn giao mặt bằng trong Hợp đồng.",
                                        "projectId":  "",
                                        "contractId":  "",
                                        "result":  "todo",
-                                       "evidence":  "Biên lai chuyển khoản tiền đặt cọc của khách hàng; Biên bản bàn giao kho bãi thực tế (ngày bàn giao vs ngày nộp cọc).",
+                                       "evidence":  "Bản sao/bản gốc Biên bản bàn giao kho có chữ ký giữa Trung tâm (Kho) và khách hàng; Giấy báo Có/Xác nhận của Kế toán về việc đã thu đủ tiền cọc trước thời điểm kho bàn giao.",
                                        "comment":  "",
-                                       "risk":  "Bàn giao kho khi chưa thu cọc, dẫn đến rủi ro khách hàng chiếm dụng tài sản và quỵt nợ.",
-                                       "rec":  "Nghiêm cấm bàn giao chìa khóa kho khi Kế toán chưa xác nhận đã nổi tiền cọc trên tài khoản.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "risk":  "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
+                                       "rec":  "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_25_chk_cn_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CN-02",
                                        "group":  "k7",
-                                       "content":  "Kiểm tra công tác đối soát sản lượng và xuất hóa đơn doanh thu dịch vụ phát sinh hàng tháng.",
-                                       "criteria":  "Quy chế phát hành hóa đơn GTGT; Biên bản xác nhận sản lượng dịch vụ lưu kho.",
+                                       "content":  "Kiểm tra trách nhiệm của chuyên viên Phòng Dự án trong việc phối hợp với Phòng Kế toán đôn đốc công nợ quá hạn và kích hoạt điều khoản phạt chậm nộp/dừng cung cấp dịch vụ theo hợp đồng.",
+                                       "criteria":  "Quy trình phối hợp thu hồi nợ giữa Phòng Dự án và Phòng Kế toán; Điều khoản phạt chậm nộp (0.05%/ngày) và quyền đơn phương tạm dừng dịch vụ trong Hợp đồng.",
                                        "projectId":  "",
                                        "contractId":  "",
                                        "result":  "todo",
-                                       "evidence":  "Bảng kê sản lượng lưu kho, bốc xếp, điện nước hàng tháng có 2 bên ký; Hóa đơn GTGT xuất đúng kỳ doanh thu.",
+                                       "evidence":  "Báo cáo công nợ quá hạn do Kế toán gửi sang Phòng Dự án; Thư nhắc nợ, email đôn đốc hoặc biên bản làm việc của chuyên viên Dự án với khách hàng; Thông báo phạt chậm nộp / cảnh báo tạm dừng dịch vụ.",
                                        "comment":  "",
-                                       "risk":  "Ghi nhận chậm doanh thu, sót hóa đơn dịch vụ phát sinh, vi phạm quy định pháp luật về thuế.",
-                                       "rec":  "Chốt số liệu dịch vụ vào ngày cuối tháng và phát hành hóa đơn trước ngày mùng 5 tháng sau.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "risk":  "Chuyên viên kinh doanh bỏ mặc công nợ cho Kế toán, không dùng quyền hạn hợp đồng để thúc đẩy thanh toán, nợ đọng kéo dài khó đòi.",
+                                       "rec":  "Định kỳ hàng tháng chuyên viên phụ trách hợp đồng phải đối chiếu danh sách nợ quá hạn với Kế toán và gửi văn bản đôn đốc nợ/áp dụng chế tài chậm nộp theo đúng hợp đồng.",
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
                                        "id":  "chk_26_chk_cn_03",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CN-03",
                                        "group":  "k7",
-                                       "content":  "Kiểm soát tình trạng công nợ quá hạn và việc áp dụng chế tài phạt chậm nộp (0.05%/ngày).",
-                                       "criteria":  "Báo cáo tuổi nợ của Phòng Kế toán \u0026 Phòng Dự án; Thông báo đôn đốc nợ.",
+                                       "content":  "Kiểm tra việc lập hồ sơ thanh lý hợp đồng: Đảm bảo có đầy đủ Biên bản hoàn trả mặt bằng từ Trung tâm (Kho) và Biên bản đối soát cấn trừ công nợ từ Phòng Kế toán trước khi ký thanh lý.",
+                                       "criteria":  "Quy định chấm dứt và thanh lý hợp đồng; Quy trình hoàn trả mặt bằng và cấn trừ tiền cọc.",
                                        "projectId":  "",
                                        "contractId":  "",
                                        "result":  "todo",
-                                       "evidence":  "Bảng tổng hợp công nợ quá hạn chi tiết theo từng khách hàng; Thư thông báo nhắc nợ đợt 1, 2, 3; Bảng tính tiền phạt chậm thanh toán.",
+                                       "evidence":  "Biên bản kiểm tra hiện trạng và nhận lại mặt bằng do Trung tâm (Kho) lập với khách hàng; Bảng đối chiếu công nợ cuối cùng của Kế toán (cấn trừ tiền thuê, điện nước, bốc xếp và phạt vi phạm vào tiền cọc); Biên bản thanh lý HĐ ký bởi Người đại diện có thẩm quyền.",
                                        "comment":  "",
-                                       "risk":  "Nợ xấu kéo dài, thất thoát vốn lưu động của Công ty.",
-                                       "rec":  "Áp dụng chế tài tính lãi phạt chậm nộp và tạm dừng cung cấp dịch vụ/khóa kho nếu nợ quá 30 ngày.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "risk":  "Ký thanh lý hợp đồng khi Trung tâm chưa nhận lại kho hoặc Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến mất quyền thu hồi nợ/chi phí hư hỏng kho.",
+                                       "rec":  "Phòng Dự án chỉ trình ký Biên bản thanh lý sau khi nhận đủ Biên bản hoàn trả mặt bằng từ Trung tâm (Kho) và Bảng xác nhận hết nợ/cấn trừ cọc từ Phòng Kế toán.",
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_27_chk_cn_04",
-                                       "periodId":  "mufq31zn245cq0d",
-                                       "code":  "CHK-CN-04",
-                                       "group":  "k7",
-                                       "content":  "Kiểm tra việc thanh lý, cấn trừ công nợ tồn đọng vào tiền đặt cọc khi khách hàng chấm dứt hợp đồng.",
-                                       "criteria":  "Hồ sơ thanh lý hợp đồng; Bảng đối chiếu công nợ cuối cùng.",
-                                       "projectId":  "",
-                                       "contractId":  "",
-                                       "result":  "todo",
-                                       "evidence":  "Biên bản thanh lý hợp đồng kinh tế; Bảng quyết toán công nợ cấn trừ tiền cọc, tiền điện nước và chi phí sửa chữa hư hỏng kho.",
-                                       "comment":  "",
-                                       "risk":  "Trả lại tiền cọc khi khách hàng vẫn còn nợ tiền điện, phí dịch vụ hoặc làm hư hỏng kết cấu kho.",
-                                       "rec":  "Chỉ hoàn cọc sau khi đã khấu trừ toàn bộ công nợ tồn và chi phí hoàn trả hiện trạng.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
-                                   },
-                                   {
-                                       "id":  "chk_28_chk_ck_01",
+                                       "id":  "chk_27_chk_ck_01",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-01",
                                        "group":  "k8",
@@ -13680,11 +13663,11 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng chưa đủ thâm niên 3 năm nhưng vẫn được giảm giá/chiết khấu sai quy định.",
                                        "rec":  "Thu hồi khoản chiết khấu đã chi sai và kiểm điểm trách nhiệm chuyên viên đề xuất.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_29_chk_ck_02",
+                                       "id":  "chk_28_chk_ck_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-02",
                                        "group":  "k8",
@@ -13697,11 +13680,11 @@
                                        "comment":  "",
                                        "risk":  "Chiết khấu cho hợp đồng ngắn hạn gây giảm doanh thu mà không giữ chân được khách hàng.",
                                        "rec":  "Không áp dụng chính sách chiết khấu cho các hợp đồng gia hạn dưới 6 tháng.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_30_chk_ck_03",
+                                       "id":  "chk_29_chk_ck_03",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-03",
                                        "group":  "k8",
@@ -13714,11 +13697,11 @@
                                        "comment":  "",
                                        "risk":  "Cho hưởng chiết khấu khi doanh thu không đạt ngưỡng 5 triệu hoặc tháng đầu \u003c 20 ngày.",
                                        "rec":  "Chỉ duyệt chiết khấu khi doanh thu đạt chuẩn; tháng đầu \u003c 20 ngày dời sang tháng kế tiếp.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_31_chk_ck_04",
+                                       "id":  "chk_30_chk_ck_04",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-04",
                                        "group":  "k8",
@@ -13731,11 +13714,11 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
                                        "rec":  "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_32_chk_hh_01",
+                                       "id":  "chk_31_chk_hh_01",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-HH-01",
                                        "group":  "k9",
@@ -13748,11 +13731,11 @@
                                        "comment":  "",
                                        "risk":  "Chi vượt khung hoa hồng cho phép, làm tăng chi phí bán hàng và giảm lợi nhuận ròng.",
                                        "rec":  "Cắt giảm khoản hoa hồng vượt định mức về đúng tỷ lệ tối đa quy định.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_33_chk_hh_02",
+                                       "id":  "chk_32_chk_hh_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-HH-02",
                                        "group":  "k9",
@@ -13765,11 +13748,11 @@
                                        "comment":  "",
                                        "risk":  "Rủi ro gian lận lập môi giới \"ma\" để rút tiền hoa hồng, rủi ro phạt thuế TNCN.",
                                        "rec":  "Bắt buộc khấu trừ thuế TNCN 10% tại nguồn và lưu đầy đủ định danh cá nhân môi giới.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_34_chk_hh_03",
+                                       "id":  "chk_33_chk_hh_03",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-HH-03",
                                        "group":  "k9",
@@ -13782,11 +13765,11 @@
                                        "comment":  "",
                                        "risk":  "Chi trả hoa hồng kéo dài nhiều tháng ngoài chính sách cho một hợp đồng cũ.",
                                        "rec":  "Chấm dứt chi hoa hồng khi đã đủ số kỳ được hưởng; thu hồi các kỳ chi thừa.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_35_chk_kpi_01",
+                                       "id":  "chk_34_chk_kpi_01",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-KPI-01",
                                        "group":  "k10",
@@ -13799,11 +13782,11 @@
                                        "comment":  "",
                                        "risk":  "Tồn đọng công việc chiến lược, trì trệ tiến độ chung của toàn Công ty.",
                                        "rec":  "Rà soát năng lực nhân sự, tái phân bổ đầu việc và đưa vào đánh giá xếp loại thi đua.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_36_chk_kpi_02",
+                                       "id":  "chk_35_chk_kpi_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-KPI-02",
                                        "group":  "k10",
@@ -13816,11 +13799,11 @@
                                        "comment":  "",
                                        "risk":  "Báo cáo KPI ảo, khai vọt số liệu để nhận thưởng hiệu quả công việc.",
                                        "rec":  "Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
-                                       "id":  "chk_37_chk_kpi_03",
+                                       "id":  "chk_36_chk_kpi_03",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-KPI-03",
                                        "group":  "k10",
@@ -13833,8 +13816,8 @@
                                        "comment":  "",
                                        "risk":  "Lỗi vi phạm lặp đi lặp lại nhiều kỳ, kiến nghị kiểm tra không có tính răn đe.",
                                        "rec":  "Báo cáo trực tiếp Ban Tổng Giám đốc chế tài kỷ luật đối với các cá nhân chây ì không khắc phục.",
-                                       "createdAt":  "2026-10-15T07:51:54.996Z",
-                                       "updatedAt":  "2026-10-15T07:51:54.996Z"
+                                       "createdAt":  "2026-10-15T08:14:16.495Z",
+                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    }
                                ],
                  "findings":  [
