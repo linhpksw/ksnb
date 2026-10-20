@@ -3,18 +3,18 @@
                  "app":  "KTKS_PhongDuAn",
                  "appVersion":  "1.5.3",
                  "backupVersion":  1,
-                 "backupDate":  "2026-10-20T07:32:00.000Z",
+                 "backupDate":  "2026-10-20T07:52:00.000Z",
                  "scope":  "all",
                  "periodId":  null,
                  "periodLabel":  null,
                  "counts":  {
                                 "periods":  1,
-                                "projects":  5,
+                                "projects":  8,
                                 "contracts":  69,
                                 "customers":  65,
                                 "checklist":  46,
-                                "findings":  4,
-                                "recs":  4,
+                                "findings":  6,
+                                "recs":  6,
                                 "followups":  0
                             }
              },
@@ -32,12 +32,12 @@
                                      "inspector":  "k1",
                                      "head":  "k2",
                                      "status":  "doing",
-                                     "scope":  "Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1, DA-004 Đấu nối \u0026 lắp cụm đồng hồ nước sạch Ban Mai NK2, DA-005 Thi công kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.",
-                                     "objective":  "Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán nhà thầu, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.",
+                                     "scope":  "Kiểm tra toàn diện 08 gói thầu/dự án đầu tư – cải tạo hạ tầng (DA-001 Thiết kế \u0026 Thẩm định nâng cấp PCCC NK2; DA-002 Cải tạo hoàn trả nền kho Sendo NK1; DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1; DA-004 Đấu nối \u0026 lắp cụm đồng hồ nước sạch Ban Mai NK2; DA-005 Kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2; DA-006 Khảo sát địa chất dự án Hà Linh; DA-007 Khảo sát địa hình 1/500 dự án Hà Linh; DA-008 TVTK tổng thể xây dựng \u0026 PCCC dự án Hà Linh), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.",
+                                     "objective":  "Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, đấu thầu lựa chọn nhà thầu, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán công trình, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.",
                                      "note":  "",
                                      "conclusion":  "",
                                      "createdAt":  "2026-09-24T16:04:45.395Z",
-                                     "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                     "updatedAt":  "2026-10-20T07:52:00.000Z"
                                  }
                              ],
                  "catalogs":  [
@@ -506,6 +506,14 @@
                                       "order":  0
                                   },
                                   {
+                                      "id":  "person.k10",
+                                      "group":  "person",
+                                      "key":  "k10",
+                                      "name":  "Nguyễn Văn Thứ (GĐĐH)",
+                                      "tone":  "",
+                                      "order":  9
+                                  },
+                                  {
                                       "id":  "person.k2",
                                       "group":  "person",
                                       "key":  "k2",
@@ -560,6 +568,14 @@
                                       "name":  "Đặng Hải Yến",
                                       "tone":  "",
                                       "order":  7
+                                  },
+                                  {
+                                      "id":  "person.k9",
+                                      "group":  "person",
+                                      "key":  "k9",
+                                      "name":  "Nguyễn Ngọc Hải (Chủ tịch HĐQT)",
+                                      "tone":  "",
+                                      "order":  8
                                   },
                                   {
                                       "id":  "projStatus.cancel",
@@ -1537,20 +1553,12 @@
                                       "order":  5
                                   },
                                   {
-                                      "id":  "person.k9",
+                                      "id":  "person.k11",
                                       "group":  "person",
-                                      "key":  "k9",
-                                      "name":  "Nguyễn Ngọc Hải (Chủ tịch HĐQT)",
+                                      "key":  "k11",
+                                      "name":  "Phạm Thanh Năm (Phó Chủ tịch HĐQT)",
                                       "tone":  "",
-                                      "order":  8
-                                  },
-                                  {
-                                      "id":  "person.k10",
-                                      "group":  "person",
-                                      "key":  "k10",
-                                      "name":  "Nguyễn Văn Thứ (GĐĐH)",
-                                      "tone":  "",
-                                      "order":  9
+                                      "order":  10
                                   }
                               ],
                  "docreqs":  [
@@ -1558,19 +1566,19 @@
                              ],
                  "projects":  [
                                   {
-                                      "code":  "DA-001",
-                                      "status":  "prep",
-                                      "name":  "Thiết kế và thẩm định trọn gói PCCC (Nâng hạng PCCC từ hạng E lên kho hàng hóa có PCCC tự động hạng C)",
-                                      "type":  "k3",
-                                      "location":  "Trung tâm Logistics HNT- Nguyên Khê II, thuộc thôn Toàn Thắng, Xã Phúc Thịnh, Thành phố Hà Nội.",
-                                      "owner":  "k3",
-                                      "proposeDate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "total":  "",
                                       "id":  "mup8z5iy4rx3vf9",
-                                      "createdAt":  "2026-10-01T08:03:31.642Z",
-                                      "updatedAt":  "2026-10-01T08:03:31.642Z"
+                                      "code":  "DA-001",
+                                      "name":  "Gói thầu Thiết kế và Thẩm định trọn gói nâng hạng hệ thống PCCC (từ hạng E lên hạng C) – Nhà kho HNT Nguyên Khê 2",
+                                      "type":  "k1",
+                                      "location":  "Kho hàng hóa Nguyên Khê II – Trung tâm Logistics HNT Nguyên Khê (Thôn Toàn Thắng, xã Phúc Thịnh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "doing",
+                                      "proposeDate":  "2026-09-25",
+                                      "startDate":  "2026-10-01",
+                                      "endDate":  "2026-11-30",
+                                      "total":  162000000,
+                                      "createdAt":  "2026-09-29T04:19:50.115Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "proj_da002_sendo_nen",
@@ -1584,8 +1592,8 @@
                                       "startDate":  "2026-08-16",
                                       "endDate":  "2026-08-31",
                                       "total":  216571320,
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "proj_da003_sendo_den",
@@ -1599,8 +1607,8 @@
                                       "startDate":  "2026-08-24",
                                       "endDate":  "2026-09-08",
                                       "total":  41365626,
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "proj_da004_banmai_dongho",
@@ -1614,8 +1622,8 @@
                                       "startDate":  "2026-08-04",
                                       "endDate":  "2026-08-31",
                                       "total":  16430332,
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "proj_da005_banmai_onghdpe",
@@ -1629,11 +1637,75 @@
                                       "startDate":  "2026-08-07",
                                       "endDate":  "2026-09-15",
                                       "total":  89318133,
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "proj_da006_halinh_ksdc",
+                                      "code":  "DA-006",
+                                      "name":  "Gói thầu Tư vấn khảo sát địa chất công trình – Dự án TT Logistics HNT Hà Linh (Quang Minh)",
+                                      "type":  "k1",
+                                      "location":  "Dự án Hà Linh – Trung tâm Logistics HNT Quang Minh (Thường Lệ, xã Quang Minh, Mê Linh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "done",
+                                      "proposeDate":  "2026-07-15",
+                                      "startDate":  "2026-07-16",
+                                      "endDate":  "2026-07-31",
+                                      "total":  33534000,
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "proj_da007_halinh_ksdh",
+                                      "code":  "DA-007",
+                                      "name":  "Gói thầu Khảo sát địa hình tỷ lệ 1/500 – Dự án TT Logistics HNT Hà Linh (Quang Minh)",
+                                      "type":  "k1",
+                                      "location":  "Dự án Hà Linh – Trung tâm Logistics HNT Quang Minh (Xã Quang Minh, Mê Linh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "doing",
+                                      "proposeDate":  "2026-10-01",
+                                      "startDate":  "2026-10-05",
+                                      "endDate":  "2026-10-20",
+                                      "total":  16200000,
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "proj_da008_halinh_tvtk",
+                                      "code":  "DA-008",
+                                      "name":  "Gói thầu Tư vấn thiết kế tổng thể xây dựng \u0026 Tư vấn thiết kế, thẩm định PCCC – Dự án TT Logistics HNT Hà Linh (Quang Minh)",
+                                      "type":  "k1",
+                                      "location":  "Dự án Hà Linh – Trung tâm Logistics HNT Quang Minh (Lô đất 14.000m² – 03 nhà xưởng 8.000m², xã Quang Minh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "doing",
+                                      "proposeDate":  "2026-09-04",
+                                      "startDate":  "2026-09-16",
+                                      "endDate":  "2026-10-31",
+                                      "total":  383400000,
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   }
                               ],
                  "investments":  [
+                                     {
+                                         "id":  "inv_da001_pccc_nk2",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "mup8z5iy4rx3vf9",
+                                         "hasProposal":  "y",
+                                         "proposalNo":  "Biên bản họp mở thầu số ...../2026/BB-HNT ngày 01/10/2026",
+                                         "proposalDate":  "2026-10-01",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "y",
+                                         "hasResolution":  "n",
+                                         "resNo":  "Kết luận họp mở thầu ngày 01/10/2026: Giao Phòng Dự án tổng hợp giá \u0026 năng lực gửi PCT HĐQT Phạm Thanh Năm báo cáo HĐQT",
+                                         "resDate":  "2026-10-01",
+                                         "approvedValue":  162000000,
+                                         "evidence":  "Biên bản họp mở thầu dự án Gói thầu: Thiết kế + Thẩm định trọn gói PCCC (Nâng hạng hệ thống PCCC từ hạng E lên hạng C cho 02 kho hàng hóa tại NK2) ngày 01/10/2026 với 03 nhà thầu tham gia: (1) Công ty CP XD \u0026 TM Cơ điện Bình Minh: 190.000.000 đ (chưa VAT, 45 ngày); (2) Công ty TNHH PCCC Dầu khí Việt Nam: 285.000.000 đ (chưa VAT, 45 ngày); (3) Công ty TNHH Lắp máy điện nước \u0026 TM Vạn Lộc: 150.000.000 đ chưa VAT / 162.000.000 đ gồm VAT 8% (60 ngày: thanh toán lần 1: 62.000.000 đ khi nộp DVC, quyết toán: 100.000.000 đ khi có kết quả thẩm định).",
+                                         "note":  "Đã tổ chức đấu thầu cạnh tranh 03 nhà thầu với sự tham dự của HĐQT, BGĐ, Phòng Dự án, Phòng Kế toán và Ban Kiểm soát. Lưu ý KSNB: (1) Biên bản họp mở thầu ngày 01/10/2026 bỏ trống số hiệu văn bản và chưa có chữ ký của các thành viên tham dự ở trang 2; (2) Chưa lưu kèm Thư mời chào giá, Hồ sơ báo giá gốc của 03 nhà thầu và Quyết định phê duyệt lựa chọn nhà thầu của HĐQT.",
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                     },
                                      {
                                          "id":  "inv_da002_sendo_nen",
                                          "periodId":  "mufq31zn245cq0d",
@@ -1650,8 +1722,8 @@
                                          "approvedValue":  216571320,
                                          "evidence":  "1) Đề xuất thi công nền ngày 10/08/2026 (248.971.320 đ - Chủ tịch HĐQT bút phê ngày 11/08 yêu cầu đàm phán lại giá hoặc tìm đơn vị khác); 2) Báo giá 1207.2026.HP-HNT ngày 12/07/2026 của Công ty TNHH Hồng Phúc; 3) Đề xuất thi công hoàn trả nền ngày 20/08/2026 duyệt giá nhà thầu INDCON giảm còn 216.571.320 đ (đủ 3 chữ ký: Nguyễn Ngọc Phương, Nguyễn Văn Thứ, Nguyễn Ngọc Hải).",
                                          "note":  "Chủ tịch HĐQT kiểm soát chặt đơn giá, bác đề xuất lần 1 (248,97 triệu) giúp tiết kiệm 32.490.720 đ khi chuyển sang nhà thầu INDCON. Lưu ý KSNB: (1) Tờ trình phê duyệt giá nhà thầu INDCON ghi ngày 20/08/2026 nhưng Hợp đồng 1608/2026/HĐKT/HNT-IDC lại ký ngày 16/08/2026 (ký HĐ trước ngày tờ trình duyệt 04 ngày); (2) Chưa lưu kèm bản báo giá chính thức có dấu của INDCON; (3) Tờ trình 10/08 ghi chú chi phí này KH Sendo có trách nhiệm thanh toán với HNT – cần đối soát thu hồi từ Sendo.",
-                                         "createdAt":  "2026-10-20T07:32:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
                                      },
                                      {
                                          "id":  "inv_da003_sendo_den",
@@ -1669,8 +1741,8 @@
                                          "approvedValue":  41365626,
                                          "evidence":  "1) Bảng báo giá phát sinh số ĐT-18826/Rev1 ngày 18/08/2026 của Công ty CP Đầu tư Xây lắp Đại Tín (38.301.506 đ trước VAT); 2) Đệ trình thi công hệ thống đèn bổ sung ngày 19/08/2026 (41.365.626 đ sau VAT 8%), có đủ chữ ký Người lập Nguyễn Ngọc Phương, GĐĐH Nguyễn Văn Thứ, Chủ tịch HĐQT Nguyễn Ngọc Hải.",
                                          "note":  "Trình tự phê duyệt đúng quy định: Báo giá (18/08/2026) -\u003e Đệ trình phê duyệt (19/08/2026) -\u003e Ký Hợp đồng (24/08/2026). Lưu ý KSNB: Hồ sơ chỉ có 01 báo giá của Đại Tín; người lập báo giá của Đại Tín (Phạm Văn Hiển) trùng tên với Chủ trì thiết kế thuộc Công ty CP INDCON trên bản vẽ hoàn công HNT/E-01.",
-                                         "createdAt":  "2026-10-20T07:32:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
                                      },
                                      {
                                          "id":  "inv_da004_banmai_dongho",
@@ -1688,8 +1760,8 @@
                                          "approvedValue":  16430332,
                                          "evidence":  "1) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ ký \u0027Duyệt làm\u0027 và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026; 2) Dự toán đấu nối và lắp đặt cụm đồng hồ đo nước DN25 (.../2026-DT-ĐA) của Xí nghiệp Nước sạch Đông Anh (16.430.332 đ gồm VAT 8%, chi phí KS-TK 1.244.451 đ và nước xúc xả 92.000 đ).",
                                          "note":  "Lưu ý KSNB: (1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị (05/08/2026) và trước ngày Chủ tịch HĐQT phê duyệt (06/08/2026); (2) Mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027 tại trang 4 Dự toán bỏ trống chữ ký và dấu của HNT; (3) Chủ tịch HĐQT bút phê yêu cầu khách hàng Ban Mai phải cam kết rõ nhu cầu nước tối thiểu.",
-                                         "createdAt":  "2026-10-20T07:32:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
                                      },
                                      {
                                          "id":  "inv_da005_banmai_onghdpe",
@@ -1707,11 +1779,95 @@
                                          "approvedValue":  89318133,
                                          "evidence":  "1) Bảng báo giá phát sinh số ĐT-290726/Rev1 của Công ty CP Đầu tư Xây lắp Đại Tín (82.701.975 đ trước thuế; 89.318.133 đ sau VAT 8%); 2) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026.",
                                          "note":  "Trình tự phê duyệt: Đề nghị (05/08/2026) -\u003e Chủ tịch HĐQT duyệt (06/08/2026) -\u003e Ký Hợp đồng 070826/HĐKT/HNT-ĐT (07/08/2026). Lưu ý KSNB: (1) Báo giá ĐT-290726/Rev1 ghi sai ngày lập là \u002722 tháng 3 năm 2025\u0027 và không có báo giá cạnh tranh; (2) Chưa lưu kèm văn bản cam kết mức sử dụng nước tối thiểu của khách hàng Ban Mai theo bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT.",
-                                         "createdAt":  "2026-10-20T07:32:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                     },
+                                     {
+                                         "id":  "inv_da006_halinh_ksdc",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "proj_da006_halinh_ksdc",
+                                         "hasProposal":  "y",
+                                         "proposalNo":  "Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 15/07/2026)",
+                                         "proposalDate":  "2026-07-15",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "y",
+                                         "hasResolution":  "na",
+                                         "resNo":  "Phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải \u0026 GĐĐH Nguyễn Văn Thứ ngày 15/07/2026",
+                                         "resDate":  "2026-07-15",
+                                         "approvedValue":  33534000,
+                                         "evidence":  "1) Bảng chào giá ngày 14/07/2026 của Công ty CP INDCON (31.050.000 đ trước thuế; 33.534.000 đ sau VAT 8% cho 02 hố khoan x 30md); 2) Đề nghị cấp VT-TB-CC ngày 15/07/2026 có đủ 3 chữ ký: Nguyễn Ngọc Phương, Nguyễn Văn Thứ, Nguyễn Ngọc Hải.",
+                                         "note":  "Trình tự phê duyệt đúng quy định: Báo giá (14/07/2026) -\u003e Tờ trình phê duyệt (15/07/2026) -\u003e Ký Hợp đồng 1607/2026/HĐ-KSĐC (16/07/2026). Lưu ý KSNB: Hồ sơ chỉ có 01 báo giá của Công ty CP INDCON.",
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                     },
+                                     {
+                                         "id":  "inv_da007_halinh_ksdh",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "proj_da007_halinh_ksdh",
+                                         "hasProposal":  "n",
+                                         "proposalNo":  "Chờ bổ sung Tờ trình LGTHNT-06 (File ảnh trong thư mục bị lưu nhầm bằng Tờ trình KSĐC ngày 15/07/2026)",
+                                         "proposalDate":  "2026-10-01",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "n",
+                                         "hasResolution":  "na",
+                                         "resNo":  "",
+                                         "resDate":  "",
+                                         "approvedValue":  16200000,
+                                         "evidence":  "Bảng chào giá Gói thầu Khảo sát địa hình ngày 01/10/2026 của Công ty CP INDCON (15.000.000 đ trước thuế; 16.200.000 đ sau VAT 8% cho công tác khảo sát địa hình tỷ lệ 1/500, đo cao độ nền, đóng mốc tọa độ VN2000 tại Quang Minh, Hà Nội).",
+                                         "note":  "Lưu ý KSNB: File \u0027Đề xuất Khảo sát địa hình.jpg\u0027 lưu trong hồ sơ thực chất là bản chụp trùng của Tờ trình Khảo sát địa chất ngày 15/07/2026 (33.534.000 đ). Gói Khảo sát địa hình (16.200.000 đ) hiện chưa có Tờ trình Đề nghị cấp VT-TB-CC được phê duyệt đúng nội dung và chưa có báo giá cạnh tranh.",
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                     },
+                                     {
+                                         "id":  "inv_da008_halinh_tvtk",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "proj_da008_halinh_tvtk",
+                                         "hasProposal":  "y",
+                                         "proposalNo":  "Thư mời chào giá số 0409/TM-HNT \u0026 0509/TM-HNT ngày 04/09/2026; Biên bản họp mở thầu ngày 16/09/2026",
+                                         "proposalDate":  "2026-09-16",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "y",
+                                         "hasResolution":  "n",
+                                         "resNo":  "Kết luận họp mở thầu ngày 16/09/2026: Giao Phòng Dự án tổng hợp giá \u0026 năng lực gửi PCT HĐQT Phạm Thanh Năm báo cáo HĐQT",
+                                         "resDate":  "2026-09-16",
+                                         "approvedValue":  383400000,
+                                         "evidence":  "1) Bản vẽ mặt bằng tổng thể 3 nhà kho Hà Linh (X1: 987m², X2: 3.515m², X3: 3.740m² trên lô đất 14.000m²); 2) Thư mời chào giá 0409/TM-HNT \u0026 0509/TM-HNT ngày 04/09/2026 do PCT HĐQT Phạm Thanh Năm ký; 3) Biên bản họp mở thầu ngày 16/09/2026: Gói 1 (TVTK \u0026 thẩm định PCCC) có 3 nhà thầu: INDCON (195 tr), PCCC NTK (195 tr), Giải pháp An toàn VN (280 tr); Gói 2 (TVTK tổng thể XD) có 2 nhà thầu: INDCON (160 tr), XD \u0026 TM Bright (491.418.106 đ). Tổng giá thấp nhất 2 gói là 355.000.000 đ chưa VAT (383.400.000 đ gồm VAT 8%).",
+                                         "note":  "Lưu ý KSNB: (1) Biên bản họp mở thầu ngày 16/09/2026 bỏ trống số văn bản, chưa có chữ ký của các thành viên tham dự ở trang 2 và vắng đại diện Ban Kiểm soát; (2) Hai nhà thầu INDCON và PCCC NTK chào giá Gói 1 trùng khớp tuyệt đối (195.000.000 đ); (3) Chưa lưu kèm Hồ sơ chào thầu/báo giá gốc của các nhà thầu và Quyết định phê duyệt lựa chọn nhà thầu của HĐQT.",
+                                         "createdAt":  "2026-10-20T07:52:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:52:00.000Z"
                                      }
                                  ],
                  "progcosts":  [
+                                   {
+                                       "id":  "pc_da001_pccc_nk2",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "mup8z5iy4rx3vf9",
+                                       "planText":  "Tổ chức mời thầu, mở thầu (01/10/2026) và thực hiện Thiết kế + Thẩm định trọn gói nâng hạng hệ thống PCCC từ hạng E lên hạng C cho 02 kho hàng hóa tại Nhà kho HNT Nguyên Khê 2 (tiến độ dự kiến 45–60 ngày: khảo sát 3 ngày, lập thiết kế 10 ngày, thẩm định PCCC với cơ quan Công an 47 ngày).",
+                                       "actualText":  "Đã tổ chức họp mở thầu ngày 01/10/2026 với 03 nhà thầu (Bình Minh: 190 tr; PCCC Dầu khí VN: 285 tr; Vạn Lộc: 150 tr chưa VAT / 162 tr gồm VAT). Hiện Phòng Dự án đang tổng hợp báo cáo năng lực và giá trình PCT HĐQT Phạm Thanh Năm và HĐQT phê duyệt lựa chọn nhà thầu.",
+                                       "planPct":  30,
+                                       "actualPct":  25,
+                                       "delayCause":  "",
+                                       "delayOwner":  "",
+                                       "delayFix":  "",
+                                       "budget":  162000000,
+                                       "actualCost":  0,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "n",
+                                       "adjContent":  "",
+                                       "valBefore":  "",
+                                       "valAfter":  "",
+                                       "adjDate":  "",
+                                       "reApproved":  "na",
+                                       "adjEvidence":  "",
+                                       "note":  "Dự án đang ở bước đánh giá hồ sơ dự thầu để ký hợp đồng, chưa phát sinh giải ngân thanh toán.",
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                   },
                                    {
                                        "id":  "pc_da002_sendo_nen",
                                        "periodId":  "mufq31zn245cq0d",
@@ -1736,8 +1892,8 @@
                                        "reApproved":  "y",
                                        "adjEvidence":  "Tờ trình LGTHNT-20 ngày 10/08/2026 (bút phê của Chủ tịch HĐQT ngày 11/08/2026) và Tờ trình LGTHNT-06 ngày 20/08/2026 đã được Chủ tịch HĐQT \u0026 GĐĐH ký duyệt.",
                                        "note":  "Khối lượng quyết toán khớp 100% hợp đồng (345 md; 31,05 m³ bê tông M300), giá trị quyết toán 216.480.600 đ thấp hơn tờ trình duyệt 90.720 đ.",
-                                       "createdAt":  "2026-10-20T07:32:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "pc_da003_sendo_den",
@@ -1763,8 +1919,8 @@
                                        "reApproved":  "na",
                                        "adjEvidence":  "",
                                        "note":  "Chi phí quyết toán khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói (41.365.626 đ đã gồm VAT 8%), không phát sinh tăng/giảm.",
-                                       "createdAt":  "2026-10-20T07:32:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "pc_da004_banmai_dongho",
@@ -1790,8 +1946,8 @@
                                        "reApproved":  "na",
                                        "adjEvidence":  "",
                                        "note":  "Chi phí theo đúng dự toán 16.430.332 đ của XN Nước sạch Đông Anh (Công ty CP Nước sạch số 2 Hà Nội). Cần bổ sung Biên bản nghiệm thu bàn giao đưa vào sử dụng và Biên bản thanh lý hợp đồng theo Điều 2.3 \u0026 3.2 HĐ.",
-                                       "createdAt":  "2026-10-20T07:32:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "pc_da005_banmai_onghdpe",
@@ -1817,8 +1973,89 @@
                                        "reApproved":  "na",
                                        "adjEvidence":  "",
                                        "note":  "Giá trị quyết toán (89.318.133 đ) khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói 070826/HĐKT/HNT-ĐT. Lưu ý: Hợp đồng không quy định số ngày thi công cụ thể (\u0027theo tiến độ chung của Dự án\u0027) và không bao gồm công tác đào lấp đất, cắt đường, hoàn trả mặt bằng \u0026 hộp đồng hồ.",
-                                       "createdAt":  "2026-10-20T07:32:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                   },
+                                   {
+                                       "id":  "pc_da006_halinh_ksdc",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "proj_da006_halinh_ksdc",
+                                       "planText":  "Thi công khoan khảo sát địa chất công trình (02 hố khoan, thí nghiệm SPT, thí nghiệm mẫu đất tại phòng LAS) và giao nộp 04 bộ Báo cáo kết quả khảo sát địa chất trong vòng 15 ngày kể từ ngày ký HĐ (16/07/2026 – 31/07/2026).",
+                                       "actualText":  "Đã hoàn thành khoan khảo sát thực tế tại hiện trường (46md đất cấp I–III + 4md đất cấp IV–VI = 50md; 25 lần SPT; 25 mẫu thí nghiệm) và lập Báo cáo khảo sát địa chất, BBNTHT và Hồ sơ quyết toán ngày 29/07/2026 (sớm 02 ngày so với hạn 15 ngày của HĐ).",
+                                       "planPct":  100,
+                                       "actualPct":  100,
+                                       "delayCause":  "",
+                                       "delayOwner":  "",
+                                       "delayFix":  "",
+                                       "budget":  33534000,
+                                       "actualCost":  30774600,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "y",
+                                       "adjContent":  "Hợp đồng theo đơn giá: Quyết toán theo khối lượng khoan thực tế tại hiện trường (46md đất cấp I–III và 4md đất cấp IV–VI thay vì 60md đất cấp I–III; 25 mẫu thí nghiệm thay vì 30 mẫu), giúp giảm chi phí từ 33.534.000 đ xuống còn 30.774.600 đ (-2.759.400 đ, tương ứng -8,23%).",
+                                       "valBefore":  33534000,
+                                       "valAfter":  30774600,
+                                       "adjDate":  "2026-07-29",
+                                       "reApproved":  "y",
+                                       "adjEvidence":  "Bảng tổng hợp giá trị thanh toán và Bảng quyết toán giá trị khối lượng công việc hoàn thành theo HĐ số 1607/2026/HĐ-KSĐC đã được Chủ tịch HĐQT Nguyễn Ngọc Hải ký đóng dấu xác nhận.",
+                                       "note":  "Chi phí quyết toán thực tế (30.774.600 đ) giảm 2.759.400 đ so với dự toán/hợp đồng tạm tính ban đầu.",
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                   },
+                                   {
+                                       "id":  "pc_da007_halinh_ksdh",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "proj_da007_halinh_ksdh",
+                                       "planText":  "Thực hiện khảo sát địa hình tỷ lệ 1/500, đo cao độ nền hiện trạng, đóng đinh bê tông mốc tọa độ VN2000 và bàn giao bản vẽ AutoCAD khu đất dự án Hà Linh (Quang Minh).",
+                                       "actualText":  "Đã nhận Bảng chào giá ngày 01/10/2026 của Công ty CP INDCON (16.200.000 đ sau VAT 8%); đang hoàn thiện thủ tục phê duyệt Đề nghị cấp VT-TB-CC và ký hợp đồng.",
+                                       "planPct":  50,
+                                       "actualPct":  30,
+                                       "delayCause":  "",
+                                       "delayOwner":  "",
+                                       "delayFix":  "",
+                                       "budget":  16200000,
+                                       "actualCost":  0,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "n",
+                                       "adjContent":  "",
+                                       "valBefore":  "",
+                                       "valAfter":  "",
+                                       "adjDate":  "",
+                                       "reApproved":  "na",
+                                       "adjEvidence":  "",
+                                       "note":  "Cần bổ sung Tờ trình Đề nghị cấp VT-TB-CC đúng nội dung Khảo sát địa hình (thay cho file ảnh đang bị lưu nhầm bằng tờ trình Khảo sát địa chất).",
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                   },
+                                   {
+                                       "id":  "pc_da008_halinh_tvtk",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "proj_da008_halinh_tvtk",
+                                       "planText":  "Mời thầu (04/09/2026), nhận báo giá trước 10h00 ngày 11/09/2026, mở thầu (16/09/2026); hoàn thành bản vẽ thiết kế kiến trúc + kết cấu phục vụ thẩm định PCCC trước 25/09/2026 và hoàn tất thẩm định PCCC trước 20/10/2026 (tổng thời gian 45 ngày).",
+                                       "actualText":  "Đã phát hành Thư mời chào giá 0409 \u0026 0509/TM-HNT ngày 04/09/2026 và họp mở thầu ngày 16/09/2026 (05 ngày sau hạn nộp báo giá 11/09/2026). Hiện đang trong giai đoạn tổng hợp báo cáo HĐQT phê duyệt lựa chọn nhà thầu nên mốc 25/09/2026 ra bản vẽ thiết kế cơ sở phục vụ thẩm định PCCC bị chậm so với thư mời thầu.",
+                                       "planPct":  50,
+                                       "actualPct":  30,
+                                       "delayCause":  "Thời gian mở thầu (16/09/2026) và trình HĐQT phê duyệt kết quả lựa chọn nhà thầu kéo dài hơn dự kiến trong Thư mời chào giá (yêu cầu 25/09/2026 có bản vẽ kiến trúc + kết cấu).",
+                                       "delayOwner":  "k3",
+                                       "delayFix":  "Khẩn trương trình HĐQT phê duyệt kết quả lựa chọn nhà thầu và ký hợp đồng TVTK để kịp tiến độ thẩm định PCCC.",
+                                       "budget":  383400000,
+                                       "actualCost":  0,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "n",
+                                       "adjContent":  "",
+                                       "valBefore":  "",
+                                       "valAfter":  "",
+                                       "adjDate":  "",
+                                       "reApproved":  "na",
+                                       "adjEvidence":  "",
+                                       "note":  "Tổng dự toán tạm tính 383.400.000 đ (gồm VAT 8%) xác định theo mức giá chào thầu thấp nhất tại Biên bản mở thầu ngày 16/09/2026 (Gói 1 TVTK PCCC: 195 tr + Gói 2 TVTK XD: 160 tr = 355 tr chưa VAT).",
+                                       "createdAt":  "2026-10-20T07:52:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    }
                                ],
                  "payments":  [
@@ -1852,8 +2089,8 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Biên bản nghiệm thu hoàn thành công trình số BBNT/HTCT/01 ghi SAI tên Chủ đầu tư tại mục 2.a thành \u0027Công ty cổ phần Phúc Thịnh\u0027 (thay vì Công ty CP Logistics HNT), mục 4.a ghi sai ngày ký HĐ là \u002713/03/2026\u0027 và bỏ trống số HĐ; 2) Bảng tổng hợp giá trị quyết toán, Phiếu YCNT và BBNT công trình đều bỏ trống ngày/tháng/năm; 3) Hợp đồng ký ngày 16/08/2026 nhưng Tờ trình phê duyệt giá nhà thầu INDCON ký ngày 20/08/2026; 4) Bộ hồ sơ thiếu Giấy đề nghị thanh toán, Hóa đơn GTGT và UNC.",
                                       "note":  "Đề nghị Phòng Dự án yêu cầu nhà thầu INDCON đính chính lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT, điền đầy đủ số/ngày hợp đồng (1608/2026/HĐKT/HNT-IDC ngày 16/08/2026), ngày tháng nghiệm thu và bổ sung Giấy đề nghị thanh toán + Hóa đơn GTGT hợp lệ trước khi giải ngân.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "pay_da003_sendo_den_01",
@@ -1885,8 +2122,8 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Giấy ĐNTT (0926/ĐNTT-ĐT), Bảng TH giá trị hoàn thành, Bảng TH khối lượng hoàn thành và BBNT (0926/BBNT-ĐT) đều bỏ trống ngày/tháng lập; 2) BBNT 0926/BBNT-ĐT liệt kê Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) trong thành phần nghiệm thu mục 2.1 nhưng phần ký Đại diện Bên A chỉ có Ông Nguyễn Ngọc Phương ký; 3) Cuối trang 1 Hợp đồng 240826/HĐKT/HNT-ĐT ghi nhầm nội dung \u0027hệ thống cấp nước\u0027; 4) Bộ hồ sơ thiếu Hóa đơn GTGT, chứng chỉ CO/CQ và UNC.",
                                       "note":  "Đề nghị Phòng Dự án hoàn thiện ngày tháng trên bộ chứng từ nghiệm thu – thanh toán, bổ sung Hóa đơn GTGT và CO/CQ đèn LED Duhal theo Điều 4.3 HĐ trước khi thanh toán cho nhà thầu Đại Tín.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "pay_da004_banmai_dongho_01",
@@ -1918,8 +2155,8 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Điều 1.2 Hợp đồng quy định thanh toán 100% kinh phí theo dự toán (16.430.332 đ) trước khi thi công; 2) Hợp đồng (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026 trước ngày phê duyệt Tờ trình LGTHNT-06 (06/08/2026) và bỏ trống số hợp đồng; 3) Dự toán đính kèm bỏ trống số dự toán, ngày lập và thiếu chữ ký + đóng dấu tại mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
                                       "note":  "Đề nghị Phòng Dự án hoàn thiện chữ ký chấp nhận dự toán, thu thập Biên bản nghiệm thu bàn giao \u0026 Thanh lý hợp đồng lắp đặt cụm đồng hồ nước, Hóa đơn GTGT và UNC từ XN Nước sạch Đông Anh.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "pay_da005_banmai_onghdpe_01",
@@ -1951,8 +2188,41 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Bản vẽ hoàn công TMB-N 01 REV1 sử dụng SAI khung tên của dự án khác: ghi Dự án \u0027Nâng cấp, cải tạo, sửa chữa Nhà xưởng Khu D\u0027, Chủ đầu tư \u0027Chi nhánh Công ty CP Quốc tế Phú Linh\u0027, Tư vấn thiết kế \u0027Công ty CP INDCON\u0027, Issue Date \u002712/2025\u0027; 2) Toàn bộ Giấy ĐNTT (0826/ĐNTT-ĐT), Bảng TH giá trị/khối lượng hoàn thành, BBNT (01/BBNT-ĐT) và dấu Bản vẽ hoàn công đều bỏ trống ngày/tháng; 3) BBNT 01/BBNT-ĐT nêu tên Chủ tịch HĐQT Nguyễn Ngọc Hải trong thành phần nghiệm thu nhưng không có chữ ký của Ông Nguyễn Ngọc Hải và không đóng dấu Bên A; 4) Thiếu Hóa đơn GTGT, chứng chỉ CO/CQ ống HDPE D50 và UNC.",
                                       "note":  "Đề nghị Phòng Dự án yêu cầu nhà thầu Đại Tín lập lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 \u0026 Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi giải ngân.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "pay_da006_halinh_ksdc_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "projectId":  "proj_da006_halinh_ksdc",
+                                      "vendor":  "Công ty Cổ phần INDCON (MST: 0105976007)",
+                                      "contractNo":  "1607/2026/HĐ-KSĐC ngày 16/07/2026",
+                                      "round":  "Quyết toán (100% giá trị thực tế hoàn thành)",
+                                      "reqDate":  "2026-07-29",
+                                      "reqAmount":  30774600,
+                                      "apprAmount":  30774600,
+                                      "paidAmount":  0,
+                                      "payDate":  "",
+                                      "dContract":  "y",
+                                      "dAppendix":  "na",
+                                      "dAccept":  "y",
+                                      "dQty":  "y",
+                                      "dInvoice":  "n",
+                                      "dReq":  "n",
+                                      "dAppr":  "y",
+                                      "dTransfer":  "n",
+                                      "cQty":  "y",
+                                      "cContract":  "y",
+                                      "cEligible":  "n",
+                                      "cAuth":  "y",
+                                      "xOverQty":  "n",
+                                      "xBefore":  "n",
+                                      "xDup":  "n",
+                                      "xOther":  "y",
+                                      "xNote":  "1) Biên bản nghiệm thu hoàn thành bộ phận công trình xây dựng (Số: BBNTHT) ghi SAI tên Chủ đầu tư tại mục 2.a là \u0027Công ty cổ phần Phúc Thịnh\u0027 (thay vì Công ty CP Logistics HNT); 2) Mục 4.a của BBNTHT ghi SAI căn cứ nghiệm thu là \u0027Hợp đồng tư vấn khảo sát địa chất công trình ký ngày 25/10/2025 – Số 2110/2025/HĐ-TVKS\u0027 và \u0027Phụ lục HĐ số 01.2110/2025/HĐ-TVKS\u0027 (thay vì HĐ số 1607/2026/HĐ-KSĐC ngày 16/07/2026); 3) Bảng tổng hợp giá trị thanh toán, Bảng quyết toán khối lượng và BBNTHT đều bỏ trống ngày/tháng lập; 4) Mục 1 Bảng quyết toán diễn giải \u0027(4 hố x 25md)\u0027 mâu thuẫn với Tờ trình/HĐ \u0027(2 hố x 30md)\u0027; thiếu 04 BBNT khoan (01-04/NTKS), Báo cáo KSĐC, Giấy ĐNTT, Hóa đơn GTGT và UNC.",
+                                      "note":  "Đề nghị Phòng Dự án yêu cầu nhà thầu INDCON lập lại Biên bản nghiệm thu BBNTHT đúng tên Chủ đầu tư Công ty CP Logistics HNT và đúng số Hợp đồng 1607/2026/HĐ-KSĐC ngày 16/07/2026, điền đầy đủ ngày tháng và bổ sung Giấy đề nghị thanh toán + Hóa đơn GTGT hợp lệ trước khi thanh toán 30.774.600 đ.",
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   }
                               ],
                  "customers":  [
@@ -13606,11 +13876,11 @@
                                        "contractId":  "",
                                        "result":  "warn",
                                        "evidence":  "Tờ trình xin chủ trương đầu tư; Báo cáo nghiên cứu khả thi (FS); Bảng tính toán hiệu quả tài chính (IRR, NPV, thời gian hoàn vốn).",
-                                       "comment":  "Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT \u0026 GĐĐH phê duyệt cho DA-002 (216,57 tr), DA-003 (41,36 tr), DA-004 (16,43 tr) và DA-005 (89,32 tr). Tuy nhiên: (1) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) đều ký trước ngày Tờ trình được phê duyệt (20/08 và 06/08); (2) DA-002 thiếu báo giá đóng dấu của INDCON; DA-004 thiếu chữ ký chấp nhận dự toán của HNT; DA-004 \u0026 DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.",
+                                       "comment":  "Đã có Tờ trình/Hồ sơ mời thầu cho các gói DA-001 -\u003e DA-008. Tuy nhiên: (1) Gói Khảo sát địa hình Hà Linh (DA-007 - 16,2 tr) bị lưu nhầm file ảnh Tờ trình của gói Khảo sát địa chất (33,53 tr), chưa có Tờ trình LGTHNT-06 đúng nội dung; (2) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) ký trước ngày Tờ trình được duyệt; (3) DA-004 \u0026 DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.",
                                        "risk":  "Đầu tư dàn trải, không hiệu quả, thiếu cơ sở pháp lý ban đầu.",
                                        "rec":  "Hoàn thiện Báo cáo FS và phê duyệt chủ trương trước khi chi ngân sách.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_02_chk_dt_02",
@@ -13621,13 +13891,13 @@
                                        "criteria":  "Điều lệ Công ty; Quy chế phân quyền tài chính của HĐQT / Ban Tổng Giám đốc.",
                                        "projectId":  "proj_da002_sendo_nen",
                                        "contractId":  "",
-                                       "result":  "pass",
+                                       "result":  "warn",
                                        "evidence":  "Nghị quyết HĐQT hoặc Quyết định phê duyệt dự án của TGĐ; Dự toán TMĐT chi tiết từng hạng mục.",
-                                       "comment":  "Cả 4 gói thầu DA-002 (216.571.320 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; Chủ tịch HĐQT có bút phê kiểm soát chặt đơn giá (DA-002 tiết kiệm 32,49 tr) và điều kiện cam kết của khách hàng (DA-004, DA-005).",
+                                       "comment":  "Các gói DA-002, DA-003, DA-004, DA-005, DA-006 đã được Chủ tịch HĐQT Nguyễn Ngọc Hải \u0026 GĐĐH Nguyễn Văn Thứ phê duyệt đúng thẩm quyền; các gói lớn DA-001 (PCCC NK2) và DA-008 (TVTK XD \u0026 PCCC Hà Linh) đã tổ chức mở thầu có HĐQT chứng kiến. Tuy nhiên cả 02 Biên bản họp mở thầu (01/10/2026 và 16/09/2026) đều bỏ trống số hiệu và chưa có chữ ký của các thành viên tham dự ở trang 2.",
                                        "risk":  "Vượt thẩm quyền phân cấp tài chính, cam kết vượt khả năng cân đối vốn của Công ty.",
                                        "rec":  "Trình cấp thẩm quyền phê duyệt lại TMĐT theo đúng hạn mức phân quyền.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_03_chk_dt_03",
@@ -13672,13 +13942,13 @@
                                        "criteria":  "Kế hoạch tiến độ đính kèm Quyết định đầu tư; Báo cáo tuần/tháng của Quản lý dự án.",
                                        "projectId":  "proj_da002_sendo_nen",
                                        "contractId":  "",
-                                       "result":  "pass",
+                                       "result":  "warn",
                                        "evidence":  "Bảng tiến độ thi công WBS; Báo cáo giám sát tiến độ thực tế (Actual % vs Plan %); Biên bản ghi nhận nguyên nhân chậm trễ.",
-                                       "comment":  "DA-002 (Cải tạo nền Sendo), DA-003 (Đèn chiếu sáng Sendo) và DA-005 (Ống cấp nước HDPE Ban Mai) đã thi công hoàn thành 100% khối lượng; riêng HĐ của DA-003 và DA-005 cần quy định rõ số ngày thi công thay vì chỉ ghi \u0027theo tiến độ chung của Dự án\u0027.",
+                                       "comment":  "Các gói DA-002, DA-003, DA-005, DA-006 đã hoàn thành 100% khối lượng; riêng gói DA-008 (TVTK Hà Linh) mở thầu ngày 16/09/2026 và đang chờ phê duyệt lựa chọn nhà thầu nên mốc 25/09/2026 bàn giao bản vẽ kiến trúc + kết cấu phục vụ thẩm định PCCC theo Thư mời chào giá 0509/TM-HNT bị chậm.",
                                        "risk":  "Chậm đưa kho vào khai thác, mất cơ hội kinh doanh, phát sinh chi phí phạt hợp đồng với khách thuê.",
                                        "rec":  "Lập kế hoạch bù tiến độ, tăng cường nguồn lực nhà thầu và đôn đốc giám sát hàng tuần.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_06_chk_cp_02",
@@ -13691,11 +13961,11 @@
                                        "contractId":  "",
                                        "result":  "pass",
                                        "evidence":  "Bảng tổng hợp chi phí dự án luỹ kế; Hồ sơ phát sinh tăng/giảm khối lượng thi công so với thiết kế ban đầu.",
-                                       "comment":  "Chi phí thực tế/quyết toán của cả 4 gói DA-002 (216.480.600 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.",
+                                       "comment":  "Chi phí quyết toán thực tế của các gói đã hoàn thành đều nằm trong hoặc giảm so với dự toán được duyệt: DA-002 (216.480.600 đ, giảm 90.720 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ), DA-005 (89.318.133 đ), DA-006 (30.774.600 đ, giảm 2.759.400 đ tương ứng -8,23%).",
                                        "risk":  "Vượt dự toán, thâm hụt dòng tiền đầu tư, đội vốn dự án.",
                                        "rec":  "Rà soát cắt giảm các hạng mục không thiết yếu, kiểm soát chặt chi phí dự toán.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_07_chk_cp_03",
@@ -13742,11 +14012,11 @@
                                        "contractId":  "",
                                        "result":  "fail",
                                        "evidence":  "Biên bản nghiệm thu công việc xây dựng; Bản vẽ hoàn công từng giai đoạn; Phiếu kết quả thí nghiệm vật liệu, chứng chỉ xuất xưởng (CO/CQ).",
-                                       "comment":  "Hồ sơ nghiệm thu kỹ thuật \u0026 hoàn công có sai sót trọng yếu: (1) BBNT BBNT/HTCT/01 của DA-002 ghi sai Chủ đầu tư thành \u0027Công ty cổ phần Phúc Thịnh\u0027 \u0026 sai ngày HĐ 13/03/2026; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 ghi sai Chủ đầu tư thành \u0027Chi nhánh Công ty CP Quốc tế Phú Linh\u0027 \u0026 sai tên dự án (\u0027Nhà xưởng Khu D\u0027); (3) Các BBNT của DA-002, DA-003, DA-005 đều bỏ trống ngày/tháng nghiệm thu và thiếu chữ ký Chủ tịch HĐQT trên BBNT; (4) DA-004 chưa có BBNT bàn giao.",
+                                       "comment":  "Hồ sơ nghiệm thu kỹ thuật \u0026 hoàn công có sai sót trọng yếu lặp lại: (1) Cả BBNT BBNT/HTCT/01 của DA-002 (Nền Sendo) và BBNT BBNTHT của DA-006 (KSĐC Hà Linh) của nhà thầu INDCON đều ghi sai tên Chủ đầu tư thành \u0027Công ty cổ phần Phúc Thịnh\u0027 và ghi sai số/ngày Hợp đồng năm 2025; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 (Ống nước Ban Mai) ghi sai Chủ đầu tư thành \u0027Chi nhánh Công ty CP Quốc tế Phú Linh\u0027 \u0026 sai tên dự án; (3) Tất cả BBNT của DA-002, DA-003, DA-005, DA-006 đều bỏ trống ngày/tháng nghiệm thu.",
                                        "risk":  "Nghiệm thu khống khối lượng, chất lượng công trình không đạt yêu cầu kỹ thuật.",
                                        "rec":  "Bắt buộc nghiệm thu thực địa có xác nhận độc lập của Tư vấn giám sát trước khi xác nhận khối lượng.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_10_chk_nt_02",
@@ -13793,11 +14063,11 @@
                                        "contractId":  "",
                                        "result":  "warn",
                                        "evidence":  "Giấy đề nghị thanh toán; Bảng tính giá trị thanh toán đợt kèm hóa đơn GTGT; Bảng đối trừ tạm ứng và giữ lại tiền bảo hành (5% - 10%).",
-                                       "comment":  "Giá trị đề nghị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC của cả 4 gói và cần đính chính lại pháp nhân CĐT trên BBNT (DA-002) \u0026 Bản vẽ hoàn công (DA-005).",
+                                       "comment":  "Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ; DA-006: 30.774.600 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC và cần đính chính lại pháp nhân CĐT trên BBNT (DA-002, DA-006) \u0026 Bản vẽ hoàn công (DA-005).",
                                        "risk":  "Thanh toán vượt giá trị thực tế hoàn thành (paidAmount \u003e apprAmount), thanh toán trùng lắp.",
                                        "rec":  "Kế toán thanh toán chỉ chi đúng giá trị nghiệm thu thực tế sau khi đã đối trừ tạm ứng đầy đủ.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                       "updatedAt":  "2026-10-20T07:52:00.000Z"
                                    },
                                    {
                                        "id":  "chk_13_chk_hd_01",
@@ -14398,8 +14668,8 @@
                                       "amount":  216480600,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu Phòng Dự án đính chính/lập lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT và bổ sung đầy đủ chứng từ thanh toán trước khi giải ngân.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "fnd_sendo_da003_01",
@@ -14420,8 +14690,8 @@
                                       "amount":  41365626,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu bổ sung ngày tháng nghiệm thu hoàn thành (để làm mốc tính bảo hành 18 tháng), hoàn thiện chữ ký và bổ sung Hóa đơn GTGT, CO/CQ vật tư trước khi tất toán.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "fnd_banmai_da004_01",
@@ -14442,8 +14712,8 @@
                                       "amount":  16430332,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu Phòng Dự án bổ sung văn bản cam kết nhu cầu sử dụng nước của khách hàng Ban Mai, hoàn thiện chữ ký/số hiệu trên Dự toán \u0026 Hợp đồng và thu thập BBNT bàn giao, Thanh lý HĐ, Hóa đơn GTGT từ XN Nước sạch Đông Anh.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   },
                                   {
                                       "id":  "fnd_banmai_da005_01",
@@ -14464,8 +14734,52 @@
                                       "amount":  89318133,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu Phòng Dự án buộc nhà thầu Đại Tín lập và đóng dấu lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 \u0026 Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi thanh toán.",
-                                      "createdAt":  "2026-10-20T07:32:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "fnd_pccc_da001_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "code":  "FND-26Q3-005",
+                                      "group":  "k1",
+                                      "riskLevel":  "med",
+                                      "projectId":  "mufq32s313g2x7x",
+                                      "contractId":  "",
+                                      "checklistId":  "chk_06_chk_dt_02",
+                                      "content":  "Biên bản họp mở thầu Gói Thiết kế \u0026 Thẩm định PCCC NK2 (DA-001) và Gói TVTK Xây dựng \u0026 PCCC Hà Linh (DA-008) bỏ trống số hiệu văn bản, chưa có chữ ký của các thành viên tham dự và chưa lưu kèm hồ sơ báo giá gốc của các nhà thầu",
+                                      "basis":  "Quy trình đấu thầu và lựa chọn nhà thầu nội bộ của Công ty CP Logistics HNT; Danh mục hồ sơ yêu cầu HS-PDA-06.",
+                                      "actual":  "1) Cả 02 Biên bản họp mở thầu ngày 01/10/2026 (Gói TK + Thẩm định PCCC NK2 - DA-001) và ngày 16/09/2026 (Gói TVTK XD \u0026 PCCC Hà Linh - DA-008) đều bỏ trống số văn bản (\u0027Số: ...../2026/BB-HNT\u0027) và bỏ trống hoàn toàn chữ ký của 03 lãnh đạo (Nguyễn Ngọc Hải, Phạm Thanh Năm, Nguyễn Văn Thứ) tại trang 2, đồng thời không thiết kế mục chữ ký cho các thành viên tham dự mở thầu khác (Phòng Dự án, Phòng Kế toán, Ban Kiểm soát/HCNS); 2) Tại Biên bản mở thầu DA-008 ngày 16/09/2026, vắng mặt đại diện Ban Kiểm soát, và 02 nhà thầu (Công ty CP INDCON \u0026 Công ty TNHH TV và KT PCCC NTK) chào giá Gói 1 bằng nhau tuyệt đối (195.000.000 đ chưa VAT); 3) Bộ hồ sơ của cả 2 gói chưa lưu kèm Hồ sơ chào thầu/báo giá gốc của các nhà thầu và Bảng tổng hợp đánh giá trình HĐQT phê duyệt.",
+                                      "evidence":  "File Biên bản mở thầu gửi Ban lãnh đạo HNT.pdf (Gói Nâng cấp PCCC NK2); File Biển bản mở thầu Gói TVTK XD, PCCC Hà LInh gửi ban lãnh đạo HNT.pdf.",
+                                      "cause":  "Phòng Dự án lưu bản mềm/bản in Biên bản mở thầu khi chưa trình ký đầy đủ chữ ký của Hội đồng mở thầu và chưa tập hợp các bản chào giá gốc của nhà thầu vào chung thư mục hồ sơ gói thầu.",
+                                      "impact":  "Biên bản mở thầu chưa có chữ ký xác nhận của các thành viên tham dự làm giảm tính pháp lý và hiệu lực kiểm soát của thủ tục mở thầu cạnh tranh.",
+                                      "risk":  "Rủi ro thiếu bằng chứng kiểm toán về tính khách quan, minh bạch trong quá trình mở thầu và đánh giá lựa chọn nhà thầu các gói tư vấn lớn (tổng giá trị dự kiến ~545,4 triệu đồng gồm VAT).",
+                                      "amount":  545400000,
+                                      "deptOpinion":  "",
+                                      "conclusion":  "Yêu cầu Phòng Dự án hoàn thiện chữ ký đầy đủ của các thành viên tham dự trên 02 Biên bản mở thầu (01/10/2026 và 16/09/2026), cấp số văn bản và lưu bổ sung đầy đủ Hồ sơ chào thầu/báo giá gốc của các nhà thầu kèm Báo cáo đánh giá trình HĐQT.",
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
+                                  },
+                                  {
+                                      "id":  "fnd_halinh_da006_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "code":  "FND-26Q3-006",
+                                      "group":  "k3",
+                                      "riskLevel":  "high",
+                                      "projectId":  "proj_da006_halinh_ksdc",
+                                      "contractId":  "",
+                                      "checklistId":  "chk_09_chk_nt_01",
+                                      "content":  "Biên bản nghiệm thu gói Khảo sát địa chất dự án Hà Linh (DA-006) ghi sai tên Chủ đầu tư thành \u0027Công ty cổ phần Phúc Thịnh\u0027, ghi sai số và ngày Hợp đồng (\u00272110/2025/HĐ-TVKS ngày 25/10/2025\u0027), bỏ trống ngày tháng quyết toán và lưu nhầm Tờ trình sang gói Khảo sát địa hình (DA-007)",
+                                      "basis":  "Quy trình quản lý đầu tư xây dựng \u0026 nghiệm thu thanh quyết toán của Công ty CP Logistics HNT; Hợp đồng kinh tế số 1607/2026/HĐ-KSĐC ngày 16/07/2026.",
+                                      "actual":  "1) Tại mục 2.a Biên bản nghiệm thu hoàn thành bộ phận công trình xây dựng (Số: BBNTHT) của gói Khảo sát địa chất Hà Linh (DA-006), tên Chủ đầu tư bị ghi sai thành \u0027Công ty cổ phần Phúc Thịnh\u0027 (thay vì Công ty CP Logistics HNT); 2) Tại mục 4.a của BBNTHT, căn cứ nghiệm thu ghi sai thành \u0027Hợp đồng tư vấn khảo sát địa chất công trình ký ngày 25/10/2025 – Số 2110/2025/HĐ-TVKS\u0027 và \u0027Phụ lục HĐ số 01.2110/2025/HĐ-TVKS\u0027 (trong khi Hợp đồng thực tế là số 1607/2026/HĐ-KSĐC ký ngày 16/07/2026); 3) Bảng tổng hợp giá trị thanh toán, Bảng quyết toán khối lượng và BBNTHT đều bỏ trống ngày/tháng lập; diễn giải mục 1 Bảng quyết toán ghi \u0027(4 hố x 25md)\u0027 không khớp với Tờ trình/HĐ \u0027(2 hố x 30md)\u0027 và khối lượng quyết toán (46md + 4md = 50md); 4) Tại thư mục Gói Khảo sát địa hình (DA-007 - 16.200.000 đ), file \u0027Đề xuất Khảo sát địa hình.jpg\u0027 bị lưu nhầm bằng ảnh chụp Tờ trình của gói Khảo sát địa chất (33.534.000 đ), dẫn đến gói Khảo sát địa hình chưa có Tờ trình phê duyệt hợp lệ.",
+                                      "evidence":  "File HO SO QUYET TOAN GOI KHAO SAT DIA CHAT DA HA LINH ME LINH_20260729_0001.pdf; Hợp đồng khảo sát địa chất công trình Hà Linh mê Linh (1).pdf; Khảo sát địa hình/Đề xuất Khảo sát địa hình.jpg.",
+                                      "cause":  "Nhà thầu INDCON và cán bộ XDCB Nguyễn Ngọc Phương tiếp tục copy biểu mẫu biên bản nghiệm thu cũ của dự án năm 2025 tại Công ty Phúc Thịnh mà không kiểm tra, chỉnh sửa thông tin Chủ đầu tư và số hợp đồng trước khi trình ký đóng dấu; đồng thời nhầm lẫn khi sắp xếp lưu trữ file tờ trình đề xuất giữa gói KSĐC và KSĐH.",
+                                      "impact":  "Biên bản nghiệm thu BBNTHT ghi sai tên pháp nhân Chủ đầu tư và sai số Hợp đồng dẫn đến hồ sơ quyết toán (30.774.600 đ) không hợp lệ về mặt pháp lý, kế toán và thuế; gói Khảo sát địa hình (16.200.000 đ) thiếu căn cứ phê duyệt chủ trương.",
+                                      "risk":  "Rủi ro bị xuất toán chi phí tư vấn khảo sát khi quyết toán thuế/kiểm toán độc lập và rủi ro triển khai gói Khảo sát địa hình khi chưa có phê duyệt chính thức của Ban Lãnh đạo.",
+                                      "amount":  46974600,
+                                      "deptOpinion":  "",
+                                      "conclusion":  "Yêu cầu Phòng Dự án đính chính lại Biên bản nghiệm thu BBNTHT của gói Khảo sát địa chất (DA-006) đúng pháp nhân Công ty CP Logistics HNT và đúng số HĐ 1607/2026/HĐ-KSĐC ngày 16/07/2026, bổ sung đầy đủ ngày tháng, 04 BBNT khoan (01-04/NTKS), Giấy ĐNTT, Hóa đơn GTGT; đồng thời bổ sung đúng Tờ trình phê duyệt LGTHNT-06 cho gói Khảo sát địa hình (DA-007).",
+                                      "createdAt":  "2026-10-20T07:52:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:52:00.000Z"
                                   }
                               ],
                  "recs":  [
@@ -14486,8 +14800,8 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:32:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
                               },
                               {
                                   "id":  "rec_sendo_da003_01",
@@ -14506,8 +14820,8 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:32:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
                               },
                               {
                                   "id":  "rec_banmai_da004_01",
@@ -14526,8 +14840,8 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:32:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
                               },
                               {
                                   "id":  "rec_banmai_da005_01",
@@ -14546,8 +14860,48 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:32:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
+                              },
+                              {
+                                  "id":  "rec_pccc_da001_01",
+                                  "periodId":  "mufq31zn245cq0d",
+                                  "findingId":  "fnd_pccc_da001_01",
+                                  "code":  "FND-26Q3-005-K1",
+                                  "content":  "1) Hoàn thiện đầy đủ chữ ký của các thành viên tham dự mở thầu và cấp số hiệu văn bản cho Biên bản họp mở thầu ngày 01/10/2026 (Gói PCCC NK2 - DA-001) và Biên bản họp mở thầu ngày 16/09/2026 (Gói TVTK XD \u0026 PCCC Hà Linh - DA-008); 2) Tập hợp và lưu trữ đầy đủ Hồ sơ chào thầu/báo giá gốc của các nhà thầu (Bình Minh, PCCC Dầu khí VN, Vạn Lộc; INDCON, PCCC NTK, An Toàn VN, Bright) cùng Báo cáo đánh giá năng lực – giá trình HĐQT phê duyệt trước khi ký hợp đồng.",
+                                  "unit":  "k1",
+                                  "owner":  "k3",
+                                  "commitDate":  "2026-10-20",
+                                  "deadline":  "2026-11-05",
+                                  "measure":  "Trình ký hoàn thiện 02 Biên bản mở thầu và bổ sung bộ hồ sơ dự thầu gốc của các nhà thầu vào hồ sơ lưu trữ dự án.",
+                                  "status":  "todo",
+                                  "fixEvidence":  "",
+                                  "unitOpinion":  "",
+                                  "ktksOpinion":  "",
+                                  "closeDate":  "",
+                                  "confirmer":  "",
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
+                              },
+                              {
+                                  "id":  "rec_halinh_da006_01",
+                                  "periodId":  "mufq31zn245cq0d",
+                                  "findingId":  "fnd_halinh_da006_01",
+                                  "code":  "FND-26Q3-006-K1",
+                                  "content":  "1) Yêu cầu Công ty CP INDCON lập và ký đóng dấu lại Biên bản nghiệm thu hoàn thành bộ phận công trình (BBNTHT) của gói Khảo sát địa chất Hà Linh (DA-006) ghi đúng tên Chủ đầu tư \u0027Công ty CP Logistics HNT\u0027 và đúng số Hợp đồng \u00271607/2026/HĐ-KSĐC ký ngày 16/07/2026\u0027, điền đầy đủ ngày/tháng lập trên BBNTHT và Bảng quyết toán; 2) Bổ sung 04 BBNT khoan (01–04/NTKS), Báo cáo KSĐC, Giấy ĐNTT và Hóa đơn GTGT trước khi giải ngân 30.774.600 đ; 3) Lập và trình ký đúng Tờ trình Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06) cho gói Khảo sát địa hình (DA-007 - 16.200.000 đ) thay cho file ảnh đang bị lưu nhầm.",
+                                  "unit":  "k1",
+                                  "owner":  "k3",
+                                  "commitDate":  "2026-10-20",
+                                  "deadline":  "2026-11-05",
+                                  "measure":  "Đính chính BBNTHT gói Khảo sát địa chất Hà Linh và bổ sung Tờ trình phê duyệt gói Khảo sát địa hình trước khi thanh toán.",
+                                  "status":  "todo",
+                                  "fixEvidence":  "",
+                                  "unitOpinion":  "",
+                                  "ktksOpinion":  "",
+                                  "closeDate":  "",
+                                  "confirmer":  "",
+                                  "createdAt":  "2026-10-20T07:52:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:52:00.000Z"
                               }
                           ],
                  "followups":  [
@@ -21846,6 +22200,19 @@
                                      "note":  "",
                                      "auto":  0,
                                      "createdAt":  "2026-10-20T07:32:00.000Z"
+                                 },
+                                 {
+                                     "id":  "jnl_pccc_halinh_import_20261020",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-20T07:52:00.000Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Đối chiếu",
+                                     "object":  "Dự án DA-001 (PCCC NK2) \u0026 DA-006, DA-007, DA-008 (Dự án Hà Linh)",
+                                     "content":  "Rà soát và cập nhật bộ hồ sơ Gói Nâng cấp PCCC NK2 (DA-001: 162.000.000 đ gồm VAT) và cụm Dự án TT Logistics HNT Hà Linh theo Phương án 1 gồm 03 gói: DA-006 (Khảo sát địa chất - INDCON - HĐ 33.534.000 đ, QT 30.774.600 đ), DA-007 (Khảo sát địa hình 1/500 - INDCON - 16.200.000 đ) và DA-008 (TVTK tổng thể xây dựng \u0026 PCCC Hà Linh - 383.400.000 đ gồm VAT); lập bổ sung 02 Finding (FND-26Q3-005, FND-26Q3-006) \u0026 02 Kiến nghị KSNB.",
+                                     "result":  "Phát hiện 02 Finding (FND-26Q3-005, FND-26Q3-006)",
+                                     "note":  "",
+                                     "auto":  0,
+                                     "createdAt":  "2026-10-20T07:52:00.000Z"
                                  }
                              ]
              }
