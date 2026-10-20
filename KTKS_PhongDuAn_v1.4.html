@@ -2547,7 +2547,7 @@ ACT['rs-apply']=async()=>{
     if(!DB.all('catalogs').length)await seedCatalogs();
     const ps=periodsSorted();await DB.setMeta('currentPeriod',ps.length?ps[ps.length-1].id:null);
     await syncFollowups();
-  await ensurePdaChecklist();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
+  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
   }else{
     const plan=mergePlan(o),map={};let added=0,over=0;
     Object.keys(plan).forEach(s=>{
@@ -2562,7 +2562,7 @@ ACT['rs-apply']=async()=>{
     try{await DB.mergeMany(map)}catch(e){console.error(e);toast('Nhập thất bại: '+e.message,'err');return}
     if(!DB.get('periods',DB.meta.currentPeriod)){const ps=periodsSorted();if(ps.length)await DB.setMeta('currentPeriod',ps[ps.length-1].id)}
     await syncFollowups();
-  await ensurePdaChecklist();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
+  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
   }
   await ensureCatalogMigrations();await migrateContractModel();
   UI.restore=null;toast('Phục hồi hoàn tất');go('dashboard');renderMain();
@@ -2913,6 +2913,402 @@ ACT['seed-pda-chk'] = async () => {
   renderMain();
 };
 
+async function ensureSendoProjects(){
+  const P = curPeriod() || DB.all('periods')[0];
+  if(!P) return;
+  const now = '2026-10-20T07:10:00.000Z';
+  const pid0 = P.id;
+
+  /* 1. Đảm bảo danh mục Người phê duyệt (Chủ tịch HĐQT & GĐĐH) */
+  const newCats = [
+    {id:'person.k9',group:'person',key:'k9',name:'Nguyễn Ngọc Hải (Chủ tịch HĐQT)',tone:'',order:8},
+    {id:'person.k10',group:'person',key:'k10',name:'Nguyễn Văn Thứ (GĐĐH)',tone:'',order:9}
+  ];
+  for(const c of newCats){
+    if(!DB.get('catalogs', c.id)) await DB.put('catalogs', c);
+  }
+  const kPhuong = catKeyByName('person','Nguyễn Ngọc Phương') || 'k3';
+  const kHai = catKeyByName('person','Nguyễn Ngọc Hải (Chủ tịch HĐQT)') || 'k9';
+  const kTypeXd = catKeyByName('projectType','Đầu tư xây dựng kho') || 'k1';
+  const kUnitPda = catKeyByName('unit','Phòng Dự án') || 'k1';
+
+  /* 2. Cập nhật trạng thái kỳ kiểm tra nếu còn ở notstarted */
+  if(P.status === 'notstarted' || !P.scope){
+    await DB.put('periods', {
+      ...P,
+      status: P.status === 'notstarted' ? 'doing' : P.status,
+      scope: P.scope || 'Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung hệ thống đèn chiếu sáng kho Sendo NK1), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.',
+      objective: P.objective || 'Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán nhà thầu, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.',
+      updatedAt: now
+    });
+  }
+
+  /* 3. Thêm 2 dự án DA-002 (Cải tạo nền Sendo) & DA-003 (Đèn chiếu sáng Sendo) theo Phương án 2 */
+  const sendoProjs = [
+    {
+      id: 'proj_da002_sendo_nen',
+      code: 'DA-002',
+      name: 'Gói thầu thi công cải tạo, hoàn trả mặt bằng nền nhà kho lạnh khách hàng Sendo',
+      type: kTypeXd,
+      location: 'Trung tâm Logistics HNT – Nguyên Khê I (Thôn Toàn Thắng, xã Phúc Thịnh, TP. Hà Nội)',
+      owner: kPhuong,
+      status: 'done',
+      proposeDate: '2026-08-10',
+      startDate: '2026-08-16',
+      endDate: '2026-08-31',
+      total: 216571320,
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'proj_da003_sendo_den',
+      code: 'DA-003',
+      name: 'Gói thầu thi công lắp đặt bổ sung hệ thống đèn điện chiếu sáng kho khách hàng Sendo (17 đèn Highbay 100W)',
+      type: kTypeXd,
+      location: 'Trung tâm Logistics HNT – Nguyên Khê I (Xã Phúc Thịnh, TP. Hà Nội)',
+      owner: kPhuong,
+      status: 'done',
+      proposeDate: '2026-08-19',
+      startDate: '2026-08-24',
+      endDate: '2026-09-08',
+      total: 41365626,
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const p of sendoProjs){
+    if(!DB.get('projects', p.id)) await DB.put('projects', p);
+  }
+
+  /* 4. Quyết định đầu tư (investments) */
+  const sendoInvs = [
+    {
+      id: 'inv_da002_sendo_nen',
+      periodId: pid0,
+      projectId: 'proj_da002_sendo_nen',
+      hasProposal: 'y',
+      proposalNo: 'Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-20 ngày 10/08 & LGTHNT-06 ngày 20/08/2026)',
+      proposalDate: '2026-08-20',
+      drafter: kPhuong,
+      approver: kHai,
+      authOK: 'y',
+      hasResolution: 'na',
+      resNo: 'Phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ',
+      resDate: '2026-08-20',
+      approvedValue: 216571320,
+      evidence: '1) Đề xuất thi công nền ngày 10/08/2026 (248.971.320 đ - Chủ tịch HĐQT bút phê ngày 11/08 yêu cầu đàm phán lại giá hoặc tìm đơn vị khác); 2) Báo giá 1207.2026.HP-HNT ngày 12/07/2026 của Công ty TNHH Hồng Phúc; 3) Đề xuất thi công hoàn trả nền ngày 20/08/2026 duyệt giá nhà thầu INDCON giảm còn 216.571.320 đ (đủ 3 chữ ký: Nguyễn Ngọc Phương, Nguyễn Văn Thứ, Nguyễn Ngọc Hải).',
+      note: 'Chủ tịch HĐQT kiểm soát chặt đơn giá, bác đề xuất lần 1 (248,97 triệu) giúp tiết kiệm 32.490.720 đ khi chuyển sang nhà thầu INDCON. Lưu ý KSNB: (1) Tờ trình phê duyệt giá nhà thầu INDCON ghi ngày 20/08/2026 nhưng Hợp đồng 1608/2026/HĐKT/HNT-IDC lại ký ngày 16/08/2026 (ký HĐ trước ngày tờ trình duyệt 04 ngày); (2) Chưa lưu kèm bản báo giá chính thức có dấu của INDCON; (3) Tờ trình 10/08 ghi chú chi phí này KH Sendo có trách nhiệm thanh toán với HNT – cần đối soát thu hồi từ Sendo.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'inv_da003_sendo_den',
+      periodId: pid0,
+      projectId: 'proj_da003_sendo_den',
+      hasProposal: 'y',
+      proposalNo: 'Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 19/08/2026)',
+      proposalDate: '2026-08-19',
+      drafter: kPhuong,
+      approver: kHai,
+      authOK: 'y',
+      hasResolution: 'na',
+      resNo: 'Phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ',
+      resDate: '2026-08-19',
+      approvedValue: 41365626,
+      evidence: '1) Bảng báo giá phát sinh số ĐT-18826/Rev1 ngày 18/08/2026 của Công ty CP Đầu tư Xây lắp Đại Tín (38.301.506 đ trước VAT); 2) Đệ trình thi công hệ thống đèn bổ sung ngày 19/08/2026 (41.365.626 đ sau VAT 8%), có đủ chữ ký Người lập Nguyễn Ngọc Phương, GĐĐH Nguyễn Văn Thứ, Chủ tịch HĐQT Nguyễn Ngọc Hải.',
+      note: 'Trình tự phê duyệt đúng quy định: Báo giá (18/08/2026) -> Đệ trình phê duyệt (19/08/2026) -> Ký Hợp đồng (24/08/2026). Lưu ý KSNB: Hồ sơ chỉ có 01 báo giá của Đại Tín; người lập báo giá của Đại Tín (Phạm Văn Hiển) trùng tên với Chủ trì thiết kế thuộc Công ty CP INDCON trên bản vẽ hoàn công HNT/E-01.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const r of sendoInvs){
+    if(!DB.get('investments', r.id)) await DB.put('investments', r);
+  }
+
+  /* 5. Tiến độ & Chi phí dự án (progcosts) */
+  const sendoPcs = [
+    {
+      id: 'pc_da002_sendo_nen',
+      periodId: pid0,
+      projectId: 'proj_da002_sendo_nen',
+      planText: 'Thi công hoàn thành trong vòng 15 ngày kể từ ngày ký hợp đồng (16/08/2026 – 31/08/2026) và bàn giao mặt bằng đủ điều kiện thi công.',
+      actualText: 'Đã hoàn thành 100% khối lượng (345 md cắt xẻ rãnh, đục bê tông, đổ bê tông M300 31,05 m³, nhân công, đánh bóng Sika). Nghiệm thu hoàn thành công việc xây dựng ngày 24/08/2026 (sớm 07 ngày so với hạn 15 ngày của HĐ).',
+      planPct: 100,
+      actualPct: 100,
+      delayCause: '',
+      delayOwner: '',
+      delayFix: '',
+      budget: 216571320,
+      actualCost: 216480600,
+      overCause: '',
+      supApproval: 'na',
+      supApprover: '',
+      hasAdj: 'y',
+      adjContent: 'Đàm phán giảm đơn giá và đổi nhà thầu từ Công ty TNHH Hồng Phúc (248.971.320 đ) sang Công ty CP INDCON (216.480.600 đ) theo bút phê chỉ đạo ngày 11/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải, tiết kiệm 32.490.720 đ (-13,05%).',
+      valBefore: 248971320,
+      valAfter: 216480600,
+      adjDate: '2026-08-20',
+      reApproved: 'y',
+      adjEvidence: 'Tờ trình LGTHNT-20 ngày 10/08/2026 (bút phê của Chủ tịch HĐQT ngày 11/08/2026) và Tờ trình LGTHNT-06 ngày 20/08/2026 đã được Chủ tịch HĐQT & GĐĐH ký duyệt.',
+      note: 'Khối lượng quyết toán khớp 100% hợp đồng (345 md; 31,05 m³ bê tông M300), giá trị quyết toán 216.480.600 đ thấp hơn tờ trình duyệt 90.720 đ.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'pc_da003_sendo_den',
+      periodId: pid0,
+      projectId: 'proj_da003_sendo_den',
+      planText: 'Thi công lắp đặt bổ sung 17 bộ đèn LED Highbay 100W Duhal SAPB509, 150m ống PVC D20 Vanlock, 150m dây cáp Cu/PVC và phụ kiện tại kho Sendo theo tiến độ chung của Dự án.',
+      actualText: 'Đã hoàn thành 100% khối lượng 07 hạng mục theo đúng hợp đồng và bản vẽ hoàn công HNT/E-01; đã lập Biên bản nghiệm thu khối lượng hoàn thành số 0926/BBNT-ĐT đưa vào sử dụng.',
+      planPct: 100,
+      actualPct: 100,
+      delayCause: '',
+      delayOwner: '',
+      delayFix: '',
+      budget: 41365626,
+      actualCost: 41365626,
+      overCause: '',
+      supApproval: 'na',
+      supApprover: '',
+      hasAdj: 'n',
+      adjContent: '',
+      valBefore: '',
+      valAfter: '',
+      adjDate: '',
+      reApproved: 'na',
+      adjEvidence: '',
+      note: 'Chi phí quyết toán khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói (41.365.626 đ đã gồm VAT 8%), không phát sinh tăng/giảm.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const r of sendoPcs){
+    if(!DB.get('progcosts', r.id)) await DB.put('progcosts', r);
+  }
+
+  /* 6. Nghiệm thu & Thanh toán (payments) */
+  const sendoPays = [
+    {
+      id: 'pay_da002_sendo_nen_01',
+      periodId: pid0,
+      projectId: 'proj_da002_sendo_nen',
+      vendor: 'Công ty Cổ phần INDCON (MST: 0105976007)',
+      contractNo: '1608/2026/HĐKT/HNT-IDC ngày 16/08/2026',
+      round: 'Quyết toán (100%)',
+      reqDate: '2026-10-16',
+      reqAmount: 216480600,
+      apprAmount: 216480600,
+      paidAmount: 0,
+      payDate: '',
+      dContract: 'y',
+      dAppendix: 'na',
+      dAccept: 'y',
+      dQty: 'y',
+      dInvoice: 'n',
+      dReq: 'n',
+      dAppr: 'y',
+      dTransfer: 'n',
+      cQty: 'y',
+      cContract: 'y',
+      cEligible: 'n',
+      cAuth: 'y',
+      xOverQty: 'n',
+      xBefore: 'n',
+      xDup: 'n',
+      xOther: 'y',
+      xNote: "1) Biên bản nghiệm thu hoàn thành công trình số BBNT/HTCT/01 ghi SAI tên Chủ đầu tư tại mục 2.a thành 'Công ty cổ phần Phúc Thịnh' (thay vì Công ty CP Logistics HNT), mục 4.a ghi sai ngày ký HĐ là '13/03/2026' và bỏ trống số HĐ; 2) Bảng tổng hợp giá trị quyết toán, Phiếu YCNT và BBNT công trình đều bỏ trống ngày/tháng/năm; 3) Hợp đồng ký ngày 16/08/2026 nhưng Tờ trình phê duyệt giá nhà thầu INDCON ký ngày 20/08/2026; 4) Bộ hồ sơ thiếu Giấy đề nghị thanh toán, Hóa đơn GTGT và UNC.",
+      note: 'Đề nghị Phòng Dự án yêu cầu nhà thầu INDCON đính chính lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT, điền đầy đủ số/ngày hợp đồng (1608/2026/HĐKT/HNT-IDC ngày 16/08/2026), ngày tháng nghiệm thu và bổ sung Giấy đề nghị thanh toán + Hóa đơn GTGT hợp lệ trước khi giải ngân.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'pay_da003_sendo_den_01',
+      periodId: pid0,
+      projectId: 'proj_da003_sendo_den',
+      vendor: 'Công ty Cổ phần Đầu tư Xây lắp Đại Tín (MST: 0108861283)',
+      contractNo: '240826/HĐKT/HNT-ĐT ngày 24/08/2026',
+      round: 'Quyết toán (100% - ĐNTT 0926/ĐNTT-ĐT)',
+      reqDate: '2026-10-19',
+      reqAmount: 41365626,
+      apprAmount: 41365626,
+      paidAmount: 0,
+      payDate: '',
+      dContract: 'y',
+      dAppendix: 'na',
+      dAccept: 'y',
+      dQty: 'y',
+      dInvoice: 'n',
+      dReq: 'y',
+      dAppr: 'y',
+      dTransfer: 'n',
+      cQty: 'y',
+      cContract: 'y',
+      cEligible: 'n',
+      cAuth: 'y',
+      xOverQty: 'n',
+      xBefore: 'n',
+      xDup: 'n',
+      xOther: 'y',
+      xNote: "1) Giấy ĐNTT (0926/ĐNTT-ĐT), Bảng TH giá trị hoàn thành, Bảng TH khối lượng hoàn thành và BBNT (0926/BBNT-ĐT) đều bỏ trống ngày/tháng lập; 2) BBNT 0926/BBNT-ĐT liệt kê Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) trong thành phần nghiệm thu mục 2.1 nhưng phần ký Đại diện Bên A chỉ có Ông Nguyễn Ngọc Phương ký; 3) Cuối trang 1 Hợp đồng 240826/HĐKT/HNT-ĐT ghi nhầm nội dung 'hệ thống cấp nước'; 4) Bộ hồ sơ thiếu Hóa đơn GTGT, chứng chỉ CO/CQ và UNC.",
+      note: 'Đề nghị Phòng Dự án hoàn thiện ngày tháng trên bộ chứng từ nghiệm thu – thanh toán, bổ sung Hóa đơn GTGT và CO/CQ đèn LED Duhal theo Điều 4.3 HĐ trước khi thanh toán cho nhà thầu Đại Tín.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const r of sendoPays){
+    if(!DB.get('payments', r.id)) await DB.put('payments', r);
+  }
+
+  /* 7. Chuẩn hóa docreqs & cập nhật trạng thái tiếp nhận hồ sơ Sendo */
+  for(const d of DB.all('docreqs')){
+    let chg = false;
+    const copy = {...d};
+    if(copy.group && copy.group.startsWith('docGroup.')){
+      copy.group = copy.group.replace('docGroup.','');
+      chg = true;
+    }
+    if(copy.id === 'docreq_05' && copy.status === 'wait'){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kPhuong;
+      copy.status = 'recv';
+      copy.evidence = 'Đã nhận Tờ trình phê duyệt cấp VT-TB-CC của DA-002 (Đề xuất ngày 10/08 bị bác & Đề xuất ngày 20/08/2026 duyệt 216.571.320 đ) và DA-003 (Đệ trình ngày 19/08/2026 duyệt 41.365.626 đ) kèm Báo giá Hồng Phúc, Báo giá Đại Tín.';
+      copy.note = 'Đã có phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ cho 2 gói Sendo. Lưu ý: DA-002 thiếu bản báo giá chính thức có đóng dấu của nhà thầu INDCON và tờ trình duyệt đề ngày 20/08/2026 (sau ngày ký HĐ 16/08/2026).';
+      copy.updatedAt = now;
+      chg = true;
+    } else if(copy.id === 'docreq_07' && copy.status === 'wait'){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kPhuong;
+      copy.status = 'recv';
+      copy.evidence = 'Đã nhận: (1) HĐ xây dựng số 1608/2026/HĐKT/HNT-IDC ngày 16/08/2026 với Công ty CP INDCON (216.480.600 đ); (2) HĐ kinh tế số 240826/HĐKT/HNT-ĐT ngày 24/08/2026 với Công ty CP Đầu tư Xây lắp Đại Tín (41.365.626 đ).';
+      copy.note = "Cả 2 hợp đồng gói Sendo đã ký và đóng dấu đầy đủ. Lưu ý lỗi soạn thảo tại cuối trang 1 HĐ 240826/HĐKT/HNT-ĐT ghi nhầm 'lắp đặt hệ thống cấp nước'.";
+      copy.updatedAt = now;
+      chg = true;
+    } else if(copy.id === 'docreq_08' && !copy.recvDate){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kPhuong;
+      copy.status = 'wait';
+      copy.evidence = 'Đã nhận file scan: (1) HO SO QT GOI CAI TAO NEN KHO CUA KH SEN DO TAI TTNK1_20261016_0001.pdf; (2) HO SO TTKLHT THI CONG LAP DAT BS HT CHIEU SANG KHO SENDO NK1_20261019_0001.pdf (kèm bản vẽ hoàn công HNT/E-01).';
+      copy.note = "Chờ bổ sung: Hóa đơn GTGT và Ủy nhiệm chi của cả 2 gói (DA-002, DA-003); Giấy đề nghị thanh toán của gói nền (DA-002); yêu cầu đính chính lại BBNT gói nền ghi sai tên Chủ đầu tư ('Công ty CP Phúc Thịnh') và bổ sung ngày tháng trên các biên bản nghiệm thu/quyết toán.";
+      copy.updatedAt = now;
+      chg = true;
+    }
+    if(chg) await DB.put('docreqs', copy);
+  }
+
+  /* 8. Cập nhật kết quả Checklist liên quan đến DA-002 & DA-003 */
+  const chkUpdates = {
+    'CHK-DT-01': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT & GĐĐH phê duyệt cho DA-002 (216,57 triệu) và DA-003 (41,36 triệu). Tuy nhiên ở DA-002, Hợp đồng 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 trước ngày Tờ trình phê duyệt giá mới (20/08/2026) và thiếu bản báo giá đóng dấu của INDCON.'},
+    'CHK-DT-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Cả 2 gói thầu DA-002 (216.571.320 đ) và DA-003 (41.365.626 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; riêng DA-002 Chủ tịch HĐQT đã bác giá lần 1 (248,97 triệu) giúp tiết kiệm 32,49 triệu đồng.'},
+    'CHK-CP-01': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'DA-002 (Cải tạo nền Sendo) hoàn thành và nghiệm thu công việc ngày 24/08/2026 (8 ngày so với kế hoạch 15 ngày trong HĐ); DA-003 (Đèn chiếu sáng Sendo) đã hoàn thành 100% khối lượng 17 đèn Highbay 100W.'},
+    'CHK-CP-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Chi phí quyết toán thực tế của DA-002 (216.480.600 đ) và DA-003 (41.365.626 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.'},
+    'CHK-NT-01': {projectId:'proj_da002_sendo_nen', result:'fail', comment:"Hồ sơ nghiệm thu kỹ thuật có nhiều sai sót: (1) BBNT hoàn thành công trình BBNT/HTCT/01 của DA-002 ghi sai tên Chủ đầu tư thành 'Công ty cổ phần Phúc Thịnh', ghi sai ngày HĐ là 13/03/2026 và bỏ trống số HĐ; (2) Các BBNT của DA-002 và DA-003 bỏ trống ngày/tháng nghiệm thu; (3) Thiếu chứng chỉ CO/CQ vật tư."},
+    'CHK-NT-04': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ), nhưng bộ hồ sơ thanh toán còn thiếu Hóa đơn GTGT, UNC của cả 2 gói và thiếu Giấy đề nghị thanh toán của gói nền DA-002.'}
+  };
+  for(const c of DB.all('checklist').filter(x => x.periodId === pid0)){
+    const u = chkUpdates[c.code];
+    if(u && c.result === 'todo'){
+      await DB.put('checklist', {...c, ...u, updatedAt: now});
+    }
+  }
+
+  /* 9. Tạo Finding & Kiến nghị cho DA-002 và DA-003 */
+  const sendoFnds = [
+    {
+      id: 'fnd_sendo_da002_01',
+      periodId: pid0,
+      code: 'FND-26Q3-001',
+      group: 'k3',
+      riskLevel: 'high',
+      projectId: 'proj_da002_sendo_nen',
+      contractId: '',
+      checklistId: 'chk_09_chk_nt_01',
+      content: 'Hồ sơ hợp đồng & nghiệm thu quyết toán gói cải tạo nền kho Sendo (DA-002) sai thông tin pháp nhân Chủ đầu tư, sai ngày hợp đồng, ký hợp đồng trước ngày tờ trình duyệt và thiếu chứng từ thanh toán',
+      basis: 'Quy trình quản lý đầu tư xây dựng cơ bản & thanh quyết toán công trình của Công ty CP Logistics HNT; Điều 4 Hợp đồng số 1608/2026/HĐKT/HNT-IDC.',
+      actual: "1) Biên bản nghiệm thu hoàn thành công trình (BBNT/HTCT/01) ghi đại diện Chủ đầu tư là 'Công ty cổ phần Phúc Thịnh' (thay vì Công ty CP Logistics HNT), căn cứ nghiệm thu ghi sai ngày ký HĐ là '13/03/2026' và bỏ trống số HĐ; 2) Bảng tổng hợp giá trị quyết toán, Phiếu YCNT và BBNT công trình đều bỏ trống ngày/tháng; 3) Hợp đồng 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 nhưng Tờ trình phê duyệt giá nhà thầu INDCON lập ngày 20/08/2026; 4) Hồ sơ thiếu Báo giá đóng dấu của INDCON, Giấy đề nghị thanh toán, Hóa đơn GTGT và chứng từ đối soát thu tiền hoàn trả nền từ khách hàng Sendo.",
+      evidence: 'File HD CAI TAO NEN SENDO - HNT.pdf; HO SO QT GOI CAI TAO NEN KHO CUA KH SEN DO TAI TTNK1_20261016_0001.pdf; ĐỀ XUẤT THI CÔNG HOÀN TRẢ NỀN.jpg.',
+      cause: 'Cán bộ XDCB (Nguyễn Ngọc Phương) và nhà thầu INDCON sử dụng biểu mẫu biên bản nghiệm thu cũ của dự án khác mà không rà soát thông tin pháp nhân, ngày tháng trước khi trình ký đóng dấu.',
+      impact: 'Biên bản nghiệm thu ghi sai tên pháp nhân Chủ đầu tư không đảm bảo tính hợp lệ pháp lý và thuế khi quyết toán chi phí/tài sản và khi làm căn cứ thu hồi tiền hoàn trả mặt bằng từ khách hàng Sendo.',
+      risk: 'Rủi ro bị cơ quan thuế xuất toán chi phí hợp lệ và rủi ro tranh chấp hồ sơ khi đối soát thu tiền hoàn trả nền với khách hàng Sendo.',
+      amount: 216480600,
+      deptOpinion: '',
+      conclusion: 'Yêu cầu Phòng Dự án đính chính/lập lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT và bổ sung đầy đủ chứng từ thanh toán trước khi giải ngân.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_sendo_da003_01',
+      periodId: pid0,
+      code: 'FND-26Q3-002',
+      group: 'k3',
+      riskLevel: 'med',
+      projectId: 'proj_da003_sendo_den',
+      contractId: '',
+      checklistId: 'chk_12_chk_nt_04',
+      content: 'Hồ sơ nghiệm thu – thanh toán gói lắp đặt bổ sung đèn chiếu sáng kho Sendo (DA-003) bỏ trống ngày tháng, thiếu chữ ký thành phần nghiệm thu và chưa đính kèm Hóa đơn GTGT, CO/CQ',
+      basis: 'Quy trình nghiệm thu – thanh toán công trình; Điều 4.3 Hợp đồng kinh tế số 240826/HĐKT/HNT-ĐT ngày 24/08/2026.',
+      actual: "1) Toàn bộ Giấy đề nghị thanh toán (0926/ĐNTT-ĐT), Bảng tổng hợp giá trị hoàn thành, Bảng tổng hợp khối lượng hoàn thành và Biên bản nghiệm thu (0926/BBNT-ĐT) đều bỏ trống ngày/tháng lập; 2) BBNT 0926/BBNT-ĐT nêu tên Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) trong thành phần trực tiếp nghiệm thu (mục 2.1) nhưng phần ký Đại diện Bên A chỉ có Ông Nguyễn Ngọc Phương ký; 3) Trang 1 Hợp đồng 240826/HĐKT/HNT-ĐT ghi nhầm 'thi công lắp đặt hệ thống cấp nước'; 4) Chưa lưu kèm Hóa đơn GTGT và chứng nhận CO/CQ vật tư đèn LED Duhal.",
+      evidence: 'File HĐKT ĐT-HNT 240826.pdf; HO SO TTKLHT THI CONG LAP DAT BS HT CHIEU SANG KHO SENDO NK1_20261019_0001.pdf.',
+      cause: 'Kiểm soát hồ sơ hành chính – kỹ thuật trước khi đóng dấu xác nhận quyết toán chưa chặt chẽ.',
+      impact: 'Không xác định được chính xác mốc thời gian bắt đầu tính thời hạn bảo hành công trình 18 tháng theo Điều 5 Hợp đồng và chưa đủ bộ hồ sơ thanh toán theo Điều 4.3.',
+      risk: 'Rủi ro vướng mắc khi yêu cầu nhà thầu bảo hành thiết bị đèn chiếu sáng (18 tháng) và thiếu chứng từ gốc khi thanh toán.',
+      amount: 41365626,
+      deptOpinion: '',
+      conclusion: 'Yêu cầu bổ sung ngày tháng nghiệm thu hoàn thành (để làm mốc tính bảo hành 18 tháng), hoàn thiện chữ ký và bổ sung Hóa đơn GTGT, CO/CQ vật tư trước khi tất toán.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const f of sendoFnds){
+    if(!DB.get('findings', f.id)) await DB.put('findings', f);
+  }
+
+  const sendoRecs = [
+    {
+      id: 'rec_sendo_da002_01',
+      periodId: pid0,
+      findingId: 'fnd_sendo_da002_01',
+      code: 'FND-26Q3-001-K1',
+      content: '1) Lập lại Biên bản nghiệm thu hoàn thành công trình BBNT/HTCT/01 ghi đúng tên Chủ đầu tư là Công ty CP Logistics HNT, điền đúng số HĐ 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 và ngày tháng nghiệm thu; 2) Thu thập bổ sung Báo giá gốc có dấu của INDCON, Giấy đề nghị thanh toán và Hóa đơn GTGT; 3) Phối hợp Phòng Kế toán đối soát thu hồi khoản chi phí hoàn trả nền (216.480.600 đ) từ khách hàng Sendo theo đúng ghi chú trên tờ trình.',
+      unit: kUnitPda,
+      owner: kPhuong,
+      commitDate: '2026-10-20',
+      deadline: '2026-10-30',
+      measure: 'Yêu cầu nhà thầu INDCON ký đóng dấu lại BBNT đính chính và nộp đủ Giấy ĐNTT, Hóa đơn GTGT trước khi chuyển Kế toán thanh toán.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_sendo_da003_01',
+      periodId: pid0,
+      findingId: 'fnd_sendo_da003_01',
+      code: 'FND-26Q3-002-K1',
+      content: '1) Điền đầy đủ ngày/tháng nghiệm thu và lập hồ sơ trên Giấy ĐNTT 0926/ĐNTT-ĐT, Bảng tổng hợp giá trị/khối lượng và BBNT 0926/BBNT-ĐT để xác lập mốc bảo hành 18 tháng; 2) Bổ sung Hóa đơn GTGT và chứng chỉ xuất xưởng CO/CQ của 17 bộ đèn LED Highbay 100W Duhal cùng phụ kiện.',
+      unit: kUnitPda,
+      owner: kPhuong,
+      commitDate: '2026-10-20',
+      deadline: '2026-10-30',
+      measure: 'Hoàn thiện bộ hồ sơ quyết toán với nhà thầu Đại Tín trước khi giải ngân.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const r of sendoRecs){
+    if(!DB.get('recs', r.id)) await DB.put('recs', r);
+  }
+}
+
 /* ---------- Dữ liệu demo ---------- */
 async function seedDemo(){
   const T=todayStr(),d=n=>addDays(T,n),nowIso=new Date().toISOString(),mk=o=>({id:uid(),createdAt:nowIso,updatedAt:nowIso,...o}),K=catKeyByName,PS=n=>K('person',n);
@@ -3086,6 +3482,7 @@ async function boot(){
   await migrateContractModel();
   await syncFollowups();
   await ensurePdaChecklist();
+  await ensureSendoProjects();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
   window.addEventListener('hashchange',renderMain);
   renderMain();
