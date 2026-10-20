@@ -2822,7 +2822,8 @@ async function ensurePdaChecklist(){
   if(!P) return;
   const allChk = DB.all('checklist').filter(x => x.periodId === P.id);
   const allowed = new Set(PDA_CHECKLIST.map(x => x.code));
-  const obsolete = allChk.filter(x => !allowed.has(x.code));
+  const canonicalIds = new Set(PDA_CHECKLIST.map((it, idx) => 'chk_' + String(idx + 1).padStart(2, '0') + '_' + it.code.toLowerCase().replace(/-/g, '_')));
+  const obsolete = allChk.filter(x => !allowed.has(x.code) || (!canonicalIds.has(x.id) && allChk.some(y => y.code === x.code && canonicalIds.has(y.id))));
   if(obsolete.length){
     for(const r of obsolete) await DB.del('checklist', r.id);
   }
@@ -2851,7 +2852,7 @@ async function ensurePdaChecklist(){
   } else if(obsolete.length || allChk.some(x => x.group === 'k7' && x.code === 'CHK-CN-02' && x.content.includes('xuất hóa đơn'))){
     const g7Defs = PDA_CHECKLIST.filter(x => x.group === 'k7');
     for(const def of g7Defs){
-      const cur = allChk.find(x => x.code === def.code);
+      const cur = DB.all('checklist').find(x => x.periodId === P.id && x.code === def.code);
       if(cur){
         cur.content = def.content;
         cur.criteria = def.criteria;
@@ -2916,7 +2917,7 @@ ACT['seed-pda-chk'] = async () => {
 async function ensureSendoProjects(){
   const P = curPeriod() || DB.all('periods')[0];
   if(!P) return;
-  const now = '2026-10-20T07:52:00.000Z';
+  const now = '2026-10-20T09:15:00.000Z';
   const pid0 = P.id;
 
   /* 1. Đảm bảo danh mục Người phê duyệt (Chủ tịch HĐQT, PCT HĐQT & GĐĐH) */
@@ -2928,14 +2929,15 @@ async function ensureSendoProjects(){
   for(const c of newCats){
     if(!DB.get('catalogs', c.id)) await DB.put('catalogs', c);
   }
+  const kQuang = catKeyByName('person','Phan Văn Quang') || 'k2';
   const kPhuong = catKeyByName('person','Nguyễn Ngọc Phương') || 'k3';
   const kHai = catKeyByName('person','Nguyễn Ngọc Hải (Chủ tịch HĐQT)') || 'k9';
   const kTypeXd = catKeyByName('projectType','Đầu tư xây dựng kho') || 'k1';
   const kUnitPda = catKeyByName('unit','Phòng Dự án') || 'k1';
 
   /* 2. Cập nhật trạng thái & phạm vi kỳ kiểm tra */
-  const newScope = 'Kiểm tra toàn diện 08 gói thầu/dự án đầu tư – cải tạo hạ tầng (DA-001 Thiết kế & Thẩm định nâng cấp PCCC NK2; DA-002 Cải tạo hoàn trả nền kho Sendo NK1; DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1; DA-004 Đấu nối & lắp cụm đồng hồ nước sạch Ban Mai NK2; DA-005 Kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2; DA-006 Khảo sát địa chất dự án Hà Linh; DA-007 Khảo sát địa hình 1/500 dự án Hà Linh; DA-008 TVTK tổng thể xây dựng & PCCC dự án Hà Linh), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.';
-  if(P.status === 'notstarted' || !P.scope || !P.scope.includes('DA-008')){
+  const newScope = 'Kiểm tra toàn diện 08 gói thầu/dự án đầu tư – cải tạo hạ tầng (DA-001 Thiết kế & Thẩm định nâng cấp PCCC NK2; DA-002 Cải tạo hoàn trả nền kho Sendo NK1; DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1; DA-004 Đấu nối & lắp cụm đồng hồ nước sạch Ban Mai NK2; DA-005 Kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2; DA-006 Khảo sát địa chất dự án Hà Linh; DA-007 Khảo sát địa hình 1/500 dự án Hà Linh; DA-008 TVTK tổng thể xây dựng & PCCC dự án Hà Linh), 70 hợp đồng thuê kho/lưu kho (bao gồm cả hợp đồng đã hủy/thanh lý trong kỳ), chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.';
+  if(P.status === 'notstarted' || !P.scope || !P.scope.includes('70 hợp đồng')){
     await DB.put('periods', {
       ...P,
       status: P.status === 'notstarted' ? 'doing' : P.status,
@@ -2945,9 +2947,13 @@ async function ensureSendoProjects(){
     });
   }
 
-  /* 3. Cập nhật DA-001 và thêm các dự án DA-002 -> DA-008 */
-  const exDa001 = DB.all('projects').find(x => x.code === 'DA-001') || {id:'mup8z5iy4rx3vf9'};
+  /* 3. Cập nhật DA-001 (xóa bản ghi trùng nếu có) và thêm các dự án DA-002 -> DA-008 */
+  const da001List = DB.all('projects').filter(x => x.code === 'DA-001');
+  const exDa001 = da001List.find(x => x.id === 'mup8z5iy4rx3vf9') || da001List[0] || {id:'mup8z5iy4rx3vf9'};
   const da001Id = exDa001.id;
+  for(const dup of da001List){
+    if(dup.id !== da001Id) await DB.del('projects', dup.id);
+  }
   const sendoProjs = [
     {
       id: da001Id,
@@ -3630,7 +3636,288 @@ async function ensureSendoProjects(){
     if(!ex || (ex.xNote && ex.xNote.includes('Phúc Thịnh'))) await DB.put('payments', r);
   }
 
-  /* 7. Chuẩn hóa docreqs & cập nhật trạng thái tiếp nhận hồ sơ DA-001 -> DA-008 */
+  /* 6b. Cập nhật Hồ sơ Thư mục 1: Phê duyệt giá hoặc chiết khấu ngoài chính sách (Swallow đã hủy HĐ & Vietstar) */
+  const swCust = DB.get('customers', 'mudvhgyjhvxdve1');
+  if(swCust && !swCust.rep){
+    await DB.put('customers', {
+      ...swCust,
+      rep: 'Ông Lương Nhật Nam – Giám đốc',
+      phone: '0243.224.2339',
+      address: 'Tầng 2, tòa nhà AZ Lâm Viên, số 107 Nguyễn Phong Sắc, Phường Cầu Giấy, TP. Hà Nội',
+      updatedAt: now
+    });
+  }
+  const swContract = {
+    id: 'ct_swallow_1806_2026',
+    status: 'ended',
+    no: '1806/2026/HĐTK/HNT-SWALLOW',
+    type: 'k1',
+    model: 'lease',
+    customerId: 'mudvhgyjhvxdve1',
+    site: 'cmukoahxa78ju1hh',
+    cargoType: 'normal',
+    dangerSurApplied: '',
+    signDate: '2026-06-18',
+    effDate: '2026-06-18',
+    endDate: '2026-09-05',
+    indefinite: '',
+    isRenewal: 'new',
+    priorYears: 0,
+    priorContractRef: '',
+    signer: 'Ông Nguyễn Ngọc Hải',
+    signerTitle: 'Chủ tịch HĐQT',
+    authOK: 'y',
+    area: 366.2,
+    unitPrice: 145000,
+    monthly: 53099000,
+    storageMinRev: '',
+    deposit: 58592000,
+    payCycle: 'k1',
+    payDueDays: 10,
+    priceUp: '',
+    upRate: '',
+    upCycle: '',
+    latePenalty: '',
+    earlyTermination: 'client',
+    terminate: 'Hợp đồng đã HỦY / thanh lý chấm dứt trước hạn kể từ ngày 05/09/2026 theo Biên bản thanh lý hợp đồng ngày 03/09/2026 (thời gian thực hiện thực tế ~2,5 tháng từ 18/06/2026 đến 04/09/2026; hoàn trả tiền cọc 58.592.000 đ; công nợ phí dịch vụ từ 26/07/2026 đến 04/09/2026 là 34.120.008 đ).',
+    compensate: '',
+    damage: '',
+    fire: '',
+    force: '',
+    special: 'Đơn giá thuê kho thực tế 145.000 đ/m²/tháng (366,2 m² = 53.099.000 đ/tháng); Tờ trình ngày 20/07/2026 phê duyệt chiết khấu khoán 5.000.000 đ cho Phòng Dự án, tuy nhiên hợp đồng đã hủy/chấm dứt sớm từ ngày 05/09/2026.',
+    docContract: 'y',
+    docAppendix: 'y',
+    docQuote: '',
+    docNego: '',
+    docPrice: 'y',
+    docHandover: '',
+    docLiquid: 'y',
+    docOther: '1) File Swa.jpg (Tờ trình ngày 20/07/2026 duyệt chiết khấu bán hàng 5.000.000 đ); 2) File BB THANH LY HĐ THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf (Biên bản thanh lý HĐ ngày 03/09/2026, chấm dứt HĐ từ 05/09/2026).',
+    createdAt: now,
+    updatedAt: now
+  };
+  const exSwCt = DB.get('contracts', swContract.id);
+  if(!exSwCt || exSwCt.status !== 'ended' || exSwCt.earlyTermination !== 'client'){
+    await DB.put('contracts', swContract);
+  }
+  const swRental = {
+    id: 'rt_swallow_1806_2026_kho',
+    contractId: 'ct_swallow_1806_2026',
+    kind: 'kho',
+    unit: 'm²',
+    per: 'month',
+    unitPrice: 145000,
+    quantity: 366.2,
+    monthlyEstimate: 53099000,
+    startDate: '2026-06-18',
+    endDate: '2026-09-05',
+    note: 'Đơn giá thuê kho thực tế 145.000 đ/m²/tháng × 366,2 m² = 53.099.000 đ/tháng (tháng 7/2026) theo Tờ trình ngày 20/07/2026. Hợp đồng đã hủy/thanh lý từ 05/09/2026.',
+    createdAt: now,
+    updatedAt: now
+  };
+  if(!DB.get('rentals', swRental.id)) await DB.put('rentals', swRental);
+
+  const vsCt = DB.get('contracts', 'muf8472n85ix547');
+  if(vsCt && (!vsCt.signDate || vsCt.docPrice !== 'y')){
+    await DB.put('contracts', {
+      ...vsCt,
+      signDate: '2026-07-22',
+      effDate: '2026-07-22',
+      docContract: 'y',
+      docPrice: 'y',
+      docOther: 'Tờ trình phê duyệt thanh toán chiết khấu bán hàng tháng 08/2026 (Vietstar.jpg): duyệt chiết khấu ngoại lệ 10.000.000 đ cho Phòng Dự án (Kho 70m² x 135.000đ = 9.450.000đ; Bãi 300m² x 38.500đ = 11.550.000đ; tổng DT 21.000.000 đ/tháng; ghi chú viết tay: DT bãi chưa có Chính sách riêng).',
+      updatedAt: now
+    });
+  }
+
+  /* 6c. Kiểm tra Giá & Báo giá (prices) và Chiết khấu (discounts) từ Thư mục 1 */
+  const folder1Prices = [
+    {
+      id: 'prc_swallow_1806_2026',
+      periodId: pid0,
+      contractId: 'ct_swallow_1806_2026',
+      policyPrice: 130000,
+      quotedPrice: 145000,
+      negoPrice: 145000,
+      contractPrice: 145000,
+      marketPrice: 135000,
+      marketSource: 'QĐ 281/2026/QĐ-HNT (TT Thanh Oai II: giá chuẩn 130.000 đ/m²) & QĐ 162/2025/QĐ-HNT (Kho thường theo m²: 125.000 – 135.000 đ/m²)',
+      reason: 'Đơn giá thuê thực tế 145.000 đ/m²/tháng cao hơn giá chuẩn chính sách (+11,54%); trình duyệt mức chiết khấu khoán 5.000.000 đ tại Tờ trình ngày 20/07/2026. Lưu ý: Hợp đồng đã hủy/thanh lý sớm từ ngày 05/09/2026.',
+      exception: 'y',
+      approver: kHai,
+      note: 'Đơn giá ký 145.000 đ/m²/tháng cao hơn bảng giá công bố. Tuy nhiên Hợp đồng 1806/2026/HĐTK/HNT-SWALLOW ký ngày 18/06/2026 đã hủy/chấm dứt sớm từ ngày 05/09/2026 (thời gian thuê thực tế chỉ ~2,5 tháng).',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'prc_vietstar_2207_2026',
+      periodId: pid0,
+      contractId: 'muf8472n85ix547',
+      policyPrice: 115000,
+      quotedPrice: 135000,
+      negoPrice: 135000,
+      contractPrice: 135000,
+      marketPrice: 125000,
+      marketSource: 'QĐ 178/2024/QĐ-HNT (Kho TT Nguyên Khê I: giá chuẩn 115.000 đ/m²); Diện tích Bãi (300m² x 38.500 đ/m²) chưa có biểu giá chính sách riêng',
+      reason: 'Đơn giá khu vực kho (70m²) đạt 135.000 đ/m²/tháng (+17,39% so với giá chuẩn 115.000 đ/m²); khu vực bãi ngoài trời (300m²) áp dụng đơn giá 38.500 đ/m²/tháng (11.550.000 đ/tháng) do Công ty chưa ban hành chính sách giá riêng cho diện tích bãi.',
+      exception: 'y',
+      approver: kHai,
+      note: "Đã có Tờ trình tháng 08/2026 được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải phê duyệt. Ghi chú viết tay trên tờ trình xác nhận: '(DT bãi chưa có Chính sách riêng)' – cần ban hành bổ sung biểu giá chuẩn và khung chiết khấu cho diện tích thuê Bãi ngoài trời.",
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'prc_tikinow_1703_2025',
+      periodId: pid0,
+      contractId: 'muf8472f29mdfdz',
+      policyPrice: 115000,
+      quotedPrice: 115000,
+      negoPrice: 110000,
+      contractPrice: 110000,
+      marketPrice: 115000,
+      marketSource: 'QĐ 178/2024/QĐ-HNT ngày 25/10/2024 (TT Logistics HNT Nguyên Khê: giá chuẩn 115.000 đ/m²)',
+      reason: 'Khách hàng thuê diện tích lớn (2.350 m²), đàm phán đơn giá 110.000 đ/m²/tháng (-4,35% so với giá chuẩn 115.000 đ/m²).',
+      exception: 'n',
+      approver: '',
+      note: 'Đơn giá hợp đồng thấp hơn giá chuẩn công bố 4,35% (nằm trong biên độ giảm tối đa 5% thuộc thẩm quyền HĐQT), nhưng trong Thư mục 1 Phòng Dự án chưa cung cấp Tờ trình phê duyệt giảm giá/ngoại lệ giá cho HĐ 1703/2025/HĐTK/HNT-TIKINOW.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'prc_sds_1002_2025',
+      periodId: pid0,
+      contractId: 'muf84m42b2q7dc8',
+      policyPrice: 110000,
+      quotedPrice: 110000,
+      negoPrice: 106000,
+      contractPrice: 106000,
+      marketPrice: 110000,
+      marketSource: 'QĐ 60/2024/QĐ-HNT ngày 20/04/2024 (TT Logistics HNT Sóc Sơn: giá chuẩn 110.000 đ/m²)',
+      reason: 'Khách hàng thuê diện tích lớn (4.350 m²), đàm phán đơn giá 106.000 đ/m²/tháng (-3,64% so với giá chuẩn 110.000 đ/m²).',
+      exception: 'n',
+      approver: '',
+      note: 'Đơn giá hợp đồng thấp hơn giá chuẩn công bố 3,64%, nhưng trong Thư mục 1 Phòng Dự án chưa cung cấp Tờ trình phê duyệt giảm giá/ngoại lệ giá cho HĐ 1002/2025/HĐTK/HNT-SDS.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const p of folder1Prices){
+    if(!DB.get('prices', p.id)) await DB.put('prices', p);
+  }
+
+  const folder1Discounts = [
+    {
+      id: 'disc_swallow_1806_2026',
+      periodId: pid0,
+      contractId: 'ct_swallow_1806_2026',
+      termCase: 'early_client',
+      related: 53099000,
+      receiver: 'Phòng Dự án Công ty CP Logistics HNT',
+      type: 'k1',
+      isPrior3Years: 'no',
+      priorProof: '',
+      renewMonths: '',
+      oneMonthRentBase: 53099000,
+      volQty: 366.2,
+      volUnit: 'm²',
+      firstMonthApplied: 'n',
+      policy: 'QĐ 162/2025/QĐ-HNT (QĐ 11) & QĐ 281/2026/QĐ-HNT: Duyệt chiết khấu khoán 5.000.000 đ trên DT tháng 7/2026 (tháng 6 ký ngày 18/06 < 20 ngày). Hợp đồng đã HỦY / chấm dứt sớm từ ngày 05/09/2026 (chỉ thực hiện ~2,5 tháng).',
+      allowedRate: 35,
+      actualRate: 9.42,
+      amount: 5000000,
+      gddhProposed: 'y',
+      gddhProposalDoc: 'Tờ trình Phòng Dự án ngày 20/07/2026 (GĐĐH Nguyễn Văn Thứ ký duyệt)',
+      hdqtApproved: 'y',
+      hdqtApprovalDoc: 'Phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải trên Tờ trình ngày 20/07/2026',
+      gddhApproved: 'y',
+      earlyTermBy: 'client',
+      actualMonthsUsed: 2.5,
+      clawbackAmt: 0,
+      proposer: kQuang,
+      approver: kHai,
+      approveDate: '2026-07-20',
+      docs: 'File Swa.jpg (Tờ trình đề nghị phê duyệt thanh toán chiết khấu bán hàng ngày 20/07/2026 theo HĐ 1806/2026/HĐTK/HNT-SWALLOW) & BB THANH LY HĐ THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf (ký ngày 03/09/2026).',
+      okPolicy: 'n',
+      exception: 'y',
+      note: '1) Hợp đồng 1806/2026/HĐTK/HNT-SWALLOW là hợp đồng ĐÃ HỦY / thanh lý trước hạn kể từ ngày 05/09/2026 (không phải hợp đồng mới đang duy trì), thời gian thực hiện thực tế chỉ ~2,5 tháng (18/06/2026 – 04/09/2026); 2) Tờ trình ngày 20/07/2026 được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải phê duyệt mức chiết khấu khoán 5.000.000 đ (9,42% DT tháng 7/2026 là 53.099.000 đ); 3) Tuy nhiên khi ký Biên bản thanh lý ngày 03/09/2026 (hoàn trả cọc 58.592.000 đ), hồ sơ chưa ghi nhận việc dừng chi hoặc truy thu/điều chỉnh lại khoản chiết khấu 5.000.000 đ do khách hàng hủy hợp đồng sớm theo Khoản 7 Chính sách bán hàng.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'disc_vietstar_2207_2026',
+      periodId: pid0,
+      contractId: 'muf8472n85ix547',
+      termCase: 'normal',
+      related: 21000000,
+      receiver: 'Phòng Dự án Công ty CP Logistics HNT',
+      type: 'k1',
+      isPrior3Years: 'no',
+      priorProof: '',
+      renewMonths: 12,
+      oneMonthRentBase: 21000000,
+      volQty: 370,
+      volUnit: 'm²',
+      firstMonthApplied: 'y',
+      policy: 'QĐ 178/2024/QĐ-HNT (Kho TT Nguyên Khê I: tối đa 45% với mức giá ≥ 125.000 đ/m²); Doanh thu thuê Bãi (300m² x 38.500đ = 11.550.000đ) chưa có chính sách riêng nên trình duyệt ngoại lệ trọn gói 10.000.000 đ.',
+      allowedRate: 45,
+      actualRate: 47.62,
+      amount: 10000000,
+      gddhProposed: 'y',
+      gddhProposalDoc: 'Tờ trình Phòng Dự án tháng 08/2026 (GĐĐH Nguyễn Văn Thứ ký duyệt)',
+      hdqtApproved: 'y',
+      hdqtApprovalDoc: 'Phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải trên Tờ trình tháng 08/2026',
+      gddhApproved: 'y',
+      earlyTermBy: 'none',
+      actualMonthsUsed: '',
+      clawbackAmt: '',
+      proposer: kQuang,
+      approver: kHai,
+      approveDate: '2026-08-15',
+      docs: 'File Vietstar.jpg (Tờ trình đề nghị phê duyệt thanh toán chiết khấu bán hàng tháng 08/2026 theo HĐ 2207/2026/HĐTK/HNT-VIETSTAR).',
+      okPolicy: 'n',
+      exception: 'y',
+      note: "1) Tờ trình được Người đề nghị Phan Văn Quang, GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký phê duyệt mức chiết khấu trọn gói 10.000.000 đ (tương đương 47,62% tổng doanh thu kho + bãi 21.000.000 đ/tháng, vượt trần 45% của QĐ 178/2024/QĐ-HNT); 2) Trên tờ trình có ghi chú viết tay '(DT bãi chưa có Chính sách riêng)' phản ánh thực tế Công ty chưa ban hành chính sách đơn giá và tỷ lệ chiết khấu chuẩn cho diện tích thuê Bãi ngoài trời; 3) Tờ trình bỏ trống ngày lập ('Hà Nội, ngày ... tháng 08 năm 2026'), không đánh số hiệu tờ trình và chưa đóng dấu Công ty.",
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const dc of folder1Discounts){
+    const ex = DB.get('discounts', dc.id);
+    if(!ex || (dc.id === 'disc_swallow_1806_2026' && ex.termCase !== 'early_client')) await DB.put('discounts', dc);
+  }
+
+  /* 7. Đảm bảo đủ 12 Hồ sơ yêu cầu (docreqs) & cập nhật trạng thái tiếp nhận (docreq_01, docreq_05 -> docreq_08) */
+  const defaultDocReqs = [
+    {id:'docreq_01',stt:1,group:'k2',name:'Tờ trình duyệt ngoại lệ giá / chiết khấu',content:'Văn bản, tờ trình phê duyệt áp dụng đơn giá ngoài biểu niêm yết hoặc mức chiết khấu theo QĐ 176 & QĐ 11.'},
+    {id:'docreq_02',stt:2,group:'k2',name:'Hồ sơ chi trả hoa hồng Môi giới / Sale',content:'Hợp đồng dịch vụ môi giới, tờ trình đề xuất tỷ lệ hoa hồng, bảng tính hoa hồng các đợt và văn bản phê duyệt chi.'},
+    {id:'docreq_03',stt:3,group:'k3',name:'Biên bản thanh lý HĐ & Hồ sơ giải tỏa cọc',content:'Biên bản thanh lý hợp đồng của các khách hàng chấm dứt hoặc trả kho trong kỳ; Hồ sơ tính toán cấn trừ công nợ, truy thu chiết khấu.'},
+    {id:'docreq_04',stt:4,group:'k2',name:'Bản sao Biên bản bàn giao mặt bằng kho từ Trung tâm Kho',content:'Biên bản bàn giao kho do Trung tâm/Kho ký thực địa với khách hàng gửi về lưu trữ tại Phòng Dự án.'},
+    {id:'docreq_05',stt:5,group:'k1',name:'Hồ sơ phê duyệt chủ trương & Tổng mức đầu tư (TMĐT)',content:'Tờ trình đầu tư, QĐ phê duyệt dự án, Báo cáo nghiên cứu khả thi (FS), dự toán TMĐT chi tiết từng hạng mục.'},
+    {id:'docreq_06',stt:6,group:'k1',name:'Hồ sơ cấp phép & Thẩm duyệt thiết kế PCCC',content:'Giấy phép xây dựng/chấp thuận cải tạo, Giấy chứng nhận thẩm duyệt thiết kế PCCC (Dự án DA-001 PCCC Nguyên Khê II).'},
+    {id:'docreq_07',stt:7,group:'k1',name:'Hợp đồng nhà thầu thi công & Tiến độ WBS',content:'Hợp đồng thi công xây lắp/cơ điện, chứng thư bảo lãnh thực hiện HĐ, tiến độ cam kết chi tiết (Master WBS).'},
+    {id:'docreq_08',stt:8,group:'k4',name:'Hồ sơ nghiệm thu kỹ thuật & Đề nghị thanh toán nhà thầu',content:'Biên bản nghiệm thu từng giai đoạn kỹ thuật, bản vẽ hoàn công, bảng xác nhận khối lượng hoàn thành trình duyệt thanh toán.'},
+    {id:'docreq_09',stt:9,group:'k3',name:'Văn bản/Email đôn đốc phối hợp xử lý nợ quá hạn',content:'Các thư nhắc nợ, biên bản làm việc hoặc thông báo tạm dừng dịch vụ do chuyên viên Dự án phối hợp cùng Kế toán gửi khách nợ quá hạn.'},
+    {id:'docreq_10',stt:10,group:'k6',name:'Hồ sơ xử lý sự cố / Khiếu nại tranh chấp hợp đồng',content:'Biên bản làm việc xử lý các sự cố kho bãi, tranh chấp điều khoản hợp đồng hoặc các thỏa thuận bồi hoàn thiệt hại (nếu có).'},
+    {id:'docreq_11',stt:11,group:'k5',name:'Bảng phân công nhiệm vụ (JD) & Sổ/File theo dõi giao việc',content:'Bảng mô tả công việc phân công nhiệm vụ chi tiết của 5 nhân sự và sổ/file theo dõi tiến độ công việc hàng tuần/tháng của Trưởng phòng.'},
+    {id:'docreq_12',stt:12,group:'k5',name:'Báo cáo kết quả công việc & Bảng tự chấm điểm KPI',content:'Bảng đăng ký chỉ tiêu đầu kỳ và Báo cáo tự chấm điểm, kết quả đánh giá hoàn thành nhiệm vụ theo 5 nhóm chỉ tiêu KPI của 5 nhân sự.'}
+  ];
+  for(const def of defaultDocReqs){
+    if(!DB.get('docreqs', def.id)){
+      await DB.put('docreqs', {
+        ...def,
+        periodId: pid0,
+        reqDate: '2026-10-15',
+        deadline: '2026-10-20',
+        recvDate: '',
+        provider: '',
+        status: 'wait',
+        evidence: '',
+        note: '',
+        createdAt: '2026-10-15T08:50:00.000Z',
+        updatedAt: '2026-10-15T08:50:00.000Z'
+      });
+    }
+  }
   for(const d of DB.all('docreqs')){
     let chg = false;
     const copy = {...d};
@@ -3638,7 +3925,15 @@ async function ensureSendoProjects(){
       copy.group = copy.group.replace('docGroup.','');
       chg = true;
     }
-    if(copy.id === 'docreq_05' && (!copy.evidence || !copy.evidence.includes('DA-008'))){
+    if(copy.id === 'docreq_01' && (!copy.evidence || !copy.evidence.includes('Vietstar'))){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kQuang;
+      copy.status = 'recv';
+      copy.evidence = 'Đã nhận 02 Tờ trình phê duyệt chiết khấu ngoài chính sách chuẩn tại Thư mục 1: (1) Swa.jpg – Tờ trình ngày 20/07/2026 duyệt chiết khấu khoán 5.000.000 đ (9,42% DT tháng 7/2026 là 53.099.000 đ) cho HĐ 1806/2026/HĐTK/HNT-SWALLOW (hợp đồng đã hủy/thanh lý từ 05/09/2026); (2) Vietstar.jpg – Tờ trình tháng 08/2026 duyệt chiết khấu ngoại lệ 10.000.000 đ (47,62% tổng DT kho + bãi 21.000.000 đ) cho HĐ 2207/2026/HĐTK/HNT-VIETSTAR do doanh thu bãi (300m² x 38.500đ) chưa có chính sách riêng.';
+      copy.note = "Lưu ý KSNB: (1) HĐ 1806/2026/HĐTK/HNT-SWALLOW đã HỦY / thanh lý sớm từ 05/09/2026 (chỉ thực hiện ~2,5 tháng), cần đối soát với Kế toán việc dừng chi hoặc truy thu khoản chiết khấu 5.000.000 đ; (2) Tờ trình Vietstar bỏ trống ngày lập ('ngày ... tháng 08/2026'), cả 2 tờ trình chưa có số hiệu; (3) Chưa có tờ trình phê duyệt giảm giá cho 02 HĐ có đơn giá thấp hơn chính sách là 1703/2025/HĐTK/HNT-TIKINOW (-4,35%) và 1002/2025/HĐTK/HNT-SDS (-3,64%).";
+      copy.updatedAt = now;
+      chg = true;
+    } else if(copy.id === 'docreq_05' && (!copy.evidence || !copy.evidence.includes('DA-008'))){
       copy.recvDate = '2026-10-20';
       copy.provider = kPhuong;
       copy.status = 'recv';
@@ -3674,23 +3969,27 @@ async function ensureSendoProjects(){
     if(chg) await DB.put('docreqs', copy);
   }
 
-  /* 8. Cập nhật kết quả Checklist liên quan đến DA-001 -> DA-008 */
+  /* 8. Cập nhật kết quả Checklist liên quan đến DA-001 -> DA-008 và Thư mục 1 (Giá & Chiết khấu) */
   const chkUpdates = {
     'CHK-DT-01': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Đã có Tờ trình/Hồ sơ mời thầu cho các gói DA-001 -> DA-008. Tuy nhiên: (1) Gói Khảo sát địa hình Hà Linh (DA-007 - 16,2 tr) bị lưu nhầm file ảnh Tờ trình của gói Khảo sát địa chất (33,53 tr), chưa có Tờ trình LGTHNT-06 đúng nội dung; (2) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) ký trước ngày Tờ trình được duyệt; (3) DA-004 & DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.'},
     'CHK-DT-02': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Các gói DA-002, DA-003, DA-004, DA-005, DA-006 đã được Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ phê duyệt đúng thẩm quyền; các gói lớn DA-001 (PCCC NK2) và DA-008 (TVTK XD & PCCC Hà Linh) đã tổ chức mở thầu có HĐQT chứng kiến. Tuy nhiên cả 02 Biên bản họp mở thầu (01/10/2026 và 16/09/2026) đều bỏ trống số hiệu và chưa có chữ ký của các thành viên tham dự ở trang 2.'},
     'CHK-CP-01': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Các gói DA-002, DA-003, DA-005, DA-006 đã hoàn thành 100% khối lượng; riêng gói DA-008 (TVTK Hà Linh) mở thầu ngày 16/09/2026 và đang chờ phê duyệt lựa chọn nhà thầu nên mốc 25/09/2026 bàn giao bản vẽ kiến trúc + kết cấu phục vụ thẩm định PCCC theo Thư mời chào giá 0509/TM-HNT bị chậm.'},
     'CHK-CP-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Chi phí quyết toán thực tế của các gói đã hoàn thành đều nằm trong hoặc giảm so với dự toán được duyệt: DA-002 (216.480.600 đ, giảm 90.720 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ), DA-005 (89.318.133 đ), DA-006 (30.774.600 đ, giảm 2.759.400 đ tương ứng -8,23%).'},
     'CHK-NT-01': {projectId:'proj_da002_sendo_nen', result:'fail', comment:"Hồ sơ nghiệm thu kỹ thuật & hoàn công có sai sót cần đính chính: (1) BBNT BBNT/HTCT/01 của DA-002 (Nền Sendo) và BBNT BBNTHT của DA-006 (KSĐC Hà Linh) của nhà thầu INDCON ghi sai số/ngày Hợp đồng tại căn cứ nghiệm thu; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 (Ống nước Ban Mai) ghi sai Chủ đầu tư thành 'Chi nhánh Công ty CP Quốc tế Phú Linh' & sai tên dự án; (3) Tất cả BBNT của DA-002, DA-003, DA-005, DA-006 đều bỏ trống ngày/tháng nghiệm thu."},
-    'CHK-NT-04': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ; DA-006: 30.774.600 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC và cần đính chính lại số/ngày HĐ trên BBNT (DA-002, DA-006) & khung tên Bản vẽ hoàn công (DA-005).'}
+    'CHK-NT-04': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ; DA-006: 30.774.600 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC và cần đính chính lại số/ngày HĐ trên BBNT (DA-002, DA-006) & khung tên Bản vẽ hoàn công (DA-005).'},
+    'CHK-GIA-01': {contractId:'muf8472n85ix547', result:'warn', comment:"Đơn giá thuê kho của Vietstar (135.000 đ/m² tại NK1) và Swallow (145.000 đ/m² tại Thanh Oai II - HĐ đã hủy) đều cao hơn giá chuẩn công bố. Tuy nhiên: (1) Công ty chưa ban hành bảng giá chính sách chuẩn cho diện tích thuê Bãi ngoài trời (Vietstar 300m² x 38.500 đ/m²; DGW 2.141,5m² x 37.000 đ/m²; CL 286,5m² x 38.000 đ/m²); (2) Chưa cung cấp tờ trình duyệt giảm giá cho 02 HĐ thấp hơn giá chuẩn là TikiNow (110.000 đ vs 115.000 đ) và SDS (106.000 đ vs 110.000 đ)."},
+    'CHK-GIA-02': {contractId:'muf8472f29mdfdz', result:'warn', comment:'Các HĐ có đơn giá thấp hơn giá công bố (như 1703/2025/HĐTK/HNT-TIKINOW giảm 4,35%; 1002/2025/HĐTK/HNT-SDS giảm 3,64%) đều nằm trong biên độ 5% thuộc thẩm quyền HĐQT, nhưng Phòng Dự án chưa lưu kèm văn bản phê duyệt giảm giá trong Thư mục 1.'},
+    'CHK-CK-03': {contractId:'muf8472n85ix547', result:'warn', comment:"02 Tờ trình chiết khấu tại Thư mục 1 đã được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt: (1) HĐ Swallow (1806/2026) ký 18/06/2026 (< 20 ngày tháng đầu) nên tính CK trên DT tháng 7/2026 (53.099.000 đ) với mức khoán 5.000.000 đ (9,42%); (2) HĐ Vietstar (2207/2026) duyệt ngoại lệ 10.000.000 đ (47,62% trên tổng DT kho + bãi 21.000.000 đ, vượt trần 45%) do DT bãi chưa có chính sách riêng. Lưu ý: Tờ trình Vietstar bỏ trống ngày lập ('ngày ... tháng 08 năm 2026')."},
+    'CHK-CK-04': {contractId:'ct_swallow_1806_2026', result:'warn', comment:'Hợp đồng 1806/2026/HĐTK/HNT-SWALLOW của KH Swallow đã HỦY / chấm dứt sớm từ ngày 05/09/2026 (chỉ sau ~2,5 tháng thực hiện kể từ ngày ký 18/06/2026). Tuy nhiên tại Biên bản thanh lý ngày 03/09/2026 (hoàn trả toàn bộ cọc 58.592.000 đ) và hồ sơ chiết khấu chưa ghi nhận việc dừng chi hoặc truy thu/điều chỉnh khoản chiết khấu 5.000.000 đ đã trình duyệt ngày 20/07/2026.'}
   };
   for(const c of DB.all('checklist').filter(x => x.periodId === pid0)){
     const u = chkUpdates[c.code];
-    if(u && (c.result === 'todo' || !c.comment || !c.comment.includes('DA-006') || c.comment.includes('Phúc Thịnh') || c.comment.includes('pháp nhân CĐT trên BBNT'))){
+    if(u && (c.result === 'todo' || !c.comment || (!c.comment.includes('DA-006') && !c.comment.includes('Vietstar')) || c.comment.includes('Phúc Thịnh') || c.comment.includes('pháp nhân CĐT trên BBNT'))){
       await DB.put('checklist', {...c, ...u, updatedAt: now});
     }
   }
 
-  /* 9. Tạo Finding & Kiến nghị cho DA-001 -> DA-008 */
+  /* 9. Tạo Finding & Kiến nghị cho DA-001 -> DA-008 và Thư mục 1 (Giá & Chiết khấu) */
   const sendoFnds = [
     {
       id: 'fnd_sendo_da002_01',
@@ -3744,7 +4043,7 @@ async function ensureSendoProjects(){
       riskLevel: 'med',
       projectId: 'proj_da004_banmai_dongho',
       contractId: '',
-      checklistId: 'chk_05_chk_dt_01',
+      checklistId: 'chk_01_chk_dt_01',
       content: 'Hợp đồng đấu nối đồng hồ nước sạch Ban Mai (DA-004) ký trước ngày phê duyệt tờ trình, bỏ trống số hợp đồng/dự toán, thiếu chữ ký chấp nhận dự toán của CĐT và chưa lưu kèm cam kết sản lượng nước của khách hàng Ban Mai',
       basis: 'Quy trình quản lý đầu tư xây dựng cơ bản; Bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải trên Tờ trình LGTHNT-06; Điều 1.2 & Điều 3.2 Hợp đồng .../2026/ĐA/HĐ-ĐMN.',
       actual: "1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị cấp VT-TB-CC (05/08/2026) và trước ngày Chủ tịch HĐQT ký duyệt (06/08/2026); 2) Hợp đồng và Dự toán đính kèm đều bỏ trống số hiệu ('Số: /2026/ĐA/HĐ-ĐMN', 'Số: /2026-DT-ĐA'), bỏ trống ngày lập dự toán, và mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN' tại trang 4 chưa có chữ ký, đóng dấu của HNT; 3) Chủ tịch HĐQT bút phê rõ điều kiện: 'Khách Ban Mai phải rõ nhu cầu nước là bao nhiêu, phải có mức tối thiểu... Nếu chỉ dự kiến, không cụ thể, không cam kết thì HNT không giải quyết', nhưng trong hồ sơ chưa có văn bản cam kết của KH Ban Mai; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
@@ -3788,7 +4087,7 @@ async function ensureSendoProjects(){
       riskLevel: 'med',
       projectId: da001Id,
       contractId: '',
-      checklistId: 'chk_06_chk_dt_02',
+      checklistId: 'chk_02_chk_dt_02',
       content: 'Biên bản họp mở thầu Gói Thiết kế & Thẩm định PCCC NK2 (DA-001) và Gói TVTK Xây dựng & PCCC Hà Linh (DA-008) bỏ trống số hiệu văn bản, chưa có chữ ký của các thành viên tham dự và chưa lưu kèm hồ sơ báo giá gốc của các nhà thầu',
       basis: 'Quy trình đấu thầu và lựa chọn nhà thầu nội bộ của Công ty CP Logistics HNT; Danh mục hồ sơ yêu cầu HS-PDA-06.',
       actual: "1) Cả 02 Biên bản họp mở thầu ngày 01/10/2026 (Gói TK + Thẩm định PCCC NK2 - DA-001) và ngày 16/09/2026 (Gói TVTK XD & PCCC Hà Linh - DA-008) đều bỏ trống số văn bản ('Số: ...../2026/BB-HNT') và bỏ trống hoàn toàn chữ ký của 03 lãnh đạo (Nguyễn Ngọc Hải, Phạm Thanh Năm, Nguyễn Văn Thứ) tại trang 2, đồng thời không thiết kế mục chữ ký cho các thành viên tham dự mở thầu khác (Phòng Dự án, Phòng Kế toán, Ban Kiểm soát/HCNS); 2) Tại Biên bản mở thầu DA-008 ngày 16/09/2026, vắng mặt đại diện Ban Kiểm soát, và 02 nhà thầu (Công ty CP INDCON & Công ty TNHH TV và KT PCCC NTK) chào giá Gói 1 bằng nhau tuyệt đối (195.000.000 đ chưa VAT); 3) Bộ hồ sơ của cả 2 gói chưa lưu kèm Hồ sơ chào thầu/báo giá gốc của các nhà thầu và Bảng tổng hợp đánh giá trình HĐQT phê duyệt.",
@@ -3823,11 +4122,33 @@ async function ensureSendoProjects(){
       conclusion: 'Yêu cầu Phòng Dự án đính chính lại Biên bản nghiệm thu BBNTHT của gói Khảo sát địa chất (DA-006) đúng số HĐ 1607/2026/HĐ-KSĐC ngày 16/07/2026, bổ sung đầy đủ ngày tháng, 04 BBNT khoan (01-04/NTKS), Giấy ĐNTT, Hóa đơn GTGT; đồng thời bổ sung đúng Tờ trình phê duyệt LGTHNT-06 cho gói Khảo sát địa hình (DA-007).',
       createdAt: now,
       updatedAt: now
+    },
+    {
+      id: 'fnd_folder1_ck_01',
+      periodId: pid0,
+      code: 'FND-26Q3-007',
+      group: 'k8',
+      riskLevel: 'med',
+      projectId: '',
+      contractId: 'ct_swallow_1806_2026',
+      checklistId: 'chk_30_chk_ck_04',
+      content: 'Hợp đồng Swallow (1806/2026/HĐTK/HNT-SWALLOW) đã hủy/chấm dứt sớm sau 2,5 tháng nhưng chưa ghi nhận xử lý/truy thu khoản chiết khấu 5.000.000 đ; Công ty chưa có chính sách giá & chiết khấu riêng cho diện tích thuê Bãi (HĐ Vietstar) và Tờ trình bỏ trống ngày lập',
+      basis: 'Khoản 6, Khoản 7 Chính sách bán hàng kho chung (QĐ 162/2025/QĐ-HNT – QĐ 11); QĐ 178/2024/QĐ-HNT (TT Nguyên Khê I) & QĐ 281/2026/QĐ-HNT (TT Thanh Oai II); Danh mục hồ sơ yêu cầu HS-PDA-01.',
+      actual: "1) Hợp đồng 1806/2026/HĐTK/HNT-SWALLOW ký ngày 18/06/2026 được Chủ tịch HĐQT phê duyệt chiết khấu khoán 5.000.000 đ tại Tờ trình ngày 20/07/2026 (trên doanh thu tháng 7/2026 là 53.099.000 đ), nhưng đến ngày 03/09/2026 đã ký Biên bản thanh lý HỦY / chấm dứt hợp đồng kể từ ngày 05/09/2026 (thời gian thuê thực tế chỉ ~2,5 tháng). Biên bản thanh lý hoàn trả nguyên cọc 58.592.000 đ mà chưa thể hiện việc dừng chi hoặc truy thu/điều chỉnh khoản chiết khấu 5.000.000 đ theo quy định chấm dứt HĐ trước hạn; 2) Đối với HĐ 2207/2026/HĐTK/HNT-VIETSTAR (Kho 70m² = 9,45 tr/tháng; Bãi 300m² = 11,55 tr/tháng; tổng 21 tr/tháng), do Công ty chưa ban hành chính sách giá & khung chiết khấu riêng cho diện tích Bãi ngoài trời nên phải trình duyệt ngoại lệ trọn gói 10.000.000 đ (47,62% tổng doanh thu, vượt trần 45% của QĐ 178); 3) Tờ trình Vietstar bỏ trống ngày lập ('Hà Nội, ngày ... tháng 08 năm 2026'), cả 02 tờ trình chưa đánh số hiệu văn bản; 4) Chưa cung cấp tờ trình phê duyệt giảm giá cho 02 HĐ có giá thấp hơn giá chuẩn (TikiNow -4,35%, SDS -3,64%).",
+      evidence: 'File Swa.jpg; File Vietstar.jpg (Thư mục 1. Phê duyệt giá hoặc ck ngoài chính sách); File BB THANH LY HĐ THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf.',
+      cause: 'Công ty chưa ban hành biểu giá và định mức chiết khấu chuẩn cho loại hình cho thuê Bãi ngoài trời; Phòng Dự án chưa đối chiếu chéo hồ sơ chiết khấu đã duyệt khi lập Biên bản thanh lý hợp đồng hủy trước hạn của khách hàng Swallow.',
+      impact: 'Nguy cơ chi trả chiết khấu không đúng điều kiện thời hạn thực tế đối với hợp đồng đã hủy sớm (Swallow - 5.000.000 đ) và thiếu khung chuẩn để kiểm soát đơn giá, tỷ lệ chiết khấu đối với các hợp đồng có thuê diện tích bãi ngoài trời.',
+      risk: 'Rủi ro thất thoát chi phí chiết khấu khi khách hàng chấm dứt hợp đồng sớm sau 2,5 tháng và rủi ro áp dụng tỷ lệ chiết khấu cảm tính đối với doanh thu thuê bãi.',
+      amount: 15000000,
+      deptOpinion: '',
+      conclusion: 'Yêu cầu Phòng Dự án phối hợp Phòng Kế toán kiểm tra khoản chiết khấu 5.000.000 đ của HĐ Swallow đã hủy (dừng chi nếu chưa thanh toán hoặc thu hồi/điều chỉnh theo thời gian thực tế nếu đã chi); tham mưu ban hành bổ sung chính sách giá & chiết khấu cho diện tích thuê Bãi ngoài trời và bổ sung ngày tháng/tờ trình ngoại lệ giá còn thiếu.',
+      createdAt: now,
+      updatedAt: now
     }
   ];
   for(const f of sendoFnds){
     const ex = DB.get('findings', f.id);
-    if(!ex || (ex.actual && ex.actual.includes('Phúc Thịnh'))) await DB.put('findings', f);
+    if(!ex || (ex.actual && ex.actual.includes('Phúc Thịnh')) || (f.id === 'fnd_banmai_da004_01' && ex.checklistId !== 'chk_01_chk_dt_01') || (f.id === 'fnd_pccc_da001_01' && ex.checklistId !== 'chk_02_chk_dt_02')) await DB.put('findings', f);
   }
 
   const sendoRecs = [
@@ -3950,6 +4271,26 @@ async function ensureSendoProjects(){
       confirmer: '',
       createdAt: now,
       updatedAt: now
+    },
+    {
+      id: 'rec_folder1_ck_01',
+      periodId: pid0,
+      findingId: 'fnd_folder1_ck_01',
+      code: 'FND-26Q3-007-K1',
+      content: '1) Phối hợp Phòng Kế toán rà soát tình trạng thanh toán khoản chiết khấu 5.000.000 đ của HĐ 1806/2026/HĐTK/HNT-SWALLOW (đã hủy/thanh lý từ 05/09/2026): dừng chi trả nếu chưa giải ngân hoặc thực hiện truy thu/điều chỉnh theo thời gian thuê thực tế (~2,5 tháng); 2) Tham mưu Ban Giám đốc & HĐQT ban hành bổ sung biểu giá chuẩn và khung tỷ lệ chiết khấu đối với diện tích cho thuê Bãi ngoài trời; 3) Điền đầy đủ ngày lập trên Tờ trình chiết khấu Vietstar và bổ sung tờ trình duyệt giảm giá (nếu có) cho các HĐ TikiNow, SDS.',
+      unit: kUnitPda,
+      owner: kQuang,
+      commitDate: '2026-10-20',
+      deadline: '2026-11-05',
+      measure: 'Đối soát chứng từ chi chiết khấu HĐ Swallow với Phòng Kế toán và trình ban hành phụ lục chính sách giá/chiết khấu cho diện tích thuê Bãi.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
     }
   ];
   for(const r of sendoRecs){
@@ -3988,12 +4329,25 @@ async function ensureSendoProjects(){
     {
       id: 'jnl_pccc_halinh_import_20261020',
       periodId: pid0,
-      ts: now,
+      ts: '2026-10-20T07:52:00.000Z',
       user: 'Nguyễn Thị Thu Hương',
       type: 'Đối chiếu',
       object: 'Dự án DA-001 (PCCC NK2) & DA-006, DA-007, DA-008 (Dự án Hà Linh)',
       content: 'Rà soát và cập nhật bộ hồ sơ Gói Nâng cấp PCCC NK2 (DA-001: 162.000.000 đ gồm VAT) và cụm Dự án TT Logistics HNT Hà Linh theo Phương án 1 gồm 03 gói: DA-006 (Khảo sát địa chất - INDCON - HĐ 33.534.000 đ, QT 30.774.600 đ), DA-007 (Khảo sát địa hình 1/500 - INDCON - 16.200.000 đ) và DA-008 (TVTK tổng thể xây dựng & PCCC Hà Linh - 383.400.000 đ gồm VAT); lập bổ sung 02 Finding (FND-26Q3-005, FND-26Q3-006) & 02 Kiến nghị KSNB.',
       result: 'Phát hiện 02 Finding (FND-26Q3-005, FND-26Q3-006)',
+      note: '',
+      auto: 0,
+      createdAt: '2026-10-20T07:52:00.000Z'
+    },
+    {
+      id: 'jnl_folder1_import_20261020',
+      periodId: pid0,
+      ts: now,
+      user: 'Nguyễn Thị Thu Hương',
+      type: 'Đối chiếu',
+      object: 'Hồ sơ #1: Phê duyệt giá / chiết khấu ngoài chính sách (Swallow & Vietstar)',
+      content: 'Rà soát Thư mục 1 (Swa.jpg & Vietstar.jpg): (1) Ghi nhận HĐ 1806/2026/HĐTK/HNT-SWALLOW ở trạng thái ĐÃ HỦY / thanh lý trước hạn từ 05/09/2026 (thời gian thuê ~2,5 tháng, cọc 58,592 tr) và khoản chiết khấu khoán 5.000.000 đ trình duyệt ngày 20/07/2026 thuộc diện HĐ hủy trước hạn cần rà soát dừng chi/truy thu; (2) Cập nhật HĐ 2207/2026/HĐTK/HNT-VIETSTAR (ký 22/07/2026) và khoản chiết khấu ngoại lệ 10.000.000 đ (47,62% DT kho + bãi 21 tr/tháng) do DT bãi (300m² x 38.500đ) chưa có chính sách riêng; lập Finding FND-26Q3-007 & Kiến nghị FND-26Q3-007-K1.',
+      result: 'Phát hiện 01 Finding (FND-26Q3-007)',
       note: '',
       auto: 0,
       createdAt: now
