@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
@@ -2547,7 +2547,8 @@ ACT['rs-apply']=async()=>{
     if(!DB.all('catalogs').length)await seedCatalogs();
     const ps=periodsSorted();await DB.setMeta('currentPeriod',ps.length?ps[ps.length-1].id:null);
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
+  await ensurePdaChecklist();await ensureSendoProjects();
+  await ensureFolder2Commissions();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
   }else{
     const plan=mergePlan(o),map={};let added=0,over=0;
     Object.keys(plan).forEach(s=>{
@@ -2562,7 +2563,8 @@ ACT['rs-apply']=async()=>{
     try{await DB.mergeMany(map)}catch(e){console.error(e);toast('Nhập thất bại: '+e.message,'err');return}
     if(!DB.get('periods',DB.meta.currentPeriod)){const ps=periodsSorted();if(ps.length)await DB.setMeta('currentPeriod',ps[ps.length-1].id)}
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
+  await ensurePdaChecklist();await ensureSendoProjects();
+  await ensureFolder2Commissions();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
   }
   await ensureCatalogMigrations();await migrateContractModel();
   UI.restore=null;toast('Phục hồi hoàn tất');go('dashboard');renderMain();
@@ -4359,6 +4361,735 @@ async function ensureSendoProjects(){
 }
 
 /* ---------- Dữ liệu demo ---------- */
+
+/* ---------- Äáº£m báº£o dá»¯ liá»‡u ThÆ° má»¥c 2: Hoa há»“ng MÃ´i giá»›i / Sale ---------- */
+async function ensureFolder2Commissions(){
+  const P = curPeriod() || DB.all('periods')[0];
+  if(!P) return;
+  const pid0 = P.id;
+  const now = '2026-10-20T10:00:00.000Z';
+  const kHai = catKeyByName('person','Nguyá»…n Ngá»c Háº£i (Chá»§ tá»‹ch HÄQT)') || 'k9';
+  const kQuang = catKeyByName('person','Phan VÄƒn Quang') || 'k2';
+  const kUnitPda = catKeyByName('unit','PhÃ²ng Dá»± Ã¡n') || 'k1';
+
+  /* 1. Danh má»¥c nhÃ¢n sá»± k12, k13 */
+  const newCats = [
+    { id: 'person.k12', group: 'person', key: 'k12', name: 'Pháº¡m Ngá»c Tháº¡ch', tone: '', order: 10 },
+    { id: 'person.k13', group: 'person', key: 'k13', name: 'Pháº¡m Thá»‹ BÃ­ch NgÃ¢n', tone: '', order: 11 }
+  ];
+  for(const c of newCats){
+    if(!DB.get('catalogs', c.id)) await DB.put('catalogs', c);
+  }
+
+  /* 2. KhÃ¡ch hÃ ng má»›i */
+  const newCusts = [
+    {
+      id: 'cust_thanhdat',
+      code: 'KH068',
+      name: 'CÃ”NG TY Cá»” PHáº¦N XUáº¤T NHáº¬P KHáº¨U VÃ€ PHÃT TRIá»‚N CÃ”NG NGHá»† THÃ€NH Äáº T',
+      short: 'ThÃ nh Äáº¡t',
+      taxNo: '',
+      rep: '',
+      phone: '',
+      address: '',
+      note: 'KhÃ¡ch hÃ ng theo Tá» trÃ¬nh duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng ngÃ y 14/10/2026 cho PhÃ²ng Dá»± Ã¡n.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'cust_hprgroup',
+      code: 'KH069',
+      name: 'CÃ”NG TY ÄÃ€O Táº O THÆ¯Æ NG Máº I QUá»C Táº¾ - HPRGROUP',
+      short: 'HPRGROUP',
+      taxNo: '',
+      rep: '',
+      phone: '',
+      address: '',
+      note: 'KhÃ¡ch hÃ ng lÆ°u kho chung NK theo Tá» trÃ¬nh duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng ngÃ y 14/10/2026.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const cu of newCusts){
+    if(!DB.get('customers', cu.id)) await DB.put('customers', cu);
+  }
+
+  /* 3. Há»£p Ä‘á»“ng má»›i & cáº­p nháº­t HÄ hiá»‡n há»¯u */
+  const newCts = [
+    {
+      id: 'ct_thanhdat_2009_2026',
+      status: 'active',
+      no: '2009/2026/HÄTK/HNT-TÄ',
+      type: 'k4',
+      model: 'lease',
+      customerId: 'cust_thanhdat',
+      site: 'cmukoahxa78ju1hh',
+      signDate: '2026-09-20',
+      effDate: '2026-09-20',
+      endDate: '2026-11-20',
+      area: 366.2,
+      unitPrice: 140000,
+      monthly: 49437000,
+      deposit: 0,
+      docContract: 'y',
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 14/10/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 961.275 Ä‘ (tá»· lá»‡ 35% x 2/36 thÃ¡ng). ÄÆ¡n giÃ¡ kho 135.000 + DV 5.000 Ä‘/mÂ²/thÃ¡ng.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'ct_hpr_1008_2026',
+      status: 'ended',
+      no: '10082026/HÄTK/HNT-HPR',
+      type: 'k2',
+      model: 'storage',
+      customerId: 'cust_hprgroup',
+      site: 'k6_4651',
+      signDate: '2026-08-10',
+      effDate: '2026-08-13',
+      endDate: '2026-09-12',
+      area: 47.5,
+      unitPrice: 5000,
+      monthly: 7125500,
+      deposit: 0,
+      docContract: 'y',
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 14/10/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 1.068.000 Ä‘ (15% trÃªn DT 7.125.500 Ä‘ tá»« 13/08/2026 Ä‘áº¿n háº¿t 12/09/2026).',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'ct_bhx_hd20264167',
+      status: 'active',
+      no: 'HD20264167',
+      type: 'k2',
+      model: 'lease',
+      customerId: 'mudvhgxwic07m8c',
+      site: 'k2',
+      signDate: '2026-08-01',
+      effDate: '2026-08-01',
+      endDate: '2028-08-18',
+      area: 253,
+      unitPrice: 136000,
+      monthly: 33649000,
+      deposit: 0,
+      docContract: 'y',
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 22/08/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 10.305.000 Ä‘ (tá»· lá»‡ 45% x 24,5/36 do thuÃª 2 nÄƒm 17 ngÃ y). PhÃ¢n bá»• kho 133.000 + BVVS 3.000 Ä‘/mÂ²/thÃ¡ng.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'ct_tikinow_pl05_06',
+      status: 'active',
+      no: '1703/2025/HÄTK/HNT-TIKINOW_PL05-06',
+      type: 'k2',
+      model: 'lease',
+      customerId: 'mudvhgxl18jymlw',
+      site: 'k2',
+      signDate: '2026-07-01',
+      effDate: '2026-07-01',
+      endDate: '2026-08-29',
+      area: 500,
+      unitPrice: 125000,
+      monthly: 62500000,
+      deposit: 0,
+      docContract: 'y',
+      docAppendix: 'y',
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 20/07/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 21.875.000 Ä‘ (tá»· lá»‡ 35% trÃªn DT 62.500.000 Ä‘ thÃ¡ng 7/2026 thuÃª 500mÂ² kho chung lÆ°u kho Ä‘áº¿n 29/8/26).',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const ct of newCts){
+    if(!DB.get('contracts', ct.id)) await DB.put('contracts', ct);
+  }
+
+  const updCts = [
+    {
+      id: 'muwb5x2v1dzc14w',
+      area: 411,
+      unitPrice: 135000,
+      monthly: 53430000,
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 14/10/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 21.372.000 Ä‘ (tá»· lá»‡ 40% trÃªn DT kho 53.430.000 Ä‘/thÃ¡ng). LÆ°u Ã½: Tá» trÃ¬nh ghi sá»‘ HÄ lÃ  2509/2026/HÄTK/HNT-AICA trong khi sá»‘ HÄ thá»±c táº¿ lÆ°u há»‡ thá»‘ng lÃ  1809/2026.'
+    },
+    {
+      id: 'muf8472l2vepruz',
+      signDate: '2025-07-13',
+      monthly: 13993560,
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 22/08/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 3.498.000 Ä‘ (25% trÃªn DT lÆ°u kho thÃ¡ng 7/2026 bÃ¬nh quÃ¢n 75mÂ³ lÃ  13.993.560 Ä‘, Ä‘Æ¡n giÃ¡ 6.000 Ä‘/mÂ³/ngÃ y).'
+    },
+    {
+      id: 'muf85bph4q7koc2',
+      signDate: '2026-05-13',
+      area: 468,
+      unitPrice: 138000,
+      monthly: 61776000,
+      docPrice: 'y',
+      docOther: 'Tá» trÃ¬nh ngÃ y 02/07/2026 duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n: 18.532.000 Ä‘ (30% trÃªn DT kho 61.776.000 Ä‘/thÃ¡ng). LÆ°u Ã½: HÄ káº¿t thÃºc trÆ°á»›c háº¡n ngÃ y 04/09/2026 nhÆ°ng Ä‘Ã£ chi Ä‘á»§ hoa há»“ng khÃ´ng phÃ¢n bá»• theo thá»i gian thá»±c táº¿.'
+    },
+    {
+      id: 'muf85bp196qyou9',
+      signDate: '2026-05-06',
+      area: 534,
+      monthly: 69420000,
+      docPrice: 'y',
+      docOther: 'BB nghiá»‡m thu hoÃ n thÃ nh DV mÃ´i giá»›i ngÃ y 01/07/2026: CTCP TM&DV ChÃ­nh Kho XÆ°á»Ÿng Ä‘Æ°á»£c hÆ°á»Ÿng 45% giÃ¡ thuÃª 1 thÃ¡ng (31.239.000 Ä‘ + VAT 10% = 34.362.900 Ä‘).'
+    },
+    {
+      id: 'muf85bp1piwyd83',
+      signDate: '2026-05-18',
+      area: 711,
+      unitPrice: 128000,
+      monthly: 91008000,
+      docPrice: 'y',
+      docOther: 'BB nghiá»‡m thu hoÃ n thÃ nh DV mÃ´i giá»›i ngÃ y 09/07/2026: MÃ´i giá»›i cÃ¡ nhÃ¢n Äinh CÃ´ng Tiá»‡p hÆ°á»Ÿng 40% giÃ¡ thuÃª 1 thÃ¡ng (36.403.000 Ä‘ - thuáº¿ TNCN 10% = 32.762.880 Ä‘ thá»±c nháº­n).'
+    },
+    {
+      id: 'muf85bp2kq8427w',
+      signDate: '2026-03-18',
+      monthly: 444375000,
+      docPrice: 'y',
+      docOther: 'BB nghiá»‡m thu hoÃ n thÃ nh DV mÃ´i giá»›i ngÃ y 28/04/2026: CTCP TM&DV ChÃ­nh Kho XÆ°á»Ÿng hÆ°á»Ÿng 25% giÃ¡ thuÃª 1 thÃ¡ng (111.000.000 Ä‘ + VAT 10% = 122.100.000 Ä‘ thá»±c nháº­n).'
+    }
+  ];
+  for(const u of updCts){
+    const ex = DB.get('contracts', u.id);
+    if(ex && (!ex.docOther || (!ex.docOther.includes('chiáº¿t kháº¥u bÃ¡n hÃ ng') && !ex.docOther.includes('DV mÃ´i giá»›i')))){
+      await DB.put('contracts', { ...ex, ...u, updatedAt: now });
+    }
+  }
+
+  /* 4. Danh sÃ¡ch 10 báº£n ghi hoa há»“ng khÃ¡ch hÃ ng má»›i */
+  const commRows = [
+    {
+      id: 'comm_sale_aica_2026',
+      periodId: pid0,
+      contractId: 'muwb5x2v1dzc14w',
+      periodStart: '2026-09-18',
+      periodNo: 1,
+      revenue: 53430000,
+      salesperson: 'k12',
+      saleAllowedRate: 40,
+      saleActualRate: 40,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 10/2026/QÄ-HNT ngÃ y 19/01/2026 (kho Ä‘á»™c láº­p NguyÃªn KhÃª II)',
+      proposer: 'k12',
+      approver: 'k9',
+      approveDate: '2026-10-14',
+      docs: 'Aica + ThÃ nh Äáº¡t trang 1.jpg & trang 2.jpg (Tá» trÃ¬nh ngÃ y 14/10/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u 40% trÃªn doanh thu kho 53.430.000 Ä‘ (411mÂ² x 130.000 Ä‘/mÂ²/thÃ¡ng, báº£o vá»‡ vá»‡ sinh 5.000 Ä‘/mÂ²/thÃ¡ng) = 21.372.000 Ä‘. LÆ°u Ã½: Tá» trÃ¬nh ghi sá»‘ HÄ 2509/2026 trong khi há»‡ thá»‘ng lÆ°u 1809/2026; tá»•ng sá»‘ tiá»n báº±ng chá»¯ ghi lá»‡ch.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_thanhdat_2026',
+      periodId: pid0,
+      contractId: 'ct_thanhdat_2009_2026',
+      periodStart: '2026-09-20',
+      periodNo: 1,
+      revenue: 2746500,
+      salesperson: 'k12',
+      saleAllowedRate: 35,
+      saleActualRate: 35,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 281/2026/QÄ-HNT ngÃ y 27/05/2026 (kho Ä‘á»™c láº­p Thanh Oai II)',
+      proposer: 'k12',
+      approver: 'k9',
+      approveDate: '2026-10-14',
+      docs: 'Aica + ThÃ nh Äáº¡t trang 1.jpg & trang 2.jpg (Tá» trÃ¬nh ngÃ y 14/10/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u tÃ­nh theo tá»· lá»‡ 2/36 thÃ¡ng do KH thuÃª kho 2 thÃ¡ng (thá»i gian tá»‘i thiá»ƒu theo chÃ­nh sÃ¡ch lÃ  36 thÃ¡ng): 49.437.000 Ä‘ x 35% x 2/36 = 961.275 Ä‘ (doanh thu cÆ¡ sá»Ÿ Ä‘Ã£ quy Ä‘á»•i 2.746.500 Ä‘).',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_bhx_hd20264167',
+      periodId: pid0,
+      contractId: 'ct_bhx_hd20264167',
+      periodStart: '2026-08-01',
+      periodNo: 1,
+      revenue: 22900000,
+      salesperson: 'k2',
+      saleAllowedRate: 45,
+      saleActualRate: 45,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 178/2024/QÄ-HNT (tá» trÃ¬nh ghi nháº§m QÄ 178/2026 ngÃ y 25/10/2026 - kho Ä‘á»™c láº­p NguyÃªn KhÃª I)',
+      proposer: 'k2',
+      approver: 'k9',
+      approveDate: '2026-08-22',
+      docs: 'BHX.jpg (Tá» trÃ¬nh ngÃ y 22/08/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u tÃ­nh theo tá»· lá»‡ 24,5/36 do KH thuÃª thá»i háº¡n 2 nÄƒm 17 ngÃ y: 33.649.000 Ä‘ x 45% x 24,5/36 = 10.305.000 Ä‘ (doanh thu cÆ¡ sá»Ÿ quy Ä‘á»•i 22.900.000 Ä‘). PhÃ¢n bá»• kho 133.000 + BVVS 3.000 Ä‘/mÂ²/thÃ¡ng.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_gagu_2026',
+      periodId: pid0,
+      contractId: 'muf8472l2vepruz',
+      periodStart: '2026-07-01',
+      periodNo: 1,
+      revenue: 13992000,
+      salesperson: 'k13',
+      saleAllowedRate: 25,
+      saleActualRate: 25,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 162/2025/QÄ-HNT ngÃ y 07/05/2025 (kho chung cÃ¡c trung tÃ¢m, tÆ°Æ¡ng Ä‘Æ°Æ¡ng QÄ 11/2025)',
+      proposer: 'k13',
+      approver: 'k9',
+      approveDate: '2026-08-22',
+      docs: 'Gagu.jpg (Tá» trÃ¬nh ngÃ y 22/08/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u 25% trÃªn DT lÆ°u kho thÃ¡ng 7/2026 (bÃ¬nh quÃ¢n lÆ°u kho 75mÂ³ x 6.000 Ä‘/mÂ³/ngÃ y = 13.993.560 Ä‘; lÃ m trÃ²n chi tráº£: 3.498.000 Ä‘). Cáº§n rÃ  soÃ¡t chÃ­nh sÃ¡ch chi hoa há»“ng theo tá»«ng thÃ¡ng phÃ¡t sinh DT Ä‘á»‘i vá»›i kho chung.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_hpr_2026',
+      periodId: pid0,
+      contractId: 'ct_hpr_1008_2026',
+      periodStart: '2026-08-13',
+      periodNo: 1,
+      revenue: 7120000,
+      salesperson: 'k12',
+      saleAllowedRate: 15,
+      saleActualRate: 15,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 162/2025/QÄ-HNT ngÃ y 07/05/2025 (kho chung NguyÃªn KhÃª I)',
+      proposer: 'k12',
+      approver: 'k9',
+      approveDate: '2026-10-14',
+      docs: 'HPR.jpg (Tá» trÃ¬nh ngÃ y 14/10/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u 15% trÃªn DT lÆ°u kho tá»« 13/08/2026 Ä‘áº¿n háº¿t 12/09/2026 (bÃ¬nh quÃ¢n 47,5mÂ³ x 5.000 Ä‘/mÂ³/ngÃ y: 7.125.500 Ä‘; chi tráº£ lÃ m trÃ²n: 1.068.000 Ä‘). PhÃ©p nhÃ¢n 47,5 x 5.000 x 30 = 7.125.000 Ä‘ (lá»‡ch 500 Ä‘ trÃªn tá» trÃ¬nh).',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_mk_2026',
+      periodId: pid0,
+      contractId: 'muf85bph4q7koc2',
+      periodStart: '2026-05-13',
+      periodNo: 1,
+      revenue: 61773333,
+      salesperson: 'k13',
+      saleAllowedRate: 30,
+      saleActualRate: 30,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 281/2026/QÄ-HNT ngÃ y 27/05/2026 (kho Ä‘á»™c láº­p Thanh Oai 2)',
+      proposer: 'k13',
+      approver: 'k9',
+      approveDate: '2026-07-02',
+      docs: 'MK.jpg (Tá» trÃ¬nh ngÃ y 02/07/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u 30% trÃªn DT thuÃª kho 1 thÃ¡ng (468mÂ² x 132.000 Ä‘ kho + 6.000 Ä‘ BVVS = 61.776.000 Ä‘; lÃ m trÃ²n chi tráº£: 18.532.000 Ä‘). LÆ°u Ã½: HÄ 1305/2026 Ä‘Ã£ cháº¥m dá»©t ngÃ y 04/09/2026 (~3,7 thÃ¡ng thuÃª), nhÆ°ng Ä‘Ã£ chi tráº£ trá»n váº¹n hoa há»“ng vÃ  chÆ°a thá»±c hiá»‡n truy thu/phÃ¢n bá»• láº¡i.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_sale_tiki_2026',
+      periodId: pid0,
+      contractId: 'ct_tikinow_pl05_06',
+      periodStart: '2026-07-01',
+      periodNo: 1,
+      revenue: 62500000,
+      salesperson: 'k13',
+      saleAllowedRate: 35,
+      saleActualRate: 35,
+      hasBroker: 'n',
+      brokerName: '',
+      brokerAllowedRate: '',
+      brokerActualRate: '',
+      policy: 'QÄ 162/2025/QÄ-HNT ngÃ y 07/05/2025 (kho chung cÃ¡c trung tÃ¢m)',
+      proposer: 'k13',
+      approver: 'k9',
+      approveDate: '2026-07-20',
+      docs: 'Tiki pl05 + 06.jpg (Tá» trÃ¬nh ngÃ y 20/07/2026)',
+      exception: 'n',
+      note: 'Chiáº¿t kháº¥u 35% trÃªn DT lÆ°u kho thÃ¡ng 7/2026 (500mÂ² x 125.000 Ä‘/mÂ²/thÃ¡ng = 62.500.000 Ä‘; thÃ nh tiá»n: 21.875.000 Ä‘). Ghi chÃº trÃªn tá» trÃ¬nh: kho chung lÆ°u kho Ä‘áº¿n 29/8/26 theo PL05 & PL06 cá»§a HÄ gá»‘c kÃ½ tá»« 17/03/2025.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_mg_bhx_1803_2026',
+      periodId: pid0,
+      contractId: 'muf85bp2kq8427w',
+      periodStart: '2026-03-18',
+      periodNo: 1,
+      revenue: 444000000,
+      salesperson: 'k2',
+      saleAllowedRate: 0,
+      saleActualRate: 0,
+      hasBroker: 'y',
+      brokerName: 'CÃ´ng ty Cá»• pháº§n ThÆ°Æ¡ng máº¡i vÃ  Dá»‹ch vá»¥ ChÃ­nh Kho XÆ°á»Ÿng',
+      brokerAllowedRate: 25,
+      brokerActualRate: 25,
+      policy: 'HÄ nguyÃªn táº¯c há»£p tÃ¡c mÃ´i giá»›i sá»‘ 0103/2026/HÄNT ngÃ y 01/03/2026',
+      proposer: 'k2',
+      approver: 'k9',
+      approveDate: '2026-04-28',
+      docs: 'BB nghiá»‡m thu hoÃ n thÃ nh dá»‹ch vá»¥ ngÃ y 28/04/2026 Ä‘Ã­nh kÃ¨m HÄ mÃ´i giá»›i ChÃ­nh Kho XÆ°á»Ÿng',
+      exception: 'n',
+      note: 'PhÃ­ mÃ´i giá»›i 25% giÃ¡ trá»‹ thuÃª kho 01 thÃ¡ng lÃ m trÃ²n: 111.000.000 Ä‘ (chÆ°a VAT); Thuáº¿ GTGT 10%: 11.100.000 Ä‘; Tá»•ng thá»±c nháº­n: 122.100.000 Ä‘. DT 1 thÃ¡ng cá»§a KH BHX lÃ  444.375.000 Ä‘. BiÃªn báº£n ghi nháº§m sá»‘ HÄ thÃ nh 0103/2026/HÄDV vÃ  ghi nháº§m cÃ´ng thá»©c III=I-II.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_mg_banmai_0605_2026',
+      periodId: pid0,
+      contractId: 'muf85bp196qyou9',
+      periodStart: '2026-05-06',
+      periodNo: 1,
+      revenue: 69420000,
+      salesperson: 'k2',
+      saleAllowedRate: 0,
+      saleActualRate: 0,
+      hasBroker: 'y',
+      brokerName: 'CÃ´ng ty Cá»• pháº§n ThÆ°Æ¡ng máº¡i vÃ  Dá»‹ch vá»¥ ChÃ­nh Kho XÆ°á»Ÿng',
+      brokerAllowedRate: 45,
+      brokerActualRate: 45,
+      policy: 'HÄ nguyÃªn táº¯c há»£p tÃ¡c mÃ´i giá»›i sá»‘ 0103/2026/HÄNT ngÃ y 01/03/2026',
+      proposer: 'k2',
+      approver: 'k9',
+      approveDate: '2026-07-01',
+      docs: 'ChÃ­nh kho xÆ°á»Ÿng - BB NGHIEM THU HOAN THANH DV MOI GIOI KH BAN MAI TTNK2_20260703_0001.pdf',
+      exception: 'n',
+      note: 'PhÃ­ mÃ´i giá»›i 45% giÃ¡ trá»‹ thuÃª kho 01 thÃ¡ng (534mÂ²: 69.420.000 Ä‘) = 31.239.000 Ä‘ (chÆ°a VAT); Thuáº¿ GTGT 10%: 3.123.900 Ä‘; Tá»•ng thá»±c nháº­n: 34.362.900 Ä‘. Äiá»u khoáº£n thanh toÃ¡n táº¡i BBNT (7 ngÃ y ká»ƒ tá»« ngÃ y kÃ½ BBNT) khÃ´ng Ä‘á»“ng nháº¥t vá»›i HÄ nguyÃªn táº¯c (7 ngÃ y sau khi HNT nháº­n tiá»n thuÃª thÃ¡ng Ä‘áº§u).',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'comm_mg_aj_1805_2026',
+      periodId: pid0,
+      contractId: 'muf85bp1piwyd83',
+      periodStart: '2026-05-18',
+      periodNo: 1,
+      revenue: 91007500,
+      salesperson: 'k2',
+      saleAllowedRate: 0,
+      saleActualRate: 0,
+      hasBroker: 'y',
+      brokerName: 'Ã”ng Äinh CÃ´ng Tiá»‡p (Minh HÃ¹ng - CCCD: 017090007964)',
+      brokerAllowedRate: 40,
+      brokerActualRate: 40,
+      policy: 'BiÃªn báº£n thá»a thuáº­n dá»‹ch vá»¥ mÃ´i giá»›i ngÃ y 08/05/2026',
+      proposer: 'k2',
+      approver: 'k9',
+      approveDate: '2026-07-09',
+      docs: 'KhÃ¡ch AJ - BB thá»a thuáº­n DV mÃ´i giá»›i & BB nghiá»‡m thu hoÃ n thÃ nh DV mÃ´i giá»›i ngÃ y 09/07/2026',
+      exception: 'n',
+      note: 'PhÃ­ mÃ´i giá»›i 40% giÃ¡ trá»‹ thuÃª kho 01 thÃ¡ng (711mÂ² x 128.000 Ä‘ = 91.008.000 Ä‘, BBNT ghi báº±ng chá»¯ sai thÃ nh 94.563.000 Ä‘): 36.403.000 Ä‘; Kháº¥u trá»« thuáº¿ TNCN 10%: 3.640.320 Ä‘ (tÃ­nh trÃªn 36.403.200 Ä‘ chÆ°a lÃ m trÃ²n); Thá»±c nháº­n: 32.762.880 Ä‘. BBNT rÃºt ngáº¯n háº¡n thanh toÃ¡n cÃ²n 7 ngÃ y ká»ƒ tá»« ngÃ y kÃ½ BBNT thay vÃ¬ 15 ngÃ y ká»ƒ tá»« khi HNT nháº­n tiá»n thuÃª ká»³ Ä‘áº§u theo BiÃªn báº£n thá»a thuáº­n.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const c of commRows){
+    if(!DB.get('commissions', c.id)) await DB.put('commissions', c);
+  }
+
+  /* 5. Cáº­p nháº­t docreq_02 */
+  const d2 = DB.get('docreqs', 'docreq_02');
+  if(d2 && (d2.status !== 'recv' || !d2.evidence || !d2.evidence.includes('11 file'))){
+    await DB.put('docreqs', {
+      ...d2,
+      status: 'recv',
+      recvDate: '2026-10-20',
+      provider: kQuang,
+      evidence: 'ÄÃ£ nháº­n Ä‘áº§y Ä‘á»§ 11 file há»“ sÆ¡ chi tráº£ hoa há»“ng MG & Sale táº¡i ThÆ° má»¥c 2: (1) 07 Tá» trÃ¬nh duyá»‡t chiáº¿t kháº¥u bÃ¡n hÃ ng cho P. Dá»± Ã¡n (AiCa, ThÃ nh Äáº¡t, BHX HD20264167, Gagu, HPRGROUP, MK, TikiNow PL05-06) vá»›i tá»•ng sá»‘ tiá»n 77.611.275 Ä‘; (2) HÄ nguyÃªn táº¯c mÃ´i giá»›i sá»‘ 0103/2026/HÄNT vá»›i CTCP TM&DV ChÃ­nh Kho XÆ°á»Ÿng cÃ¹ng 02 BBNT hoÃ n thÃ nh DV mÃ´i giá»›i khÃ¡ch BHX (122,1 tr gá»“m VAT) vÃ  Ban Mai (34,36 tr gá»“m VAT); (3) BiÃªn báº£n thá»a thuáº­n & BBNT hoÃ n thÃ nh DV mÃ´i giá»›i khÃ¡ch AJ Rental vá»›i cÃ¡ nhÃ¢n Äinh CÃ´ng Tiá»‡p (32,76 tr sau kháº¥u trá»« 10% TNCN).',
+      note: 'PhÃ¡t hiá»‡n 05 váº¥n Ä‘á» KSNB cáº§n cháº¥n chá»‰nh: FND-26Q3-008 (HÄ MK há»§y trÆ°á»›c háº¡n chÆ°a truy thu hoa há»“ng), FND-26Q3-009 (sai sÃ³t sá»‘ liá»‡u vÃ  rÃºt ngáº¯n háº¡n thanh toÃ¡n mÃ´i giá»›i khÃ¡ch AJ), FND-26Q3-010 (BBNT ChÃ­nh Kho XÆ°á»Ÿng khÃ´ng Ä‘á»“ng nháº¥t HÄ nguyÃªn táº¯c), FND-26Q3-011 (sai sÃ³t sá»‘ HÄ, sá»‘ tiá»n báº±ng chá»¯ vÃ  ngÃ y hiá»‡u lá»±c QÄ trÃªn tá» trÃ¬nh Sale), FND-26Q3-012 (Ã¡p dá»¥ng cÄƒn cá»© vÃ  chi hoa há»“ng kho chung nhiá»u ká»³).',
+      updatedAt: now
+    });
+  }
+
+  /* 6. Cáº­p nháº­t checklist */
+  const chkMap = {
+    'CHK-CK-04': {
+      result: 'warn',
+      comment: 'PhÃ¡t hiá»‡n 02 trÆ°á»ng há»£p khÃ¡ch hÃ ng cháº¥m dá»©t/há»§y há»£p Ä‘á»“ng trÆ°á»›c háº¡n nhÆ°ng chÆ°a truy thu hoáº·c xá»­ lÃ½ khoáº£n chiáº¿t kháº¥u/hoa há»“ng: (1) HÄ 1806/2026 Swallow (Ä‘Ã£ há»§y tá»« 05/09/2026, thuÃª ~2,5 thÃ¡ng, cá»c 58,59 tr) cÃ³ khoáº£n chiáº¿t kháº¥u 5.000.000 Ä‘ trÃ¬nh duyá»‡t ngÃ y 20/07/2026 chÆ°a cÃ³ há»“ sÆ¡ dá»«ng chi/truy thu; (2) HÄ 1305/2026 MK Viá»‡t Nam (Ä‘Ã£ káº¿t thÃºc ngÃ y 04/09/2026, thuÃª ~3,7 thÃ¡ng) Ä‘Ã£ chi Ä‘á»§ 100% hoa há»“ng 18.532.000 Ä‘ mÃ  khÃ´ng phÃ¢n bá»• theo thá»i gian thuÃª thá»±c táº¿ hoáº·c truy thu.'
+    },
+    'CHK-HH-01': {
+      result: 'warn',
+      comment: 'Tá»· lá»‡ hoa há»“ng cho Sale vÃ  MÃ´i giá»›i cÆ¡ báº£n Ä‘Æ°á»£c Ban GiÃ¡m Ä‘á»‘c vÃ  Chá»§ tá»‹ch HÄQT phÃª duyá»‡t (Sale tá»« 15% â€“ 45%; MG tá»« 25% â€“ 45%). Tuy nhiÃªn: (1) Há»“ sÆ¡ mÃ´i giá»›i chÆ°a cÃ³ khung tá»· lá»‡ chuáº©n Ä‘Æ°á»£c ban hÃ nh lÃ m cÄƒn cá»© Ä‘á»‘i chiáº¿u (chá»‰ thá»a thuáº­n tá»«ng vá»¥ viá»‡c theo BBNT); (2) Xuáº¥t hiá»‡n cÃ¡c sai sÃ³t tÃ­nh toÃ¡n, lÃ m trÃ²n hoáº·c viá»‡n dáº«n quyáº¿t Ä‘á»‹nh chÆ°a ban hÃ nh táº¡i thá»i Ä‘iá»ƒm láº­p tá» trÃ¬nh (nhÆ° BHX viá»‡n dáº«n QÄ 178/2026 ngÃ y 25/10/2026 trÃªn tá» trÃ¬nh láº­p ngÃ y 22/08/2026).'
+    },
+    'CHK-HH-02': {
+      result: 'warn',
+      comment: 'ThÃ´ng tin mÃ´i giá»›i Ä‘Ã£ Ä‘Æ°á»£c minh báº¡ch (cÃ³ HÄ nguyÃªn táº¯c vÃ  BBNT vá»›i ChÃ­nh Kho XÆ°á»Ÿng; cÃ³ CCCD vÃ  kÃª khai kháº¥u trá»« thuáº¿ TNCN 10% vá»›i mÃ´i giá»›i cÃ¡ nhÃ¢n Äinh CÃ´ng Tiá»‡p). Tuy nhiÃªn: (1) BBNT rÃºt ngáº¯n thá»i háº¡n thanh toÃ¡n (7 ngÃ y ká»ƒ tá»« ngÃ y kÃ½ BBNT) trÃ¡i vá»›i thá»a thuáº­n ban Ä‘áº§u (chá»‰ thanh toÃ¡n sau khi HNT nháº­n Ä‘á»§ tiá»n thuÃª ká»³ Ä‘áº§u cá»§a khÃ¡ch); (2) BBNT khÃ¡ch AJ ghi sai sá»‘ tiá»n báº±ng chá»¯ (94.563.000 Ä‘ vs 91.008.000 Ä‘) vÃ  tÃ­nh thuáº¿ TNCN lá»‡ch sá»‘ lÃ m trÃ²n.'
+    },
+    'CHK-HH-03': {
+      result: 'warn',
+      comment: 'ChÃ­nh sÃ¡ch cÃ´ng ty quy Ä‘á»‹nh hoa há»“ng khÃ¡ch hÃ ng má»›i chá»‰ chia 01 láº§n cho ká»³ Ä‘áº§u tiÃªn (1 thÃ¡ng doanh thu). Tuy nhiÃªn: Äá»‘i vá»›i khÃ¡ch hÃ ng lÆ°u kho chung (Gagu kÃ½ tá»« thÃ¡ng 7/2025, TikiNow kÃ½ tá»« thÃ¡ng 3/2025), PhÃ²ng Dá»± Ã¡n tiáº¿p tá»¥c láº­p tá» trÃ¬nh Ä‘á» nghá»‹ chi hoa há»“ng trÃªn doanh thu phÃ¡t sinh cá»§a thÃ¡ng 7/2026 theo QÄ 162/2025 mÃ  khÃ´ng cÃ³ quy Ä‘á»‹nh rÃµ rÃ ng vá» sá»‘ ká»³ tá»‘i Ä‘a Ä‘Æ°á»£c hÆ°á»Ÿng Ä‘á»‘i vá»›i há»£p Ä‘á»“ng lÆ°u kho chung.'
+    }
+  };
+  for(const [code, val] of Object.entries(chkMap)){
+    const c = DB.all('checklist').find(x => x.periodId === pid0 && x.code === code);
+    if(c && (c.result !== val.result || c.comment !== val.comment)){
+      await DB.put('checklist', { ...c, ...val, updatedAt: now });
+    }
+  }
+
+  /* 7. Findings & Recs má»›i (5 cáº·p) */
+  const folder2Findings = [
+    {
+      id: 'fnd_folder2_mk_01',
+      periodId: pid0,
+      code: 'FND-26Q3-008',
+      group: 'k8',
+      riskLevel: 'high',
+      projectId: '',
+      contractId: 'muf85bph4q7koc2',
+      checklistId: 'chk_30_chk_ck_04',
+      content: 'Há»£p Ä‘á»“ng 1305/2026 MK Viá»‡t Nam káº¿t thÃºc trÆ°á»›c háº¡n nhÆ°ng Ä‘Ã£ chi tráº£ 100% hoa há»“ng bÃ¡n hÃ ng mÃ  khÃ´ng phÃ¢n bá»• hay truy thu',
+      basis: 'QÄ 281/2026/QÄ-HNT ngÃ y 27/05/2026 (ChÃ­nh sÃ¡ch bÃ¡n hÃ ng kho Ä‘á»™c láº­p Thanh Oai 2) & Äiá»u 7 Quy cháº¿ chiáº¿t kháº¥u/hoa há»“ng (truy thu khi khÃ¡ch cháº¥m dá»©t trÆ°á»›c háº¡n).',
+      actual: 'Há»£p Ä‘á»“ng 1305/2026/HÄTK/HNT-MK kÃ½ ngÃ y 13/05/2026 thuÃª 468mÂ² kho táº¡i Thanh Oai 2 vá»›i Ä‘Æ¡n giÃ¡ 138.000 Ä‘/mÂ²/thÃ¡ng (doanh thu 61.776.000 Ä‘/thÃ¡ng). NgÃ y 02/07/2026, PhÃ²ng Dá»± Ã¡n láº­p tá» trÃ¬nh Ä‘á» nghá»‹ chi 30% hoa há»“ng bÃ¡n hÃ ng (18.532.000 Ä‘) vÃ  Ä‘Ã£ Ä‘Æ°á»£c duyá»‡t chi. Tuy nhiÃªn Ä‘áº¿n ngÃ y 04/09/2026 há»£p Ä‘á»“ng Ä‘Ã£ cháº¥m dá»©t (thá»i gian thuÃª thá»±c táº¿ chá»‰ khoáº£ng 3,7 thÃ¡ng), trong khi hoa há»“ng tÃ­nh trá»n gÃ³i khÃ´ng cÃ³ cÆ¡ cháº¿ kháº¥u trá»«/truy thu tÆ°Æ¡ng á»©ng nhÆ° trÆ°á»ng há»£p ThÃ nh Äáº¡t (2/36) hay BHX (24,5/36).',
+      evidence: 'Tá» trÃ¬nh MK.jpg ngÃ y 02/07/2026 vÃ  dá»¯ liá»‡u HÄ muf85bph4q7koc2 (endDate: 2026-09-04, status: ended).',
+      cause: 'PhÃ²ng Dá»± Ã¡n vÃ  Káº¿ toÃ¡n chÆ°a cÃ³ quy trÃ¬nh Ä‘á»‘i soÃ¡t tá»± Ä‘á»™ng giá»¯a tÃ¬nh tráº¡ng há»£p Ä‘á»“ng thá»±c táº¿ vÃ  cÃ¡c khoáº£n chiáº¿t kháº¥u/hoa há»“ng Ä‘Ã£ táº¡m á»©ng/chi tráº£.',
+      impact: 'Rá»§i ro tháº¥t thoÃ¡t chi phÃ­ hoa há»“ng cá»§a CÃ´ng ty khi khÃ¡ch hÃ ng khÃ´ng duy trÃ¬ Ä‘á»§ thá»i háº¡n thuÃª cam káº¿t tá»‘i thiá»ƒu.',
+      risk: 'Tháº¥t thoÃ¡t chi phÃ­ bÃ¡n hÃ ng vÃ  khÃ´ng cÃ´ng báº±ng giá»¯a cÃ¡c há»£p Ä‘á»“ng cÃ³ phÃ¢n bá»• thá»i háº¡n.',
+      amount: 18532000,
+      deptOpinion: 'PhÃ²ng Dá»± Ã¡n sáº½ phá»‘i há»£p Káº¿ toÃ¡n kiá»ƒm tra láº¡i tÃ¬nh tráº¡ng thanh lÃ½ HÄ MK vÃ  rÃ  soÃ¡t phÆ°Æ¡ng Ã¡n xá»­ lÃ½ thu há»“i/cáº¥n trá»« náº¿u cÃ³.',
+      conclusion: 'Ghi nháº­n Finding má»©c Cao. Äá» nghá»‹ rÃ  soÃ¡t vÃ  thu há»“i pháº§n hoa há»“ng tÆ°Æ¡ng á»©ng thá»i gian chÆ°a thá»±c hiá»‡n hoáº·c cáº¥n trá»« cÃ´ng ná»£.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_folder2_aj_01',
+      periodId: pid0,
+      code: 'FND-26Q3-009',
+      group: 'k8',
+      riskLevel: 'med',
+      projectId: '',
+      contractId: 'muf85bp1piwyd83',
+      checklistId: 'chk_32_chk_hh_02',
+      content: 'Há»“ sÆ¡ mÃ´i giá»›i khÃ¡ch hÃ ng AJ Rental ghi sai sá»‘ tiá»n báº±ng chá»¯, tÃ­nh lá»‡ch thuáº¿ TNCN vÃ  rÃºt ngáº¯n thá»i háº¡n thanh toÃ¡n',
+      basis: 'BiÃªn báº£n thá»a thuáº­n dá»‹ch vá»¥ mÃ´i giá»›i ngÃ y 08/05/2026 vÃ  Luáº­t Quáº£n lÃ½ thuáº¿ (kháº¥u trá»« thuáº¿ TNCN Ä‘á»‘i vá»›i thÃ¹ lao mÃ´i giá»›i cÃ¡ nhÃ¢n).',
+      actual: 'Táº¡i BiÃªn báº£n nghiá»‡m thu hoÃ n thÃ nh dá»‹ch vá»¥ mÃ´i giá»›i ngÃ y 09/07/2026 vá»›i cÃ¡ nhÃ¢n Äinh CÃ´ng Tiá»‡p: (1) Má»¥c 1 ghi giÃ¡ thuÃª kho 1 thÃ¡ng báº±ng sá»‘ lÃ  91.008.000 VNÄ nhÆ°ng báº±ng chá»¯ láº¡i ghi sai thÃ nh "ChÃ­n mÆ°Æ¡i tÆ° triá»‡u, nÄƒm trÄƒm sÃ¡u mÆ°Æ¡i ba nghÃ¬n Ä‘á»“ng" (94.563.000); (2) Má»¥c 2.I lÃ m trÃ²n phÃ­ 40% thÃ nh 36.403.000 Ä‘ nhÆ°ng má»¥c 2.II láº¡i tÃ­nh 10% thuáº¿ TNCN trÃªn sá»‘ chÆ°a lÃ m trÃ²n (36.403.200 x 10% = 3.640.320 Ä‘), dáº«n tá»›i sá»‘ thá»±c nháº­n 32.762.880 Ä‘ lá»‡ch 200 Ä‘ so vá»›i phÃ©p trá»« 36.403.000 - 3.640.320 = 32.762.680 Ä‘; (3) Má»¥c 3 quy Ä‘á»‹nh thanh toÃ¡n trong vÃ²ng 07 ngÃ y lÃ m viá»‡c ká»ƒ tá»« ngÃ y kÃ½ BBNT, trÃ¡i vá»›i thá»a thuáº­n ngÃ y 08/05/2026 (quy Ä‘á»‹nh thanh toÃ¡n trong vÃ²ng 15 ngÃ y lÃ m viá»‡c sau khi HNT nháº­n Ä‘Æ°á»£c thanh toÃ¡n tiá»n thuÃª kho ká»³ Ä‘áº§u).',
+      evidence: 'File "KhÃ¡ch AJ - BiÃªn báº£n nghiá»‡m thu hoÃ n thÃ nh dá»‹ch vá»¥ mÃ´i giá»›i khÃ¡ch AJ ÄInh CÃ”NG TIá»†P (1).pdf" vÃ  file Thá»a thuáº­n (2).pdf.',
+      cause: 'Soáº¡n tháº£o vÄƒn báº£n nghiá»‡m thu thiáº¿u cáº©n trá»ng, copy-paste máº«u vÃ  chÆ°a Ä‘á»‘i chiáº¿u ká»¹ cÃ¡c Ä‘iá»u khoáº£n rÃ ng buá»™c táº¡i vÄƒn báº£n thá»a thuáº­n ban Ä‘áº§u.',
+      impact: 'Rá»§i ro chi tráº£ hoa há»“ng trÆ°á»›c khi CÃ´ng ty thá»±c thu Ä‘Æ°á»£c tiá»n tá»« khÃ¡ch hÃ ng vÃ  sai lá»‡ch sá»‘ liá»‡u thuáº¿ TNCN khi quyáº¿t toÃ¡n thuáº¿.',
+      risk: 'Rá»§i ro phÃ¡p lÃ½, rá»§i ro thanh toÃ¡n trÆ°á»›c khi cÃ³ dÃ²ng tiá»n vÃ  rá»§i ro pháº¡t hÃ nh chÃ­nh vá» thuáº¿.',
+      amount: 36403000,
+      deptOpinion: 'PhÃ²ng Dá»± Ã¡n tiáº¿p thu, sáº½ Ä‘Ã­nh chÃ­nh láº¡i sá»‘ tiá»n báº±ng chá»¯ vÃ  lÆ°u Ã½ viá»‡c kiá»ƒm soÃ¡t dÃ²ng tiá»n thu tá»« khÃ¡ch hÃ ng trÆ°á»›c khi lÃ m thá»§ tá»¥c chi.',
+      conclusion: 'Ghi nháº­n Finding má»©c Trung bÃ¬nh. YÃªu cáº§u láº­p phá»¥ lá»¥c Ä‘Ã­nh chÃ­nh sá»‘ tiá»n báº±ng chá»¯ vÃ  chá»‰ giáº£i ngÃ¢n sau khi khÃ¡ch hÃ ng Ä‘Ã£ ná»™p Ä‘á»§ tiá»n thuÃª ká»³ Ä‘áº§u.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_folder2_ckx_01',
+      periodId: pid0,
+      code: 'FND-26Q3-010',
+      group: 'k8',
+      riskLevel: 'med',
+      projectId: '',
+      contractId: 'muf85bp196qyou9',
+      checklistId: 'chk_32_chk_hh_02',
+      content: 'BiÃªn báº£n nghiá»‡m thu dá»‹ch vá»¥ mÃ´i giá»›i vá»›i CÃ´ng ty ChÃ­nh Kho XÆ°á»Ÿng khÃ´ng Ä‘á»“ng nháº¥t vá»›i Há»£p Ä‘á»“ng nguyÃªn táº¯c',
+      basis: 'Há»£p Ä‘á»“ng nguyÃªn táº¯c há»£p tÃ¡c mÃ´i giá»›i khÃ¡ch hÃ ng thuÃª kho & dá»‹ch vá»¥ logistics sá»‘ 0103/2026/HÄNT ngÃ y 01/03/2026.',
+      actual: 'Há»“ sÆ¡ mÃ´i giá»›i vá»›i CÃ´ng ty CP TM&DV ChÃ­nh Kho XÆ°á»Ÿng cÃ³ cÃ¡c sai sÃ³t: (1) Táº¡i BBNT khÃ¡ch Ban Mai ngÃ y 01/07/2026, Äiá»u 3 quy Ä‘á»‹nh HNT thanh toÃ¡n trong vÃ²ng 07 ngÃ y lÃ m viá»‡c ká»ƒ tá»« ngÃ y kÃ½ BBNT vÃ  hÃ³a Ä‘Æ¡n GTGT, mÃ¢u thuáº«n vá»›i Äiá»u 2.1 HÄNT (thanh toÃ¡n trong vÃ²ng 07 ngÃ y lÃ m viá»‡c sau khi BÃªn A nháº­n Ä‘Æ°á»£c khoáº£n thanh toÃ¡n tiá»n thuÃª thÃ¡ng Ä‘áº§u tiÃªn cá»§a khÃ¡ch); (2) Táº¡i BBNT khÃ¡ch BHX ngÃ y 28/04/2026, cÄƒn cá»© ghi sai sá»‘ HÄ thÃ nh "0103/2026/HÄDV" (thay vÃ¬ HÄNT), vÃ  cÃ´ng thá»©c ghi nháº§m "III=I-II" trong khi thá»±c táº¿ lÃ  cá»™ng VAT (111 tr + 11,1 tr = 122,1 tr); (3) ChÆ°a cÃ³ phá»¥ lá»¥c chÃ­nh sÃ¡ch ban hÃ nh kÃ¨m theo HÄNT quy Ä‘á»‹nh cá»¥ thá»ƒ má»©c tráº§n tá»· lá»‡ mÃ´i giá»›i Ã¡p dá»¥ng cho tá»«ng dá»± Ã¡n kho.',
+      evidence: 'File "ChÃ­nh kho xÆ°á»Ÿng - BB NGHIEM THU HOAN THANH DV MOI GIOI KH BAN MAI TTNK2_20260703_0001.pdf" vÃ  "Há»¢p Ä‘á»“ng mÃ´i giá»›i CHÃ­nh KHo XÆ°á»Ÿng.pdf".',
+      cause: 'CÃ¡n bá»™ quáº£n lÃ½ há»£p Ä‘á»“ng chÆ°a chuáº©n hÃ³a biá»ƒu máº«u biÃªn báº£n nghiá»‡m thu theo Ä‘Ãºng cÃ¡c Ä‘iá»u khoáº£n rÃ ng buá»™c cá»§a há»£p Ä‘á»“ng nguyÃªn táº¯c.',
+      impact: 'Rá»§i ro HNT pháº£i thanh toÃ¡n phÃ­ mÃ´i giá»›i hÃ ng trÄƒm triá»‡u Ä‘á»“ng ngay sau khi kÃ½ BBNT trong khi khÃ¡ch hÃ ng cÃ³ thá»ƒ cháº­m tráº£ tiá»n thuÃª thÃ¡ng Ä‘áº§u.',
+      risk: 'Rá»§i ro dÃ²ng tiá»n vÃ  tranh cháº¥p há»£p Ä‘á»“ng vá» thá»i háº¡n thanh toÃ¡n.',
+      amount: 142239000,
+      deptOpinion: 'PhÃ²ng Dá»± Ã¡n ghi nháº­n vÃ  sáº½ Ä‘iá»u chá»‰nh quy trÃ¬nh phá»‘i há»£p Káº¿ toÃ¡n Ä‘á»ƒ Ä‘áº£m báº£o chá»‰ thanh toÃ¡n phÃ­ mÃ´i giá»›i khi khÃ¡ch hÃ ng Ä‘Ã£ thá»±c tráº£ tiá»n thuÃª.',
+      conclusion: 'Ghi nháº­n Finding má»©c Trung bÃ¬nh. RÃ  soÃ¡t láº¡i viá»‡c thanh toÃ¡n thá»±c táº¿ cá»§a 02 khoáº£n mÃ´i giá»›i trÃªn vÃ  chuáº©n hÃ³a máº«u BBNT.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_folder2_sale_01',
+      periodId: pid0,
+      code: 'FND-26Q3-011',
+      group: 'k8',
+      riskLevel: 'low',
+      projectId: '',
+      contractId: 'muwb5x2v1dzc14w',
+      checklistId: 'chk_31_chk_hh_01',
+      content: 'CÃ¡c tá» trÃ¬nh thanh toÃ¡n chiáº¿t kháº¥u bÃ¡n hÃ ng cho PhÃ²ng Dá»± Ã¡n cÃ³ sai sÃ³t vá» sá»‘ hiá»‡u há»£p Ä‘á»“ng, sá»‘ tiá»n báº±ng chá»¯ vÃ  ngÃ y vÄƒn báº£n',
+      basis: 'Quy cháº¿ vÄƒn thÆ° lÆ°u trá»¯ vÃ  tÃ­nh nháº¥t quÃ¡n sá»‘ liá»‡u há»“ sÆ¡ kinh doanh.',
+      actual: 'Kiá»ƒm tra 07 tá» trÃ¬nh thanh toÃ¡n chiáº¿t kháº¥u bÃ¡n hÃ ng cho PhÃ²ng Dá»± Ã¡n phÃ¡t hiá»‡n má»™t sá»‘ sai lá»‡ch ká»¹ thuáº­t: (1) Tá» trÃ¬nh AiCa ghi sá»‘ HÄ lÃ  "2509/2026/HÄTK/HNT-AICA" trong khi sá»‘ HÄ chÃ­nh thá»©c lÆ°u trÃªn há»‡ thá»‘ng lÃ  1809/2026; tá»•ng sá»‘ tiá»n báº±ng chá»¯ ghi "Hai mÆ°Æ¡i hai triá»‡u ba trÄƒm nÄƒm mÆ°Æ¡i tÃ¡m nghÃ¬n báº£y trÄƒm bá»‘n mÆ°Æ¡i Ä‘á»“ng" (22.358.740 Ä‘) nhÆ°ng báº±ng sá»‘ lÃ  22.333.275 Ä‘ (lá»‡ch 25.465 Ä‘); (2) Tá» trÃ¬nh BHX ngÃ y 22/08/2026 viá»‡n dáº«n Quyáº¿t Ä‘á»‹nh sá»‘ 178/2026/QÄ-HNT ngÃ y 25/10/2026 (ngÃ y quyáº¿t Ä‘á»‹nh sau ngÃ y láº­p tá» trÃ¬nh 2 thÃ¡ng; thá»±c táº¿ lÃ  QÄ 178/2024); (3) Tá» trÃ¬nh Gagu ghi HÄ sá»‘ 13072026 nhÆ°ng láº¡i ghi ngÃ y kÃ½ lÃ  13/07/2025; (4) Tá» trÃ¬nh HPR tÃ­nh 47,5mÂ³ x 5.000 x 30 ngÃ y = 7.125.000 Ä‘ nhÆ°ng ghi doanh thu lÃ  7.125.500 Ä‘ (lá»‡ch 500 Ä‘).',
+      evidence: 'CÃ¡c file áº£nh tá» trÃ¬nh táº¡i ThÆ° má»¥c SALE (Aica + ThÃ nh Äáº¡t trang 1 & 2.jpg, BHX.jpg, Gagu.jpg, HPR.jpg).',
+      cause: 'Lá»—i Ä‘Ã¡nh mÃ¡y, sao chÃ©p vÄƒn báº£n giá»¯a cÃ¡c ká»³ vÃ  thiáº¿u kiá»ƒm tra Ä‘á»‘i chiáº¿u chÃ©o trÆ°á»›c khi trÃ¬nh lÃ£nh Ä‘áº¡o kÃ½ duyá»‡t.',
+      impact: 'GÃ¢y khÃ³ khÄƒn cho viá»‡c tra cá»©u, Ä‘á»‘i soÃ¡t há»“ sÆ¡ giá»¯a PhÃ²ng Dá»± Ã¡n, Ban Kiá»ƒm soÃ¡t vÃ  PhÃ²ng Káº¿ toÃ¡n.',
+      risk: 'Sai sÃ³t chá»©ng tá»« thanh toÃ¡n vÃ  thiáº¿u tÃ­nh nháº¥t quÃ¡n sá»‘ liá»‡u.',
+      amount: 0,
+      deptOpinion: 'PhÃ²ng Dá»± Ã¡n ghi nháº­n Ä‘á»ƒ rÃºt kinh nghiá»‡m trong khÃ¢u rÃ  soÃ¡t chÃ­nh táº£, sá»‘ liá»‡u trÆ°á»›c khi trÃ¬nh kÃ½.',
+      conclusion: 'Ghi nháº­n Finding má»©c Tháº¥p. Äá» nghá»‹ cháº¥n chá»‰nh khÃ¢u kiá»ƒm tra vÄƒn báº£n ná»™i bá»™.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_folder2_storage_01',
+      periodId: pid0,
+      code: 'FND-26Q3-012',
+      group: 'k8',
+      riskLevel: 'med',
+      projectId: '',
+      contractId: 'ct_tikinow_pl05_06',
+      checklistId: 'chk_33_chk_hh_03',
+      content: 'Chi tráº£ hoa há»“ng khÃ¡ch hÃ ng lÆ°u kho chung cho cÃ¡c thÃ¡ng phÃ¡t sinh sau nhiá»u ká»³ mÃ  chÆ°a cÃ³ quy Ä‘á»‹nh giá»›i háº¡n sá»‘ ká»³',
+      basis: 'Quyáº¿t Ä‘á»‹nh 162/2025/QÄ-HNT ngÃ y 07/05/2025 (ChÃ­nh sÃ¡ch giÃ¡ vÃ  bÃ¡n hÃ ng kho chung) vÃ  nguyÃªn táº¯c chá»‰ chi hoa há»“ng khÃ¡ch má»›i 01 láº§n cho ká»³ Ä‘áº§u tiÃªn.',
+      actual: 'Äá»‘i vá»›i khÃ¡ch hÃ ng lÆ°u kho chung TikiNow (HÄ gá»‘c 1703/2025 kÃ½ tá»« thÃ¡ng 3/2025) vÃ  Gagu Life (HÄ 13072026 kÃ½ tá»« 13/07/2025), PhÃ²ng Dá»± Ã¡n tiáº¿p tá»¥c láº­p tá» trÃ¬nh chiáº¿t kháº¥u bÃ¡n hÃ ng trÃªn doanh thu thÃ¡ng 7/2026 (TikiNow: 21.875.000 Ä‘; Gagu: 3.498.000 Ä‘) vá»›i lÃ½ do phÃ¡t sinh diá»‡n tÃ­ch/thá»ƒ tÃ­ch lÆ°u kho má»›i. Tuy nhiÃªn: (1) Há»‡ thá»‘ng chÃ­nh sÃ¡ch chÆ°a phÃ¢n Ä‘á»‹nh rÃµ ranh giá»›i giá»¯a hoa há»“ng tÃ¬m khÃ¡ch má»›i (chá»‰ 1 láº§n ká»³ Ä‘áº§u) vÃ  hoa há»“ng quáº£n lÃ½/chÄƒm sÃ³c khÃ¡ch phÃ¡t sinh thá»ƒ tÃ­ch hÃ ng thÃ¡ng; (2) Tá» trÃ¬nh viá»‡n dáº«n QÄ 162/2025 trong khi há»‡ thá»‘ng ban hÃ nh QÄ 11/2025 cÃ¹ng ngÃ y 07/05/2025; (3) Há»£p Ä‘á»“ng TikiNow lÃ  mÃ´ hÃ¬nh thuÃª kho (lease) nhÆ°ng láº¡i Ã¡p tá»· lá»‡ chiáº¿t kháº¥u kho chung 35%.',
+      evidence: 'Tá» trÃ¬nh Tiki pl05 + 06.jpg ngÃ y 20/07/2026 vÃ  Gagu.jpg ngÃ y 22/08/2026.',
+      cause: 'ChÆ°a cÃ³ quy cháº¿ bÃ¡n hÃ ng chi tiáº¿t riÃªng biá»‡t cho dá»‹ch vá»¥ lÆ°u kho chung theo mÂ³ vÃ  theo pallet, dáº«n tá»›i viá»‡c Ã¡p dá»¥ng linh hoáº¡t chÆ°a qua HÄQT chuáº©n hÃ³a.',
+      impact: 'Nguy cÆ¡ chi tráº£ trÃ¹ng láº·p hoa há»“ng nhiá»u láº§n cho cÃ¹ng má»™t khÃ¡ch hÃ ng cÅ© mÃ  khÃ´ng bá»‹ giá»›i háº¡n sá»‘ ká»³.',
+      risk: 'Gia tÄƒng chi phÃ­ bÃ¡n hÃ ng ngoÃ i káº¿ hoáº¡ch vÃ  khÃ³ kiá»ƒm soÃ¡t ngÃ¢n sÃ¡ch hoa há»“ng.',
+      amount: 25373000,
+      deptOpinion: 'PhÃ²ng Dá»± Ã¡n giáº£i trÃ¬nh do Ä‘áº·c thÃ¹ kho chung khÃ¡ch gá»­i hÃ ng theo tá»«ng Ä‘á»£t vÃ  diá»‡n tÃ­ch biáº¿n Ä‘á»™ng liÃªn tá»¥c nÃªn cáº§n cÆ¡ cháº¿ khuyáº¿n khÃ­ch sale duy trÃ¬ sáº£n lÆ°á»£ng.',
+      conclusion: 'Ghi nháº­n Finding má»©c Trung bÃ¬nh. Kiáº¿n nghá»‹ Ban GiÃ¡m Ä‘á»‘c vÃ  HÄQT ban hÃ nh Quy cháº¿ bÃ¡n hÃ ng kho chung chuáº©n xÃ¡c Ä‘á»‹nh rÃµ sá»‘ ká»³ vÃ  Ä‘iá»u kiá»‡n chi tráº£ hoa há»“ng.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const f of folder2Findings){
+    if(!DB.get('findings', f.id)) await DB.put('findings', f);
+  }
+
+  const folder2Recs = [
+    {
+      id: 'rec_folder2_mk_01',
+      periodId: pid0,
+      findingId: 'fnd_folder2_mk_01',
+      code: 'FND-26Q3-008-K1',
+      content: 'Phá»‘i há»£p PhÃ²ng Káº¿ toÃ¡n kiá»ƒm tra tÃ¬nh tráº¡ng thanh toÃ¡n thá»±c táº¿ cá»§a khoáº£n hoa há»“ng 18.532.000 Ä‘ thuá»™c HÄ 1305/2026 MK Viá»‡t Nam; thá»±c hiá»‡n truy thu hoáº·c phÃ¢n bá»• láº¡i theo tá»· lá»‡ thá»i gian thuÃª thá»±c táº¿ (~3,7 thÃ¡ng / thá»i háº¡n há»£p Ä‘á»“ng).',
+      unit: kUnitPda,
+      owner: 'k13',
+      commitDate: '2026-10-20',
+      deadline: '2026-11-10',
+      measure: 'CÃ³ biÃªn báº£n Ä‘á»‘i soÃ¡t vá»›i Káº¿ toÃ¡n vÃ  phiáº¿u thu/cáº¥n trá»« tiá»n hoa há»“ng Ä‘Ã£ chi vÆ°á»£t cho HÄ MK.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_folder2_aj_01',
+      periodId: pid0,
+      findingId: 'fnd_folder2_aj_01',
+      code: 'FND-26Q3-009-K1',
+      content: '1) Láº­p phá»¥ lá»¥c Ä‘Ã­nh chÃ­nh sá»‘ tiá»n báº±ng chá»¯ trÃªn BBNT ngÃ y 09/07/2026 vá»›i mÃ´i giá»›i Äinh CÃ´ng Tiá»‡p khá»›p Ä‘Ãºng 91.008.000 Ä‘; 2) Chá»‰ duyá»‡t chi tráº£ khi cÃ³ xÃ¡c nháº­n cá»§a PhÃ²ng Káº¿ toÃ¡n vá» viá»‡c KH AJ Rental Ä‘Ã£ thanh toÃ¡n Ä‘á»§ tiá»n thuÃª kho ká»³ Ä‘áº§u theo thá»a thuáº­n ngÃ y 08/05/2026; 3) Äá»‘i soÃ¡t kÃª khai thuáº¿ TNCN 3.640.320 Ä‘ Ä‘áº£m báº£o khá»›p chá»©ng tá»« ná»™p thuáº¿.',
+      unit: kUnitPda,
+      owner: kQuang,
+      commitDate: '2026-10-20',
+      deadline: '2026-10-31',
+      measure: 'HoÃ n thiá»‡n phá»¥ lá»¥c Ä‘Ã­nh chÃ­nh BBNT vÃ  cung cáº¥p UNC ná»™p thuáº¿ TNCN cho mÃ´i giá»›i cÃ¡ nhÃ¢n.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_folder2_ckx_01',
+      periodId: pid0,
+      findingId: 'fnd_folder2_ckx_01',
+      code: 'FND-26Q3-010-K1',
+      content: '1) Chuáº©n hÃ³a quy trÃ¬nh nghiá»‡m thu dá»‹ch vá»¥ mÃ´i giá»›i: bá»• sung bÆ°á»›c xÃ¡c nháº­n khÃ¡ch hÃ ng Ä‘Ã£ ná»™p tiá»n thuÃª ká»³ Ä‘áº§u vÃ o BBNT trÆ°á»›c khi chuyá»ƒn Káº¿ toÃ¡n thanh toÃ¡n; 2) ÄÃ­nh chÃ­nh sá»‘ HÄNT 0103/2026 vÃ  cÃ´ng thá»©c III=I+II trÃªn BBNT khÃ¡ch BHX ngÃ y 28/04/2026.',
+      unit: kUnitPda,
+      owner: kQuang,
+      commitDate: '2026-10-20',
+      deadline: '2026-11-05',
+      measure: 'Ban hÃ nh máº«u BBNT hoÃ n thÃ nh dá»‹ch vá»¥ mÃ´i giá»›i chuáº©n dÃ¹ng chung toÃ n CÃ´ng ty.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_folder2_sale_01',
+      periodId: pid0,
+      findingId: 'fnd_folder2_sale_01',
+      code: 'FND-26Q3-011-K1',
+      content: '1) RÃ  soÃ¡t vÃ  Ä‘Ã­nh chÃ­nh cÃ¡c lá»—i Ä‘Ã¡nh mÃ¡y trÃªn tá» trÃ¬nh chiáº¿t kháº¥u bÃ¡n hÃ ng cá»§a AiCa (sá»‘ HÄ 1809 vÃ  sá»‘ tiá»n báº±ng chá»¯ 22.333.275 Ä‘), BHX (viá»‡n dáº«n Ä‘Ãºng QÄ 178/2024), Gagu vÃ  HPR; 2) Thiáº¿t láº­p checklist kiá»ƒm tra chá»©ng tá»« trÆ°á»›c khi trÃ¬nh GÄÄH vÃ  Chá»§ tá»‹ch HÄQT kÃ½ duyá»‡t.',
+      unit: kUnitPda,
+      owner: 'k12',
+      commitDate: '2026-10-20',
+      deadline: '2026-10-30',
+      measure: 'Láº­p báº£ng Ä‘á»‘i chiáº¿u Ä‘Ã­nh chÃ­nh cÃ¡c tá» trÃ¬nh chiáº¿t kháº¥u vÃ  gá»­i Káº¿ toÃ¡n lÆ°u trá»¯.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_folder2_storage_01',
+      periodId: pid0,
+      findingId: 'fnd_folder2_storage_01',
+      code: 'FND-26Q3-012-K1',
+      content: 'Tham mÆ°u Ban GiÃ¡m Ä‘á»‘c vÃ  HÄQT ban hÃ nh Quy cháº¿ bÃ¡n hÃ ng dá»‹ch vá»¥ lÆ°u kho chung (kho theo mÂ³, kho theo pallet) quy Ä‘á»‹nh cá»¥ thá»ƒ: cÄƒn cá»© tÃ­nh hoa há»“ng, sá»‘ ká»³ tá»‘i Ä‘a Ä‘Æ°á»£c hÆ°á»Ÿng hoa há»“ng Ä‘á»‘i vá»›i khÃ¡ch hÃ ng cÅ© tÄƒng sáº£n lÆ°á»£ng vÃ  cÆ¡ cháº¿ kiá»ƒm soÃ¡t chi phÃ­ bÃ¡n hÃ ng.',
+      unit: kUnitPda,
+      owner: kQuang,
+      commitDate: '2026-10-20',
+      deadline: '2026-11-20',
+      measure: 'TrÃ¬nh HÄQT phÃª duyá»‡t Quy cháº¿ chÃ­nh sÃ¡ch bÃ¡n hÃ ng kho chung sá»­a Ä‘á»•i, bá»• sung.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const r of folder2Recs){
+    if(!DB.get('recs', r.id)) await DB.put('recs', r);
+  }
+
+  /* 8. Nháº­t kÃ½ kiá»ƒm tra */
+  const jnl2 = {
+    id: 'jnl_folder2_import_20261020',
+    periodId: pid0,
+    ts: now,
+    user: 'Nguyá»…n Thá»‹ Thu HÆ°Æ¡ng',
+    type: 'Äá»‘i chiáº¿u',
+    object: 'Há»“ sÆ¡ #2: Chi tráº£ hoa há»“ng MÃ´i giá»›i hoáº·c Sale (11 file)',
+    content: 'RÃ  soÃ¡t ThÆ° má»¥c 2 (07 tá» trÃ¬nh Sale vÃ  04 há»“ sÆ¡ MÃ´i giá»›i ChÃ­nh Kho XÆ°á»Ÿng, Äinh CÃ´ng Tiá»‡p): (1) Cáº­p nháº­t 02 KH má»›i KH068 (ThÃ nh Äáº¡t), KH069 (HPRGROUP) vÃ  04 HÄ má»›i; (2) Nháº­p 10 báº£n ghi hoa há»“ng khÃ¡ch hÃ ng má»›i (07 Sale: 77.611.275 Ä‘; 03 MÃ´i giá»›i: 178.642.000 Ä‘ chÆ°a thuáº¿); (3) Cáº­p nháº­t docreq_02 sang ÄÃ£ nháº­n; (4) Cáº­p nháº­t CHK-CK-04, CHK-HH-01, CHK-HH-02, CHK-HH-03; (5) Láº­p 05 Finding (FND-26Q3-008 Ä‘áº¿n FND-26Q3-012) & 05 Kiáº¿n nghá»‹ KSNB tÆ°Æ¡ng á»©ng.',
+    result: 'PhÃ¡t hiá»‡n 05 Finding (FND-26Q3-008 -> FND-26Q3-012)',
+    note: '',
+    auto: 0,
+    createdAt: now
+  };
+  if(!DB.get('journal', jnl2.id)) await DB.put('journal', jnl2);
+}
+
 async function seedDemo(){
   const T=todayStr(),d=n=>addDays(T,n),nowIso=new Date().toISOString(),mk=o=>({id:uid(),createdAt:nowIso,updatedAt:nowIso,...o}),K=catKeyByName,PS=n=>K('person',n);
   const y=+T.slice(0,4),q=Math.ceil(+T.slice(5,7)/3),py=q===1?y-1:y,pq=q===1?4:q-1,qs=(Y,Q)=>`${Y}-${pad(3*(Q-1)+1)}-01`,qe=(Y,Q)=>isoDate(new Date(Y,3*Q,0));
@@ -4532,6 +5263,7 @@ async function boot(){
   await syncFollowups();
   await ensurePdaChecklist();
   await ensureSendoProjects();
+  await ensureFolder2Commissions();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
   window.addEventListener('hashchange',renderMain);
   renderMain();
