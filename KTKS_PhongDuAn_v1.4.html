@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
@@ -5063,6 +5063,220 @@ async function ensureSendoProjects(){
         }
       }
       if(changed) await DB.put('contracts', cur);
+    }
+  }
+  const syncPayload = {
+  "newCommissions": [
+    {
+      "id": "comm_sale_swallow_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "ct_swallow_1806_2026",
+      "periodStart": "2026-06-18",
+      "periodNo": 1,
+      "revenue": 53099000,
+      "salesperson": "k2",
+      "saleAllowedRate": 9.42,
+      "saleActualRate": 9.42,
+      "hasBroker": "n",
+      "brokerName": "",
+      "brokerAllowedRate": "",
+      "brokerActualRate": "",
+      "policy": "Mức chiết khấu khoán theo Tờ trình ngày 20/07/2026",
+      "proposer": "k2",
+      "approver": "k9",
+      "approveDate": "2026-07-20",
+      "docs": "Swa.jpg (Tờ trình ngày 20/07/2026) & BBTL ngày 03/09/2026",
+      "exception": "y",
+      "note": "Chiết khấu khoán 5.000.000 đ theo Tờ trình ngày 20/07/2026 cho P. Dự án. Lưu ý: HĐ 1806/2026/HĐTK/HNT-SWALLOW đã hủy/thanh lý sớm từ 05/09/2026 (thuê ~2,5 tháng, hoàn cọc 58,592 tr), cần dừng chi hoặc thu hồi theo FND-26Q3-007.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "comm_sale_vietstar_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "muf8472n85ix547",
+      "periodStart": "2026-07-22",
+      "periodNo": 1,
+      "revenue": 21000000,
+      "salesperson": "k2",
+      "saleAllowedRate": 47.62,
+      "saleActualRate": 47.62,
+      "hasBroker": "n",
+      "brokerName": "",
+      "brokerAllowedRate": "",
+      "brokerActualRate": "",
+      "policy": "Tờ trình duyệt chiết khấu tháng 08/2026 (Vietstar.jpg)",
+      "proposer": "k2",
+      "approver": "k9",
+      "approveDate": "2026-08-25",
+      "docs": "Vietstar.jpg (Tờ trình duyệt thanh toán chiết khấu bán hàng tháng 08/2026)",
+      "exception": "y",
+      "note": "Duyệt chiết khấu bán hàng ngoại lệ 10.000.000 đ cho P. Dự án trên tổng DT kho + bãi 21.000.000 đ (47,62%). Bút phê: DT bãi chưa có Chính sách riêng.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    }
+  ],
+  "newDiscounts": [
+    {
+      "id": "disc_sale_aica_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "muwb5x2v1dzc14w",
+      "type": "k1",
+      "termCase": "new",
+      "related": 53430000,
+      "allowedRate": 40,
+      "actualRate": 40,
+      "amount": 21372000,
+      "policy": "QĐ 10/2026/QĐ-HNT ngày 19/01/2026 (kho độc lập Nguyên Khê II)",
+      "proposer": "k12",
+      "approver": "k9",
+      "approveDate": "2026-10-14",
+      "docs": "Aica + Thành Đạt trang 1.jpg & trang 2.jpg (Tờ trình ngày 14/10/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu bán hàng 40% trên doanh thu kho 53.430.000 đ (411m² x 130.000 đ kho + 5.000 đ BVVS) = 21.372.000 đ.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_thanhdat_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "ct_thanhdat_2009_2026",
+      "type": "k1",
+      "termCase": "new",
+      "related": 2746500,
+      "allowedRate": 35,
+      "actualRate": 35,
+      "amount": 961275,
+      "policy": "QĐ 281/2026/QĐ-HNT ngày 27/05/2026 (kho độc lập Thanh Oai II)",
+      "proposer": "k12",
+      "approver": "k9",
+      "approveDate": "2026-10-14",
+      "docs": "Aica + Thành Đạt trang 1.jpg & trang 2.jpg (Tờ trình ngày 14/10/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu tính theo tỷ lệ 2/36 tháng: 49.437.000 đ x 35% x 2/36 = 961.275 đ (doanh thu cơ sở quy đổi 2.746.500 đ).",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_bhx_hd20264167",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "ct_bhx_hd20264167",
+      "type": "k1",
+      "termCase": "new",
+      "related": 22900000,
+      "allowedRate": 45,
+      "actualRate": 45,
+      "amount": 10305000,
+      "policy": "QĐ 178/2024/QĐ-HNT (kho độc lập Nguyên Khê I)",
+      "proposer": "k2",
+      "approver": "k9",
+      "approveDate": "2026-08-22",
+      "docs": "BHX.jpg (Tờ trình ngày 22/08/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu tính theo tỷ lệ 24,5/36 tháng (HĐ 2 năm 17 ngày): 33.649.000 đ x 45% x 24,5/36 = 10.305.000 đ (doanh thu cơ sở 22.900.000 đ).",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_gagu_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "muf8472l2vepruz",
+      "type": "k1",
+      "termCase": "new",
+      "related": 13992000,
+      "allowedRate": 25,
+      "actualRate": 25,
+      "amount": 3498000,
+      "policy": "Chính sách lưu kho chung NK (QĐ 11/2025/QĐ-HNT)",
+      "proposer": "k13",
+      "approver": "k9",
+      "approveDate": "2026-08-22",
+      "docs": "Gagu.jpg (Tờ trình ngày 22/08/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu 25% trên DT lưu kho tháng 7/2026 (bình quân 75m³ x 6.000 đ/m³/ngày x 31 ngày = 13.993.560 đ, tờ trình tính 13.992.000 đ) = 3.498.000 đ.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_hpr_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "ct_hpr_1008_2026",
+      "type": "k1",
+      "termCase": "new",
+      "related": 7120000,
+      "allowedRate": 15,
+      "actualRate": 15,
+      "amount": 1068000,
+      "policy": "Chính sách lưu kho chung NK (QĐ 11/2025/QĐ-HNT)",
+      "proposer": "k12",
+      "approver": "k9",
+      "approveDate": "2026-10-14",
+      "docs": "HPRGROUP.jpg (Tờ trình ngày 14/10/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu 15% trên DT 7.125.500 đ từ 13/08/2026 đến 12/09/2026 (47,5 m² x 5.000 đ/m²/ngày x 30 ngày) = 1.068.000 đ.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_mk_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "muf85bph4q7koc2",
+      "type": "k1",
+      "termCase": "new",
+      "related": 61773333,
+      "allowedRate": 30,
+      "actualRate": 30,
+      "amount": 18532000,
+      "policy": "QĐ 281/2026/QĐ-HNT (kho độc lập Thanh Oai II)",
+      "proposer": "k13",
+      "approver": "k9",
+      "approveDate": "2026-07-02",
+      "docs": "MK.jpg (Tờ trình ngày 02/07/2026)",
+      "okPolicy": "n",
+      "exception": "n",
+      "note": "Chiết khấu 30% trên DT kho 2 tháng (457,58m² x 135.000 đ = 61.773.300 đ) = 18.532.000 đ. Lưu ý: HĐ kết thúc sớm ngày 15/09/2026, chưa quy định cơ chế thu hồi (FND-26Q3-008).",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    },
+    {
+      "id": "disc_sale_tiki_2026",
+      "periodId": "mufq31zn245cq0d",
+      "contractId": "ct_tikinow_pl05_06",
+      "type": "k1",
+      "termCase": "new",
+      "related": 62500000,
+      "allowedRate": 35,
+      "actualRate": 35,
+      "amount": 21875000,
+      "policy": "Chính sách lưu kho chung NK (QĐ 11/2025/QĐ-HNT)",
+      "proposer": "k13",
+      "approver": "k9",
+      "approveDate": "2026-07-20",
+      "docs": "TIKINOW.jpg (Tờ trình ngày 20/07/2026)",
+      "okPolicy": "y",
+      "exception": "n",
+      "note": "Chiết khấu 35% trên DT tháng 7/2026 (500m² x 125.000 đ/m²/tháng = 62.500.000 đ) = 21.875.000 đ cho thời gian thuê 01/07/2026 - 29/08/2026.",
+      "createdAt": "2026-10-20T10:25:00.000Z",
+      "updatedAt": "2026-10-20T10:25:00.000Z"
+    }
+  ]
+}
+;
+  for(const cm of (syncPayload.newCommissions || [])){
+    const cur = DB.get('commissions', cm.id);
+    if(!cur || cur.periodId !== pid0){
+      await DB.put('commissions', Object.assign({}, cur || {}, cm, { periodId: pid0 }));
+    }
+  }
+  for(const dc of (syncPayload.newDiscounts || [])){
+    const cur = DB.get('discounts', dc.id);
+    if(!cur || cur.periodId !== pid0){
+      await DB.put('discounts', Object.assign({}, cur || {}, dc, { periodId: pid0 }));
     }
   }
   for(const cm of (folder2Payload.newCommissions || [])){
