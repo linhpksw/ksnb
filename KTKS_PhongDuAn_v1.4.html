@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
@@ -5043,16 +5043,16 @@ async function ensureSendoProjects(){
   }
 }
 ;
-  for(const c of folder2Payload.newCatalogs){
+  for(const c of (folder2Payload.newCatalogs || [])){
     if(!DB.get('catalogs', c.id)) await DB.put('catalogs', c);
   }
-  for(const cu of folder2Payload.newCustomers){
+  for(const cu of (folder2Payload.newCustomers || [])){
     if(!DB.get('customers', cu.id)) await DB.put('customers', cu);
   }
-  for(const ct of folder2Payload.newContracts){
+  for(const ct of (folder2Payload.newContracts || [])){
     if(!DB.get('contracts', ct.id)) await DB.put('contracts', ct);
   }
-  for(const cu of folder2Payload.contractUpdates){
+  for(const cu of (folder2Payload.updateContracts || [])){
     const cur = DB.get('contracts', cu.id);
     if(cur){
       let changed = false;
@@ -5065,18 +5065,19 @@ async function ensureSendoProjects(){
       if(changed) await DB.put('contracts', cur);
     }
   }
-  for(const cm of folder2Payload.newCommissions){
+  for(const cm of (folder2Payload.newCommissions || [])){
     const rec = Object.assign({}, cm, { periodId: pid0 });
     if(!DB.get('commissions', rec.id)) await DB.put('commissions', rec);
   }
-  for(const dr of folder2Payload.docreqUpdates){
+  if(folder2Payload.updateDocreq){
+    const dr = folder2Payload.updateDocreq;
     const cur = DB.get('docreqs', dr.id);
     if(cur && cur.status !== dr.status){
       Object.assign(cur, dr);
       await DB.put('docreqs', cur);
     }
   }
-  for(const ch of folder2Payload.checklistUpdates){
+  for(const ch of (folder2Payload.updateChecklist || [])){
     const cur = DB.get('checklist', ch.id);
     if(cur){
       if(ch.status) cur.status = ch.status;
@@ -5085,11 +5086,11 @@ async function ensureSendoProjects(){
       await DB.put('checklist', cur);
     }
   }
-  for(const f of folder2Payload.findings){
+  for(const f of (folder2Payload.newFindings || [])){
     const rec = Object.assign({}, f, { periodId: pid0 });
     if(!DB.get('findings', rec.id)) await DB.put('findings', rec);
   }
-  for(const r of folder2Payload.recs){
+  for(const r of (folder2Payload.newRecs || [])){
     const rec = Object.assign({}, r, { periodId: pid0 });
     if(!DB.get('recs', rec.id)) await DB.put('recs', rec);
   }
