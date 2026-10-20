@@ -1,4 +1,4 @@
-{
+﻿{
   "meta": {
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
@@ -14390,7 +14390,7 @@
     "commissions": [
       {
         "id": "comm_mg_aj_1805_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp1piwyd83",
         "periodStart": "2026-05-18",
         "periodNo": 1,
@@ -14414,7 +14414,7 @@
       },
       {
         "id": "comm_mg_banmai_0605_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp196qyou9",
         "periodStart": "2026-05-06",
         "periodNo": 1,
@@ -14438,7 +14438,7 @@
       },
       {
         "id": "comm_mg_bhx_1803_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp2kq8427w",
         "periodStart": "2026-03-18",
         "periodNo": 1,
@@ -14462,7 +14462,7 @@
       },
       {
         "id": "comm_sale_aica_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muwb5x2v1dzc14w",
         "periodStart": "2026-09-18",
         "periodNo": 1,
@@ -14486,7 +14486,7 @@
       },
       {
         "id": "comm_sale_bhx_hd20264167",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_bhx_hd20264167",
         "periodStart": "2026-08-01",
         "periodNo": 1,
@@ -14510,7 +14510,7 @@
       },
       {
         "id": "comm_sale_gagu_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf8472l2vepruz",
         "periodStart": "2026-07-01",
         "periodNo": 1,
@@ -14534,7 +14534,7 @@
       },
       {
         "id": "comm_sale_hpr_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_hpr_1008_2026",
         "periodStart": "2026-08-13",
         "periodNo": 1,
@@ -14558,7 +14558,7 @@
       },
       {
         "id": "comm_sale_mk_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bph4q7koc2",
         "periodStart": "2026-05-13",
         "periodNo": 1,
@@ -14582,7 +14582,7 @@
       },
       {
         "id": "comm_sale_thanhdat_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_thanhdat_2009_2026",
         "periodStart": "2026-09-20",
         "periodNo": 1,
@@ -14606,7 +14606,7 @@
       },
       {
         "id": "comm_sale_tiki_2026",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_tikinow_pl05_06",
         "periodStart": "2026-07-01",
         "periodNo": 1,
@@ -15314,7 +15314,7 @@
       },
       {
         "id": "fnd_folder2_aj_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-009",
         "group": "k8",
         "riskLevel": "med",
@@ -15336,7 +15336,7 @@
       },
       {
         "id": "fnd_folder2_ckx_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-010",
         "group": "k8",
         "riskLevel": "med",
@@ -15358,7 +15358,7 @@
       },
       {
         "id": "fnd_folder2_mk_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-008",
         "group": "k8",
         "riskLevel": "high",
@@ -15380,7 +15380,7 @@
       },
       {
         "id": "fnd_folder2_sale_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-011",
         "group": "k8",
         "riskLevel": "low",
@@ -15402,7 +15402,7 @@
       },
       {
         "id": "fnd_folder2_storage_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-012",
         "group": "k8",
         "riskLevel": "med",
@@ -15574,7 +15574,7 @@
       },
       {
         "id": "rec_folder2_aj_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_aj_01",
         "code": "FND-26Q3-009-K1",
         "content": "1) Lập phụ lục đính chính số tiền bằng chữ trên BBNT ngày 09/07/2026 với môi giới Đinh Công Tiệp khớp đúng 91.008.000 đ; 2) Chỉ duyệt chi trả khi có xác nhận của Phòng Kế toán về việc KH AJ Rental đã thanh toán đủ tiền thuê kho kỳ đầu theo thỏa thuận ngày 08/05/2026; 3) Đối soát kê khai thuế TNCN 3.640.320 đ đảm bảo khớp chứng từ nộp thuế.",
@@ -15594,7 +15594,7 @@
       },
       {
         "id": "rec_folder2_ckx_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_ckx_01",
         "code": "FND-26Q3-010-K1",
         "content": "1) Chuẩn hóa quy trình nghiệm thu dịch vụ môi giới: bổ sung bước xác nhận khách hàng đã nộp tiền thuê kỳ đầu vào BBNT trước khi chuyển Kế toán thanh toán; 2) Đính chính số HĐNT 0103/2026 và công thức III=I+II trên BBNT khách BHX ngày 28/04/2026.",
@@ -15614,7 +15614,7 @@
       },
       {
         "id": "rec_folder2_mk_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_mk_01",
         "code": "FND-26Q3-008-K1",
         "content": "Phối hợp Phòng Kế toán kiểm tra tình trạng thanh toán thực tế của khoản hoa hồng 18.532.000 đ thuộc HĐ 1305/2026 MK Việt Nam; thực hiện truy thu hoặc phân bổ lại theo tỷ lệ thời gian thuê thực tế (~3,7 tháng / thời hạn hợp đồng).",
@@ -15634,7 +15634,7 @@
       },
       {
         "id": "rec_folder2_sale_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_sale_01",
         "code": "FND-26Q3-011-K1",
         "content": "1) Rà soát và đính chính các lỗi đánh máy trên tờ trình chiết khấu bán hàng của AiCa (số HĐ 1809 và số tiền bằng chữ 22.333.275 đ), BHX (viện dẫn đúng QĐ 178/2024), Gagu và HPR; 2) Thiết lập checklist kiểm tra chứng từ trước khi trình GĐĐH và Chủ tịch HĐQT ký duyệt.",
@@ -15654,7 +15654,7 @@
       },
       {
         "id": "rec_folder2_storage_01",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_storage_01",
         "code": "FND-26Q3-012-K1",
         "content": "Tham mưu Ban Giám đốc và HĐQT ban hành Quy chế bán hàng dịch vụ lưu kho chung (kho theo m³, kho theo pallet) quy định cụ thể: căn cứ tính hoa hồng, số kỳ tối đa được hưởng hoa hồng đối với khách hàng cũ tăng sản lượng và cơ chế kiểm soát chi phí bán hàng.",
@@ -15783,7 +15783,7 @@
       },
       {
         "id": "jnl_folder2_import_20261020",
-        "periodId": "mup8z2n1j4l8y5q",
+        "periodId": "mufq31zn245cq0d",
         "ts": "2026-10-20T10:00:00.000Z",
         "user": "Nguyễn Thị Thu Hương",
         "type": "Đối chiếu",
