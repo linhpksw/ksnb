@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-10-20T10:02:51.666Z",
+    "backupDate": "2026-10-20T10:12:09.868Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 12,
       "followups": 0
     },
-    "checksum": "6da9ded4"
+    "checksum": "54ff8158"
   },
   "settings": {},
   "data": {
@@ -15136,11 +15136,11 @@
         "contractId": "ct_swallow_1806_2026",
         "result": "warn",
         "evidence": "Thông báo chấm dứt hợp đồng trước hạn của khách hàng; Bảng tính số tiền chiết khấu phải truy thu (clawbackAmt); Khấu trừ tiền truy thu vào tiền đặt cọc hoàn trả.",
-        "comment": "PhÃ¡t hiá»‡n 02 trÆ°á»ng há»£p khÃ¡ch hÃ ng cháº¥m dá»©t/há»§y há»£p Ä‘á»“ng trÆ°á»›c háº¡n nhÆ°ng chÆ°a truy thu hoáº·c xá»­ lÃ½ khoáº£n chiáº¿t kháº¥u/hoa há»“ng: (1) HÄ 1806/2026 Swallow (Ä‘Ã£ há»§y tá»« 05/09/2026, thuÃª ~2,5 thÃ¡ng, cá»c 58,59 tr) cÃ³ khoáº£n chiáº¿t kháº¥u 5.000.000 Ä‘ trÃ¬nh duyá»‡t ngÃ y 20/07/2026 chÆ°a cÃ³ há»“ sÆ¡ dá»«ng chi/truy thu; (2) HÄ 1305/2026 MK Viá»‡t Nam (Ä‘Ã£ káº¿t thÃºc ngÃ y 04/09/2026, thuÃª ~3,7 thÃ¡ng) Ä‘Ã£ chi Ä‘á»§ 100% hoa há»“ng 18.532.000 Ä‘ mÃ  khÃ´ng phÃ¢n bá»• theo thá»i gian thuÃª thá»±c táº¿ hoáº·c truy thu.",
+        "comment": "Hợp đồng 1806/2026/HĐTK/HNT-SWALLOW của KH Swallow đã HỦY / chấm dứt sớm từ ngày 05/09/2026 (chỉ sau ~2,5 tháng thực hiện kể từ ngày ký 18/06/2026). Tuy nhiên tại Biên bản thanh lý ngày 03/09/2026 (hoàn trả toàn bộ cọc 58.592.000 đ) và hồ sơ chiết khấu chưa ghi nhận việc dừng chi hoặc truy thu/điều chỉnh khoản chiết khấu 5.000.000 đ đã trình duyệt ngày 20/07/2026.",
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-10-20T10:00:00.000Z"
+        "updatedAt": "2026-10-20T09:15:00.000Z"
       },
       {
         "id": "chk_31_chk_hh_01",
