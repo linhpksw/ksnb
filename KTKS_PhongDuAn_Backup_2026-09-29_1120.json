@@ -3,20 +3,19 @@
                  "app":  "KTKS_PhongDuAn",
                  "appVersion":  "1.5.3",
                  "backupVersion":  1,
-                 "backupDate":  "2026-10-20T07:10:00.000Z",
+                 "backupDate":  "2026-10-20T07:32:00.000Z",
                  "scope":  "all",
                  "periodId":  null,
                  "periodLabel":  null,
                  "counts":  {
                                 "periods":  1,
-                                "projects":  3,
+                                "projects":  5,
                                 "contracts":  69,
                                 "customers":  65,
-                                "checklist":  36,
-                                "findings":  2,
-                                "recs":  2,
-                                "followups":  0,
-                                "docreqs":  12
+                                "checklist":  46,
+                                "findings":  4,
+                                "recs":  4,
+                                "followups":  0
                             }
              },
     "settings":  {
@@ -33,12 +32,12 @@
                                      "inspector":  "k1",
                                      "head":  "k2",
                                      "status":  "doing",
-                                     "scope":  "Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung hệ thống đèn chiếu sáng kho Sendo NK1), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.",
+                                     "scope":  "Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1, DA-004 Đấu nối \u0026 lắp cụm đồng hồ nước sạch Ban Mai NK2, DA-005 Thi công kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.",
                                      "objective":  "Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán nhà thầu, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.",
                                      "note":  "",
                                      "conclusion":  "",
                                      "createdAt":  "2026-09-24T16:04:45.395Z",
-                                     "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                     "updatedAt":  "2026-10-20T07:32:00.000Z"
                                  }
                              ],
                  "catalogs":  [
@@ -1261,6 +1260,14 @@
                                       "order":  33
                                   },
                                   {
+                                      "id":  "svcType.cmuwbdon36e9q3bu",
+                                      "group":  "svcType",
+                                      "key":  "cmuwbdon36e9q3bu",
+                                      "name":  "Nâng hạ (ngoài giờ hành chính)",
+                                      "tone":  "",
+                                      "order":  42
+                                  },
+                                  {
                                       "id":  "svcType.k1",
                                       "group":  "svcType",
                                       "key":  "k1",
@@ -1530,14 +1537,6 @@
                                       "order":  5
                                   },
                                   {
-                                      "id":  "svcType.cmuwbdon36e9q3bu",
-                                      "group":  "svcType",
-                                      "key":  "cmuwbdon36e9q3bu",
-                                      "name":  "Nâng hạ (ngoài giờ hành chính)",
-                                      "tone":  "",
-                                      "order":  42
-                                  },
-                                  {
                                       "id":  "person.k9",
                                       "group":  "person",
                                       "key":  "k9",
@@ -1554,215 +1553,9 @@
                                       "order":  9
                                   }
                               ],
-                 "docreqs":  {
-                                 "value":  [
-                                               {
-                                                   "id":  "docreq_01",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  1,
-                                                   "group":  "docGroup.k2",
-                                                   "name":  "Tờ trình duyệt ngoại lệ giá / chiết khấu",
-                                                   "content":  "Văn bản, tờ trình phê duyệt áp dụng đơn giá ngoài biểu niêm yết hoặc mức chiết khấu theo QĐ 176 \u0026 QĐ 11.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_02",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  2,
-                                                   "group":  "docGroup.k2",
-                                                   "name":  "Hồ sơ chi trả hoa hồng Môi giới / Sale",
-                                                   "content":  "Hợp đồng dịch vụ môi giới, tờ trình đề xuất tỷ lệ hoa hồng, bảng tính hoa hồng các đợt và văn bản phê duyệt chi.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_03",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  3,
-                                                   "group":  "docGroup.k3",
-                                                   "name":  "Biên bản thanh lý HĐ \u0026 Hồ sơ giải tỏa cọc",
-                                                   "content":  "Biên bản thanh lý hợp đồng của các khách hàng chấm dứt hoặc trả kho trong kỳ; Hồ sơ tính toán cấn trừ công nợ, truy thu chiết khấu.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_04",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  4,
-                                                   "group":  "docGroup.k2",
-                                                   "name":  "Bản sao Biên bản bàn giao mặt bằng kho từ Trung tâm Kho",
-                                                   "content":  "Biên bản bàn giao kho do Trung tâm/Kho ký thực địa với khách hàng gửi về lưu trữ tại Phòng Dự án.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_05",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  5,
-                                                   "group":  "docGroup.k1",
-                                                   "name":  "Hồ sơ phê duyệt chủ trương \u0026 Tổng mức đầu tư (TMĐT)",
-                                                   "content":  "Tờ trình đầu tư, QĐ phê duyệt dự án, Báo cáo nghiên cứu khả thi (FS), dự toán TMĐT chi tiết từng hạng mục.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_06",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  6,
-                                                   "group":  "docGroup.k1",
-                                                   "name":  "Hồ sơ cấp phép \u0026 Thẩm duyệt thiết kế PCCC",
-                                                   "content":  "Giấy phép xây dựng/chấp thuận cải tạo, Giấy chứng nhận thẩm duyệt thiết kế PCCC (Dự án DA-001 PCCC Nguyên Khê II).",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_07",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  7,
-                                                   "group":  "docGroup.k1",
-                                                   "name":  "Hợp đồng nhà thầu thi công \u0026 Tiến độ WBS",
-                                                   "content":  "Hợp đồng thi công xây lắp/cơ điện, chứng thư bảo lãnh thực hiện HĐ, tiến độ cam kết chi tiết (Master WBS).",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_08",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  8,
-                                                   "group":  "docGroup.k4",
-                                                   "name":  "Hồ sơ nghiệm thu kỹ thuật \u0026 Đề nghị thanh toán nhà thầu",
-                                                   "content":  "Biên bản nghiệm thu từng giai đoạn kỹ thuật, bản vẽ hoàn công, bảng xác nhận khối lượng hoàn thành trình duyệt thanh toán.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_09",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  9,
-                                                   "group":  "docGroup.k3",
-                                                   "name":  "Văn bản/Email đôn đốc phối hợp xử lý nợ quá hạn",
-                                                   "content":  "Các thư nhắc nợ, biên bản làm việc hoặc thông báo tạm dừng dịch vụ do chuyên viên Dự án phối hợp cùng Kế toán gửi khách nợ quá hạn.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_10",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  10,
-                                                   "group":  "docGroup.k6",
-                                                   "name":  "Hồ sơ xử lý sự cố / Khiếu nại tranh chấp hợp đồng",
-                                                   "content":  "Biên bản làm việc xử lý các sự cố kho bãi, tranh chấp điều khoản hợp đồng hoặc các thỏa thuận bồi hoàn thiệt hại (nếu có).",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_11",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  11,
-                                                   "group":  "docGroup.k5",
-                                                   "name":  "Bảng phân công nhiệm vụ (JD) \u0026 Sổ/File theo dõi giao việc",
-                                                   "content":  "Bảng mô tả công việc phân công nhiệm vụ chi tiết của 5 nhân sự và sổ/file theo dõi tiến độ công việc hàng tuần/tháng của Trưởng phòng.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               },
-                                               {
-                                                   "id":  "docreq_12",
-                                                   "periodId":  "mufq31zn245cq0d",
-                                                   "stt":  12,
-                                                   "group":  "docGroup.k5",
-                                                   "name":  "Báo cáo kết quả công việc \u0026 Bảng tự chấm điểm KPI",
-                                                   "content":  "Bảng đăng ký chỉ tiêu đầu kỳ và Báo cáo tự chấm điểm, kết quả đánh giá hoàn thành nhiệm vụ theo 5 nhóm chỉ tiêu KPI của 5 nhân sự.",
-                                                   "reqDate":  "2026-10-15",
-                                                   "deadline":  "2026-10-20",
-                                                   "recvDate":  "",
-                                                   "provider":  "",
-                                                   "status":  "wait",
-                                                   "evidence":  "",
-                                                   "note":  "",
-                                                   "createdAt":  "2026-10-15T08:50:00.000Z",
-                                                   "updatedAt":  "2026-10-15T08:50:00.000Z"
-                                               }
-                                           ],
-                                 "Count":  12
-                             },
+                 "docreqs":  [
+
+                             ],
                  "projects":  [
                                   {
                                       "code":  "DA-001",
@@ -1791,8 +1584,8 @@
                                       "startDate":  "2026-08-16",
                                       "endDate":  "2026-08-31",
                                       "total":  216571320,
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   },
                                   {
                                       "id":  "proj_da003_sendo_den",
@@ -1806,8 +1599,38 @@
                                       "startDate":  "2026-08-24",
                                       "endDate":  "2026-09-08",
                                       "total":  41365626,
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "proj_da004_banmai_dongho",
+                                      "code":  "DA-004",
+                                      "name":  "Gói thầu thi công điểm đấu nối và lắp đặt cụm đồng hồ nước sạch tại TTNK2 (Khách hàng Ban Mai)",
+                                      "type":  "k1",
+                                      "location":  "Nhà kho HNT Nguyên Khê 2 (Số 28 TT HNT Nguyên Khê, Khu đất Công ty CP Phúc Thịnh, xã Phúc Thịnh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "doing",
+                                      "proposeDate":  "2026-08-05",
+                                      "startDate":  "2026-08-04",
+                                      "endDate":  "2026-08-31",
+                                      "total":  16430332,
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "proj_da005_banmai_onghdpe",
+                                      "code":  "DA-005",
+                                      "name":  "Gói thầu thi công kéo đường ống cấp nước HDPE D50 từ đồng hồ mới về kho khách hàng Ban Mai (TTNK2)",
+                                      "type":  "k1",
+                                      "location":  "Nhà kho HNT Nguyên Khê 2 (Xã Phúc Thịnh, TP. Hà Nội)",
+                                      "owner":  "k3",
+                                      "status":  "done",
+                                      "proposeDate":  "2026-08-05",
+                                      "startDate":  "2026-08-07",
+                                      "endDate":  "2026-09-15",
+                                      "total":  89318133,
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   }
                               ],
                  "investments":  [
@@ -1827,8 +1650,8 @@
                                          "approvedValue":  216571320,
                                          "evidence":  "1) Đề xuất thi công nền ngày 10/08/2026 (248.971.320 đ - Chủ tịch HĐQT bút phê ngày 11/08 yêu cầu đàm phán lại giá hoặc tìm đơn vị khác); 2) Báo giá 1207.2026.HP-HNT ngày 12/07/2026 của Công ty TNHH Hồng Phúc; 3) Đề xuất thi công hoàn trả nền ngày 20/08/2026 duyệt giá nhà thầu INDCON giảm còn 216.571.320 đ (đủ 3 chữ ký: Nguyễn Ngọc Phương, Nguyễn Văn Thứ, Nguyễn Ngọc Hải).",
                                          "note":  "Chủ tịch HĐQT kiểm soát chặt đơn giá, bác đề xuất lần 1 (248,97 triệu) giúp tiết kiệm 32.490.720 đ khi chuyển sang nhà thầu INDCON. Lưu ý KSNB: (1) Tờ trình phê duyệt giá nhà thầu INDCON ghi ngày 20/08/2026 nhưng Hợp đồng 1608/2026/HĐKT/HNT-IDC lại ký ngày 16/08/2026 (ký HĐ trước ngày tờ trình duyệt 04 ngày); (2) Chưa lưu kèm bản báo giá chính thức có dấu của INDCON; (3) Tờ trình 10/08 ghi chú chi phí này KH Sendo có trách nhiệm thanh toán với HNT – cần đối soát thu hồi từ Sendo.",
-                                         "createdAt":  "2026-10-20T07:10:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                         "createdAt":  "2026-10-20T07:32:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
                                      },
                                      {
                                          "id":  "inv_da003_sendo_den",
@@ -1846,8 +1669,46 @@
                                          "approvedValue":  41365626,
                                          "evidence":  "1) Bảng báo giá phát sinh số ĐT-18826/Rev1 ngày 18/08/2026 của Công ty CP Đầu tư Xây lắp Đại Tín (38.301.506 đ trước VAT); 2) Đệ trình thi công hệ thống đèn bổ sung ngày 19/08/2026 (41.365.626 đ sau VAT 8%), có đủ chữ ký Người lập Nguyễn Ngọc Phương, GĐĐH Nguyễn Văn Thứ, Chủ tịch HĐQT Nguyễn Ngọc Hải.",
                                          "note":  "Trình tự phê duyệt đúng quy định: Báo giá (18/08/2026) -\u003e Đệ trình phê duyệt (19/08/2026) -\u003e Ký Hợp đồng (24/08/2026). Lưu ý KSNB: Hồ sơ chỉ có 01 báo giá của Đại Tín; người lập báo giá của Đại Tín (Phạm Văn Hiển) trùng tên với Chủ trì thiết kế thuộc Công ty CP INDCON trên bản vẽ hoàn công HNT/E-01.",
-                                         "createdAt":  "2026-10-20T07:10:00.000Z",
-                                         "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                         "createdAt":  "2026-10-20T07:32:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                     },
+                                     {
+                                         "id":  "inv_da004_banmai_dongho",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "proj_da004_banmai_dongho",
+                                         "hasProposal":  "y",
+                                         "proposalNo":  "Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 05/08/2026 - Mục 1)",
+                                         "proposalDate":  "2026-08-05",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "y",
+                                         "hasResolution":  "na",
+                                         "resNo":  "Phê duyệt ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải \u0026 GĐĐH Nguyễn Văn Thứ (tổng tờ trình 105.748.465 đ)",
+                                         "resDate":  "2026-08-06",
+                                         "approvedValue":  16430332,
+                                         "evidence":  "1) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ ký \u0027Duyệt làm\u0027 và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026; 2) Dự toán đấu nối và lắp đặt cụm đồng hồ đo nước DN25 (.../2026-DT-ĐA) của Xí nghiệp Nước sạch Đông Anh (16.430.332 đ gồm VAT 8%, chi phí KS-TK 1.244.451 đ và nước xúc xả 92.000 đ).",
+                                         "note":  "Lưu ý KSNB: (1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị (05/08/2026) và trước ngày Chủ tịch HĐQT phê duyệt (06/08/2026); (2) Mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027 tại trang 4 Dự toán bỏ trống chữ ký và dấu của HNT; (3) Chủ tịch HĐQT bút phê yêu cầu khách hàng Ban Mai phải cam kết rõ nhu cầu nước tối thiểu.",
+                                         "createdAt":  "2026-10-20T07:32:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                     },
+                                     {
+                                         "id":  "inv_da005_banmai_onghdpe",
+                                         "periodId":  "mufq31zn245cq0d",
+                                         "projectId":  "proj_da005_banmai_onghdpe",
+                                         "hasProposal":  "y",
+                                         "proposalNo":  "Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 05/08/2026 - Mục 2)",
+                                         "proposalDate":  "2026-08-05",
+                                         "drafter":  "k3",
+                                         "approver":  "k9",
+                                         "authOK":  "y",
+                                         "hasResolution":  "na",
+                                         "resNo":  "Phê duyệt ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải \u0026 GĐĐH Nguyễn Văn Thứ (tổng tờ trình 105.748.465 đ)",
+                                         "resDate":  "2026-08-06",
+                                         "approvedValue":  89318133,
+                                         "evidence":  "1) Bảng báo giá phát sinh số ĐT-290726/Rev1 của Công ty CP Đầu tư Xây lắp Đại Tín (82.701.975 đ trước thuế; 89.318.133 đ sau VAT 8%); 2) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026.",
+                                         "note":  "Trình tự phê duyệt: Đề nghị (05/08/2026) -\u003e Chủ tịch HĐQT duyệt (06/08/2026) -\u003e Ký Hợp đồng 070826/HĐKT/HNT-ĐT (07/08/2026). Lưu ý KSNB: (1) Báo giá ĐT-290726/Rev1 ghi sai ngày lập là \u002722 tháng 3 năm 2025\u0027 và không có báo giá cạnh tranh; (2) Chưa lưu kèm văn bản cam kết mức sử dụng nước tối thiểu của khách hàng Ban Mai theo bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT.",
+                                         "createdAt":  "2026-10-20T07:32:00.000Z",
+                                         "updatedAt":  "2026-10-20T07:32:00.000Z"
                                      }
                                  ],
                  "progcosts":  [
@@ -1875,8 +1736,8 @@
                                        "reApproved":  "y",
                                        "adjEvidence":  "Tờ trình LGTHNT-20 ngày 10/08/2026 (bút phê của Chủ tịch HĐQT ngày 11/08/2026) và Tờ trình LGTHNT-06 ngày 20/08/2026 đã được Chủ tịch HĐQT \u0026 GĐĐH ký duyệt.",
                                        "note":  "Khối lượng quyết toán khớp 100% hợp đồng (345 md; 31,05 m³ bê tông M300), giá trị quyết toán 216.480.600 đ thấp hơn tờ trình duyệt 90.720 đ.",
-                                       "createdAt":  "2026-10-20T07:10:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-20T07:32:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "pc_da003_sendo_den",
@@ -1902,8 +1763,62 @@
                                        "reApproved":  "na",
                                        "adjEvidence":  "",
                                        "note":  "Chi phí quyết toán khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói (41.365.626 đ đã gồm VAT 8%), không phát sinh tăng/giảm.",
-                                       "createdAt":  "2026-10-20T07:10:00.000Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-20T07:32:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                   },
+                                   {
+                                       "id":  "pc_da004_banmai_dongho",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "proj_da004_banmai_dongho",
+                                       "planText":  "Thi công điểm đấu nối và lắp đặt cụm đồng hồ đo nước Diehl Altair cấp C DN25 (kèm van ren DN25, van 1 chiều DN25, ống HDPE DN40, cắt/đào/hoàn trả đường bê tông asphalt) theo thiết kế và dự toán của XN Nước sạch Đông Anh sau khi Bên A nộp kinh phí.",
+                                       "actualText":  "Đã ký Hợp đồng .../2026/ĐA/HĐ-ĐMN ngày 04/08/2026 với XN Nước sạch Đông Anh và thực hiện đấu nối tại hố ga đồng hồ DN40 cổng cũ Công ty Phúc Thịnh; tuy nhiên bộ hồ sơ hiện chưa lưu Biên bản nghiệm thu bàn giao và Thanh lý hợp đồng của XN Nước sạch Đông Anh.",
+                                       "planPct":  100,
+                                       "actualPct":  90,
+                                       "delayCause":  "",
+                                       "delayOwner":  "",
+                                       "delayFix":  "",
+                                       "budget":  16430332,
+                                       "actualCost":  16430332,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "n",
+                                       "adjContent":  "",
+                                       "valBefore":  "",
+                                       "valAfter":  "",
+                                       "adjDate":  "",
+                                       "reApproved":  "na",
+                                       "adjEvidence":  "",
+                                       "note":  "Chi phí theo đúng dự toán 16.430.332 đ của XN Nước sạch Đông Anh (Công ty CP Nước sạch số 2 Hà Nội). Cần bổ sung Biên bản nghiệm thu bàn giao đưa vào sử dụng và Biên bản thanh lý hợp đồng theo Điều 2.3 \u0026 3.2 HĐ.",
+                                       "createdAt":  "2026-10-20T07:32:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                   },
+                                   {
+                                       "id":  "pc_da005_banmai_onghdpe",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "projectId":  "proj_da005_banmai_onghdpe",
+                                       "planText":  "Thi công kéo 950m ống cấp nước HDPE D50 PN10 (Vincen/Bình Minh/Đệ Nhất), 32 cút HDPE D50, 20 nối ống HDPE D50, 02 van chặn DN50 từ đồng hồ mới về kho khách hàng Ban Mai tại TTNK2 theo tiến độ chung của Dự án.",
+                                       "actualText":  "Đã hoàn thành 100% khối lượng (950m ống HDPE D50 PN10, 32 cút, 20 nối, 02 van chặn DN50, 01 lô vật tư phụ/ca máy, 01 lô vận chuyển); đã lập BBNT số 01/BBNT-ĐT và Bản vẽ hoàn công TMB-N 01 REV1.",
+                                       "planPct":  100,
+                                       "actualPct":  100,
+                                       "delayCause":  "",
+                                       "delayOwner":  "",
+                                       "delayFix":  "",
+                                       "budget":  89318133,
+                                       "actualCost":  89318133,
+                                       "overCause":  "",
+                                       "supApproval":  "na",
+                                       "supApprover":  "",
+                                       "hasAdj":  "n",
+                                       "adjContent":  "",
+                                       "valBefore":  "",
+                                       "valAfter":  "",
+                                       "adjDate":  "",
+                                       "reApproved":  "na",
+                                       "adjEvidence":  "",
+                                       "note":  "Giá trị quyết toán (89.318.133 đ) khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói 070826/HĐKT/HNT-ĐT. Lưu ý: Hợp đồng không quy định số ngày thi công cụ thể (\u0027theo tiến độ chung của Dự án\u0027) và không bao gồm công tác đào lấp đất, cắt đường, hoàn trả mặt bằng \u0026 hộp đồng hồ.",
+                                       "createdAt":  "2026-10-20T07:32:00.000Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    }
                                ],
                  "payments":  [
@@ -1937,8 +1852,8 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Biên bản nghiệm thu hoàn thành công trình số BBNT/HTCT/01 ghi SAI tên Chủ đầu tư tại mục 2.a thành \u0027Công ty cổ phần Phúc Thịnh\u0027 (thay vì Công ty CP Logistics HNT), mục 4.a ghi sai ngày ký HĐ là \u002713/03/2026\u0027 và bỏ trống số HĐ; 2) Bảng tổng hợp giá trị quyết toán, Phiếu YCNT và BBNT công trình đều bỏ trống ngày/tháng/năm; 3) Hợp đồng ký ngày 16/08/2026 nhưng Tờ trình phê duyệt giá nhà thầu INDCON ký ngày 20/08/2026; 4) Bộ hồ sơ thiếu Giấy đề nghị thanh toán, Hóa đơn GTGT và UNC.",
                                       "note":  "Đề nghị Phòng Dự án yêu cầu nhà thầu INDCON đính chính lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT, điền đầy đủ số/ngày hợp đồng (1608/2026/HĐKT/HNT-IDC ngày 16/08/2026), ngày tháng nghiệm thu và bổ sung Giấy đề nghị thanh toán + Hóa đơn GTGT hợp lệ trước khi giải ngân.",
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   },
                                   {
                                       "id":  "pay_da003_sendo_den_01",
@@ -1970,8 +1885,74 @@
                                       "xOther":  "y",
                                       "xNote":  "1) Giấy ĐNTT (0926/ĐNTT-ĐT), Bảng TH giá trị hoàn thành, Bảng TH khối lượng hoàn thành và BBNT (0926/BBNT-ĐT) đều bỏ trống ngày/tháng lập; 2) BBNT 0926/BBNT-ĐT liệt kê Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) trong thành phần nghiệm thu mục 2.1 nhưng phần ký Đại diện Bên A chỉ có Ông Nguyễn Ngọc Phương ký; 3) Cuối trang 1 Hợp đồng 240826/HĐKT/HNT-ĐT ghi nhầm nội dung \u0027hệ thống cấp nước\u0027; 4) Bộ hồ sơ thiếu Hóa đơn GTGT, chứng chỉ CO/CQ và UNC.",
                                       "note":  "Đề nghị Phòng Dự án hoàn thiện ngày tháng trên bộ chứng từ nghiệm thu – thanh toán, bổ sung Hóa đơn GTGT và CO/CQ đèn LED Duhal theo Điều 4.3 HĐ trước khi thanh toán cho nhà thầu Đại Tín.",
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "pay_da004_banmai_dongho_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "projectId":  "proj_da004_banmai_dongho",
+                                      "vendor":  "CN Công ty CP Nước sạch số 2 Hà Nội - XN Nước sạch Đông Anh (MST: 0100106088)",
+                                      "contractNo":  ".../2026/ĐA/HĐ-ĐMN ngày 04/08/2026",
+                                      "round":  "Thanh toán 100% theo dự toán trước thi công (Điều 1.2 HĐ)",
+                                      "reqDate":  "2026-08-07",
+                                      "reqAmount":  16430332,
+                                      "apprAmount":  16430332,
+                                      "paidAmount":  0,
+                                      "payDate":  "",
+                                      "dContract":  "y",
+                                      "dAppendix":  "na",
+                                      "dAccept":  "n",
+                                      "dQty":  "y",
+                                      "dInvoice":  "n",
+                                      "dReq":  "n",
+                                      "dAppr":  "y",
+                                      "dTransfer":  "n",
+                                      "cQty":  "n",
+                                      "cContract":  "y",
+                                      "cEligible":  "n",
+                                      "cAuth":  "y",
+                                      "xOverQty":  "n",
+                                      "xBefore":  "y",
+                                      "xDup":  "n",
+                                      "xOther":  "y",
+                                      "xNote":  "1) Điều 1.2 Hợp đồng quy định thanh toán 100% kinh phí theo dự toán (16.430.332 đ) trước khi thi công; 2) Hợp đồng (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026 trước ngày phê duyệt Tờ trình LGTHNT-06 (06/08/2026) và bỏ trống số hợp đồng; 3) Dự toán đính kèm bỏ trống số dự toán, ngày lập và thiếu chữ ký + đóng dấu tại mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
+                                      "note":  "Đề nghị Phòng Dự án hoàn thiện chữ ký chấp nhận dự toán, thu thập Biên bản nghiệm thu bàn giao \u0026 Thanh lý hợp đồng lắp đặt cụm đồng hồ nước, Hóa đơn GTGT và UNC từ XN Nước sạch Đông Anh.",
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "pay_da005_banmai_onghdpe_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "projectId":  "proj_da005_banmai_onghdpe",
+                                      "vendor":  "Công ty Cổ phần Đầu tư Xây lắp Đại Tín (MST: 0108861283)",
+                                      "contractNo":  "070826/HĐKT/HNT-ĐT ngày 07/08/2026",
+                                      "round":  "Quyết toán (100% - ĐNTT 0826/ĐNTT-ĐT)",
+                                      "reqDate":  "2026-10-19",
+                                      "reqAmount":  89318133,
+                                      "apprAmount":  89318133,
+                                      "paidAmount":  0,
+                                      "payDate":  "",
+                                      "dContract":  "y",
+                                      "dAppendix":  "na",
+                                      "dAccept":  "y",
+                                      "dQty":  "y",
+                                      "dInvoice":  "n",
+                                      "dReq":  "y",
+                                      "dAppr":  "y",
+                                      "dTransfer":  "n",
+                                      "cQty":  "y",
+                                      "cContract":  "y",
+                                      "cEligible":  "n",
+                                      "cAuth":  "y",
+                                      "xOverQty":  "n",
+                                      "xBefore":  "n",
+                                      "xDup":  "n",
+                                      "xOther":  "y",
+                                      "xNote":  "1) Bản vẽ hoàn công TMB-N 01 REV1 sử dụng SAI khung tên của dự án khác: ghi Dự án \u0027Nâng cấp, cải tạo, sửa chữa Nhà xưởng Khu D\u0027, Chủ đầu tư \u0027Chi nhánh Công ty CP Quốc tế Phú Linh\u0027, Tư vấn thiết kế \u0027Công ty CP INDCON\u0027, Issue Date \u002712/2025\u0027; 2) Toàn bộ Giấy ĐNTT (0826/ĐNTT-ĐT), Bảng TH giá trị/khối lượng hoàn thành, BBNT (01/BBNT-ĐT) và dấu Bản vẽ hoàn công đều bỏ trống ngày/tháng; 3) BBNT 01/BBNT-ĐT nêu tên Chủ tịch HĐQT Nguyễn Ngọc Hải trong thành phần nghiệm thu nhưng không có chữ ký của Ông Nguyễn Ngọc Hải và không đóng dấu Bên A; 4) Thiếu Hóa đơn GTGT, chứng chỉ CO/CQ ống HDPE D50 và UNC.",
+                                      "note":  "Đề nghị Phòng Dự án yêu cầu nhà thầu Đại Tín lập lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 \u0026 Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi giải ngân.",
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   }
                               ],
                  "customers":  [
@@ -13625,11 +13606,11 @@
                                        "contractId":  "",
                                        "result":  "warn",
                                        "evidence":  "Tờ trình xin chủ trương đầu tư; Báo cáo nghiên cứu khả thi (FS); Bảng tính toán hiệu quả tài chính (IRR, NPV, thời gian hoàn vốn).",
-                                       "comment":  "Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT \u0026 GĐĐH phê duyệt cho DA-002 (216,57 triệu) và DA-003 (41,36 triệu). Tuy nhiên ở DA-002, Hợp đồng 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 trước ngày Tờ trình phê duyệt giá mới (20/08/2026) và thiếu bản báo giá đóng dấu của INDCON.",
+                                       "comment":  "Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT \u0026 GĐĐH phê duyệt cho DA-002 (216,57 tr), DA-003 (41,36 tr), DA-004 (16,43 tr) và DA-005 (89,32 tr). Tuy nhiên: (1) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) đều ký trước ngày Tờ trình được phê duyệt (20/08 và 06/08); (2) DA-002 thiếu báo giá đóng dấu của INDCON; DA-004 thiếu chữ ký chấp nhận dự toán của HNT; DA-004 \u0026 DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.",
                                        "risk":  "Đầu tư dàn trải, không hiệu quả, thiếu cơ sở pháp lý ban đầu.",
                                        "rec":  "Hoàn thiện Báo cáo FS và phê duyệt chủ trương trước khi chi ngân sách.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_02_chk_dt_02",
@@ -13642,11 +13623,11 @@
                                        "contractId":  "",
                                        "result":  "pass",
                                        "evidence":  "Nghị quyết HĐQT hoặc Quyết định phê duyệt dự án của TGĐ; Dự toán TMĐT chi tiết từng hạng mục.",
-                                       "comment":  "Cả 2 gói thầu DA-002 (216.571.320 đ) và DA-003 (41.365.626 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; riêng DA-002 Chủ tịch HĐQT đã bác giá lần 1 (248,97 triệu) giúp tiết kiệm 32,49 triệu đồng.",
+                                       "comment":  "Cả 4 gói thầu DA-002 (216.571.320 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; Chủ tịch HĐQT có bút phê kiểm soát chặt đơn giá (DA-002 tiết kiệm 32,49 tr) và điều kiện cam kết của khách hàng (DA-004, DA-005).",
                                        "risk":  "Vượt thẩm quyền phân cấp tài chính, cam kết vượt khả năng cân đối vốn của Công ty.",
                                        "rec":  "Trình cấp thẩm quyền phê duyệt lại TMĐT theo đúng hạn mức phân quyền.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_03_chk_dt_03",
@@ -13662,8 +13643,8 @@
                                        "comment":  "",
                                        "risk":  "Tranh chấp pháp lý mặt bằng, bị đình chỉ thi công hoặc không được bồi hoàn khi thu hồi.",
                                        "rec":  "Bổ sung văn bản chấp thuận của chủ đất và hồ sơ quy hoạch chuẩn.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_04_chk_dt_04",
@@ -13679,8 +13660,8 @@
                                        "comment":  "",
                                        "risk":  "Bị đình chỉ hoạt động kho, phạt vi phạm hành chính nặng, không thể nghiệm thu đưa vào khai thác thương mại.",
                                        "rec":  "Đẩy nhanh tiến độ thẩm duyệt PCCC với cơ quan chức năng, không triển khai khi chưa có phê duyệt PCCC.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_05_chk_cp_01",
@@ -13693,11 +13674,11 @@
                                        "contractId":  "",
                                        "result":  "pass",
                                        "evidence":  "Bảng tiến độ thi công WBS; Báo cáo giám sát tiến độ thực tế (Actual % vs Plan %); Biên bản ghi nhận nguyên nhân chậm trễ.",
-                                       "comment":  "DA-002 (Cải tạo nền Sendo) hoàn thành và nghiệm thu công việc ngày 24/08/2026 (8 ngày so với kế hoạch 15 ngày trong HĐ); DA-003 (Đèn chiếu sáng Sendo) đã hoàn thành 100% khối lượng 17 đèn Highbay 100W.",
+                                       "comment":  "DA-002 (Cải tạo nền Sendo), DA-003 (Đèn chiếu sáng Sendo) và DA-005 (Ống cấp nước HDPE Ban Mai) đã thi công hoàn thành 100% khối lượng; riêng HĐ của DA-003 và DA-005 cần quy định rõ số ngày thi công thay vì chỉ ghi \u0027theo tiến độ chung của Dự án\u0027.",
                                        "risk":  "Chậm đưa kho vào khai thác, mất cơ hội kinh doanh, phát sinh chi phí phạt hợp đồng với khách thuê.",
                                        "rec":  "Lập kế hoạch bù tiến độ, tăng cường nguồn lực nhà thầu và đôn đốc giám sát hàng tuần.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_06_chk_cp_02",
@@ -13710,11 +13691,11 @@
                                        "contractId":  "",
                                        "result":  "pass",
                                        "evidence":  "Bảng tổng hợp chi phí dự án luỹ kế; Hồ sơ phát sinh tăng/giảm khối lượng thi công so với thiết kế ban đầu.",
-                                       "comment":  "Chi phí quyết toán thực tế của DA-002 (216.480.600 đ) và DA-003 (41.365.626 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.",
+                                       "comment":  "Chi phí thực tế/quyết toán của cả 4 gói DA-002 (216.480.600 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.",
                                        "risk":  "Vượt dự toán, thâm hụt dòng tiền đầu tư, đội vốn dự án.",
                                        "rec":  "Rà soát cắt giảm các hạng mục không thiết yếu, kiểm soát chặt chi phí dự toán.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_07_chk_cp_03",
@@ -13730,8 +13711,8 @@
                                        "comment":  "",
                                        "risk":  "Tự ý duyệt phát sinh sai thẩm quyền, chi tiêu không có ngân sách hợp lệ.",
                                        "rec":  "Đình chỉ thanh toán phần vượt dự toán cho đến khi có phê duyệt chính thức bằng văn bản.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_08_chk_cp_04",
@@ -13747,8 +13728,8 @@
                                        "comment":  "",
                                        "risk":  "Tai nạn lao động, thiệt hại tài sản không được bảo hiểm chi trả, đình chỉ công trường.",
                                        "rec":  "Mua bảo hiểm bắt buộc và chấn chỉnh công tác bảo hộ lao động ngay lập tức.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_09_chk_nt_01",
@@ -13761,11 +13742,11 @@
                                        "contractId":  "",
                                        "result":  "fail",
                                        "evidence":  "Biên bản nghiệm thu công việc xây dựng; Bản vẽ hoàn công từng giai đoạn; Phiếu kết quả thí nghiệm vật liệu, chứng chỉ xuất xưởng (CO/CQ).",
-                                       "comment":  "Hồ sơ nghiệm thu kỹ thuật có nhiều sai sót: (1) BBNT hoàn thành công trình BBNT/HTCT/01 của DA-002 ghi sai tên Chủ đầu tư thành \u0027Công ty cổ phần Phúc Thịnh\u0027, ghi sai ngày HĐ là 13/03/2026 và bỏ trống số HĐ; (2) Các BBNT của DA-002 và DA-003 bỏ trống ngày/tháng nghiệm thu; (3) Thiếu chứng chỉ CO/CQ vật tư.",
+                                       "comment":  "Hồ sơ nghiệm thu kỹ thuật \u0026 hoàn công có sai sót trọng yếu: (1) BBNT BBNT/HTCT/01 của DA-002 ghi sai Chủ đầu tư thành \u0027Công ty cổ phần Phúc Thịnh\u0027 \u0026 sai ngày HĐ 13/03/2026; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 ghi sai Chủ đầu tư thành \u0027Chi nhánh Công ty CP Quốc tế Phú Linh\u0027 \u0026 sai tên dự án (\u0027Nhà xưởng Khu D\u0027); (3) Các BBNT của DA-002, DA-003, DA-005 đều bỏ trống ngày/tháng nghiệm thu và thiếu chữ ký Chủ tịch HĐQT trên BBNT; (4) DA-004 chưa có BBNT bàn giao.",
                                        "risk":  "Nghiệm thu khống khối lượng, chất lượng công trình không đạt yêu cầu kỹ thuật.",
                                        "rec":  "Bắt buộc nghiệm thu thực địa có xác nhận độc lập của Tư vấn giám sát trước khi xác nhận khối lượng.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_10_chk_nt_02",
@@ -13781,8 +13762,8 @@
                                        "comment":  "",
                                        "risk":  "Vận hành kho trái phép, nguy cơ cháy nổ cao, bị xử phạt và đình chỉ hoạt động.",
                                        "rec":  "Tuyệt đối không bàn giao kho cho khách hàng khi chưa có văn bản chấp thuận nghiệm thu PCCC.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_11_chk_nt_03",
@@ -13798,8 +13779,8 @@
                                        "comment":  "",
                                        "risk":  "Nhà thầu chiếm dụng vốn tạm ứng, mất khả năng thu hồi vốn khi nhà thầu vi phạm nghĩa vụ.",
                                        "rec":  "Theo dõi chặt thời hạn bảo lãnh, yêu cầu gia hạn kịp thời trước khi hết hạn 15 ngày.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_12_chk_nt_04",
@@ -13812,11 +13793,11 @@
                                        "contractId":  "",
                                        "result":  "warn",
                                        "evidence":  "Giấy đề nghị thanh toán; Bảng tính giá trị thanh toán đợt kèm hóa đơn GTGT; Bảng đối trừ tạm ứng và giữ lại tiền bảo hành (5% - 10%).",
-                                       "comment":  "Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ), nhưng bộ hồ sơ thanh toán còn thiếu Hóa đơn GTGT, UNC của cả 2 gói và thiếu Giấy đề nghị thanh toán của gói nền DA-002.",
+                                       "comment":  "Giá trị đề nghị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC của cả 4 gói và cần đính chính lại pháp nhân CĐT trên BBNT (DA-002) \u0026 Bản vẽ hoàn công (DA-005).",
                                        "risk":  "Thanh toán vượt giá trị thực tế hoàn thành (paidAmount \u003e apprAmount), thanh toán trùng lắp.",
                                        "rec":  "Kế toán thanh toán chỉ chi đúng giá trị nghiệm thu thực tế sau khi đã đối trừ tạm ứng đầy đủ.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-20T07:32:00.000Z"
                                    },
                                    {
                                        "id":  "chk_13_chk_hd_01",
@@ -13832,8 +13813,8 @@
                                        "comment":  "",
                                        "risk":  "Hợp đồng vô hiệu do người ký không đúng thẩm quyền, khó khăn khi xử lý tranh chấp pháp lý.",
                                        "rec":  "Yêu cầu ký phụ lục bổ sung xác nhận của Người đại diện theo pháp luật đối với các HĐ thiếu ủy quyền.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_14_chk_hd_02",
@@ -13849,8 +13830,8 @@
                                        "comment":  "",
                                        "risk":  "Thiếu bằng chứng pháp lý khi đối soát diện tích, giá và quyền sở hữu kho bãi.",
                                        "rec":  "Thu hồi và số hóa đầy đủ hồ sơ còn thiếu vào hệ thống lưu trữ trong vòng 7 ngày làm việc.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_15_chk_hd_03",
@@ -13866,8 +13847,8 @@
                                        "comment":  "",
                                        "risk":  "Áp sai mô hình hợp đồng, thất thu phí dịch vụ lưu kho và sai lệch phương pháp ghi nhận doanh thu.",
                                        "rec":  "Điều chỉnh lại hợp đồng và đơn giá chính phù hợp với mô hình hoạt động thực tế.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_16_chk_hd_04",
@@ -13883,8 +13864,8 @@
                                        "comment":  "",
                                        "risk":  "Không có chế tài xử lý khi khách hàng nợ tiền hoặc đơn phương bỏ kho, mất cọc.",
                                        "rec":  "Cập nhật điều khoản bảo vệ quyền lợi doanh nghiệp theo mẫu HĐ chuẩn đã phê duyệt.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_17_chk_gia_01",
@@ -13900,8 +13881,8 @@
                                        "comment":  "",
                                        "risk":  "Ký dưới giá sàn mà không có lý do chính đáng, gây thiệt hại doanh thu của Công ty.",
                                        "rec":  "Yêu cầu giải trình các hợp đồng có giá thấp hơn giá sàn quy định; báo cáo TGĐ xử lý.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_18_chk_gia_02",
@@ -13917,8 +13898,8 @@
                                        "comment":  "",
                                        "risk":  "Vượt thẩm quyền quyết định giá của cấp điều hành, vi phạm quy định của HĐQT.",
                                        "rec":  "Trình HĐQT phê duyệt hồi tố ngoại lệ hoặc đàm phán điều chỉnh lại đơn giá chuẩn.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_19_chk_gia_03",
@@ -13934,8 +13915,8 @@
                                        "comment":  "",
                                        "risk":  "Tính thiếu tiền thuê hàng nặng (chiếm tải trọng sàn kho), không bù đắp rủi ro bảo hiểm hàng nguy hiểm.",
                                        "rec":  "Ký phụ lục điều chỉnh cách tính cước theo Tấn và truy thu phụ thu 10% theo quy định.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_20_chk_gia_04",
@@ -13951,8 +13932,8 @@
                                        "comment":  "",
                                        "risk":  "Thất thu chi phí nhân công bốc xếp, thất thoát tiền điện nước do không quy định rõ đơn giá.",
                                        "rec":  "Bổ sung ngay phụ lục đơn giá dịch vụ bốc xếp và biểu giá điện nước tiêu thụ cho các HĐ còn thiếu.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_21_chk_tt_01",
@@ -13968,8 +13949,8 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng đột ngột trả kho gây trống mặt bằng, đứt gãy dòng tiền cho thuê.",
                                        "rec":  "Thiết lập cảnh báo tự động trước 60 ngày và giao chỉ tiêu tái tục cho từng chuyên viên phụ trách.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_22_chk_tt_02",
@@ -13985,8 +13966,8 @@
                                        "comment":  "",
                                        "risk":  "Giữ nguyên giá cũ hoặc tăng giá thấp hơn quy định, làm suy giảm biên lợi nhuận do trượt giá.",
                                        "rec":  "Áp đúng tỷ lệ tăng giá hợp đồng; trường hợp giữ nguyên giá phải có phê duyệt văn bản của TGĐ.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_23_chk_tt_03",
@@ -14002,8 +13983,8 @@
                                        "comment":  "",
                                        "risk":  "Khách hàng sử dụng kho bất hợp pháp không có ràng buộc hợp đồng, nguy cơ không thu được tiền thuê.",
                                        "rec":  "Khẩn trương ký phụ lục gia hạn hoặc tiến hành lập biên bản niêm phong kho, thu hồi mặt bằng.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_24_chk_cn_01",
@@ -14019,8 +14000,8 @@
                                        "comment":  "",
                                        "risk":  "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
                                        "rec":  "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T08:27:26.972Z"
                                    },
                                    {
                                        "id":  "chk_25_chk_cn_02",
@@ -14036,8 +14017,8 @@
                                        "comment":  "",
                                        "risk":  "Chuyên viên kinh doanh bỏ mặc công nợ cho Kế toán, không dùng quyền hạn hợp đồng để thúc đẩy thanh toán, nợ đọng kéo dài khó đòi.",
                                        "rec":  "Định kỳ hàng tháng chuyên viên phụ trách hợp đồng phải đối chiếu danh sách nợ quá hạn với Kế toán và gửi văn bản đôn đốc nợ/áp dụng chế tài chậm nộp theo đúng hợp đồng.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T08:27:26.975Z"
                                    },
                                    {
                                        "id":  "chk_26_chk_cn_03",
@@ -14053,8 +14034,8 @@
                                        "comment":  "",
                                        "risk":  "Ký thanh lý hợp đồng khi Trung tâm chưa nhận lại kho hoặc Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến mất quyền thu hồi nợ/chi phí hư hỏng kho.",
                                        "rec":  "Phòng Dự án chỉ trình ký Biên bản thanh lý sau khi nhận đủ Biên bản hoàn trả mặt bằng từ Trung tâm (Kho) và Bảng xác nhận hết nợ/cấn trừ cọc từ Phòng Kế toán.",
-                                       "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T08:27:26.976Z"
                                    },
                                    {
                                        "id":  "chk_27_chk_ck_01",
@@ -14074,6 +14055,23 @@
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
+                                       "id":  "chk_28_chk_ck_01",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-CK-01",
+                                       "group":  "k8",
+                                       "content":  "Kiểm tra điều kiện thâm niên \u003e= 3 năm khi áp dụng chính sách chiết khấu gia hạn theo Quyết định 176.",
+                                       "criteria":  "Quyết định số 176/2024/QĐ-HNT ngày 25/10/2024 của Tổng Giám đốc.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Lịch sử hợp đồng thuê kho liên tục của khách hàng \u003e= 3 năm; Số hợp đồng cũ, ngày ký gốc đính kèm trên hồ sơ chiết khấu.",
+                                       "comment":  "",
+                                       "risk":  "Khách hàng chưa đủ thâm niên 3 năm nhưng vẫn được giảm giá/chiết khấu sai quy định.",
+                                       "rec":  "Thu hồi khoản chiết khấu đã chi sai và kiểm điểm trách nhiệm chuyên viên đề xuất.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
+                                   },
+                                   {
                                        "id":  "chk_28_chk_ck_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-02",
@@ -14089,6 +14087,23 @@
                                        "rec":  "Không áp dụng chính sách chiết khấu cho các hợp đồng gia hạn dưới 6 tháng.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                   },
+                                   {
+                                       "id":  "chk_29_chk_ck_02",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-CK-02",
+                                       "group":  "k8",
+                                       "content":  "Kiểm tra thời hạn gia hạn hợp đồng tối thiểu \u003e= 6 tháng để được hưởng chiết khấu theo Quyết định 176.",
+                                       "criteria":  "Điều khoản về thời hạn hợp đồng tại Quyết định 176/2024/QĐ-HNT.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Thời hạn gia hạn ký trên Phụ lục hợp đồng (renewMonths); Văn bản phê duyệt ngoại lệ của TGĐ (nếu gia hạn dưới 6 tháng).",
+                                       "comment":  "",
+                                       "risk":  "Chiết khấu cho hợp đồng ngắn hạn gây giảm doanh thu mà không giữ chân được khách hàng.",
+                                       "rec":  "Không áp dụng chính sách chiết khấu cho các hợp đồng gia hạn dưới 6 tháng.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_29_chk_ck_03",
@@ -14108,6 +14123,23 @@
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
+                                       "id":  "chk_30_chk_ck_03",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-CK-03",
+                                       "group":  "k8",
+                                       "content":  "Kiểm tra điều kiện hưởng chiết khấu dịch vụ lưu kho chung theo QĐ 11 (Doanh thu \u003e= 5 triệu và tháng đầu \u003e= 20 ngày).",
+                                       "criteria":  "Khoản 5, Khoản 6 Quyết định ngày 07/05/2025 (QĐ 11).",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Doanh thu lưu kho thực tế trong tháng của khách hàng (related); Số ngày hoạt động thực tế trong tháng đầu tiên (daysInFirstMonth).",
+                                       "comment":  "",
+                                       "risk":  "Cho hưởng chiết khấu khi doanh thu không đạt ngưỡng 5 triệu hoặc tháng đầu \u003c 20 ngày.",
+                                       "rec":  "Chỉ duyệt chiết khấu khi doanh thu đạt chuẩn; tháng đầu \u003c 20 ngày dời sang tháng kế tiếp.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
+                                   },
+                                   {
                                        "id":  "chk_30_chk_ck_04",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-CK-04",
@@ -14123,6 +14155,23 @@
                                        "rec":  "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                   },
+                                   {
+                                       "id":  "chk_31_chk_ck_04",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-CK-04",
+                                       "group":  "k8",
+                                       "content":  "Kiểm tra việc truy thu lại tiền chiết khấu khi khách hàng chủ động chấm dứt hợp đồng trước hạn.",
+                                       "criteria":  "Quy định thu hồi chiết khấu tại QĐ 11 và Điều khoản chấm dứt HĐ.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Thông báo chấm dứt hợp đồng trước hạn của khách hàng; Bảng tính số tiền chiết khấu phải truy thu (clawbackAmt); Khấu trừ tiền truy thu vào tiền đặt cọc hoàn trả.",
+                                       "comment":  "",
+                                       "risk":  "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
+                                       "rec":  "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_31_chk_hh_01",
@@ -14142,6 +14191,23 @@
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
+                                       "id":  "chk_32_chk_hh_01",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-HH-01",
+                                       "group":  "k9",
+                                       "content":  "Kiểm tra tỷ lệ trích hoa hồng cho chuyên viên kinh doanh (Sale) và môi giới ngoài: Đảm bảo không vượt khung quy định.",
+                                       "criteria":  "Quy chế hoa hồng bán hàng của Công ty; Chính sách phát triển khách hàng mới.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Tờ trình chi hoa hồng khách hàng mới; Bảng so sánh tỷ lệ đề xuất so với tỷ lệ trần được phép (saleActualRate vs saleAllowedRate).",
+                                       "comment":  "",
+                                       "risk":  "Chi vượt khung hoa hồng cho phép, làm tăng chi phí bán hàng và giảm lợi nhuận ròng.",
+                                       "rec":  "Cắt giảm khoản hoa hồng vượt định mức về đúng tỷ lệ tối đa quy định.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
+                                   },
+                                   {
                                        "id":  "chk_32_chk_hh_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-HH-02",
@@ -14157,6 +14223,23 @@
                                        "rec":  "Bắt buộc khấu trừ thuế TNCN 10% tại nguồn và lưu đầy đủ định danh cá nhân môi giới.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                   },
+                                   {
+                                       "id":  "chk_33_chk_hh_02",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-HH-02",
+                                       "group":  "k9",
+                                       "content":  "Kiểm tra tính minh bạch thông tin môi giới và thẩm quyền phê duyệt chi trả hoa hồng.",
+                                       "criteria":  "Quy chế phê duyệt chi phí bán hàng; Quy định về chứng từ thuế TNCN môi giới.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Hợp đồng môi giới / Thỏa thuận giới thiệu khách hàng; Bản sao CCCD, MST cá nhân của môi giới (brokerName); Chữ ký phê duyệt của TGĐ và Kế toán trưởng (approver).",
+                                       "comment":  "",
+                                       "risk":  "Rủi ro gian lận lập môi giới \"ma\" để rút tiền hoa hồng, rủi ro phạt thuế TNCN.",
+                                       "rec":  "Bắt buộc khấu trừ thuế TNCN 10% tại nguồn và lưu đầy đủ định danh cá nhân môi giới.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_33_chk_hh_03",
@@ -14176,6 +14259,23 @@
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
+                                       "id":  "chk_34_chk_hh_03",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-HH-03",
+                                       "group":  "k9",
+                                       "content":  "Kiểm tra số kỳ được chi trả hoa hồng: Đảm bảo không chi vượt quá số kỳ quy định trong chính sách.",
+                                       "criteria":  "Quy định thời gian hưởng hoa hồng (thường chỉ chi trong 1 - 3 tháng đầu của HĐ mới).",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Bảng kê các đợt chi trả hoa hồng luỹ kế cho từng hợp đồng; Thời gian bắt đầu tính hoa hồng (periodStart).",
+                                       "comment":  "",
+                                       "risk":  "Chi trả hoa hồng kéo dài nhiều tháng ngoài chính sách cho một hợp đồng cũ.",
+                                       "rec":  "Chấm dứt chi hoa hồng khi đã đủ số kỳ được hưởng; thu hồi các kỳ chi thừa.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
+                                   },
+                                   {
                                        "id":  "chk_34_chk_kpi_01",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-KPI-01",
@@ -14193,12 +14293,29 @@
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
                                    },
                                    {
+                                       "id":  "chk_35_chk_kpi_01",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-KPI-01",
+                                       "group":  "k10",
+                                       "content":  "Kiểm tra tiến độ và chất lượng hoàn thành các nhiệm vụ trọng tâm được giao cho Phòng Dự án trong kỳ.",
+                                       "criteria":  "Kế hoạch công tác quý của Phòng Dự án; Chỉ đạo giao việc của Ban Giám đốc (tasks).",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Bảng theo dõi phân công nhiệm vụ nhân sự; Kết quả sản phẩm bàn giao của từng đầu việc; Tỷ lệ nhiệm vụ bị chậm hạn (late), bỏ sót (miss) hoặc làm sai quy trình (proc).",
+                                       "comment":  "",
+                                       "risk":  "Tồn đọng công việc chiến lược, trì trệ tiến độ chung của toàn Công ty.",
+                                       "rec":  "Rà soát năng lực nhân sự, tái phân bổ đầu việc và đưa vào đánh giá xếp loại thi đua.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
+                                   },
+                                   {
                                        "id":  "chk_35_chk_kpi_02",
                                        "periodId":  "mufq31zn245cq0d",
                                        "code":  "CHK-KPI-02",
                                        "group":  "k10",
                                        "content":  "Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.",
-                                       "criteria":  "Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 5 nhân sự.",
+                                       "criteria":  "Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 8 nhân sự.",
                                        "projectId":  "",
                                        "contractId":  "",
                                        "result":  "todo",
@@ -14208,6 +14325,23 @@
                                        "rec":  "Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                   },
+                                   {
+                                       "id":  "chk_36_chk_kpi_02",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-KPI-02",
+                                       "group":  "k10",
+                                       "content":  "Kiểm tra tính trung thực và cơ sở dữ liệu tính điểm KPI theo 5 nhóm chỉ tiêu của nhân sự Phòng Dự án.",
+                                       "criteria":  "Bản đăng ký chỉ tiêu KPI đầu kỳ; Báo cáo đánh giá KPI cuối kỳ của 8 nhân sự.",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Số liệu thực hiện so với chỉ tiêu giao: Doanh thu, Tiến độ dự án, Chi phí, Khách hàng, Tuân thủ; Bằng chứng đối chiếu chéo với số liệu kế toán/doanh thu thực tế.",
+                                       "comment":  "",
+                                       "risk":  "Báo cáo KPI ảo, khai vọt số liệu để nhận thưởng hiệu quả công việc.",
+                                       "rec":  "Hiệu chỉnh lại điểm số KPI theo số liệu kiểm toán thực tế và thu hồi thưởng nếu có.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    },
                                    {
                                        "id":  "chk_36_chk_kpi_03",
@@ -14225,6 +14359,23 @@
                                        "rec":  "Báo cáo trực tiếp Ban Tổng Giám đốc chế tài kỷ luật đối với các cá nhân chây ì không khắc phục.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
                                        "updatedAt":  "2026-10-15T08:14:16.495Z"
+                                   },
+                                   {
+                                       "id":  "chk_37_chk_kpi_03",
+                                       "periodId":  "mufq31zn245cq0d",
+                                       "code":  "CHK-KPI-03",
+                                       "group":  "k10",
+                                       "content":  "Kiểm tra kết quả thực hiện và tình trạng đóng các kiến nghị kiểm tra kiểm soát nội bộ của các kỳ trước (Follow-up).",
+                                       "criteria":  "Báo cáo kiểm tra KSNB kỳ trước; Kế hoạch hành động khắc phục của Phòng Dự án (followups).",
+                                       "projectId":  "",
+                                       "contractId":  "",
+                                       "result":  "todo",
+                                       "evidence":  "Bảng theo dõi tình trạng xử lý kiến nghị (recs); Bằng chứng khắc phục thực tế đã nộp (biên bản sửa chữa, phụ lục HĐ ký lại...); Số lượng kiến nghị quá hạn chưa đóng.",
+                                       "comment":  "",
+                                       "risk":  "Lỗi vi phạm lặp đi lặp lại nhiều kỳ, kiến nghị kiểm tra không có tính răn đe.",
+                                       "rec":  "Báo cáo trực tiếp Ban Tổng Giám đốc chế tài kỷ luật đối với các cá nhân chây ì không khắc phục.",
+                                       "createdAt":  "2026-10-15T07:55:19.692Z",
+                                       "updatedAt":  "2026-10-15T07:55:19.692Z"
                                    }
                                ],
                  "findings":  [
@@ -14247,8 +14398,8 @@
                                       "amount":  216480600,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu Phòng Dự án đính chính/lập lại Biên bản nghiệm thu BBNT/HTCT/01 đúng pháp nhân Công ty CP Logistics HNT và bổ sung đầy đủ chứng từ thanh toán trước khi giải ngân.",
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   },
                                   {
                                       "id":  "fnd_sendo_da003_01",
@@ -14269,8 +14420,52 @@
                                       "amount":  41365626,
                                       "deptOpinion":  "",
                                       "conclusion":  "Yêu cầu bổ sung ngày tháng nghiệm thu hoàn thành (để làm mốc tính bảo hành 18 tháng), hoàn thiện chữ ký và bổ sung Hóa đơn GTGT, CO/CQ vật tư trước khi tất toán.",
-                                      "createdAt":  "2026-10-20T07:10:00.000Z",
-                                      "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "fnd_banmai_da004_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "code":  "FND-26Q3-003",
+                                      "group":  "k1",
+                                      "riskLevel":  "med",
+                                      "projectId":  "proj_da004_banmai_dongho",
+                                      "contractId":  "",
+                                      "checklistId":  "chk_05_chk_dt_01",
+                                      "content":  "Hợp đồng đấu nối đồng hồ nước sạch Ban Mai (DA-004) ký trước ngày phê duyệt tờ trình, bỏ trống số hợp đồng/dự toán, thiếu chữ ký chấp nhận dự toán của CĐT và chưa lưu kèm cam kết sản lượng nước của khách hàng Ban Mai",
+                                      "basis":  "Quy trình quản lý đầu tư xây dựng cơ bản; Bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải trên Tờ trình LGTHNT-06; Điều 1.2 \u0026 Điều 3.2 Hợp đồng .../2026/ĐA/HĐ-ĐMN.",
+                                      "actual":  "1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị cấp VT-TB-CC (05/08/2026) và trước ngày Chủ tịch HĐQT ký duyệt (06/08/2026); 2) Hợp đồng và Dự toán đính kèm đều bỏ trống số hiệu (\u0027Số: /2026/ĐA/HĐ-ĐMN\u0027, \u0027Số: /2026-DT-ĐA\u0027), bỏ trống ngày lập dự toán, và mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027 tại trang 4 chưa có chữ ký, đóng dấu của HNT; 3) Chủ tịch HĐQT bút phê rõ điều kiện: \u0027Khách Ban Mai phải rõ nhu cầu nước là bao nhiêu, phải có mức tối thiểu... Nếu chỉ dự kiến, không cụ thể, không cam kết thì HNT không giải quyết\u0027, nhưng trong hồ sơ chưa có văn bản cam kết của KH Ban Mai; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
+                                      "evidence":  "File DE NGHI CTY CAP VAT TU - TB - CONG CU CAP NUOC SACH_20260807_0001.pdf; HĐ LAP DAT DUONG ONG VA DAU MAY NUOC TAI TTNK 2_20260807_0001.pdf.",
+                                      "cause":  "Phòng Dự án ký hợp đồng theo mẫu của XN Nước sạch Đông Anh trước khi hoàn tất tờ trình phê duyệt nội bộ và chưa lưu trữ đầy đủ văn bản cam kết của khách hàng Ban Mai kèm theo hồ sơ.",
+                                      "impact":  "Thiếu cơ sở ràng buộc sản lượng/chi phí cấp nước tối thiểu với khách hàng Ban Mai theo đúng chỉ đạo của Chủ tịch HĐQT và hồ sơ thanh toán/quyết toán với XN Nước sạch Đông Anh chưa hoàn chỉnh.",
+                                      "risk":  "Rủi ro đầu tư hạ tầng cấp nước (tổng 105,75 triệu đồng) nhưng khách hàng Ban Mai sử dụng ít hoặc không cam kết thu hồi vốn; rủi ro thiếu hồ sơ nghiệm thu – thanh lý hợp đồng.",
+                                      "amount":  16430332,
+                                      "deptOpinion":  "",
+                                      "conclusion":  "Yêu cầu Phòng Dự án bổ sung văn bản cam kết nhu cầu sử dụng nước của khách hàng Ban Mai, hoàn thiện chữ ký/số hiệu trên Dự toán \u0026 Hợp đồng và thu thập BBNT bàn giao, Thanh lý HĐ, Hóa đơn GTGT từ XN Nước sạch Đông Anh.",
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
+                                  },
+                                  {
+                                      "id":  "fnd_banmai_da005_01",
+                                      "periodId":  "mufq31zn245cq0d",
+                                      "code":  "FND-26Q3-004",
+                                      "group":  "k3",
+                                      "riskLevel":  "high",
+                                      "projectId":  "proj_da005_banmai_onghdpe",
+                                      "contractId":  "",
+                                      "checklistId":  "chk_09_chk_nt_01",
+                                      "content":  "Hồ sơ nghiệm thu – quyết toán gói kéo đường ống cấp nước HDPE kho Ban Mai (DA-005) dùng Bản vẽ hoàn công ghi sai tên Chủ đầu tư (\u0027CN Công ty CP Quốc tế Phú Linh\u0027) \u0026 sai tên dự án, bỏ trống toàn bộ ngày tháng và thiếu chữ ký Chủ tịch HĐQT trên BBNT",
+                                      "basis":  "Quy trình nghiệm thu – thanh quyết toán công trình của Công ty CP Logistics HNT; Điều 3, Điều 4.3 và Điều 5 Hợp đồng kinh tế số 070826/HĐKT/HNT-ĐT ngày 07/08/2026.",
+                                      "actual":  "1) Bản vẽ hoàn công TMB-N 01 REV1 (trang 10-11) đóng dấu hoàn công của nhà thầu Đại Tín và chữ ký Nguyễn Ngọc Phương, nhưng khung tên bản vẽ lại ghi Dự án \u0027Nâng cấp, cải tạo, sửa chữa Nhà xưởng Khu D\u0027, Chủ đầu tư \u0027Chi nhánh Công ty Cổ phần Quốc tế Phú Linh\u0027, Tư vấn thiết kế \u0027Công ty CP INDCON\u0027 và ngày phát hành \u002712/2025\u0027; 2) Toàn bộ Giấy đề nghị thanh toán (0826/ĐNTT-ĐT), Bảng tổng hợp giá trị hoàn thành, Bảng tổng hợp khối lượng hoàn thành, Biên bản nghiệm thu (01/BBNT-ĐT) và dấu Bản vẽ hoàn công đều bỏ trống ngày/tháng lập; 3) BBNT 01/BBNT-ĐT ghi thành phần nghiệm thu Bên A có Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) nhưng trang 8 chỉ có chữ ký của Ông Nguyễn Ngọc Phương, không có chữ ký của Chủ tịch HĐQT và không đóng dấu Bên A; 4) Báo giá ĐT-290726/Rev1 ghi sai ngày lập là \u002722/03/2025\u0027; thiếu Hóa đơn GTGT, chứng chỉ CO/CQ ống HDPE D50 và UNC.",
+                                      "evidence":  "File 2026-7-29 Phat sinh ong cap nuoc HDPE.pdf; HĐ 0708 HNT-ĐT.pdf; HO SO TT KHOI LUONG HOAN THANH THI CONG LĐHT CAP THOAT NUOC NK2_20261019_0001.pdf.",
+                                      "cause":  "Nhà thầu Đại Tín tận dụng lại bản vẽ cũ của dự án khác (do INDCON thiết kế cho Phú Linh năm 2025) để đóng dấu hoàn công mà không sửa khung tên; Phòng Dự án thiếu kiểm tra chi tiết khi ký xác nhận hồ sơ hoàn công và nghiệm thu.",
+                                      "impact":  "Bản vẽ hoàn công ghi sai tên Chủ đầu tư và sai tên Dự án làm mất giá trị pháp lý của hồ sơ hoàn công; việc bỏ trống toàn bộ ngày tháng trên BBNT khiến không xác định được mốc tính bảo hành 18 tháng đối với tuyến ống ngầm HDPE D50 dài 950m.",
+                                      "risk":  "Rủi ro hồ sơ hoàn công – quyết toán không hợp lệ về mặt pháp lý/thuế và rủi ro tranh chấp nghĩa vụ bảo hành 18 tháng khi tuyến ống cấp nước 950m xảy ra sự cố rò rỉ.",
+                                      "amount":  89318133,
+                                      "deptOpinion":  "",
+                                      "conclusion":  "Yêu cầu Phòng Dự án buộc nhà thầu Đại Tín lập và đóng dấu lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 \u0026 Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi thanh toán.",
+                                      "createdAt":  "2026-10-20T07:32:00.000Z",
+                                      "updatedAt":  "2026-10-20T07:32:00.000Z"
                                   }
                               ],
                  "recs":  [
@@ -14291,8 +14486,8 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:10:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                  "createdAt":  "2026-10-20T07:32:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
                               },
                               {
                                   "id":  "rec_sendo_da003_01",
@@ -14311,8 +14506,48 @@
                                   "ktksOpinion":  "",
                                   "closeDate":  "",
                                   "confirmer":  "",
-                                  "createdAt":  "2026-10-20T07:10:00.000Z",
-                                  "updatedAt":  "2026-10-20T07:10:00.000Z"
+                                  "createdAt":  "2026-10-20T07:32:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                              },
+                              {
+                                  "id":  "rec_banmai_da004_01",
+                                  "periodId":  "mufq31zn245cq0d",
+                                  "findingId":  "fnd_banmai_da004_01",
+                                  "code":  "FND-26Q3-003-K1",
+                                  "content":  "1) Lưu bổ sung văn bản/phụ lục cam kết nhu cầu và mức sử dụng nước tối thiểu của khách hàng Ban Mai theo đúng bút phê ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải; 2) Hoàn thiện số hiệu Hợp đồng, Dự toán và chữ ký xác nhận của HNT tại mục \u0027KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN\u0027; 3) Thu thập Biên bản nghiệm thu bàn giao đưa vào sử dụng, Biên bản thanh lý hợp đồng, Hóa đơn GTGT và UNC của XN Nước sạch Đông Anh.",
+                                  "unit":  "k1",
+                                  "owner":  "k3",
+                                  "commitDate":  "2026-10-20",
+                                  "deadline":  "2026-11-05",
+                                  "measure":  "Phối hợp Bộ phận Kinh doanh/Quản lý HĐ và XN Nước sạch Đông Anh hoàn thiện bộ hồ sơ pháp lý – thanh quyết toán gói lắp đặt cụm đồng hồ nước.",
+                                  "status":  "todo",
+                                  "fixEvidence":  "",
+                                  "unitOpinion":  "",
+                                  "ktksOpinion":  "",
+                                  "closeDate":  "",
+                                  "confirmer":  "",
+                                  "createdAt":  "2026-10-20T07:32:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
+                              },
+                              {
+                                  "id":  "rec_banmai_da005_01",
+                                  "periodId":  "mufq31zn245cq0d",
+                                  "findingId":  "fnd_banmai_da005_01",
+                                  "code":  "FND-26Q3-004-K1",
+                                  "content":  "1) Yêu cầu Công ty CP Đầu tư Xây lắp Đại Tín chỉnh sửa lại khung tên Bản vẽ hoàn công TMB-N 01 REV1 đúng tên Dự án \u0027Nhà kho HNT Nguyên Khê 2\u0027 và Chủ đầu tư \u0027Công ty CP Logistics HNT\u0027, điền ngày hoàn công và ký đóng dấu lại; 2) Điền đầy đủ ngày/tháng trên Giấy ĐNTT 0826/ĐNTT-ĐT, Bảng tổng hợp giá trị/khối lượng và BBNT 01/BBNT-ĐT, trình ký đủ thành phần nghiệm thu Bên A; 3) Bổ sung Hóa đơn GTGT và chứng chỉ chất lượng CO/CQ của 950m ống cấp nước HDPE D50 PN10 cùng phụ kiện trước khi giải ngân.",
+                                  "unit":  "k1",
+                                  "owner":  "k3",
+                                  "commitDate":  "2026-10-20",
+                                  "deadline":  "2026-11-05",
+                                  "measure":  "Yêu cầu nhà thầu Đại Tín đính chính Bản vẽ hoàn công, hoàn thiện ngày tháng/chữ ký BBNT và nộp đủ Hóa đơn GTGT, CO/CQ trước khi chuyển Kế toán thanh toán.",
+                                  "status":  "todo",
+                                  "fixEvidence":  "",
+                                  "unitOpinion":  "",
+                                  "ktksOpinion":  "",
+                                  "closeDate":  "",
+                                  "confirmer":  "",
+                                  "createdAt":  "2026-10-20T07:32:00.000Z",
+                                  "updatedAt":  "2026-10-20T07:32:00.000Z"
                               }
                           ],
                  "followups":  [
@@ -21509,6 +21744,84 @@
                                      "createdAt":  "2026-10-06T07:05:14.674Z"
                                  },
                                  {
+                                     "id":  "mv8ziqpoy77t2v2",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T03:34:12.924Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Cập nhật",
+                                     "object":  "Kỳ kiểm tra",
+                                     "content":  "Cập nhật kỳ kiểm tra Q3/2026",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T03:34:12.924Z"
+                                 },
+                                 {
+                                     "id":  "mv97m05ufvriuwm",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T07:20:42.066Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Tạo mới",
+                                     "object":  "Tiêu chí kiểm tra",
+                                     "content":  "Tạo tiêu chí kiểm tra a1 – đeade",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T07:20:42.066Z"
+                                 },
+                                 {
+                                     "id":  "mv97m835amqutqy",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T07:20:52.337Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Cập nhật",
+                                     "object":  "Tiêu chí kiểm tra",
+                                     "content":  "Cập nhật tiêu chí kiểm tra a1 – đeade",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T07:20:52.337Z"
+                                 },
+                                 {
+                                     "id":  "mv97mg2isflfiit",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T07:21:02.682Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Xóa",
+                                     "object":  "Tiêu chí kiểm tra",
+                                     "content":  "Xóa tiêu chí kiểm tra a1 – đeade",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T07:21:02.682Z"
+                                 },
+                                 {
+                                     "id":  "mv98uj9tpl9xr09",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T07:55:19.697Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Cập nhật",
+                                     "object":  "Checklist",
+                                     "content":  "Nạp tự động 37 tiêu chí kiểm tra KSNB chuẩn cho kỳ Q3/2026",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T07:55:19.698Z"
+                                 },
+                                 {
+                                     "id":  "mv99zuekj52b39o",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-15T08:27:27.020Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Cập nhật",
+                                     "object":  "Checklist",
+                                     "content":  "Đồng bộ lại tiêu chí Nhóm 7 (3 tiêu chí) theo chuẩn nhiệm vụ Phòng Dự án",
+                                     "result":  "",
+                                     "note":  "",
+                                     "auto":  1,
+                                     "createdAt":  "2026-10-15T08:27:27.020Z"
+                                 },
+                                 {
                                      "id":  "jnl_sendo_import_20261020",
                                      "periodId":  "mufq31zn245cq0d",
                                      "ts":  "2026-10-20T07:10:00.000Z",
@@ -21520,6 +21833,19 @@
                                      "note":  "",
                                      "auto":  0,
                                      "createdAt":  "2026-10-20T07:10:00.000Z"
+                                 },
+                                 {
+                                     "id":  "jnl_banmai_import_20261020",
+                                     "periodId":  "mufq31zn245cq0d",
+                                     "ts":  "2026-10-20T07:32:00.000Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Đối chiếu",
+                                     "object":  "Dự án DA-004 \u0026 DA-005 (Cấp nước sạch kho Ban Mai NK2)",
+                                     "content":  "Rà soát và cập nhật bộ hồ sơ Gói thi công cấp nước sạch cho khách hàng Ban Mai tại TTNK2 theo Phương án 1: tách 02 dự án DA-004 (Đấu nối \u0026 lắp cụm đồng hồ nước DN25 - XN Nước sạch Đông Anh - 16.430.332 đ) và DA-005 (Thi công kéo 950m ống cấp nước HDPE D50 - Đại Tín - 89.318.133 đ); lập 02 Finding (FND-26Q3-003, FND-26Q3-004) \u0026 02 Kiến nghị KSNB.",
+                                     "result":  "Phát hiện 02 Finding (FND-26Q3-003, FND-26Q3-004)",
+                                     "note":  "",
+                                     "auto":  0,
+                                     "createdAt":  "2026-10-20T07:32:00.000Z"
                                  }
                              ]
              }

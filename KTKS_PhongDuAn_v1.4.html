@@ -2916,7 +2916,7 @@ ACT['seed-pda-chk'] = async () => {
 async function ensureSendoProjects(){
   const P = curPeriod() || DB.all('periods')[0];
   if(!P) return;
-  const now = '2026-10-20T07:10:00.000Z';
+  const now = '2026-10-20T07:32:00.000Z';
   const pid0 = P.id;
 
   /* 1. Đảm bảo danh mục Người phê duyệt (Chủ tịch HĐQT & GĐĐH) */
@@ -2932,18 +2932,19 @@ async function ensureSendoProjects(){
   const kTypeXd = catKeyByName('projectType','Đầu tư xây dựng kho') || 'k1';
   const kUnitPda = catKeyByName('unit','Phòng Dự án') || 'k1';
 
-  /* 2. Cập nhật trạng thái kỳ kiểm tra nếu còn ở notstarted */
-  if(P.status === 'notstarted' || !P.scope){
+  /* 2. Cập nhật trạng thái & phạm vi kỳ kiểm tra */
+  const newScope = 'Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1, DA-004 Đấu nối & lắp cụm đồng hồ nước sạch Ban Mai NK2, DA-005 Thi công kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.';
+  if(P.status === 'notstarted' || !P.scope || !P.scope.includes('DA-004')){
     await DB.put('periods', {
       ...P,
       status: P.status === 'notstarted' ? 'doing' : P.status,
-      scope: P.scope || 'Kiểm tra hồ sơ dự án đầu tư – cải tạo hạ tầng (DA-001 Nâng cấp PCCC NK2, DA-002 Cải tạo hoàn trả nền kho Sendo NK1, DA-003 Lắp đặt bổ sung hệ thống đèn chiếu sáng kho Sendo NK1), 69 hợp đồng thuê kho/lưu kho, chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.',
+      scope: newScope,
       objective: P.objective || 'Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán nhà thầu, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.',
       updatedAt: now
     });
   }
 
-  /* 3. Thêm 2 dự án DA-002 (Cải tạo nền Sendo) & DA-003 (Đèn chiếu sáng Sendo) theo Phương án 2 */
+  /* 3. Thêm các dự án DA-002, DA-003 (Kho Sendo) & DA-004, DA-005 (Cấp nước sạch Ban Mai) */
   const sendoProjs = [
     {
       id: 'proj_da002_sendo_nen',
@@ -2972,6 +2973,36 @@ async function ensureSendoProjects(){
       startDate: '2026-08-24',
       endDate: '2026-09-08',
       total: 41365626,
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'proj_da004_banmai_dongho',
+      code: 'DA-004',
+      name: 'Gói thầu thi công điểm đấu nối và lắp đặt cụm đồng hồ nước sạch tại TTNK2 (Khách hàng Ban Mai)',
+      type: kTypeXd,
+      location: 'Nhà kho HNT Nguyên Khê 2 (Số 28 TT HNT Nguyên Khê, Khu đất Công ty CP Phúc Thịnh, xã Phúc Thịnh, TP. Hà Nội)',
+      owner: kPhuong,
+      status: 'doing',
+      proposeDate: '2026-08-05',
+      startDate: '2026-08-04',
+      endDate: '2026-08-31',
+      total: 16430332,
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'proj_da005_banmai_onghdpe',
+      code: 'DA-005',
+      name: 'Gói thầu thi công kéo đường ống cấp nước HDPE D50 từ đồng hồ mới về kho khách hàng Ban Mai (TTNK2)',
+      type: kTypeXd,
+      location: 'Nhà kho HNT Nguyên Khê 2 (Xã Phúc Thịnh, TP. Hà Nội)',
+      owner: kPhuong,
+      status: 'done',
+      proposeDate: '2026-08-05',
+      startDate: '2026-08-07',
+      endDate: '2026-09-15',
+      total: 89318133,
       createdAt: now,
       updatedAt: now
     }
@@ -3017,6 +3048,44 @@ async function ensureSendoProjects(){
       approvedValue: 41365626,
       evidence: '1) Bảng báo giá phát sinh số ĐT-18826/Rev1 ngày 18/08/2026 của Công ty CP Đầu tư Xây lắp Đại Tín (38.301.506 đ trước VAT); 2) Đệ trình thi công hệ thống đèn bổ sung ngày 19/08/2026 (41.365.626 đ sau VAT 8%), có đủ chữ ký Người lập Nguyễn Ngọc Phương, GĐĐH Nguyễn Văn Thứ, Chủ tịch HĐQT Nguyễn Ngọc Hải.',
       note: 'Trình tự phê duyệt đúng quy định: Báo giá (18/08/2026) -> Đệ trình phê duyệt (19/08/2026) -> Ký Hợp đồng (24/08/2026). Lưu ý KSNB: Hồ sơ chỉ có 01 báo giá của Đại Tín; người lập báo giá của Đại Tín (Phạm Văn Hiển) trùng tên với Chủ trì thiết kế thuộc Công ty CP INDCON trên bản vẽ hoàn công HNT/E-01.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'inv_da004_banmai_dongho',
+      periodId: pid0,
+      projectId: 'proj_da004_banmai_dongho',
+      hasProposal: 'y',
+      proposalNo: 'Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 05/08/2026 - Mục 1)',
+      proposalDate: '2026-08-05',
+      drafter: kPhuong,
+      approver: kHai,
+      authOK: 'y',
+      hasResolution: 'na',
+      resNo: 'Phê duyệt ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ (tổng tờ trình 105.748.465 đ)',
+      resDate: '2026-08-06',
+      approvedValue: 16430332,
+      evidence: "1) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ ký 'Duyệt làm' và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026; 2) Dự toán đấu nối và lắp đặt cụm đồng hồ đo nước DN25 (.../2026-DT-ĐA) của Xí nghiệp Nước sạch Đông Anh (16.430.332 đ gồm VAT 8%, chi phí KS-TK 1.244.451 đ và nước xúc xả 92.000 đ).",
+      note: "Lưu ý KSNB: (1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị (05/08/2026) và trước ngày Chủ tịch HĐQT phê duyệt (06/08/2026); (2) Mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN' tại trang 4 Dự toán bỏ trống chữ ký và dấu của HNT; (3) Chủ tịch HĐQT bút phê yêu cầu khách hàng Ban Mai phải cam kết rõ nhu cầu nước tối thiểu.",
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'inv_da005_banmai_onghdpe',
+      periodId: pid0,
+      projectId: 'proj_da005_banmai_onghdpe',
+      hasProposal: 'y',
+      proposalNo: 'Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06 ngày 05/08/2026 - Mục 2)',
+      proposalDate: '2026-08-05',
+      drafter: kPhuong,
+      approver: kHai,
+      authOK: 'y',
+      hasResolution: 'na',
+      resNo: 'Phê duyệt ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ (tổng tờ trình 105.748.465 đ)',
+      resDate: '2026-08-06',
+      approvedValue: 89318133,
+      evidence: '1) Bảng báo giá phát sinh số ĐT-290726/Rev1 của Công ty CP Đầu tư Xây lắp Đại Tín (82.701.975 đ trước thuế; 89.318.133 đ sau VAT 8%); 2) Đề nghị cấp VT-TB-CC ngày 05/08/2026 được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt ngày 06/08/2026.',
+      note: "Trình tự phê duyệt: Đề nghị (05/08/2026) -> Chủ tịch HĐQT duyệt (06/08/2026) -> Ký Hợp đồng 070826/HĐKT/HNT-ĐT (07/08/2026). Lưu ý KSNB: (1) Báo giá ĐT-290726/Rev1 ghi sai ngày lập là '22 tháng 3 năm 2025' và không có báo giá cạnh tranh; (2) Chưa lưu kèm văn bản cam kết mức sử dụng nước tối thiểu của khách hàng Ban Mai theo bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT.",
       createdAt: now,
       updatedAt: now
     }
@@ -3078,6 +3147,60 @@ async function ensureSendoProjects(){
       reApproved: 'na',
       adjEvidence: '',
       note: 'Chi phí quyết toán khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói (41.365.626 đ đã gồm VAT 8%), không phát sinh tăng/giảm.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'pc_da004_banmai_dongho',
+      periodId: pid0,
+      projectId: 'proj_da004_banmai_dongho',
+      planText: 'Thi công điểm đấu nối và lắp đặt cụm đồng hồ đo nước Diehl Altair cấp C DN25 (kèm van ren DN25, van 1 chiều DN25, ống HDPE DN40, cắt/đào/hoàn trả đường bê tông asphalt) theo thiết kế và dự toán của XN Nước sạch Đông Anh sau khi Bên A nộp kinh phí.',
+      actualText: 'Đã ký Hợp đồng .../2026/ĐA/HĐ-ĐMN ngày 04/08/2026 với XN Nước sạch Đông Anh và thực hiện đấu nối tại hố ga đồng hồ DN40 cổng cũ Công ty Phúc Thịnh; tuy nhiên bộ hồ sơ hiện chưa lưu Biên bản nghiệm thu bàn giao và Thanh lý hợp đồng của XN Nước sạch Đông Anh.',
+      planPct: 100,
+      actualPct: 90,
+      delayCause: '',
+      delayOwner: '',
+      delayFix: '',
+      budget: 16430332,
+      actualCost: 16430332,
+      overCause: '',
+      supApproval: 'na',
+      supApprover: '',
+      hasAdj: 'n',
+      adjContent: '',
+      valBefore: '',
+      valAfter: '',
+      adjDate: '',
+      reApproved: 'na',
+      adjEvidence: '',
+      note: 'Chi phí theo đúng dự toán 16.430.332 đ của XN Nước sạch Đông Anh (Công ty CP Nước sạch số 2 Hà Nội). Cần bổ sung Biên bản nghiệm thu bàn giao đưa vào sử dụng và Biên bản thanh lý hợp đồng theo Điều 2.3 & 3.2 HĐ.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'pc_da005_banmai_onghdpe',
+      periodId: pid0,
+      projectId: 'proj_da005_banmai_onghdpe',
+      planText: 'Thi công kéo 950m ống cấp nước HDPE D50 PN10 (Vincen/Bình Minh/Đệ Nhất), 32 cút HDPE D50, 20 nối ống HDPE D50, 02 van chặn DN50 từ đồng hồ mới về kho khách hàng Ban Mai tại TTNK2 theo tiến độ chung của Dự án.',
+      actualText: 'Đã hoàn thành 100% khối lượng (950m ống HDPE D50 PN10, 32 cút, 20 nối, 02 van chặn DN50, 01 lô vật tư phụ/ca máy, 01 lô vận chuyển); đã lập BBNT số 01/BBNT-ĐT và Bản vẽ hoàn công TMB-N 01 REV1.',
+      planPct: 100,
+      actualPct: 100,
+      delayCause: '',
+      delayOwner: '',
+      delayFix: '',
+      budget: 89318133,
+      actualCost: 89318133,
+      overCause: '',
+      supApproval: 'na',
+      supApprover: '',
+      hasAdj: 'n',
+      adjContent: '',
+      valBefore: '',
+      valAfter: '',
+      adjDate: '',
+      reApproved: 'na',
+      adjEvidence: '',
+      note: "Giá trị quyết toán (89.318.133 đ) khớp 100% dự toán được duyệt và giá trị hợp đồng trọn gói 070826/HĐKT/HNT-ĐT. Lưu ý: Hợp đồng không quy định số ngày thi công cụ thể ('theo tiến độ chung của Dự án') và không bao gồm công tác đào lấp đất, cắt đường, hoàn trả mặt bằng & hộp đồng hồ.",
       createdAt: now,
       updatedAt: now
     }
@@ -3153,13 +3276,79 @@ async function ensureSendoProjects(){
       note: 'Đề nghị Phòng Dự án hoàn thiện ngày tháng trên bộ chứng từ nghiệm thu – thanh toán, bổ sung Hóa đơn GTGT và CO/CQ đèn LED Duhal theo Điều 4.3 HĐ trước khi thanh toán cho nhà thầu Đại Tín.',
       createdAt: now,
       updatedAt: now
+    },
+    {
+      id: 'pay_da004_banmai_dongho_01',
+      periodId: pid0,
+      projectId: 'proj_da004_banmai_dongho',
+      vendor: 'CN Công ty CP Nước sạch số 2 Hà Nội - XN Nước sạch Đông Anh (MST: 0100106088)',
+      contractNo: '.../2026/ĐA/HĐ-ĐMN ngày 04/08/2026',
+      round: 'Thanh toán 100% theo dự toán trước thi công (Điều 1.2 HĐ)',
+      reqDate: '2026-08-07',
+      reqAmount: 16430332,
+      apprAmount: 16430332,
+      paidAmount: 0,
+      payDate: '',
+      dContract: 'y',
+      dAppendix: 'na',
+      dAccept: 'n',
+      dQty: 'y',
+      dInvoice: 'n',
+      dReq: 'n',
+      dAppr: 'y',
+      dTransfer: 'n',
+      cQty: 'n',
+      cContract: 'y',
+      cEligible: 'n',
+      cAuth: 'y',
+      xOverQty: 'n',
+      xBefore: 'y',
+      xDup: 'n',
+      xOther: 'y',
+      xNote: "1) Điều 1.2 Hợp đồng quy định thanh toán 100% kinh phí theo dự toán (16.430.332 đ) trước khi thi công; 2) Hợp đồng (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026 trước ngày phê duyệt Tờ trình LGTHNT-06 (06/08/2026) và bỏ trống số hợp đồng; 3) Dự toán đính kèm bỏ trống số dự toán, ngày lập và thiếu chữ ký + đóng dấu tại mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN'; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
+      note: 'Đề nghị Phòng Dự án hoàn thiện chữ ký chấp nhận dự toán, thu thập Biên bản nghiệm thu bàn giao & Thanh lý hợp đồng lắp đặt cụm đồng hồ nước, Hóa đơn GTGT và UNC từ XN Nước sạch Đông Anh.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'pay_da005_banmai_onghdpe_01',
+      periodId: pid0,
+      projectId: 'proj_da005_banmai_onghdpe',
+      vendor: 'Công ty Cổ phần Đầu tư Xây lắp Đại Tín (MST: 0108861283)',
+      contractNo: '070826/HĐKT/HNT-ĐT ngày 07/08/2026',
+      round: 'Quyết toán (100% - ĐNTT 0826/ĐNTT-ĐT)',
+      reqDate: '2026-10-19',
+      reqAmount: 89318133,
+      apprAmount: 89318133,
+      paidAmount: 0,
+      payDate: '',
+      dContract: 'y',
+      dAppendix: 'na',
+      dAccept: 'y',
+      dQty: 'y',
+      dInvoice: 'n',
+      dReq: 'y',
+      dAppr: 'y',
+      dTransfer: 'n',
+      cQty: 'y',
+      cContract: 'y',
+      cEligible: 'n',
+      cAuth: 'y',
+      xOverQty: 'n',
+      xBefore: 'n',
+      xDup: 'n',
+      xOther: 'y',
+      xNote: "1) Bản vẽ hoàn công TMB-N 01 REV1 sử dụng SAI khung tên của dự án khác: ghi Dự án 'Nâng cấp, cải tạo, sửa chữa Nhà xưởng Khu D', Chủ đầu tư 'Chi nhánh Công ty CP Quốc tế Phú Linh', Tư vấn thiết kế 'Công ty CP INDCON', Issue Date '12/2025'; 2) Toàn bộ Giấy ĐNTT (0826/ĐNTT-ĐT), Bảng TH giá trị/khối lượng hoàn thành, BBNT (01/BBNT-ĐT) và dấu Bản vẽ hoàn công đều bỏ trống ngày/tháng; 3) BBNT 01/BBNT-ĐT nêu tên Chủ tịch HĐQT Nguyễn Ngọc Hải trong thành phần nghiệm thu nhưng không có chữ ký của Ông Nguyễn Ngọc Hải và không đóng dấu Bên A; 4) Thiếu Hóa đơn GTGT, chứng chỉ CO/CQ ống HDPE D50 và UNC.",
+      note: 'Đề nghị Phòng Dự án yêu cầu nhà thầu Đại Tín lập lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 & Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi giải ngân.',
+      createdAt: now,
+      updatedAt: now
     }
   ];
   for(const r of sendoPays){
     if(!DB.get('payments', r.id)) await DB.put('payments', r);
   }
 
-  /* 7. Chuẩn hóa docreqs & cập nhật trạng thái tiếp nhận hồ sơ Sendo */
+  /* 7. Chuẩn hóa docreqs & cập nhật trạng thái tiếp nhận hồ sơ Sendo + Ban Mai */
   for(const d of DB.all('docreqs')){
     let chg = false;
     const copy = {...d};
@@ -3167,51 +3356,59 @@ async function ensureSendoProjects(){
       copy.group = copy.group.replace('docGroup.','');
       chg = true;
     }
-    if(copy.id === 'docreq_05' && copy.status === 'wait'){
+    if(copy.id === 'docreq_05' && (!copy.evidence || !copy.evidence.includes('DA-004'))){
       copy.recvDate = '2026-10-20';
       copy.provider = kPhuong;
       copy.status = 'recv';
-      copy.evidence = 'Đã nhận Tờ trình phê duyệt cấp VT-TB-CC của DA-002 (Đề xuất ngày 10/08 bị bác & Đề xuất ngày 20/08/2026 duyệt 216.571.320 đ) và DA-003 (Đệ trình ngày 19/08/2026 duyệt 41.365.626 đ) kèm Báo giá Hồng Phúc, Báo giá Đại Tín.';
-      copy.note = 'Đã có phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ cho 2 gói Sendo. Lưu ý: DA-002 thiếu bản báo giá chính thức có đóng dấu của nhà thầu INDCON và tờ trình duyệt đề ngày 20/08/2026 (sau ngày ký HĐ 16/08/2026).';
+      copy.evidence = 'Đã nhận: (1) Tờ trình phê duyệt cấp VT-TB-CC của DA-002 (Đề xuất 10/08 bị bác & Đề xuất 20/08/2026 duyệt 216.571.320 đ), DA-003 (Đệ trình 19/08/2026 duyệt 41.365.626 đ); (2) Đề nghị cấp VT-TB-CC ngày 05/08/2026 của gói cấp nước Ban Mai (DA-004: 16.430.332 đ + DA-005: 89.318.133 đ = 105.748.465 đ) được Chủ tịch HĐQT ký duyệt ngày 06/08/2026 kèm Dự toán XN Nước sạch Đông Anh và Báo giá ĐT-290726/Rev1.';
+      copy.note = 'Đã có phê duyệt của Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ cho 4 gói (DA-002, DA-003, DA-004, DA-005). Lưu ý: DA-002 thiếu báo giá đóng dấu của INDCON; DA-004 thiếu chữ ký chấp nhận dự toán của CĐT; DA-004 & DA-005 chưa lưu kèm văn bản cam kết nhu cầu nước tối thiểu của khách hàng Ban Mai theo bút phê của Chủ tịch HĐQT.';
       copy.updatedAt = now;
       chg = true;
-    } else if(copy.id === 'docreq_07' && copy.status === 'wait'){
-      copy.recvDate = '2026-10-20';
-      copy.provider = kPhuong;
-      copy.status = 'recv';
-      copy.evidence = 'Đã nhận: (1) HĐ xây dựng số 1608/2026/HĐKT/HNT-IDC ngày 16/08/2026 với Công ty CP INDCON (216.480.600 đ); (2) HĐ kinh tế số 240826/HĐKT/HNT-ĐT ngày 24/08/2026 với Công ty CP Đầu tư Xây lắp Đại Tín (41.365.626 đ).';
-      copy.note = "Cả 2 hợp đồng gói Sendo đã ký và đóng dấu đầy đủ. Lưu ý lỗi soạn thảo tại cuối trang 1 HĐ 240826/HĐKT/HNT-ĐT ghi nhầm 'lắp đặt hệ thống cấp nước'.";
-      copy.updatedAt = now;
-      chg = true;
-    } else if(copy.id === 'docreq_08' && !copy.recvDate){
+    } else if(copy.id === 'docreq_06' && (!copy.evidence || !copy.evidence.includes('DA-004'))){
       copy.recvDate = '2026-10-20';
       copy.provider = kPhuong;
       copy.status = 'wait';
-      copy.evidence = 'Đã nhận file scan: (1) HO SO QT GOI CAI TAO NEN KHO CUA KH SEN DO TAI TTNK1_20261016_0001.pdf; (2) HO SO TTKLHT THI CONG LAP DAT BS HT CHIEU SANG KHO SENDO NK1_20261019_0001.pdf (kèm bản vẽ hoàn công HNT/E-01).';
-      copy.note = "Chờ bổ sung: Hóa đơn GTGT và Ủy nhiệm chi của cả 2 gói (DA-002, DA-003); Giấy đề nghị thanh toán của gói nền (DA-002); yêu cầu đính chính lại BBNT gói nền ghi sai tên Chủ đầu tư ('Công ty CP Phúc Thịnh') và bổ sung ngày tháng trên các biên bản nghiệm thu/quyết toán.";
+      copy.evidence = 'Đã nhận: Báo giá Hồng Phúc (248,97 tr) cho DA-002; Báo giá Đại Tín ĐT-18826/Rev1 (41,36 tr) cho DA-003; Dự toán XN Nước sạch Đông Anh (16,43 tr) cho DA-004; Báo giá Đại Tín ĐT-290726/Rev1 (89,32 tr) cho DA-005.';
+      copy.note = 'Chờ bổ sung: Báo giá gốc có dấu của INDCON (DA-002) và báo giá cạnh tranh/biên bản thương thảo của các gói chỉ định thầu Đại Tín (DA-003, DA-005).';
+      copy.updatedAt = now;
+      chg = true;
+    } else if(copy.id === 'docreq_07' && (!copy.evidence || !copy.evidence.includes('DA-004'))){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kPhuong;
+      copy.status = 'recv';
+      copy.evidence = 'Đã nhận 04 Hợp đồng: (1) HĐ 1608/2026/HĐKT/HNT-IDC ngày 16/08/2026 với INDCON (DA-002: 216.480.600 đ); (2) HĐ 240826/HĐKT/HNT-ĐT ngày 24/08/2026 với Đại Tín (DA-003: 41.365.626 đ); (3) HĐ .../2026/ĐA/HĐ-ĐMN ngày 04/08/2026 với XN Nước sạch Đông Anh (DA-004: 16.430.332 đ); (4) HĐ 070826/HĐKT/HNT-ĐT ngày 07/08/2026 với Đại Tín (DA-005: 89.318.133 đ).';
+      copy.note = "Lưu ý: HĐ DA-002 (16/08) và HĐ DA-004 (04/08) đều ký trước ngày Tờ trình được phê duyệt; HĐ DA-004 bỏ trống số hợp đồng; HĐ DA-003 ghi nhầm 'lắp đặt hệ thống cấp nước' ở cuối trang 1.";
+      copy.updatedAt = now;
+      chg = true;
+    } else if(copy.id === 'docreq_08' && (!copy.evidence || !copy.evidence.includes('DA-005'))){
+      copy.recvDate = '2026-10-20';
+      copy.provider = kPhuong;
+      copy.status = 'wait';
+      copy.evidence = 'Đã nhận file scan Hồ sơ QT/TTKLHT của 03 gói: (1) DA-002 Nền Sendo (216.480.600 đ); (2) DA-003 Đèn Sendo (41.365.626 đ, kèm BVHC HNT/E-01); (3) DA-005 Ống cấp nước HDPE Ban Mai (89.318.133 đ, kèm BBNT 01/BBNT-ĐT & BVHC TMB-N 01 REV1).';
+      copy.note = "Chờ bổ sung: (1) BBNT & Thanh lý HĐ của gói đồng hồ nước DA-004 (16,43 tr); (2) Hóa đơn GTGT, CO/CQ và UNC của cả 4 gói (DA-002 -> DA-005); (3) Đính chính BBNT gói nền Sendo (sai CĐT 'Công ty CP Phúc Thịnh') và Bản vẽ hoàn công gói cấp nước Ban Mai (sai CĐT 'CN Công ty CP Quốc tế Phú Linh'); điền đầy đủ ngày tháng và chữ ký Chủ tịch HĐQT trên các BBNT.";
       copy.updatedAt = now;
       chg = true;
     }
     if(chg) await DB.put('docreqs', copy);
   }
 
-  /* 8. Cập nhật kết quả Checklist liên quan đến DA-002 & DA-003 */
+  /* 8. Cập nhật kết quả Checklist liên quan đến DA-002 -> DA-005 */
   const chkUpdates = {
-    'CHK-DT-01': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT & GĐĐH phê duyệt cho DA-002 (216,57 triệu) và DA-003 (41,36 triệu). Tuy nhiên ở DA-002, Hợp đồng 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 trước ngày Tờ trình phê duyệt giá mới (20/08/2026) và thiếu bản báo giá đóng dấu của INDCON.'},
-    'CHK-DT-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Cả 2 gói thầu DA-002 (216.571.320 đ) và DA-003 (41.365.626 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; riêng DA-002 Chủ tịch HĐQT đã bác giá lần 1 (248,97 triệu) giúp tiết kiệm 32,49 triệu đồng.'},
-    'CHK-CP-01': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'DA-002 (Cải tạo nền Sendo) hoàn thành và nghiệm thu công việc ngày 24/08/2026 (8 ngày so với kế hoạch 15 ngày trong HĐ); DA-003 (Đèn chiếu sáng Sendo) đã hoàn thành 100% khối lượng 17 đèn Highbay 100W.'},
-    'CHK-CP-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Chi phí quyết toán thực tế của DA-002 (216.480.600 đ) và DA-003 (41.365.626 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.'},
-    'CHK-NT-01': {projectId:'proj_da002_sendo_nen', result:'fail', comment:"Hồ sơ nghiệm thu kỹ thuật có nhiều sai sót: (1) BBNT hoàn thành công trình BBNT/HTCT/01 của DA-002 ghi sai tên Chủ đầu tư thành 'Công ty cổ phần Phúc Thịnh', ghi sai ngày HĐ là 13/03/2026 và bỏ trống số HĐ; (2) Các BBNT của DA-002 và DA-003 bỏ trống ngày/tháng nghiệm thu; (3) Thiếu chứng chỉ CO/CQ vật tư."},
-    'CHK-NT-04': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ), nhưng bộ hồ sơ thanh toán còn thiếu Hóa đơn GTGT, UNC của cả 2 gói và thiếu Giấy đề nghị thanh toán của gói nền DA-002.'}
+    'CHK-DT-01': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Đã có Đề nghị cấp VT-TB-CC được Chủ tịch HĐQT & GĐĐH phê duyệt cho DA-002 (216,57 tr), DA-003 (41,36 tr), DA-004 (16,43 tr) và DA-005 (89,32 tr). Tuy nhiên: (1) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) đều ký trước ngày Tờ trình được phê duyệt (20/08 và 06/08); (2) DA-002 thiếu báo giá đóng dấu của INDCON; DA-004 thiếu chữ ký chấp nhận dự toán của HNT; DA-004 & DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.'},
+    'CHK-DT-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Cả 4 gói thầu DA-002 (216.571.320 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải trực tiếp phê duyệt đúng thẩm quyền; Chủ tịch HĐQT có bút phê kiểm soát chặt đơn giá (DA-002 tiết kiệm 32,49 tr) và điều kiện cam kết của khách hàng (DA-004, DA-005).'},
+    'CHK-CP-01': {projectId:'proj_da002_sendo_nen', result:'pass', comment:"DA-002 (Cải tạo nền Sendo), DA-003 (Đèn chiếu sáng Sendo) và DA-005 (Ống cấp nước HDPE Ban Mai) đã thi công hoàn thành 100% khối lượng; riêng HĐ của DA-003 và DA-005 cần quy định rõ số ngày thi công thay vì chỉ ghi 'theo tiến độ chung của Dự án'."},
+    'CHK-CP-02': {projectId:'proj_da002_sendo_nen', result:'pass', comment:'Chi phí thực tế/quyết toán của cả 4 gói DA-002 (216.480.600 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ) và DA-005 (89.318.133 đ) đều nằm trong dự toán được duyệt, không phát sinh vượt ngân sách.'},
+    'CHK-NT-01': {projectId:'proj_da002_sendo_nen', result:'fail', comment:"Hồ sơ nghiệm thu kỹ thuật & hoàn công có sai sót trọng yếu: (1) BBNT BBNT/HTCT/01 của DA-002 ghi sai Chủ đầu tư thành 'Công ty cổ phần Phúc Thịnh' & sai ngày HĐ 13/03/2026; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 ghi sai Chủ đầu tư thành 'Chi nhánh Công ty CP Quốc tế Phú Linh' & sai tên dự án ('Nhà xưởng Khu D'); (3) Các BBNT của DA-002, DA-003, DA-005 đều bỏ trống ngày/tháng nghiệm thu và thiếu chữ ký Chủ tịch HĐQT trên BBNT; (4) DA-004 chưa có BBNT bàn giao."},
+    'CHK-NT-04': {projectId:'proj_da002_sendo_nen', result:'warn', comment:'Giá trị đề nghị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC của cả 4 gói và cần đính chính lại pháp nhân CĐT trên BBNT (DA-002) & Bản vẽ hoàn công (DA-005).'}
   };
   for(const c of DB.all('checklist').filter(x => x.periodId === pid0)){
     const u = chkUpdates[c.code];
-    if(u && c.result === 'todo'){
+    if(u && (c.result === 'todo' || !c.comment || !c.comment.includes('DA-005'))){
       await DB.put('checklist', {...c, ...u, updatedAt: now});
     }
   }
 
-  /* 9. Tạo Finding & Kiến nghị cho DA-002 và DA-003 */
+  /* 9. Tạo Finding & Kiến nghị cho DA-002, DA-003, DA-004, DA-005 */
   const sendoFnds = [
     {
       id: 'fnd_sendo_da002_01',
@@ -3254,6 +3451,50 @@ async function ensureSendoProjects(){
       amount: 41365626,
       deptOpinion: '',
       conclusion: 'Yêu cầu bổ sung ngày tháng nghiệm thu hoàn thành (để làm mốc tính bảo hành 18 tháng), hoàn thiện chữ ký và bổ sung Hóa đơn GTGT, CO/CQ vật tư trước khi tất toán.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_banmai_da004_01',
+      periodId: pid0,
+      code: 'FND-26Q3-003',
+      group: 'k1',
+      riskLevel: 'med',
+      projectId: 'proj_da004_banmai_dongho',
+      contractId: '',
+      checklistId: 'chk_05_chk_dt_01',
+      content: 'Hợp đồng đấu nối đồng hồ nước sạch Ban Mai (DA-004) ký trước ngày phê duyệt tờ trình, bỏ trống số hợp đồng/dự toán, thiếu chữ ký chấp nhận dự toán của CĐT và chưa lưu kèm cam kết sản lượng nước của khách hàng Ban Mai',
+      basis: 'Quy trình quản lý đầu tư xây dựng cơ bản; Bút phê chỉ đạo ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải trên Tờ trình LGTHNT-06; Điều 1.2 & Điều 3.2 Hợp đồng .../2026/ĐA/HĐ-ĐMN.',
+      actual: "1) Hợp đồng lắp đặt đường ống và đầu máy nước (.../2026/ĐA/HĐ-ĐMN) ký ngày 04/08/2026, trước ngày lập Đề nghị cấp VT-TB-CC (05/08/2026) và trước ngày Chủ tịch HĐQT ký duyệt (06/08/2026); 2) Hợp đồng và Dự toán đính kèm đều bỏ trống số hiệu ('Số: /2026/ĐA/HĐ-ĐMN', 'Số: /2026-DT-ĐA'), bỏ trống ngày lập dự toán, và mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN' tại trang 4 chưa có chữ ký, đóng dấu của HNT; 3) Chủ tịch HĐQT bút phê rõ điều kiện: 'Khách Ban Mai phải rõ nhu cầu nước là bao nhiêu, phải có mức tối thiểu... Nếu chỉ dự kiến, không cụ thể, không cam kết thì HNT không giải quyết', nhưng trong hồ sơ chưa có văn bản cam kết của KH Ban Mai; 4) Chưa có Biên bản nghiệm thu bàn giao, Thanh lý HĐ, Hóa đơn GTGT và UNC.",
+      evidence: 'File DE NGHI CTY CAP VAT TU - TB - CONG CU CAP NUOC SACH_20260807_0001.pdf; HĐ LAP DAT DUONG ONG VA DAU MAY NUOC TAI TTNK 2_20260807_0001.pdf.',
+      cause: 'Phòng Dự án ký hợp đồng theo mẫu của XN Nước sạch Đông Anh trước khi hoàn tất tờ trình phê duyệt nội bộ và chưa lưu trữ đầy đủ văn bản cam kết của khách hàng Ban Mai kèm theo hồ sơ.',
+      impact: 'Thiếu cơ sở ràng buộc sản lượng/chi phí cấp nước tối thiểu với khách hàng Ban Mai theo đúng chỉ đạo của Chủ tịch HĐQT và hồ sơ thanh toán/quyết toán với XN Nước sạch Đông Anh chưa hoàn chỉnh.',
+      risk: 'Rủi ro đầu tư hạ tầng cấp nước (tổng 105,75 triệu đồng) nhưng khách hàng Ban Mai sử dụng ít hoặc không cam kết thu hồi vốn; rủi ro thiếu hồ sơ nghiệm thu – thanh lý hợp đồng.',
+      amount: 16430332,
+      deptOpinion: '',
+      conclusion: 'Yêu cầu Phòng Dự án bổ sung văn bản cam kết nhu cầu sử dụng nước của khách hàng Ban Mai, hoàn thiện chữ ký/số hiệu trên Dự toán & Hợp đồng và thu thập BBNT bàn giao, Thanh lý HĐ, Hóa đơn GTGT từ XN Nước sạch Đông Anh.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'fnd_banmai_da005_01',
+      periodId: pid0,
+      code: 'FND-26Q3-004',
+      group: 'k3',
+      riskLevel: 'high',
+      projectId: 'proj_da005_banmai_onghdpe',
+      contractId: '',
+      checklistId: 'chk_09_chk_nt_01',
+      content: "Hồ sơ nghiệm thu – quyết toán gói kéo đường ống cấp nước HDPE kho Ban Mai (DA-005) dùng Bản vẽ hoàn công ghi sai tên Chủ đầu tư ('CN Công ty CP Quốc tế Phú Linh') & sai tên dự án, bỏ trống toàn bộ ngày tháng và thiếu chữ ký Chủ tịch HĐQT trên BBNT",
+      basis: 'Quy trình nghiệm thu – thanh quyết toán công trình của Công ty CP Logistics HNT; Điều 3, Điều 4.3 và Điều 5 Hợp đồng kinh tế số 070826/HĐKT/HNT-ĐT ngày 07/08/2026.',
+      actual: "1) Bản vẽ hoàn công TMB-N 01 REV1 (trang 10-11) đóng dấu hoàn công của nhà thầu Đại Tín và chữ ký Nguyễn Ngọc Phương, nhưng khung tên bản vẽ lại ghi Dự án 'Nâng cấp, cải tạo, sửa chữa Nhà xưởng Khu D', Chủ đầu tư 'Chi nhánh Công ty Cổ phần Quốc tế Phú Linh', Tư vấn thiết kế 'Công ty CP INDCON' và ngày phát hành '12/2025'; 2) Toàn bộ Giấy đề nghị thanh toán (0826/ĐNTT-ĐT), Bảng tổng hợp giá trị hoàn thành, Bảng tổng hợp khối lượng hoàn thành, Biên bản nghiệm thu (01/BBNT-ĐT) và dấu Bản vẽ hoàn công đều bỏ trống ngày/tháng lập; 3) BBNT 01/BBNT-ĐT ghi thành phần nghiệm thu Bên A có Ông Nguyễn Ngọc Hải (Chủ tịch HĐQT) nhưng trang 8 chỉ có chữ ký của Ông Nguyễn Ngọc Phương, không có chữ ký của Chủ tịch HĐQT và không đóng dấu Bên A; 4) Báo giá ĐT-290726/Rev1 ghi sai ngày lập là '22/03/2025'; thiếu Hóa đơn GTGT, chứng chỉ CO/CQ ống HDPE D50 và UNC.",
+      evidence: 'File 2026-7-29 Phat sinh ong cap nuoc HDPE.pdf; HĐ 0708 HNT-ĐT.pdf; HO SO TT KHOI LUONG HOAN THANH THI CONG LĐHT CAP THOAT NUOC NK2_20261019_0001.pdf.',
+      cause: 'Nhà thầu Đại Tín tận dụng lại bản vẽ cũ của dự án khác (do INDCON thiết kế cho Phú Linh năm 2025) để đóng dấu hoàn công mà không sửa khung tên; Phòng Dự án thiếu kiểm tra chi tiết khi ký xác nhận hồ sơ hoàn công và nghiệm thu.',
+      impact: 'Bản vẽ hoàn công ghi sai tên Chủ đầu tư và sai tên Dự án làm mất giá trị pháp lý của hồ sơ hoàn công; việc bỏ trống toàn bộ ngày tháng trên BBNT khiến không xác định được mốc tính bảo hành 18 tháng đối với tuyến ống ngầm HDPE D50 dài 950m.',
+      risk: 'Rủi ro hồ sơ hoàn công – quyết toán không hợp lệ về mặt pháp lý/thuế và rủi ro tranh chấp nghĩa vụ bảo hành 18 tháng khi tuyến ống cấp nước 950m xảy ra sự cố rò rỉ.',
+      amount: 89318133,
+      deptOpinion: '',
+      conclusion: 'Yêu cầu Phòng Dự án buộc nhà thầu Đại Tín lập và đóng dấu lại Bản vẽ hoàn công đúng tên Dự án Nhà kho HNT Nguyên Khê 2 & Chủ đầu tư Công ty CP Logistics HNT; điền đầy đủ ngày tháng nghiệm thu, hoàn thiện chữ ký/con dấu trên BBNT 01/BBNT-ĐT và bổ sung Hóa đơn GTGT, CO/CQ trước khi thanh toán.',
       createdAt: now,
       updatedAt: now
     }
@@ -3302,10 +3543,83 @@ async function ensureSendoProjects(){
       confirmer: '',
       createdAt: now,
       updatedAt: now
+    },
+    {
+      id: 'rec_banmai_da004_01',
+      periodId: pid0,
+      findingId: 'fnd_banmai_da004_01',
+      code: 'FND-26Q3-003-K1',
+      content: "1) Lưu bổ sung văn bản/phụ lục cam kết nhu cầu và mức sử dụng nước tối thiểu của khách hàng Ban Mai theo đúng bút phê ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải; 2) Hoàn thiện số hiệu Hợp đồng, Dự toán và chữ ký xác nhận của HNT tại mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN'; 3) Thu thập Biên bản nghiệm thu bàn giao đưa vào sử dụng, Biên bản thanh lý hợp đồng, Hóa đơn GTGT và UNC của XN Nước sạch Đông Anh.",
+      unit: kUnitPda,
+      owner: kPhuong,
+      commitDate: '2026-10-20',
+      deadline: '2026-11-05',
+      measure: 'Phối hợp Bộ phận Kinh doanh/Quản lý HĐ và XN Nước sạch Đông Anh hoàn thiện bộ hồ sơ pháp lý – thanh quyết toán gói lắp đặt cụm đồng hồ nước.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'rec_banmai_da005_01',
+      periodId: pid0,
+      findingId: 'fnd_banmai_da005_01',
+      code: 'FND-26Q3-004-K1',
+      content: "1) Yêu cầu Công ty CP Đầu tư Xây lắp Đại Tín chỉnh sửa lại khung tên Bản vẽ hoàn công TMB-N 01 REV1 đúng tên Dự án 'Nhà kho HNT Nguyên Khê 2' và Chủ đầu tư 'Công ty CP Logistics HNT', điền ngày hoàn công và ký đóng dấu lại; 2) Điền đầy đủ ngày/tháng trên Giấy ĐNTT 0826/ĐNTT-ĐT, Bảng tổng hợp giá trị/khối lượng và BBNT 01/BBNT-ĐT, trình ký đủ thành phần nghiệm thu Bên A; 3) Bổ sung Hóa đơn GTGT và chứng chỉ chất lượng CO/CQ của 950m ống cấp nước HDPE D50 PN10 cùng phụ kiện trước khi giải ngân.",
+      unit: kUnitPda,
+      owner: kPhuong,
+      commitDate: '2026-10-20',
+      deadline: '2026-11-05',
+      measure: 'Yêu cầu nhà thầu Đại Tín đính chính Bản vẽ hoàn công, hoàn thiện ngày tháng/chữ ký BBNT và nộp đủ Hóa đơn GTGT, CO/CQ trước khi chuyển Kế toán thanh toán.',
+      status: 'todo',
+      fixEvidence: '',
+      unitOpinion: '',
+      ktksOpinion: '',
+      closeDate: '',
+      confirmer: '',
+      createdAt: now,
+      updatedAt: now
     }
   ];
   for(const r of sendoRecs){
     if(!DB.get('recs', r.id)) await DB.put('recs', r);
+  }
+
+  /* 10. Nhật ký kiểm tra (journal) */
+  const jnls = [
+    {
+      id: 'jnl_sendo_import_20261020',
+      periodId: pid0,
+      ts: '2026-10-20T07:10:00.000Z',
+      user: 'Nguyễn Thị Thu Hương',
+      type: 'Đối chiếu',
+      object: 'Dự án DA-002 & DA-003 (Kho Sendo NK1)',
+      content: 'Rà soát và cập nhật bộ hồ sơ Gói thầu hoàn thiện Kho khách hàng Sendo theo Phương án 2: tách 02 dự án DA-002 (Cải tạo hoàn trả nền - INDCON - 216.480.600 đ) và DA-003 (Lắp đặt bổ sung đèn chiếu sáng - Đại Tín - 41.365.626 đ); lập 02 Finding & 02 Kiến nghị KSNB.',
+      result: 'Phát hiện 02 Finding (FND-26Q3-001, FND-26Q3-002)',
+      note: '',
+      auto: 0,
+      createdAt: '2026-10-20T07:10:00.000Z'
+    },
+    {
+      id: 'jnl_banmai_import_20261020',
+      periodId: pid0,
+      ts: now,
+      user: 'Nguyễn Thị Thu Hương',
+      type: 'Đối chiếu',
+      object: 'Dự án DA-004 & DA-005 (Cấp nước sạch kho Ban Mai NK2)',
+      content: 'Rà soát và cập nhật bộ hồ sơ Gói thi công cấp nước sạch cho khách hàng Ban Mai tại TTNK2 theo Phương án 1: tách 02 dự án DA-004 (Đấu nối & lắp cụm đồng hồ nước DN25 - XN Nước sạch Đông Anh - 16.430.332 đ) và DA-005 (Thi công kéo 950m ống cấp nước HDPE D50 - Đại Tín - 89.318.133 đ); lập 02 Finding (FND-26Q3-003, FND-26Q3-004) & 02 Kiến nghị KSNB.',
+      result: 'Phát hiện 02 Finding (FND-26Q3-003, FND-26Q3-004)',
+      note: '',
+      auto: 0,
+      createdAt: now
+    }
+  ];
+  for(const j of jnls){
+    if(!DB.get('journal', j.id)) await DB.put('journal', j);
   }
 }
 
