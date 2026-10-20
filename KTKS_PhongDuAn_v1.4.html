@@ -5321,6 +5321,532 @@ async function ensureSendoProjects(){
       await DB.put('journal', Object.assign({}, cur || {}, jnl, { periodId: pid0 }));
     }
   }
+  /* ---------- Thư mục 3: Biên bản thanh lý hợp đồng (Q3/2026) ---------- */
+  const folder3Payload = {
+  "newCustomers": [
+    {
+      "id": "cust_sendo",
+      "code": "KH070",
+      "name": "CÔNG TY CỔ PHẦN CÔNG NGHỆ SEN ĐỎ",
+      "taxId": "0312776486",
+      "rep": "Bà Trịnh Hoa Giang (Phó Tổng Giám đốc, theo Quyết định ủy quyền số 403/2023/QĐ-SENDO)",
+      "phone": "028 7300 1188",
+      "email": "",
+      "group": "",
+      "address": "Tầng 5, Tòa nhà A, Vườn Ươm Doanh Nghiệp, Lô D.01, Đường Tân Thuận, KCX Tân Thuận, Phường Tân Thuận, TP. Hồ Chí Minh",
+      "note": "Khách hàng Sendo – HĐ thuê kho 1001/2025/HĐTK/HNT-SENDO tại Trung tâm Nguyên Khê I; thanh lý trước hạn từ 16/08/2026 (BB thanh lý ngày 21/08/2026).",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    }
+  ],
+  "updateCustomers": [
+    {
+      "id": "mudvhgxtk6qfcpm",
+      "taxId": "0111055808",
+      "rep": "Ông Đỗ Viết Mạnh (Giám đốc)",
+      "phone": "0843.904.069",
+      "address": "D9-NV7, ô số 20, KĐT hai bên đường Lê Trọng Tấn, Phường Dương Nội, TP. Hà Nội"
+    },
+    {
+      "id": "mudvhgyemd9tjwe",
+      "taxId": "0107646068",
+      "rep": "Ông Nguyễn Trần Đức (Giám đốc)",
+      "phone": "0968234862",
+      "address": "C01-L49, Khu A, Khu đô thị Dương Nội, Phường Dương Nội, TP. Hà Nội"
+    },
+    {
+      "id": "mudvhgyjhvxdve1",
+      "taxId": "0106638561",
+      "rep": "Ông Lương Nhật Nam (Giám đốc)",
+      "phone": "0243.224.2339",
+      "address": "Tầng 2, tòa nhà AZ Lâm Viên, số 107 Nguyễn Phong Sắc, Phường Cầu Giấy, TP. Hà Nội"
+    },
+    {
+      "id": "mudvhgybszbijl3",
+      "taxId": "0105330703",
+      "rep": "Ông Đỗ Hữu Thái (Phó Tổng Giám đốc, theo Giấy ủy quyền số 06/2023/VBUQ-KP ngày 01/03/2023)",
+      "phone": "0987369224",
+      "address": "Số 20 Thái Thịnh, Phường Đống Đa, TP. Hà Nội"
+    },
+    {
+      "id": "mudvhgxsruoxl58",
+      "taxId": "4601651324",
+      "rep": "Ông Nguyễn Ngọc Văn (Giám đốc)",
+      "phone": "081 889 3368",
+      "address": "Nông Vụ, xã Thành Công, tỉnh Thái Nguyên"
+    }
+  ],
+  "newContracts": [
+    {
+      "id": "ct_sendo_1001_2025",
+      "status": "ended",
+      "no": "1001/2025/HĐTK/HNT-SENDO",
+      "type": "k1",
+      "model": "lease",
+      "customerId": "cust_sendo",
+      "site": "k2",
+      "signDate": "2025-01-10",
+      "effDate": "2025-01-10",
+      "endDate": "2026-08-15",
+      "area": "",
+      "unitPrice": "",
+      "monthly": "",
+      "deposit": "",
+      "earlyTermination": "client",
+      "terminate": "HĐ chấm dứt trước hạn từ 16/08/2026 theo BB thanh lý ngày 21/08/2026 (Sendo bàn giao, HNT tiếp nhận lại mặt bằng ngày 15/08/2026). Sendo chịu phạt 02 tháng tiền đặt cọc 534.100.000 đ (HNT giữ lại bù chi phí khôi phục nền sàn, tìm khách thay thế); HNT bán lại bàn nâng thủy lực (PL 02) cho Sendo giá 89.100.000 đ đã gồm VAT và Sendo đã thanh toán; Sendo bồi hoàn chi phí sửa chữa 27.000.000 đ bằng chuyển nhượng lại bàn nâng cho HNT (cấn trừ toàn bộ); công nợ hai bên xác nhận 0 đ.",
+      "docContract": "y",
+      "docLiquid": "y",
+      "docOther": "BB THANH LY HOP DONG SEN DO 21.08.2026.pdf (3 trang, bản scan, ký ngày 21/08/2026 – sau ngày chấm dứt 16/08/2026 và ngày bàn giao 15/08/2026; Bên thuê ký bởi Bà Trịnh Hoa Giang – PTGĐ theo QĐ ủy quyền 403/2023/QĐ-SENDO; HNT ký bởi Ông Nguyễn Ngọc Hải – Chủ tịch HĐQT). Bản scan đồng thời là hồ sơ Thư mục 3 kỳ Q3/2026.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    }
+  ],
+  "updateContracts": [
+    {
+      "id": "muf85bp0icho9fr",
+      "status": "ended",
+      "signDate": "2026-05-05",
+      "effDate": "2026-05-05",
+      "endDate": "2026-08-24",
+      "earlyTermination": "client",
+      "docLiquid": "y",
+      "terminate": "HĐ chấm dứt trước hạn từ 25/08/2026 theo BB thanh lý ngày 22/08/2026 (AHP bàn giao mặt bằng chậm nhất 24/08/2026). AHP chịu phạt 02 tháng tiền đặt cọc 186.200.000 đ (HNT giữ lại bù chi phí bán hàng/tìm khách thay thế); công nợ AHP phải trả HNT 3.192.314 đ (hóa đơn DV tháng 07/2026: 1.728.106 đ; tháng 08/2026: 1.464.208 đ), hạn 28/09/2026 hoặc trước khi rút hết hàng. Thời hạn gốc theo hệ thống đến 24/05/2029.",
+      "docOther": "BB THANH LY HDDTK KH AHP TTNK1_20261002_0001.pdf (3 trang, BB ký ngày 22/08/2026, file scan ngày 02/10/2026). Lưu ý: phần căn cứ ghi HĐ ký ngày 05/05/2025 nhưng số HĐ và Điều 1 ghi 05/05/2026."
+    },
+    {
+      "id": "muf85bph4q7koc2",
+      "status": "ended",
+      "endDate": "2026-09-04",
+      "earlyTermination": "client",
+      "docLiquid": "y",
+      "terminate": "HĐ chấm dứt trước hạn từ 05/09/2026 theo BB thanh lý ngày 03/09/2026 (MK bàn giao mặt bằng chậm nhất 04/09/2026). MK chịu phạt 02 tháng tiền đặt cọc 129.168.000 đ (HNT giữ lại bù chi phí bán hàng/tìm khách thay thế); BB không nêu công nợ.",
+      "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại)."
+    },
+    {
+      "id": "muf85bpfcv1xe0z",
+      "status": "ended",
+      "signDate": "2025-08-12",
+      "endDate": "2026-09-04",
+      "docLiquid": "y",
+      "terminate": "HĐ chấm dứt từ 05/09/2026 theo BB thanh lý ngày 04/09/2026 (Kids Plaza bàn giao chậm nhất 04/09/2026; thanh toán công nợ còn lại nếu có chậm nhất 15/09/2026). HNT hoàn trả tiền đặt cọc 319.680.000 đ cho Kids Plaza; BB không nêu bên đề nghị chấm dứt, không nêu phạt, XX TT THANH OAI_20260929_0001.pdf (2 trang, BB ký 04/09/2026, file scan 29/09/2026; Kids Plaza ký bởi Ông Đỗ Hữu Thái – Phó TGĐ theo GUQ 06/2023/VBUQ-KP ngày 01/03/2023; Điều 3 viện dẫn \"Điều 5\" không tồn tại)."
+    },
+    {
+      "id": "muf85boz85duj3z",
+      "status": "ended",
+      "signDate": "2026-04-01",
+      "effDate": "2026-04-01",
+      "endDate": "2026-08-31",
+      "docLiquid": "y",
+      "terminate": "HĐ chấm dứt từ 01/09/2026 theo BB thanh lý ngày 25/08/2026 (Ngọc Văn bàn giao mặt bằng ngày 31/08/2026; thanh toán công nợ còn lại nếu có trước 31/08/2026). BB không nêu bên đề nghị chấm dứt, không nêu tiền đặt cọc, không nêu phạt, không định lượng công nợ. Thời hạn gốc theo hệ thống đến 31/03/2027.",
+      "docOther": "BBTLHD THUE KHO VA CAC DV NGOCVAN - HNT TTNK1_20261019_0001.pdf (2 trang, BB ký 25/08/2026, file scan 19/10/2026; HĐ ký 01/04/2026, thời hạn theo hệ thống đến 31/03/2027)."
+    },
+    {
+      "id": "ct_swallow_1806_2026",
+      "docOther": "1) File Swa.jpg (Tờ trình ngày 20/07/2026 duyệt chiết khấu bán hàng 5.000.000 đ); 2) File BB THANH LY HĐ THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf (BB ký 03/09/2026, file scan 21/09/2026, chấm dứt HĐ từ 05/09/2026). Theo BB: HNT hoàn trả cọc 58.592.000 đ trong 10 ngày sau khi Swallow hoàn tất nghĩa vụ; Swallow thanh toán công nợ phí dịch vụ 26/07–04/09/2026 là 34.120.008 đ chậm nhất 24/09/2026; BB không quy định cấn trừ cọc với công nợ và không áp dụng phạt cọc."
+    }
+  ],
+  "updateDocreq": {
+    "id": "docreq_03",
+    "status": "recv",
+    "recvDate": "2026-10-20",
+    "provider": "k2",
+    "evidence": "Đã nhận Thư mục 3 gồm 06 Biên bản thanh lý HĐ (BB ký trong Q3/2026 từ 21/08 đến 04/09/2026; ngày scan lưu hồ sơ từ 21/09 đến 19/10/2026): (1) Sendo – HĐ 1001/2025 ký 21/08/2026, chấm dứt 16/08/2026, phạt cọc 534.100.000 đ; (2) AHP – HĐ 0505/2026 ký 22/08/2026, chấm dứt 25/08/2026, phạt cọc 186.200.000 đ, công nợ 3.192.314 đ; (3) Ngọc Văn – HĐ 0104/2026 ký 25/08/2026, chấm dứt 01/09/2026; (4) Swallow – HĐ 1806/2026 ký 03/09/2026, chấm dứt 05/09/2026, hoàn cọc 58.592.000 đ, công nợ 34.120.008 đ; (5) MK – HĐ 1305/2026 ký 03/09/2026, chấm dứt 05/09/2026, phạt cọc 129.168.000 đ; (6) Kids Plaza – HĐ 1208/2025 ký 04/09/2026, chấm dứt 05/09/2026, hoàn cọc 319.680.000 đ. Kèm 02 ảnh hồ sơ pháp lý môi giới Chính Kho Xưởng (GCN ĐKDN MST 0109921489; CCHN môi giới BĐS HN-3094 của Ông Trần Văn Chính).",
+    "note": "Lưu ý KSNB: (1) Chưa có Biên bản hoàn trả/nhận lại mặt bằng của Trung tâm Kho (docreq_04) và Bảng đối chiếu công nợ/cấn trừ cọc của Phòng Kế toán cho cả 06 HĐ; (2) 03 HĐ bị phạt 02 tháng cọc (AHP, MK, Sendo – tổng 849.468.000 đ), 02 HĐ hoàn cọc (Swallow 58.592.000 đ, Kids Plaza 319.680.000 đ), Ngọc Văn không nêu cọc; (3) Sendo ký BB sau ngày chấm dứt 5 ngày; (4) BB có lỗi soạn thảo (AHP sai năm HĐ; MK, Kids Plaza viện dẫn Điều 5 không tồn tại; Sendo đánh số mục 3.3). Phát sinh FND-26Q3-013 đến FND-26Q3-019."
+  },
+  "updateChecklist": [
+    {
+      "code": "CHK-CN-03",
+      "result": "fail",
+      "marker": "[Thư mục 3]",
+      "replace": true,
+      "comment": "[Thư mục 3] Đã nhận 06 BB thanh lý HĐ (Sendo, AHP, Ngọc Văn, Swallow, MK, Kids Plaza; BB ký 21/08–04/09/2026 thuộc Q3/2026). Tuy nhiên cả 06 HĐ đều chưa có Biên bản hoàn trả/nhận lại mặt bằng do Trung tâm Kho lập và chưa có Bảng đối chiếu công nợ/cấn trừ cọc của Phòng Kế toán trước khi ký thanh lý (BB chỉ ghi \"cử nhân sự ký nhận bàn giao\"). Tổng tiền cọc liên quan: phạt 849.468.000 đ (AHP, MK, Sendo), hoàn 378.272.000 đ (Swallow, Kids Plaza); Ngọc Văn không nêu cọc. Sendo ký BB sau ngày chấm dứt (16/08) 5 ngày. Kết quả ghi nhận theo hồ sơ cung cấp tại thời điểm kiểm tra, sẽ cập nhật khi Phòng Dự án bổ sung."
+    },
+    {
+      "code": "CHK-CK-04",
+      "result": "warn",
+      "marker": "[Thư mục 3]",
+      "replace": false,
+      "comment": "[Thư mục 3] Bổ sung: BB thanh lý MK (03/09/2026) phạt 02 tháng cọc 129.168.000 đ nhưng hoa hồng 18.532.000 đ đã chi đủ, không truy thu; BB thanh lý Swallow (03/09/2026) hoàn toàn bộ cọc 58.592.000 đ, không áp phạt và không nêu xử lý khoản chiết khấu 5.000.000 đ đã trình duyệt ngày 20/07/2026."
+    },
+    {
+      "code": "CHK-HH-02",
+      "result": "warn",
+      "marker": "[Thư mục 3]",
+      "replace": false,
+      "comment": "[Thư mục 3] Bổ sung hồ sơ pháp lý môi giới Chính Kho Xưởng (trong Thư mục 3): GCN đăng ký doanh nghiệp MST 0109921489 (đăng ký lần đầu 03/03/2022, người đại diện Ông Trần Văn Chính) và CCHN môi giới BĐS số HN-3094 cấp cho Ông Trần Văn Chính (thời hạn 05 năm; ngày cấp ghi tay, năm khó đọc, nếu cấp 17/11/2021 thì hết hạn 17/11/2026). Hồ sơ là ảnh chụp, chưa sao y; GCN ĐKDN chưa thể hiện ngành nghề; chưa có danh sách người có CCHN thực hiện dịch vụ cho từng HĐ."
+    }
+  ],
+  "newFindings": [
+    {
+      "id": "fnd_folder3_cn_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-013",
+      "group": "k7",
+      "riskLevel": "high",
+      "projectId": "",
+      "contractId": "",
+      "checklistId": "chk_26_chk_cn_03",
+      "content": "Hồ sơ thanh lý 06 hợp đồng thiếu Biên bản hoàn trả mặt bằng của Trung tâm Kho và Bảng đối chiếu công nợ/cấn trừ cọc của Kế toán trước khi ký thanh lý",
+      "basis": "Quy định chấm dứt và thanh lý hợp đồng; Quy trình hoàn trả mặt bằng và cấn trừ tiền cọc (tiêu chí CHK-CN-03).",
+      "actual": "Phòng Dự án lập và ký 06 BB thanh lý HĐ thuê kho trong Q3/2026: Sendo (ký 21/08), AHP (22/08), Ngọc Văn (25/08), Swallow (03/09), MK (03/09), Kids Plaza (04/09). Các BB chỉ ghi Bên thuê bàn giao mặt bằng \"muộn nhất\" vào một ngày và HNT \"cử nhân sự ký nhận\", nhưng hồ sơ không kèm Biên bản kiểm tra hiện trạng/nhận lại mặt bằng của Trung tâm Kho và không kèm Bảng đối chiếu công nợ cuối cùng của Kế toán. Công nợ chỉ được nêu bằng số ở AHP (3.192.314 đ, hạn 28/09/2026) và Swallow (34.120.008 đ, hạn 24/09/2026); Kids Plaza và Ngọc Văn ghi \"công nợ còn lại (nếu có)\" không định lượng; MK không đề cập công nợ.",
+      "evidence": "Thư mục 3: BB THANH LY HDDTK KH AHP TTNK1_20261002_0001.pdf; BB THANH LY HD THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf; BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf; BB THANH LY HOP DONG SEN DO 21.08.2026.pdf; BB TLHD THUE KHO VA CAC DV HNT-KIDPLAZA TT THANH OAI_20260929_0001.pdf; BBTLHD THUE KHO VA CAC DV NGOCVAN - HNT TTNK1_20261019_0001.pdf.",
+      "cause": "Phòng Dự án chưa có checklist hồ sơ bắt buộc trước khi trình ký BB thanh lý; chưa có quy trình phối hợp với Trung tâm Kho và Kế toán.",
+      "impact": "Rủi ro ký thanh lý khi chưa nhận lại kho hoặc chưa đối trừ hết công nợ, mất quyền thu hồi nợ/chi phí hư hỏng kho; khó chứng minh việc tất toán khoản cọc 1.227.740.000 đ.",
+      "risk": "Mất quyền đòi nợ và chi phí hư hỏng sau khi BB đã ghi \"hai Bên không còn bất kỳ khiếu kiện nào về sau\"; sai lệch số liệu cọc và công nợ phải thu.",
+      "amount": 1227740000,
+      "deptOpinion": "Phòng Dự án sẽ yêu cầu Trung tâm Kho và Phòng Kế toán bổ sung hồ sơ đối chiếu cho 06 HĐ.",
+      "conclusion": "Ghi nhận Finding mức Cao. Yêu cầu bổ sung BB hoàn trả mặt bằng và Bảng đối chiếu công nợ/cấn trừ cọc cho từng HĐ; không trình ký thanh lý khi chưa đủ hồ sơ.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_swallow_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-014",
+      "group": "k7",
+      "riskLevel": "high",
+      "projectId": "",
+      "contractId": "ct_swallow_1806_2026",
+      "checklistId": "chk_30_chk_ck_04",
+      "content": "Thanh lý HĐ Swallow: hoàn trả toàn bộ cọc 58.592.000 đ không cấn trừ công nợ 34.120.008 đ, không áp phạt chấm dứt sớm và chưa xử lý chiết khấu 5.000.000 đ",
+      "basis": "Khoản 7 QĐ 11 về truy thu chiết khấu khi khách chấm dứt trước hạn; Quy trình cấn trừ tiền cọc; Khoản 4.2 Điều 4 HĐ (áp dụng ở các BB AHP, MK).",
+      "actual": "BB thanh lý ngày 03/09/2026: HĐ 1806/2026 (ký 18/06/2026, thuê ~2,5 tháng) chấm dứt từ 05/09/2026. HNT hoàn trả cọc 58.592.000 đ trong 10 ngày sau khi Swallow hoàn tất nghĩa vụ; Swallow nộp công nợ phí dịch vụ 34.120.008 đ chậm nhất 24/09/2026. BB không quy định cấn trừ cọc với công nợ, không nêu phạt chấm dứt trước hạn (trong khi AHP, MK, Sendo bị phạt 02 tháng cọc) và không nêu xử lý khoản chiết khấu bán hàng 5.000.000 đ đã trình duyệt ngày 20/07/2026.",
+      "evidence": "BB THANH LY HD THUE KHO KH SWALLOW TT T.O2_20260921_0001.pdf (BB ký 03/09/2026); File Swa.jpg.",
+      "cause": "Không có hướng dẫn thống nhất về phạt chấm dứt trước hạn và cấn trừ cọc; hồ sơ chiết khấu và thanh lý do hai bộ phận xử lý riêng.",
+      "impact": "HNT có thể hoàn cọc trước khi thu đủ công nợ; chênh lệch cách xử lý giữa các khách hàng gây rủi ro pháp lý và khiếu nại.",
+      "risk": "Thất thoát tiền cọc/công nợ 34.120.008 đ và chiết khấu 5.000.000 đ; xử lý không nhất quán giữa các khách hàng chấm dứt sớm.",
+      "amount": 58592000,
+      "deptOpinion": "Phòng Dự án sẽ phối hợp Kế toán kiểm tra việc thu công nợ 34.120.008 đ và hoàn cọc, đồng thời giải trình cơ sở không áp phạt.",
+      "conclusion": "Ghi nhận Finding mức Cao. Đề nghị Kế toán xác nhận đã thu đủ công nợ trước khi chi hoàn cọc, hoặc cấn trừ trực tiếp; giải trình việc không phạt và xử lý chiết khấu 5.000.000 đ.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_penalty_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-015",
+      "group": "k7",
+      "riskLevel": "high",
+      "projectId": "",
+      "contractId": "muf85bp0icho9fr",
+      "checklistId": "chk_26_chk_cn_03",
+      "content": "HNT giữ lại 849.468.000 đ cọc bị phạt của AHP, MK, Sendo \"để bù chi phí\" nhưng chưa có bảng kê chi phí và hạch toán xác nhận của Kế toán",
+      "basis": "Khoản 4.2 Điều 4 HĐ thuê kho (phạt 02 tháng tiền đặt cọc khi chấm dứt trước hạn không báo trước); Quy định chấm dứt và thanh lý hợp đồng.",
+      "actual": "AHP (BB 22/08/2026): phạt 186.200.000 đ; MK (BB 03/09/2026): phạt 129.168.000 đ; Sendo (BB 21/08/2026): phạt 534.100.000 đ; tổng 849.468.000 đ. Cả 3 BB quy định khoản này được HNT giữ lại để bù đắp chi phí bán hàng, tìm kiếm và bố trí khách thay thế \"bao gồm nhưng không giới hạn\", không kèm bảng kê chi phí thực tế hay xác nhận hạch toán. Riêng MK đã chi đủ hoa hồng 18.532.000 đ cho HĐ này (xem FND-26Q3-008).",
+      "evidence": "BB THANH LY HDDTK KH AHP TTNK1_20261002_0001.pdf; BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf; BB THANH LY HOP DONG SEN DO 21.08.2026.pdf.",
+      "cause": "Điều khoản phạt cọc thiết kế chung chung, không gắn với chi phí thực tế phát sinh.",
+      "impact": "Khoản cọc bị phạt có thể bị hạch toán/xác định nghĩa vụ thuế không đúng bản chất (thu nhập khác hay bù chi phí).",
+      "risk": "Rủi ro hạch toán sai và tranh chấp khi khách hàng yêu cầu chứng minh chi phí.",
+      "amount": 849468000,
+      "deptOpinion": "Phòng Dự án sẽ phối hợp Kế toán lập bảng kê chi phí và xác nhận hạch toán khoản cọc bị phạt.",
+      "conclusion": "Ghi nhận Finding mức Cao. Yêu cầu Kế toán xác nhận cách hạch toán 849.468.000 đ và Phòng Dự án lập bảng kê chi phí thực tế bù đắp.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_sendo_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-016",
+      "group": "k7",
+      "riskLevel": "high",
+      "projectId": "",
+      "contractId": "ct_sendo_1001_2025",
+      "checklistId": "chk_26_chk_cn_03",
+      "content": "Thanh lý HĐ Sendo: BB ký sau ngày chấm dứt 5 ngày, miễn trừ toàn bộ trách nhiệm khôi phục mặt bằng của Sendo và cấn trừ bàn nâng 89,1 triệu/27 triệu chưa có chứng từ xác nhận",
+      "basis": "Quy định chấm dứt và thanh lý hợp đồng; HĐ 1001/2025/HĐTK/HNT-SENDO và Phụ lục 02; Quy định về hóa đơn GTGT khi mua bán/chuyển nhượng tài sản.",
+      "actual": "1) BB lập ngày 21/08/2026, sau ngày Sendo bàn giao (15/08/2026) và ngày chấm dứt HĐ (16/08/2026); 2) HNT xác nhận Sendo \"hoàn toàn không còn bất kỳ trách nhiệm\" thi công sửa chữa, hoàn nguyên nền kho, dù Phòng Dự án đã ký HĐ thi công hoàn trả nền DA-002 số 1608/2026/HĐKT/HNT-IDC ngày 16/08/2026 (giá trị quyết toán 216.480.600 đ) và lắp bổ sung đèn DA-003 (41.365.626 đ) tại Trung tâm Nguyên Khê I; 3) HNT bán lại bàn nâng thủy lực cho Sendo 89.100.000 đ (đã gồm VAT, đã xuất hóa đơn và nhận tiền); đồng thời Sendo chuyển nhượng lại bàn nâng này cho HNT 27.000.000 đ để cấn trừ chi phí sửa chữa 27.000.000 đ, Sendo phải xuất hóa đơn GTGT; công nợ xác nhận 0 đ; 4) Tiền cọc bị phạt 534.100.000 đ.",
+      "evidence": "BB THANH LY HOP DONG SEN DO 21.08.2026.pdf (bản scan 3 trang); Hồ sơ DA-002, DA-003 (Thư mục 4).",
+      "cause": "Thi công hoàn trả mặt bằng được thực hiện trước khi chốt BB thanh lý và phương án xử lý chi phí với khách.",
+      "impact": "Chi phí hoàn trả nền (DA-002: 216.480.600 đ) và đèn chiếu sáng (DA-003: 41.365.626 đ) chưa được đối chiếu với khoản cọc phạt 534.100.000 đ; hóa đơn hai chiều bàn nâng chưa được kiểm tra.",
+      "risk": "Rủi ro chi phí hoàn trả mặt bằng vượt khoản cọc phạt hoặc không được ghi nhận đúng; rủi ro hóa đơn/thuế và ghi giảm tài sản bàn nâng sai.",
+      "amount": 534100000,
+      "deptOpinion": "Phòng Dự án sẽ đối chiếu chi phí DA-002/DA-003 với cọc phạt Sendo và hoàn thiện chứng từ hóa đơn bàn nâng cùng Kế toán.",
+      "conclusion": "Ghi nhận Finding mức Cao. Yêu cầu lập bảng đối chiếu chi phí hoàn trả mặt bằng với 534.100.000 đ, kiểm tra hóa đơn GTGT 89.100.000 đ và 27.000.000 đ, ghi giảm/tăng tài sản bàn nâng.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_early_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-017",
+      "group": "k7",
+      "riskLevel": "med",
+      "projectId": "",
+      "contractId": "muf85bpfcv1xe0z",
+      "checklistId": "chk_26_chk_cn_03",
+      "content": "Thanh lý HĐ Kids Plaza và Ngọc Văn: không nêu bên đề nghị chấm dứt, không áp phạt, công nợ/tiền cọc không định lượng",
+      "basis": "Khoản 4.2 Điều 4 HĐ thuê kho; Quy định chấm dứt và thanh lý hợp đồng.",
+      "actual": "Kids Plaza: HĐ 1208/2025 ký 12/08/2025, thời hạn theo hệ thống đến 05/04/2031, chấm dứt từ 05/09/2026 (BB 04/09/2026); HNT hoàn cọc toàn bộ 319.680.000 đ, không phạt, công nợ \"nếu có\" thanh toán trước 15/09/2026; người ký phía Kids Plaza theo Giấy ủy quyền 06/2023/VBUQ-KP ngày 01/03/2023. Ngọc Văn: HĐ 0104/2026 ký 01/04/2026, thời hạn đến 31/03/2027, chấm dứt từ 01/09/2026 (BB 25/08/2026); BB không đề cập tiền đặt cọc, phạt hay số công nợ. Cả hai đều chấm dứt trước hạn nhưng không áp dụng chế tài như AHP, MK, Sendo.",
+      "evidence": "BB TLHD THUE KHO VA CAC DV HNT-KIDPLAZA TT THANH OAI_20260929_0001.pdf; BBTLHD THUE KHO VA CAC DV NGOCVAN - HNT TTNK1_20261019_0001.pdf.",
+      "cause": "BB lập theo mẫu rút gọn, không có phần xác định bên vi phạm và bảng thanh toán.",
+      "impact": "Không xác định được nghĩa vụ tài chính cuối cùng; khoản hoàn cọc 319.680.000 đ không có đối soát công nợ.",
+      "risk": "Rủi ro hoàn cọc khi còn công nợ, mất quyền đòi nợ; ủy quyền hết hiệu lực không được kiểm tra.",
+      "amount": 319680000,
+      "deptOpinion": "Phòng Dự án sẽ giải trình bên đề nghị chấm dứt, lý do không áp phạt và bổ sung xác nhận công nợ cho hai khách hàng.",
+      "conclusion": "Ghi nhận Finding mức Trung bình. Yêu cầu giải trình, bổ sung xác nhận công nợ/cọc và kiểm tra hiệu lực Giấy ủy quyền Kids Plaza.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_draft_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-018",
+      "group": "k4",
+      "riskLevel": "low",
+      "projectId": "",
+      "contractId": "",
+      "checklistId": "chk_26_chk_cn_03",
+      "content": "Biên bản thanh lý có lỗi soạn thảo và viện dẫn sai: sai năm HĐ (AHP), viện dẫn Điều 5 không tồn tại (MK, Kids Plaza), đánh số mục sai (Sendo)",
+      "basis": "Quy định soạn thảo văn bản hợp đồng; Bộ luật Dân sự 33/2005/QH11 được viện dẫn trong BB.",
+      "actual": "AHP: phần căn cứ ghi HĐ ký ngày 05/05/2025 nhưng số HĐ 0505/2026 và Điều 1 ghi 05/05/2026. MK (BB 03/09/2026) và Kids Plaza (BB 04/09/2026): Điều 3 viện dẫn \"nghĩa vụ theo Điều 5\" nhưng BB chỉ có Điều 1 đến Điều 3. Sendo: Điều 2 có mục \"3.3\" sai số thứ tự. BB cũng viện dẫn Bộ luật Dân sự 33/2005/QH11 đã hết hiệu lực từ 01/01/2017.",
+      "evidence": "Các BB thanh lý trong Thư mục 3 (xem FND-26Q3-013).",
+      "cause": "Sao chép mẫu BB cũ, không rà soát nội dung trước khi trình ký.",
+      "impact": "BB có sai sót dễ gây tranh chấp về phạm vi nghĩa vụ và thời điểm chấm dứt.",
+      "risk": "Rủi ro pháp lý khi diễn giải BB; ảnh hưởng đến giá trị chứng cứ.",
+      "amount": "",
+      "deptOpinion": "Phòng Dự án tiếp thu, sẽ lập văn bản đính chính và chuẩn hóa mẫu BB.",
+      "conclusion": "Ghi nhận Finding mức Thấp. Yêu cầu đính chính các BB và ban hành mẫu BB thanh lý chuẩn.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "fnd_folder3_broker_01",
+      "periodId": "mufq31zn245cq0d",
+      "code": "FND-26Q3-019",
+      "group": "k9",
+      "riskLevel": "med",
+      "projectId": "",
+      "contractId": "",
+      "checklistId": "chk_32_chk_hh_02",
+      "content": "Hồ sơ pháp lý môi giới Chính Kho Xưởng chỉ là ảnh chụp, thiếu ngành nghề, danh sách người có CCHN và chưa theo dõi thời hạn CCHN",
+      "basis": "Quy định hành nghề môi giới bất động sản; Biên bản thỏa thuận dịch vụ môi giới với Chính Kho Xưởng.",
+      "actual": "Thư mục 3 có 02 ảnh chụp: (1) GCN đăng ký doanh nghiệp CTCP Thương mại và Dịch vụ Chính Kho Xưởng, MST 0109921489, đăng ký lần đầu 03/03/2022, người đại diện Ông Trần Văn Chính; (2) CCHN môi giới BĐS số HN-3094 do Sở Xây dựng Hà Nội cấp cho Ông Trần Văn Chính, thời hạn 05 năm, ngày cấp ghi tay năm khó đọc (nếu cấp 17/11/2021 thì hết hạn 17/11/2026). Hồ sơ chưa sao y; GCN ĐKDN không thể hiện ngành nghề; không có danh sách người có CCHN thực hiện từng HĐ; tên file ghi \"Chính kho xuống\".",
+      "evidence": "Chính kho xuống - DKKD.jpg; Chính kho xuống - Chứng chỉ hành nghề.jpg.",
+      "cause": "Phòng Dự án chỉ lưu ảnh chụp khi ký thỏa thuận môi giới, không có quy trình theo dõi hiệu lực chứng chỉ.",
+      "impact": "Các khoản hoa hồng đã chi cho Chính Kho Xưởng (BHX, Ban Mai) thiếu chứng cứ điều kiện hành nghề đầy đủ.",
+      "risk": "Rủi ro chi hoa hồng cho đối tác không đủ điều kiện hành nghề hoặc chứng chỉ hết hạn.",
+      "amount": "",
+      "deptOpinion": "Phòng Dự án sẽ bổ sung bản sao y hồ sơ pháp lý môi giới và theo dõi hạn CCHN.",
+      "conclusion": "Ghi nhận Finding mức Trung bình. Yêu cầu bổ sung hồ sơ pháp lý đầy đủ và theo dõi hiệu lực CCHN trước mỗi lần chi hoa hồng.",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    }
+  ],
+  "newRecs": [
+    {
+      "id": "rec_folder3_cn_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_cn_01",
+      "code": "FND-26Q3-013-K1",
+      "content": "1) Yêu cầu Trung tâm Kho bổ sung Biên bản hoàn trả/nhận lại mặt bằng và Phòng Kế toán lập Bảng đối chiếu công nợ/cấn trừ cọc cho 06 HĐ (Sendo, AHP, Ngọc Văn, Swallow, MK, Kids Plaza); 2) Ban hành checklist hồ sơ bắt buộc trước khi trình ký BB thanh lý.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-10",
+      "measure": "Có đủ 06 bộ hồ sơ đối chiếu và checklist thanh lý được Ban Giám đốc phê duyệt.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_swallow_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_swallow_01",
+      "code": "FND-26Q3-014-K1",
+      "content": "Phối hợp Kế toán xác nhận Swallow đã nộp công nợ 34.120.008 đ (hạn 24/09/2026) và việc hoàn cọc 58.592.000 đ (có cấn trừ hay không); giải trình lý do không áp phạt chấm dứt sớm và phương án xử lý chiết khấu 5.000.000 đ.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-05",
+      "measure": "Có xác nhận của Kế toán, chứng từ thu/chi và văn bản giải trình.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_penalty_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_penalty_01",
+      "code": "FND-26Q3-015-K1",
+      "content": "Lập bảng kê chi phí thực tế bù đắp cho 03 HĐ bị phạt cọc (AHP 186.200.000 đ; MK 129.168.000 đ; Sendo 534.100.000 đ) và đề nghị Kế toán xác nhận cách hạch toán khoản cọc bị phạt.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-10",
+      "measure": "Bảng kê chi phí có xác nhận Kế toán và bút toán hạch toán 849.468.000 đ.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_sendo_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_sendo_01",
+      "code": "FND-26Q3-016-K1",
+      "content": "1) Lập bảng đối chiếu chi phí hoàn trả mặt bằng DA-002 (216.480.600 đ) và DA-003 (41.365.626 đ) với khoản cọc phạt 534.100.000 đ; 2) Kiểm tra hóa đơn GTGT bán bàn nâng 89.100.000 đ (HNT xuất) và 27.000.000 đ (Sendo xuất) cùng việc ghi nhận tài sản; 3) Quy định không thi công hoàn trả mặt bằng trước khi chốt BB thanh lý.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-10",
+      "measure": "Bảng đối chiếu, bản sao hóa đơn và văn bản quy định trình tự được duyệt.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_early_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_early_01",
+      "code": "FND-26Q3-017-K1",
+      "content": "Giải trình bên đề nghị chấm dứt và lý do không áp phạt đối với Kids Plaza và Ngọc Văn; bổ sung xác nhận công nợ bằng số liệu, chứng từ hoàn cọc 319.680.000 đ (Kids Plaza), tiền cọc của Ngọc Văn; kiểm tra Giấy ủy quyền 06/2023/VBUQ-KP còn hiệu lực.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-05",
+      "measure": "Văn bản giải trình và xác nhận công nợ có chữ ký của Kế toán.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_draft_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_draft_01",
+      "code": "FND-26Q3-018-K1",
+      "content": "Lập văn bản đính chính BB AHP (năm HĐ), MK và Kids Plaza (viện dẫn Điều 5), Sendo (số mục 3.3); thay căn cứ Bộ luật Dân sự bằng Bộ luật Dân sự 2015 và ban hành mẫu BB thanh lý chuẩn có bảng thanh toán, bên đề nghị chấm dứt.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-15",
+      "measure": "Văn bản đính chính được hai bên ký và mẫu BB chuẩn được ban hành.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    },
+    {
+      "id": "rec_folder3_broker_01",
+      "periodId": "mufq31zn245cq0d",
+      "findingId": "fnd_folder3_broker_01",
+      "code": "FND-26Q3-019-K1",
+      "content": "Bổ sung bản sao y GCN ĐKDN đầy đủ ngành nghề và CCHN môi giới của Chính Kho Xưởng; lập danh sách người có CCHN thực hiện dịch vụ; theo dõi hạn CCHN HN-3094 và không chi hoa hồng mới khi chứng chỉ hết hạn.",
+      "unit": "k1",
+      "owner": "k2",
+      "commitDate": "2026-10-20",
+      "deadline": "2026-11-10",
+      "measure": "Hồ sơ pháp lý đầy đủ và bảng theo dõi hạn chứng chỉ.",
+      "status": "todo",
+      "fixEvidence": "",
+      "unitOpinion": "",
+      "ktksOpinion": "",
+      "closeDate": "",
+      "confirmer": "",
+      "createdAt": "2026-10-20T14:50:00.000Z",
+      "updatedAt": "2026-10-20T14:50:00.000Z"
+    }
+  ],
+  "newJournal": {
+    "id": "jnl_folder3_import_20261020",
+    "periodId": "mufq31zn245cq0d",
+    "ts": "2026-10-20T14:50:00.000Z",
+    "user": "Nguyễn Thị Thu Hương",
+    "type": "Đối chiếu",
+    "object": "Hồ sơ #3: Biên bản thanh lý hợp đồng (06 BB + 02 ảnh hồ sơ môi giới)",
+    "content": "Rà soát Thư mục 3 (BB ký 21/08–04/09/2026 thuộc Q3/2026; file scan 21/09–19/10/2026): (1) Thêm KH070 Sendo và HĐ 1001/2025; bổ sung MST, người đại diện, địa chỉ cho 05 KH; (2) Cập nhật 05 HĐ (AHP, MK, Kids Plaza, Ngọc Văn, Swallow) sang Đã thanh lý/kết thúc kèm thông tin cọc, phạt, công nợ; (3) Cập nhật docreq_03 sang Đã nhận; (4) Cập nhật CHK-CN-03 (Không đạt), CHK-CK-04, CHK-HH-02; (5) Lập 07 Finding (FND-26Q3-013 đến FND-26Q3-019) và 07 Kiến nghị KSNB tương ứng.",
+    "result": "Phát hiện 07 Finding (FND-26Q3-013 -> FND-26Q3-019)",
+    "note": "",
+    "auto": 0,
+    "createdAt": "2026-10-20T14:50:00.000Z"
+  }
+};
+  for(const cu of (folder3Payload.newCustomers || [])){
+    if(!DB.get('customers', cu.id)) await DB.put('customers', cu);
+  }
+  for(const cu of (folder3Payload.updateCustomers || [])){
+    const cur = DB.get('customers', cu.id);
+    if(cur){
+      let changed = false;
+      for(const k of Object.keys(cu)){
+        if(k !== 'id' && !cur[k] && cu[k]){ cur[k] = cu[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('customers', cur); }
+    }
+  }
+  for(const ct of (folder3Payload.newContracts || [])){
+    if(!DB.get('contracts', ct.id)) await DB.put('contracts', ct);
+  }
+  for(const cu of (folder3Payload.updateContracts || [])){
+    const cur = DB.get('contracts', cu.id);
+    if(cur){
+      let changed = false;
+      for(const k of Object.keys(cu)){
+        if(k !== 'id' && cur[k] !== cu[k]){ cur[k] = cu[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('contracts', cur); }
+    }
+  }
+  if(folder3Payload.updateDocreq){
+    const dr3 = folder3Payload.updateDocreq;
+    const cur = DB.get('docreqs', dr3.id);
+    if(cur && cur.evidence !== dr3.evidence){
+      await DB.put('docreqs', Object.assign({}, cur, dr3, { updatedAt: new Date().toISOString() }));
+    }
+  }
+  for(const u of (folder3Payload.updateChecklist || [])){
+    const row = DB.all('checklist').find(x => x.code === u.code && x.periodId === pid0);
+    if(row && !(row.comment || '').includes(u.marker)){
+      const merged = u.replace ? u.comment : ((row.comment ? row.comment + ' ' : '') + u.comment);
+      await DB.put('checklist', Object.assign({}, row, { result: u.result || row.result, comment: merged, updatedAt: new Date().toISOString() }));
+    }
+  }
+  for(const f of (folder3Payload.newFindings || [])){
+    const cur = DB.get('findings', f.id);
+    if(!cur || cur.periodId !== pid0){
+      await DB.put('findings', Object.assign({}, cur || {}, f, { periodId: pid0 }));
+    }
+  }
+  for(const r of (folder3Payload.newRecs || [])){
+    const cur = DB.get('recs', r.id);
+    if(!cur || cur.periodId !== pid0){
+      await DB.put('recs', Object.assign({}, cur || {}, r, { periodId: pid0 }));
+    }
+  }
+  if(folder3Payload.newJournal){
+    const jnl3 = folder3Payload.newJournal;
+    const cur = DB.get('journal', jnl3.id);
+    if(!cur || cur.periodId !== pid0){
+      await DB.put('journal', Object.assign({}, cur || {}, jnl3, { periodId: pid0 }));
+    }
+  }
 }
 
 /* ---------- Dữ liệu demo ---------- */
