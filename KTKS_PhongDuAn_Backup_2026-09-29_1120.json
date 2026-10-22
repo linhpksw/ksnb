@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-10-22T07:35:53.240Z",
+    "backupDate": "2026-10-22T08:00:39.234Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 1,
       "followups": 0
     },
-    "checksum": "7b325a5b"
+    "checksum": "b74f89f2"
   },
   "settings": {},
   "data": {
@@ -3653,14 +3653,14 @@
         "indefinite": ""
       },
       {
-        "status": "cmuf772l3as72p76",
+        "status": "active",
         "no": "220T10-S-2",
         "type": "k2",
         "customerId": "mudvhgxibajacyz",
-        "site": "k7_e09e",
+        "site": "k5_4e96",
         "signDate": "",
         "effDate": "",
-        "endDate": "2024-03-31",
+        "endDate": "",
         "signer": "",
         "signerTitle": "",
         "authOK": "",
@@ -3690,13 +3690,16 @@
         "docOther": "",
         "id": "muf8472ene3r18m",
         "createdAt": "2026-09-24T07:41:45.542Z",
-        "updatedAt": "2026-09-27T15:31:51.276Z",
+        "updatedAt": "2026-10-22T08:00:37.226Z",
         "model": "storage",
         "cargoType": "",
         "dangerSurApplied": "",
-        "indefinite": "",
+        "indefinite": "y",
         "storageMinRev": "",
-        "earlyTermination": ""
+        "earlyTermination": "",
+        "isRenewal": "",
+        "priorYears": "",
+        "priorContractRef": ""
       },
       {
         "status": "active",
@@ -24790,6 +24793,45 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-10-22T07:35:51.231Z"
+      },
+      {
+        "id": "mvj8vgdduqok6dk",
+        "periodId": "mufq31zn245cq0d",
+        "ts": "2026-10-22T07:53:44.353Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 220T10-S-2 – CÔNG TY TNHH TERUMO VIỆT NAM | Dự án/kho/trung tâm: Kho chung HNT Thanh Oai → Kho chung HNT Đông Anh",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-10-22T07:53:44.353Z"
+      },
+      {
+        "id": "mvj929z165clxvt",
+        "periodId": "mufq31zn245cq0d",
+        "ts": "2026-10-22T07:59:02.653Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 220T10-S-2 – CÔNG TY TNHH TERUMO VIỆT NAM | Ngày hết hạn: 31/03/2024 → ∅; Vô thời hạn (không có ngày hết hạn): ∅ → Có",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-10-22T07:59:02.653Z"
+      },
+      {
+        "id": "mvj94ay5uv5kmu2",
+        "periodId": "mufq31zn245cq0d",
+        "ts": "2026-10-22T08:00:37.229Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 220T10-S-2 – CÔNG TY TNHH TERUMO VIỆT NAM | Trạng thái hợp đồng: Cần kiểm tra hồ sơ gia hạn → Đang hiệu lực",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-10-22T08:00:37.229Z"
       }
     ]
   }
