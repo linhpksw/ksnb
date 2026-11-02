@@ -2547,7 +2547,7 @@ ACT['rs-apply']=async()=>{
     if(!DB.all('catalogs').length)await seedCatalogs();
     const ps=periodsSorted();await DB.setMeta('currentPeriod',ps.length?ps[ps.length-1].id:null);
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
+  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
   }else{
     const plan=mergePlan(o),map={};let added=0,over=0;
     Object.keys(plan).forEach(s=>{
@@ -2562,7 +2562,7 @@ ACT['rs-apply']=async()=>{
     try{await DB.mergeMany(map)}catch(e){console.error(e);toast('Nhập thất bại: '+e.message,'err');return}
     if(!DB.get('periods',DB.meta.currentPeriod)){const ps=periodsSorted();if(ps.length)await DB.setMeta('currentPeriod',ps[ps.length-1].id)}
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
+  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
   }
   await ensureCatalogMigrations();await migrateContractModel();
   UI.restore=null;toast('Phục hồi hoàn tất');go('dashboard');renderMain();
@@ -5875,8 +5875,608 @@ async function ensureSendoProjects(){
       await DB.put('journal', Object.assign({}, cur || {}, jnl3, { periodId: pid0 }));
     }
   }
-}
 
+  }
+
+/* ---------- Thư mục 4: 07 PLHĐ Gia hạn (Q4/2026 - GaiA, Bristar, C.L, DGW, HTC, Daesang, Blum) ---------- */
+async function ensureRenewalAppendices(){
+  const P = curPeriod() || DB.all('periods')[0];
+  if(!P) return;
+  const pid0 = P.id;
+  const pQ4 = DB.all('periods').find(x => (x.year === 2026 || x.year === '2026') && (x.quarter === 4 || x.quarter === '4')) || P;
+  const pidQ4 = pQ4 ? pQ4.id : pid0;
+
+  const folder4Payload = {
+    updateCustomers: [
+      {
+        id: 'mudvhgx9k16070l',
+        rep: 'Bà Nguyễn Cẩm Tú (Phó Giám đốc, theo GUQ số 01/2022/GUQ-GAIA ngày 01/01/2022)',
+        address: 'Số 6A, ngõ 639 Hoàng Hoa Thám, Phường Ngọc Hà, TP. Hà Nội, Việt Nam'
+      },
+      {
+        id: 'mudvhgxbdtpueze',
+        rep: 'Bà Nguyễn Cẩm Tú (Phó Giám đốc, theo GUQ số 02/2022/GUQ-BRISTAR ngày 01/01/2022)',
+        address: 'Tầng 5, số 71 Nguyễn Chí Thanh, Phường Giảng Võ, TP. Hà Nội, Việt Nam'
+      },
+      {
+        id: 'mudvhgxcrrytstp',
+        rep: 'Ông Hoàng Tạ Quang (Phó Giám đốc Vận hành, theo GUQ số 25/GUQ-HTC ngày 11/09/2025)',
+        phone: '0984.098.986',
+        address: 'Số nhà 583, đường Lạc Long Quân, Phường Tây Hồ, TP. Hà Nội, Việt Nam'
+      },
+      {
+        id: 'mudvhgxcumf2uyx',
+        rep: 'Ông Jeon Chang Keun (Tổng Giám đốc)',
+        phone: '0210 384 8717',
+        address: 'Phố Sông Thao, Phường Thanh Miếu, Tỉnh Phú Thọ, Việt Nam'
+      },
+      {
+        id: 'mudvhgxfukguwpq',
+        name: 'CHI NHÁNH CÔNG TY CỔ PHẦN DỊCH VỤ PHÁT TRIỂN THỊ TRƯỜNG C.L',
+        taxId: '0301483375-001',
+        rep: 'Bà Phạm Thị Quyết (Chánh văn phòng TP. Hà Nội, theo GUQ số 09/2026/GUQ-C.L ngày 01/01/2026)',
+        address: 'Tầng 14 - TNR, 54A Nguyễn Chí Thanh, Phường Láng, Thành phố Hà Nội, Việt Nam'
+      },
+      {
+        id: 'mudvhgxgfcg6954',
+        name: 'CHI NHÁNH CÔNG TY CỔ PHẦN THẾ GIỚI SỐ',
+        taxId: '0302861742-001',
+        rep: 'Bà Phạm Thị Quyết (Chánh văn phòng Hà Nội, theo GUQ số 11/2026/GUQ-DGW ngày 01/01/2026)',
+        address: 'Tầng 14 - ROX, 54A Nguyễn Chí Thanh, Phường Láng, Thành phố Hà Nội, Việt Nam'
+      },
+      {
+        id: 'mudvhgy4nje7j0l',
+        rep: 'Ông Albrecht Martin Bartolein (Tổng Giám đốc)',
+        address: 'Phòng 14.1, Tầng 14, Halo Building Signature, 257 đường Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh, Việt Nam'
+      }
+    ],
+    deleteContracts: ['muf85bom38mbcyi'],
+    deleteRentals: ['muf9un9b7t10nx7'],
+    deleteRenewals: ['mvj076i03a05jsf', 'mvyyh3il243tmn3'],
+    updateContracts: [
+      {
+        id: 'muf6bizmhx2hoet',
+        status: 'active',
+        endDate: '2028-11-15',
+        unitPrice: 136000,
+        area: 1250,
+        monthly: 170000000,
+        isRenewal: 'renewal',
+        priorYears: 3,
+        priorContractRef: '3010/2023/HĐTK/HNT-GAIA và PLHĐ 01, 02, 03',
+        docAppendix: 'y',
+        docOther: 'PLHĐ 04 số 0506/2026/PLHĐTK/HNT-GAIA ký ngày 05/06/2026 gia hạn đến 15/11/2028, tăng diện tích gộp lên 1.250 m2, đơn giá mới 136.000 đ/m2 áp dụng từ 03/11/2026. Tiền thuê diện tích bổ sung 650 m2 theo PL03 từ 09/07/2026 đến 02/11/2026 (3 tháng 25 ngày) là 361.790.000 đ. Đã gộp diện tích HĐ phụ PL03 vào HĐ chính này.'
+      },
+      {
+        id: 'muf779c0ktbt7w7',
+        status: 'active',
+        endDate: '2028-11-15',
+        unitPrice: 136000,
+        monthly: 122400000,
+        area: 900,
+        isRenewal: 'renewal',
+        priorYears: 3,
+        priorContractRef: '2804/2023/HĐTK/HNT-BRISTAR ngày 28/04/2023 và PLHĐ 1207/2023/PLHĐTK/HNT-BRISTAR',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 0506/2026/PLHĐTK/HNT-BRISTAR ký tháng 06/2026 gia hạn thời hạn thuê đến 15/11/2028, đơn giá kho 136.000 VNĐ/m2/tháng áp dụng từ 01/11/2026.'
+      },
+      {
+        id: 'muf85bop48jq0x1',
+        status: 'active',
+        endDate: '2028-11-15',
+        area: 947,
+        unitPrice: 98169,
+        monthly: 92966475,
+        isRenewal: 'renewal',
+        priorYears: 5,
+        priorContractRef: '2810/2021/HĐTK/HNT-CL ngày 28/10/2021',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 04 ký ngày 26/05/2026 gia hạn đến 15/11/2028; đơn giá mới áp dụng từ 01/12/2026: Kho 660,5 m2 x 123.900 đ/m2; Bãi 286,5 m2 x 38.850 đ/m2; tổng chưa VAT 92.966.475 đ/tháng.'
+      },
+      {
+        id: 'muf779c3vfj93r8',
+        status: 'active',
+        endDate: '2028-11-15',
+        area: 8348,
+        unitPrice: 103180,
+        monthly: 861347625,
+        isRenewal: 'renewal',
+        priorYears: 5,
+        priorContractRef: '0104/2021/HĐTK/HNT-DGW và các Phụ lục',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 12 ký ngày 26/05/2026 gia hạn đến 15/11/2028; điều chỉnh giá từ 01/12/2026: Kho 5.556,5 m2 x 123.900 đ/m2; Bãi 2.141,5 m2 x 38.850 đ/m2; Kho 650 m2 x 138.000 đ/m2 (PL11).'
+      },
+      {
+        id: 'muf779c2xtowc63',
+        status: 'active',
+        endDate: '2028-07-20',
+        unitPrice: 145000,
+        monthly: 60900000,
+        area: 420,
+        signer: 'Bên A: Ông Hoàng Tạ Quang; Bên B: Ông Nguyễn Ngọc Hải',
+        signerTitle: 'Bên A: Phó Giám đốc Vận hành; Bên B: Chủ tịch HĐQT',
+        isRenewal: 'renewal',
+        priorYears: 2,
+        priorContractRef: '2506/2024/HĐTK/HNT-HTC và Phụ lục 01',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 02 ký ngày 24/06/2026 gia hạn thời hạn thuê đến hết ngày 20/07/2028, đơn giá kho (đã gồm giá kệ) là 145.000 đ/m2/tháng áp dụng từ 20/07/2026.'
+      },
+      {
+        id: 'muf779c11t3wv5b',
+        status: 'active',
+        endDate: '2028-11-15',
+        unitPrice: 135000,
+        monthly: 117045000,
+        area: 867,
+        isRenewal: 'renewal',
+        priorYears: 3,
+        priorContractRef: '2006/2023/HĐTK/HNT-DEASANG ngày 07/07/2023 và các phụ lục',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 06 ký ngày 01/07/2026 gia hạn thời gian thuê đến hết ngày 15/11/2028; các điều khoản về giá thuê và diện tích giữ nguyên theo HĐ gốc và các phụ lục trước.'
+      },
+      {
+        id: 'muf85bp7gxakipf',
+        status: 'active',
+        endDate: '2028-07-31',
+        area: 789,
+        unitPrice: 141344,
+        monthly: 111520800,
+        isRenewal: 'renewal',
+        priorYears: 2,
+        priorContractRef: '2806/2024/HĐTK/HNT-BLUM ngày 28/06/2024 và các phụ lục',
+        docAppendix: 'y',
+        docOther: 'PLHĐ số 03 ký ngày 16/03/2026 gia hạn 24 tháng từ 01/08/2026 đến hết 31/07/2028, tăng giá 8% từ 01/08/2026: Kho 775,2 m2 x 140.400 đ/m2; VP 13,8 m2 x 194.400 đ/m2; tổng chưa VAT 111.520.800 đ/tháng.'
+      }
+    ],
+    expireRentals: [
+      { id: 'muf9un9byfco6sr', endDate: '2026-11-02' },
+      { id: 'muf9un9bfxxeyhg', endDate: '2026-10-31' },
+      { id: 'muhtcxne1majbwb', endDate: '2026-11-30' },
+      { id: 'muhtdibuz2wu60b', endDate: '2026-11-30' },
+      { id: 'muhrdjyx1bi2n5w', endDate: '2026-11-30' },
+      { id: 'muhre0oxlhhvbcr', endDate: '2026-11-30' },
+      { id: 'muhs7be95w0ql57', endDate: '2026-07-31' },
+      { id: 'muhs7v094rb6za7', endDate: '2026-07-31' }
+    ],
+    updateRentals: [
+      {
+        id: 'muf9un9bnosywuf',
+        quantity: 420,
+        unitPrice: 145000,
+        monthlyEstimate: 60900000,
+        startDate: '2026-07-20',
+        endDate: '2028-07-20',
+        note: 'Đơn giá điều chỉnh 145.000 đ/m2 (đã gồm giá kệ) theo PLHĐ số 02 ký ngày 24/06/2026, áp dụng từ 20/07/2026'
+      },
+      {
+        id: 'muf9un9bg4nn0cb',
+        endDate: '2028-11-15',
+        note: 'Gia hạn thời gian thuê đến 15/11/2028 theo PLHĐ 06 ký ngày 01/07/2026; đơn giá giữ nguyên 135.000 đ/m2'
+      },
+      {
+        id: 'mugdx3d1yecro5t',
+        endDate: '2028-11-15'
+      }
+    ],
+    newRentals: [
+      {
+        id: 'rent_gaia_pl04_2026',
+        contractId: 'muf6bizmhx2hoet',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 1250,
+        unitPrice: 136000,
+        monthlyEstimate: 170000000,
+        startDate: '2026-11-03',
+        endDate: '2028-11-15',
+        note: 'Gộp diện tích 1.250 m2 và áp dụng đơn giá mới 136.000 đ/m2 theo PLHĐ 04 ký ngày 05/06/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_bristar_pl0506_2026',
+        contractId: 'muf779c0ktbt7w7',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 900,
+        unitPrice: 136000,
+        monthlyEstimate: 122400000,
+        startDate: '2026-11-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá mới 136.000 đ/m2 theo PLHĐ 0506/2026 ký tháng 06/2026, áp dụng từ 01/11/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_cl_pl04_kho_2026',
+        contractId: 'muf85bop48jq0x1',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 660.5,
+        unitPrice: 123900,
+        monthlyEstimate: 81835950,
+        startDate: '2026-12-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá mới theo PLHĐ 04 ký ngày 26/05/2026, áp dụng từ 01/12/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_cl_pl04_bai_2026',
+        contractId: 'muf85bop48jq0x1',
+        kind: 'bai',
+        unit: 'm²',
+        per: 'month',
+        quantity: 286.5,
+        unitPrice: 38850,
+        monthlyEstimate: 11130525,
+        startDate: '2026-12-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá bãi mới theo PLHĐ 04 ký ngày 26/05/2026, áp dụng từ 01/12/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_dgw_pl12_kho_2026',
+        contractId: 'muf779c3vfj93r8',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 5556.5,
+        unitPrice: 123900,
+        monthlyEstimate: 688450350,
+        startDate: '2026-12-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá kho theo PLHĐ 12 ký ngày 26/05/2026, áp dụng từ 01/12/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_dgw_pl12_bai_2026',
+        contractId: 'muf779c3vfj93r8',
+        kind: 'bai',
+        unit: 'm²',
+        per: 'month',
+        quantity: 2141.5,
+        unitPrice: 38850,
+        monthlyEstimate: 83197275,
+        startDate: '2026-12-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá bãi theo PLHĐ 12 ký ngày 26/05/2026, áp dụng từ 01/12/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_dgw_pl12_kho650_2026',
+        contractId: 'muf779c3vfj93r8',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 650,
+        unitPrice: 138000,
+        monthlyEstimate: 89700000,
+        startDate: '2026-12-01',
+        endDate: '2028-11-15',
+        note: 'Đơn giá kho 650m2 theo Điều 2.2 PLHĐ 12 (kế thừa PL11)',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_blum_pl03_kho_2026',
+        contractId: 'muf85bp7gxakipf',
+        kind: 'kho',
+        unit: 'm²',
+        per: 'month',
+        quantity: 775.2,
+        unitPrice: 140400,
+        monthlyEstimate: 108838080,
+        startDate: '2026-08-01',
+        endDate: '2028-07-31',
+        note: 'Tăng 8% theo PLHĐ 03 ký ngày 16/03/2026, áp dụng từ 01/08/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      },
+      {
+        id: 'rent_blum_pl03_vp_2026',
+        contractId: 'muf85bp7gxakipf',
+        kind: 'vp',
+        unit: 'm²',
+        per: 'month',
+        quantity: 13.8,
+        unitPrice: 194400,
+        monthlyEstimate: 2682720,
+        startDate: '2026-08-01',
+        endDate: '2028-07-31',
+        note: 'Tăng 8% theo PLHĐ 03 ký ngày 16/03/2026, áp dụng từ 01/08/2026',
+        createdAt: '2026-11-02T14:30:00.000Z',
+        updatedAt: '2026-11-02T14:30:00.000Z'
+      }
+    ],
+    newRenewals: [
+      {
+        id: 'mvyyh3ilqaqwl75',
+        periodId: pidQ4,
+        contractId: 'muf6bizmhx2hoet',
+        startNego: '2026-05-15',
+        owner: 'k2',
+        curPrice: 130000,
+        upRate: 10,
+        actPrice: 136000,
+        newSign: '2026-06-05',
+        status: 'signed',
+        reason: 'Gia hạn đến 15/11/2028, gộp diện tích lên 1.250 m2 và tăng đơn giá lên 136.000 đ/m2 theo PLHĐ 04 ký ngày 05/06/2026',
+        note: 'PLHĐ 04 số 0506/2026/PLHĐTK/HNT-GAIA. Đã gộp HĐ phụ PL03 vào HĐ chính.'
+      },
+      {
+        id: 'ren_q4_bristar_pl0506',
+        periodId: pidQ4,
+        contractId: 'muf779c0ktbt7w7',
+        startNego: '2026-05-15',
+        owner: 'k2',
+        curPrice: 126000,
+        upRate: 10,
+        actPrice: 136000,
+        newSign: '2026-06-05',
+        status: 'signed',
+        reason: 'Gia hạn đến 15/11/2028 và điều chỉnh đơn giá lên 136.000 đ/m2 theo PLHĐ 0506/2026 ký tháng 06/2026',
+        note: 'PLHĐ số 0506/2026/PLHĐTK/HNT-BRISTAR'
+      },
+      {
+        id: 'mvyyh3ilh28dl9l',
+        periodId: pidQ4,
+        contractId: 'muf85bop48jq0x1',
+        startNego: '2026-05-01',
+        owner: 'k2',
+        curPrice: 116000,
+        upRate: 10,
+        actPrice: 123900,
+        newSign: '2026-05-26',
+        status: 'signed',
+        reason: 'Gia hạn đến 15/11/2028, kho tăng lên 123.900 đ/m2, bãi 38.850 đ/m2 theo PLHĐ 04',
+        note: 'PLHĐ số 04 ký ngày 26/05/2026'
+      },
+      {
+        id: 'mvyyh3ila5prrsl',
+        periodId: pidQ4,
+        contractId: 'muf779c3vfj93r8',
+        startNego: '2026-05-01',
+        owner: 'k2',
+        curPrice: 116000,
+        upRate: 10,
+        actPrice: 123900,
+        newSign: '2026-05-26',
+        status: 'signed',
+        reason: 'Gia hạn đến 15/11/2028, điều chỉnh đơn giá kho 123.900 đ, bãi 38.850 đ theo PLHĐ 12',
+        note: 'PLHĐ số 12 ký ngày 26/05/2026'
+      },
+      {
+        id: 'ren_q4_htc_pl02',
+        periodId: pidQ4,
+        contractId: 'muf779c2xtowc63',
+        startNego: '2026-05-20',
+        owner: 'k2',
+        curPrice: 142000,
+        upRate: 10,
+        actPrice: 145000,
+        newSign: '2026-06-24',
+        status: 'signed',
+        reason: 'Gia hạn đến 20/07/2028 và điều chỉnh giá lên 145.000 đ/m2 theo PLHĐ 02',
+        note: 'PLHĐ số 02 ký ngày 24/06/2026'
+      },
+      {
+        id: 'ren_q4_daesang_pl06',
+        periodId: pidQ4,
+        contractId: 'muf779c11t3wv5b',
+        startNego: '2026-06-01',
+        owner: 'k2',
+        curPrice: 135000,
+        upRate: 10,
+        actPrice: 135000,
+        newSign: '2026-07-01',
+        status: 'signed',
+        reason: 'Gia hạn thời gian thuê đến 15/11/2028 theo PLHĐ 06 ký ngày 01/07/2026',
+        note: 'PLHĐ số 06 ký ngày 01/07/2026'
+      },
+      {
+        id: 'mvyyh3im7530boj',
+        periodId: pidQ4,
+        contractId: 'muf85bp7gxakipf',
+        startNego: '2026-02-15',
+        owner: 'k2',
+        curPrice: 130000,
+        upRate: 8,
+        actPrice: 140400,
+        newSign: '2026-03-16',
+        status: 'signed',
+        reason: 'Gia hạn 24 tháng đến 31/07/2028, tăng giá 8% theo thỏa thuận PLHĐ 03',
+        note: 'PLHĐ số 03 ký ngày 16/03/2026'
+      }
+    ],
+    newDiscounts: [
+      {
+        id: 'disc_q4_gaia_pl04',
+        periodId: pidQ4,
+        contractId: 'muf6bizmhx2hoet',
+        kind: 'k1',
+        amount: 34000000,
+        beneficiary: 'Công ty TNHH Dệt may GaiA',
+        approver: 'Chủ tịch HĐQT & GĐĐH',
+        policyCompliance: 'y',
+        note: 'Mức hưởng chiết khấu gia hạn tối đa 20% (34.000.000 đ) trên doanh thu thuê 1 tháng (170.000.000 đ) theo QĐ 176/2024/QĐ-HNT (thâm niên HĐ từ 30/10/2023 >= 3 năm, gia hạn 24 tháng). Lưu ý KSNB: Chưa phát sinh tờ trình đề nghị chi trả thực tế.'
+      },
+      {
+        id: 'disc_q4_bristar_pl0506',
+        periodId: pidQ4,
+        contractId: 'muf779c0ktbt7w7',
+        kind: 'k1',
+        amount: 24480000,
+        beneficiary: 'Công ty TNHH Bristar',
+        approver: 'Chủ tịch HĐQT & GĐĐH',
+        policyCompliance: 'y',
+        note: 'Mức hưởng chiết khấu gia hạn tối đa 20% (24.480.000 đ) trên doanh thu thuê 1 tháng (122.400.000 đ) theo QĐ 176/2024/QĐ-HNT (thâm niên HĐ từ 28/04/2023 >= 3 năm, gia hạn 27 tháng). Lưu ý KSNB: Chưa phát sinh tờ trình đề nghị chi trả thực tế.'
+      },
+      {
+        id: 'disc_q4_cl_pl04',
+        periodId: pidQ4,
+        contractId: 'muf85bop48jq0x1',
+        kind: 'k1',
+        amount: 18593295,
+        beneficiary: 'Chi nhánh CP DVPT Thị trường C.L',
+        approver: 'Chủ tịch HĐQT & GĐĐH',
+        policyCompliance: 'y',
+        note: 'Mức hưởng chiết khấu gia hạn tối đa 20% (18.593.295 đ) trên doanh thu thuê 1 tháng (92.966.475 đ) theo QĐ 176/2024/QĐ-HNT (thâm niên HĐ từ 2021 >= 3 năm, gia hạn 24 tháng). Lưu ý KSNB: Chưa phát sinh tờ trình đề nghị chi trả thực tế.'
+      },
+      {
+        id: 'disc_q4_daesang_pl06',
+        periodId: pidQ4,
+        contractId: 'muf779c11t3wv5b',
+        kind: 'k1',
+        amount: 23409000,
+        beneficiary: 'Công ty TNHH Daesang Việt Nam',
+        approver: 'Chủ tịch HĐQT & GĐĐH',
+        policyCompliance: 'y',
+        note: 'Mức hưởng chiết khấu gia hạn tối đa 20% (23.409.000 đ) trên doanh thu thuê 1 tháng (117.045.000 đ) theo QĐ 176/2024/QĐ-HNT (thâm niên HĐ từ 07/07/2023 >= 3 năm, gia hạn 28 tháng). Lưu ý KSNB: Chưa phát sinh tờ trình đề nghị chi trả thực tế.'
+      },
+      {
+        id: 'disc_q4_dgw_pl12',
+        periodId: pidQ4,
+        contractId: 'muf779c3vfj93r8',
+        kind: 'k1',
+        amount: 172269525,
+        beneficiary: 'Chi nhánh Công ty CP Thế Giới Số',
+        approver: 'Chủ tịch HĐQT & GĐĐH',
+        policyCompliance: 'y',
+        note: 'Mức hưởng chiết khấu gia hạn tối đa 20% (172.269.525 đ) trên doanh thu thuê 1 tháng (861.347.625 đ) theo QĐ 176/2024/QĐ-HNT (thâm niên HĐ từ 2021 >= 3 năm, gia hạn 24 tháng). Lưu ý KSNB: Chưa phát sinh tờ trình đề nghị chi trả thực tế.'
+      }
+    ],
+    updateChecklist: [
+      {
+        code: 'CK03',
+        result: 'pass',
+        comment: 'Đã rà soát điều kiện chiết khấu gia hạn theo QĐ 176/2024/QĐ-HNT cho 07 hợp đồng gia hạn Q4/2026: 05 KH (GaiA, Bristar, C.L, DGW, Daesang) đủ điều kiện thâm niên >= 3 năm; 02 KH (HTC, Blum) chưa đủ thâm niên 3 năm. Hiện tại chưa phát sinh tờ trình đề nghị chi trả thực tế.',
+        risk: 'Tránh lập tờ trình duyệt chiết khấu gia hạn vượt khung hoặc chi cho khách hàng chưa đủ điều kiện thâm niên 3 năm.',
+        rec: 'Khi Phòng Dự án lập tờ trình chiết khấu gia hạn cho GaiA, Bristar, C.L, DGW, Daesang cần kiểm tra đúng trần 20% và phải có phê duyệt của GĐĐH và HĐQT theo đúng QĐ 176.'
+      },
+      {
+        code: 'PL01',
+        result: 'pass',
+        comment: 'Đã kiểm tra 07 Phụ lục hợp đồng gia hạn Q4/2026 (GaiA, Bristar, C.L, DGW, HTC, Daesang, Blum): các bên đã ký đóng dấu đầy đủ, có giấy ủy quyền hợp lệ từ đại diện pháp luật.',
+        risk: 'Kiểm soát theo dõi thời điểm kích hoạt đơn giá mới và kỳ thanh toán.',
+        rec: 'Lưu trữ hồ sơ scan bản gốc vào kho dữ liệu KSNB; đồng bộ thời hạn thuê mới lên phần mềm.'
+      }
+    ],
+    newJournal: {
+      id: 'jnl_plhd_giahan_q4_2026',
+      periodId: pidQ4,
+      ts: '2026-11-02T14:30:00.000Z',
+      user: 'KTKS',
+      type: 'Hợp đồng',
+      object: '07 PLHĐ Gia hạn Q4/2026',
+      content: 'Cập nhật dữ liệu từ 07 Phụ lục hợp đồng gia hạn (GaiA, Bristar, C.L, Thế Giới Số, Viễn Thông Hà Nội, Daesang, Blum); xóa hợp đồng phụ PL03 của GaiA do đã gộp vào HĐ chính 1.250 m2; cập nhật thời hạn thuê đến 2028; điều chỉnh bảng kê gói thuê (rentals), đàm phán gia hạn (renewals), và thiết lập hạn mức chiết khấu gia hạn theo QĐ 176/2024/QĐ-HNT.',
+      result: 'Thành công',
+      note: 'Đã hoàn tất đồng bộ toàn diện 07 phụ lục và thông tin pháp nhân khách hàng.',
+      auto: false,
+      createdAt: '2026-11-02T14:30:00.000Z'
+    }
+  };
+
+  for(const cu of (folder4Payload.updateCustomers || [])){
+    const cur = DB.get('customers', cu.id);
+    if(cur){
+      let changed = false;
+      for(const k of Object.keys(cu)){
+        if(k !== 'id' && cu[k] && cur[k] !== cu[k]){ cur[k] = cu[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('customers', cur); }
+    }
+  }
+
+  for(const delId of (folder4Payload.deleteContracts || [])){
+    if(DB.get('contracts', delId)) await DB.del('contracts', delId);
+  }
+
+  for(const ct of (folder4Payload.updateContracts || [])){
+    const cur = DB.get('contracts', ct.id);
+    if(cur){
+      let changed = false;
+      for(const k of Object.keys(ct)){
+        if(k !== 'id' && ct[k] !== undefined && cur[k] !== ct[k]){ cur[k] = ct[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('contracts', cur); }
+    }
+  }
+
+  for(const delR of (folder4Payload.deleteRentals || [])){
+    if(DB.get('rentals', delR)) await DB.del('rentals', delR);
+  }
+
+  for(const ex of (folder4Payload.expireRentals || [])){
+    const cur = DB.get('rentals', ex.id);
+    if(cur && cur.endDate !== ex.endDate){
+      cur.endDate = ex.endDate;
+      cur.updatedAt = new Date().toISOString();
+      await DB.put('rentals', cur);
+    }
+  }
+
+  for(const ur of (folder4Payload.updateRentals || [])){
+    const cur = DB.get('rentals', ur.id);
+    if(cur){
+      let changed = false;
+      for(const k of Object.keys(ur)){
+        if(k !== 'id' && ur[k] !== undefined && cur[k] !== ur[k]){ cur[k] = ur[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('rentals', cur); }
+    }
+  }
+
+  for(const nr of (folder4Payload.newRentals || [])){
+    const cur = DB.get('rentals', nr.id);
+    if(!cur) await DB.put('rentals', nr);
+  }
+
+  for(const delRn of (folder4Payload.deleteRenewals || [])){
+    if(DB.get('renewals', delRn)) await DB.del('renewals', delRn);
+  }
+
+  for(const rn of (folder4Payload.newRenewals || [])){
+    const cur = DB.get('renewals', rn.id);
+    if(!cur || cur.periodId !== pidQ4 || cur.status !== 'signed'){
+      await DB.put('renewals', Object.assign({}, cur || {}, rn, { periodId: pidQ4 }));
+    }
+  }
+
+  for(const dc of (folder4Payload.newDiscounts || [])){
+    const cur = DB.get('discounts', dc.id);
+    if(!cur || cur.periodId !== pidQ4){
+      await DB.put('discounts', Object.assign({}, cur || {}, dc, { periodId: pidQ4 }));
+    }
+  }
+
+  for(const u of (folder4Payload.updateChecklist || [])){
+    const row = DB.all('checklist').find(x => x.code === u.code && x.periodId === pidQ4);
+    if(row){
+      await DB.put('checklist', Object.assign({}, row, {
+        result: u.result || row.result,
+        comment: u.comment || row.comment,
+        risk: u.risk || row.risk,
+        rec: u.rec || row.rec,
+        updatedAt: new Date().toISOString()
+      }));
+    }
+  }
+
+  if(folder4Payload.newJournal){
+    const jnl4 = folder4Payload.newJournal;
+    const cur = DB.get('journal', jnl4.id);
+    if(!cur || cur.periodId !== pidQ4){
+      await DB.put('journal', Object.assign({}, cur || {}, jnl4, { periodId: pidQ4 }));
+    }
+  }
+}
 /* ---------- Dữ liệu demo ---------- */
 async function seedDemo(){
   const T=todayStr(),d=n=>addDays(T,n),nowIso=new Date().toISOString(),mk=o=>({id:uid(),createdAt:nowIso,updatedAt:nowIso,...o}),K=catKeyByName,PS=n=>K('person',n);
@@ -6051,6 +6651,7 @@ async function boot(){
   await syncFollowups();
   await ensurePdaChecklist();
   await ensureSendoProjects();
+  await ensureRenewalAppendices();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
   window.addEventListener('hashchange',renderMain);
   renderMain();
@@ -6061,3 +6662,4 @@ window.addEventListener('unhandledrejection',e=>{console.error(e.reason);toast('
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#/"]');if(!a)return;e.preventDefault();e.stopPropagation();const h=a.getAttribute('href');if(location.hash===h)renderMain();else location.hash=h},true);
 boot();
 </script></body></html>
+
