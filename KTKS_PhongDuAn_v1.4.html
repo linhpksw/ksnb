@@ -1170,9 +1170,9 @@ function policyServicesHtml(v){
   const rows=policyServicesFor(id);
   const btn=(t,a)=>`<button type="button" class="btn sm" data-act="policy-line" ${a}>${t}</button>`;
   const line=(l,edit)=>`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line2)"><span>${l}</span>${edit}</div>`;
-  let h=`<div class="ih">Bảng giá dịch vụ (theo sản lượng)</div>`;
+  let h=`<div class="ih">Bảng giá dịch vụ (theo sản lượng)</div><div class="banner b" style="font-size:12px;margin:8px 0 12px 0;display:block;line-height:1.5"><b>💡 Lưu ý KTKS về đơn giá theo ngày:</b> Đơn giá ngày (<i>m³, Pallet, Tấn</i>) trong bảng là đơn giá áp dụng cho <b>lượng hàng lưu kho vượt trội theo ngày</b> (phát sinh nhiều hơn lượng đăng ký). Đối với hợp đồng ký đơn giá theo ngày, <b>giá thuê chuẩn quy đổi = Đơn giá ngày × 30 ngày</b> thuộc mức theo tháng tương ứng là <b>Đạt chuẩn chính sách</b>.</div>`;
   if(!rows.length)h+=`<div class="note">Chưa có dòng giá dịch vụ nào – VD: Kho thường theo m³/tháng, Nâng hạ bốc xếp theo lượt...</div>`;
-  rows.forEach(r=>{h+=line(`<b>${esc(r.service)}</b> (${esc(r.unit)}${r.per&&r.per!=='month'?'/'+(LINE_PER.find(x=>x[0]===r.per)||['',r.per])[1]:'/tháng'}): Min ${esc(fmtMoney(r.priceMin))} – BQ ${esc(fmtMoney(r.priceAvg))} – Max <b>${esc(fmtMoney(r.priceMax))}</b> đ`,btn('Sửa',`data-e="policyservices" data-id="${r.id}"`))});
+  rows.forEach(r=>{h+=line(`<b>${esc(r.service)}</b> (${esc(r.unit)}${r.per&&r.per!=='month'?'/'+(LINE_PER.find(x=>x[0]===r.per)||['',r.per])[1]:'/tháng'}): Min ${esc(fmtMoney(r.priceMin))} – BQ ${esc(fmtMoney(r.priceAvg))} – Max <b>${esc(fmtMoney(r.priceMax))}</b> đ${r.note?`<div style="font-size:11.5px;color:var(--text3);margin-top:2px;font-style:italic">ℹ️ ${esc(r.note)}</div>`:''}`,btn('Sửa',`data-e="policyservices" data-id="${r.id}"`))});
   h+=`<div style="margin-top:8px;margin-bottom:14px">${btn('+ Thêm dòng giá dịch vụ',`data-e="policyservices" data-c="${id}"`)}</div>`;
   return h;
 }
@@ -1442,7 +1442,7 @@ defEnt({key:'prices',title:'Giá & Báo giá',singular:'Kiểm tra giá',store:'
   F('diffMarket','% chênh lệch so với thị trường','computed',{fmt:'pct',tab:0,calc:r=>priceDiff(r.contractPrice,r.marketPrice)}),
   areaOf('reason','Lý do giảm giá',{tab:1}),F('exception','Có phê duyệt ngoại lệ?','yn',{tab:1}),person('approver','Người phê duyệt',{tab:1}),areaOf('note','Nhận xét KTKS',{tab:1})],
  cols:['contractId','cust','policyPrice','quotedPrice','negoPrice','contractPrice','marketPrice','diffPolicy','exception'],sort:{k:'contractId',dir:'asc'},
- onChange:{contractId:v=>{const c=ctr(v.contractId);if(!c)return null;const o={};if(!isNum(v.contractPrice)&&isNum(ctrPrice(c)))o.contractPrice=ctrPrice(c);const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!isNum(v.policyPrice)&&p){if(ctrModel(c)==='storage'){const r=ctrRentals(c.id).find(x=>x.kind==='luukho'&&isNum(x.unitPrice));const m=r&&matchPolicyService(policyServicesFor(p.id),r.unit,r.per);if(m&&isNum(m.priceMin))o.policyPrice=m.priceMin;else if(isNum(p.basePrice))o.policyPrice=r&&r.per==='day'?Math.round(p.basePrice/30):p.basePrice}else if(isNum(p.basePrice)){o.policyPrice=p.basePrice}}return Object.keys(o).length?o:null}},
+ onChange:{contractId:v=>{const c=ctr(v.contractId);if(!c)return null;const o={};if(!isNum(v.contractPrice)&&isNum(ctrPrice(c)))o.contractPrice=ctrPrice(c);const p=sitePolicyFor(c.site,c.effDate||todayStr());if(!isNum(v.policyPrice)&&p){if(ctrModel(c)==='storage'){const r=ctrRentals(c.id).find(x=>x.kind==='luukho'&&isNum(x.unitPrice));if(r){const psvs=policyServicesFor(p.id);if((r.per||'').toLowerCase()==='day'){const mm=matchPolicyService(psvs,r.unit,'month');if(mm&&isNum(mm.priceMin))o.policyPrice=Math.round(N(mm.priceMin)/30);else if(isNum(p.basePrice))o.policyPrice=Math.round(N(p.basePrice)/30)}else{const m=matchPolicyService(psvs,r.unit,r.per);if(m&&isNum(m.priceMin))o.policyPrice=m.priceMin;else if(isNum(p.basePrice))o.policyPrice=p.basePrice}}}else if(isNum(p.basePrice)){o.policyPrice=p.basePrice}}return Object.keys(o).length?o:null}},
  validate:uniqPerPeriod('prices','contractId','Hợp đồng này đã có bản ghi kiểm tra giá trong kỳ')});
 
 defEnt({key:'renewals',title:'Tái tục hợp đồng',singular:'Theo dõi tái tục',store:'renewals',period:true,
@@ -1848,9 +1848,16 @@ Rl('ct_below_policy','contracts','Giá thuê/lưu kho trong hợp đồng thấp
     const rs=ctrRentals(c.id).filter(r=>r.kind==='luukho'&&isNum(r.unitPrice)&&N(r.unitPrice)>0);if(!rs.length)return false;
     const psvs=policyServicesFor(p.id);
     for(const r of rs){
-      const match=matchPolicyService(psvs,r.unit,r.per);
-      const minP=match&&isNum(match.priceMin)?match.priceMin:(r.per==='day'&&isNum(p.basePrice)?Math.round(N(p.basePrice)/30):p.basePrice);
-      if(isNum(minP)&&N(minP)>0&&N(r.unitPrice)<N(minP))return true;
+      const isDay=(r.per||'').toLowerCase()==='day';
+      if(isDay){
+        const mm=matchPolicyService(psvs,r.unit,'month');
+        const minMonth=mm&&isNum(mm.priceMin)?N(mm.priceMin):(isNum(p.basePrice)?N(p.basePrice):null);
+        if(minMonth&&minMonth>0&&N(r.unitPrice)*30 < minMonth)return true;
+      }else{
+        const match=matchPolicyService(psvs,r.unit,r.per);
+        const minP=match&&isNum(match.priceMin)?match.priceMin:(isNum(p.basePrice)?p.basePrice:null);
+        if(isNum(minP)&&N(minP)>0&&N(r.unitPrice)<N(minP))return true;
+      }
     }
     return false;
   }
@@ -1871,9 +1878,19 @@ Rl('storage_price_board_5pct','contracts','Đơn giá lưu kho thấp hơn 5% so
   const rs=ctrRentals(c.id).filter(r=>r.kind==='luukho'&&isNum(r.unitPrice)&&N(r.unitPrice)>0);if(!rs.length)return false;
   const psvs=policyServicesFor(p.id);
   for(const r of rs){
-    const match=matchPolicyService(psvs,r.unit,r.per);
-    const minPrice=match&&isNum(match.priceMin)?match.priceMin:(r.per==='day'&&isNum(p.basePrice)?Math.round(N(p.basePrice)/30):p.basePrice);
-    if(isNum(minPrice)&&N(minPrice)>0){const diff=(N(r.unitPrice)-N(minPrice))/N(minPrice)*100;if(diff<-5.0)return true}
+    const isDay=(r.per||'').toLowerCase()==='day';
+    if(isDay){
+      const mm=matchPolicyService(psvs,r.unit,'month');
+      const minMonth=mm&&isNum(mm.priceMin)?N(mm.priceMin):(isNum(p.basePrice)?N(p.basePrice):null);
+      if(minMonth&&minMonth>0){
+        const diff=((N(r.unitPrice)*30)-minMonth)/minMonth*100;
+        if(diff<-5.0)return true;
+      }
+    }else{
+      const match=matchPolicyService(psvs,r.unit,r.per);
+      const minPrice=match&&isNum(match.priceMin)?match.priceMin:(isNum(p.basePrice)?p.basePrice:null);
+      if(isNum(minPrice)&&N(minPrice)>0){const diff=(N(r.unitPrice)-N(minPrice))/N(minPrice)*100;if(diff<-5.0)return true}
+    }
   }
   return false;
 },{dash:1});
@@ -2713,9 +2730,9 @@ async function seedHntStoragePolicy(){
   await DB.putMany('policytiers',tiers);
   const svcs=[
     {service:'Kho thường theo m³ (tháng)',unit:'m³',per:'month',priceMin:135000,priceAvg:145000,priceMax:150000,note:'Hàng nhẹ < 667 kg/m³ hàng hóa (đã gồm phí quản lý, điện nước)'},
-    {service:'Kho thường theo m³ (ngày)',unit:'m³',per:'day',priceMin:5000,priceAvg:6500,priceMax:7000,note:'Áp dụng cho hàng vượt trội theo ngày'},
+    {service:'Kho thường theo m³ (ngày)',unit:'m³',per:'day',priceMin:5000,priceAvg:6500,priceMax:7000,note:'Lưu kho vượt trội theo ngày. Giá chuẩn HĐ quy đổi: Đơn giá × 30 ngày thuộc mức tháng là đạt.'},
     {service:'Kho thường theo Tấn (tháng)',unit:'tấn',per:'month',priceMin:185000,priceAvg:215000,priceMax:235000,note:'Hàng nặng ≥ 667 kg/m³ hàng hóa (đã gồm phí quản lý, điện nước)'},
-    {service:'Kho thường theo Tấn (ngày)',unit:'tấn',per:'day',priceMin:8000,priceAvg:8500,priceMax:9000,note:'Áp dụng cho hàng vượt trội theo ngày'},
+    {service:'Kho thường theo Tấn (ngày)',unit:'tấn',per:'day',priceMin:8000,priceAvg:8500,priceMax:9000,note:'Lưu kho vượt trội theo ngày. Giá chuẩn HĐ quy đổi: Đơn giá × 30 ngày thuộc mức tháng là đạt.'},
     {service:'Kho thường theo Pallet (tháng)',unit:'pallet',per:'month',priceMin:150000,priceAvg:160000,priceMax:170000,note:'Kích thước Pallet ≤ 1*1,2*1,6m (đã gồm phí quản lý, điện nước)'},
     {service:'Kho thường theo Pallet (ngày)',unit:'pallet',per:'day',priceMin:7000,priceAvg:8000,priceMax:9000,note:'Kích thước Pallet ≤ 1*1,2*1,6m'},
     {service:'Kho thường theo m² (tháng)',unit:'m²',per:'month',priceMin:125000,priceAvg:130000,priceMax:135000,note:'Khu vực không có giá kệ (đã gồm phí quản lý, điện nước)'},
@@ -2777,6 +2794,20 @@ async function ensureCatalogMigrations(){
     if(DB.all('catalogs').some(x=>x.group===g&&x.key===k))continue;
     await DB.put('catalogs',{id:g+'.'+k,group:g,key:k,name,tone,order,lock:1});
     added++;
+  }
+    for(const ps of DB.all('policyservices')){
+    if(ps.per === 'day' && (!ps.note || ps.note.includes('Áp dụng cho hàng vượt trội'))){
+      if(ps.unit === 'm³' || ps.unit === 'm3'){
+        ps.note = 'Đơn giá ngày áp dụng cho lượng hàng lưu kho vượt trội so với lượng đăng ký. Giá chuẩn HĐ quy đổi: Đơn giá × 30 ngày thuộc mức theo tháng (135.000 – 150.000 đ) là đạt.';
+        await DB.put('policyservices', ps);
+      } else if(ps.unit === 'pallet'){
+        ps.note = 'Kích thước Pallet ≤ 1*1,2*1,6m. Đơn giá ngày áp dụng cho lượng hàng lưu kho vượt trội so với lượng đăng ký. Giá chuẩn HĐ quy đổi: Đơn giá × 30 ngày thuộc mức theo tháng (150.000 – 170.000 đ) là đạt.';
+        await DB.put('policyservices', ps);
+      } else if(ps.unit === 'tấn' || ps.unit === 'tan'){
+        ps.note = 'Đơn giá ngày áp dụng cho lượng hàng lưu kho vượt trội so với lượng đăng ký. Giá chuẩn HĐ quy đổi: Đơn giá × 30 ngày thuộc mức theo tháng (185.000 – 235.000 đ) là đạt.';
+        await DB.put('policyservices', ps);
+      }
+    }
   }
   await seedHntStoragePolicy();
   await seedHntRenewalPolicy();
