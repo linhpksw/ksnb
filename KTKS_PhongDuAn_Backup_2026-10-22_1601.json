@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-02T08:12:52.381Z",
+    "backupDate": "2026-11-02T08:13:19.472Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 19,
       "followups": 0
     },
-    "checksum": "5ff4ad1f"
+    "checksum": "5f518bbb"
   },
   "settings": {},
   "data": {
@@ -14907,22 +14907,6 @@
         "updatedAt": "2026-11-02T07:57:06.415Z"
       },
       {
-        "id": "ren_q4_gaia_pl04",
-        "periodId": "mvywegkvghcehae",
-        "contractId": "muf6bizmhx2hoet",
-        "startNego": "2026-05-15",
-        "owner": "k2",
-        "curPrice": 130000,
-        "upRate": 10,
-        "actPrice": 136000,
-        "newSign": "2026-06-05",
-        "status": "signed",
-        "reason": "Gia hạn thời hạn thuê đến 15/11/2028, tăng diện tích gộp lên 1.250 m2 và tăng đơn giá lên 136.000 đ/m2 theo PLHĐ 04.",
-        "note": "PLHĐ 04 số 0506/2026/PLHĐTK/HNT-GAIA ký ngày 05/06/2026. Giá mới áp dụng từ 03/11/2026.",
-        "createdAt": "2026-11-02T14:30:00.000Z",
-        "updatedAt": "2026-11-02T14:30:00.000Z"
-      },
-      {
         "startNego": "2026-05-20",
         "id": "ren_q4_htc_pl02",
         "actPrice": 145000,
@@ -29032,6 +29016,19 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-02T08:12:50.376Z"
+      },
+      {
+        "id": "mvyzeyvkv4g8yjo",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-02T08:13:17.456Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 3010/2023/HĐTK/HNT-GAIA",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-02T08:13:17.456Z"
       }
     ]
   }
