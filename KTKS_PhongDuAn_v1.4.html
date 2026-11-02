@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
@@ -2564,7 +2564,7 @@ ACT['rs-apply']=async()=>{
     if(!DB.all('catalogs').length)await seedCatalogs();
     const ps=periodsSorted();await DB.setMeta('currentPeriod',ps.length?ps[ps.length-1].id:null);
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
+  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await ensureNewContractsQ4();await logAct('Phục hồi','Hệ thống',`Thay thế toàn bộ dữ liệu từ file ${R.name}`);
   }else{
     const plan=mergePlan(o),map={};let added=0,over=0;
     Object.keys(plan).forEach(s=>{
@@ -2579,7 +2579,7 @@ ACT['rs-apply']=async()=>{
     try{await DB.mergeMany(map)}catch(e){console.error(e);toast('Nhập thất bại: '+e.message,'err');return}
     if(!DB.get('periods',DB.meta.currentPeriod)){const ps=periodsSorted();if(ps.length)await DB.setMeta('currentPeriod',ps[ps.length-1].id)}
     await syncFollowups();
-  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
+  await ensurePdaChecklist();await ensureSendoProjects();await ensureRenewalAppendices();await ensureNewContractsQ4();await logAct('Phục hồi','Hệ thống',`Nhập bổ sung từ file ${R.name}: +${added} mới, ${over} ghi đè`);
   }
   await ensureCatalogMigrations();await migrateContractModel();
   UI.restore=null;toast('Phục hồi hoàn tất');go('dashboard');renderMain();
@@ -6509,6 +6509,974 @@ async function ensureRenewalAppendices(){
   }
 }
 /* ---------- Dữ liệu demo ---------- */
+
+/* ---------- ThÆ° má»¥c 5: 06 Há»£p Ä‘á»“ng khÃ¡ch hÃ ng má»›i Q4/2026 (folder KH má»›i) ---------- */
+async function ensureNewContractsQ4(){
+  const P = curPeriod() || DB.all('periods')[0];
+  if(!P) return;
+  const pid0 = P.id;
+  const pQ4 = DB.all('periods').find(x => (x.year === 2026 || x.year === '2026') && (x.quarter === 4 || x.quarter === '4')) || P;
+  const pidQ4 = pQ4 ? pQ4.id : pid0;
+
+  const folder5Payload = {
+  "newCustomers": [
+    {
+      "id": "cust_phuanvinh",
+      "code": "KH071",
+      "name": "CÔNG TY CỔ PHẦN SX VÀ TM PHÚ AN VINH",
+      "short": "Phú An Vinh",
+      "shortName": "Phú An Vinh",
+      "taxId": "0108852338",
+      "taxNo": "0108852338",
+      "rep": "Ông Bùi Mạnh Cường - Giám đốc",
+      "phone": "0978285598",
+      "email": "",
+      "group": "custGroup.k2",
+      "address": "Số 92 đường Bến Phà, Ngõ 4 Hà Trì 1, Phường Hà Cầu, Quận Hà Đông, TP. Hà Nội",
+      "note": "Khách hàng lưu kho chung HNT Thanh Oai theo HĐ 06102026/HĐTK/HNT-PHUANVINH.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "cust_binhan",
+      "code": "KH072",
+      "name": "CÔNG TY CỔ PHẦN THIẾT BỊ PCCC BÌNH AN",
+      "short": "PCCC Bình An",
+      "shortName": "PCCC Bình An",
+      "taxId": "0111565460",
+      "taxNo": "0111565460",
+      "rep": "Ông Nguyễn Quang Hiệp - Tổng Giám đốc",
+      "phone": "",
+      "email": "",
+      "group": "custGroup.k2",
+      "address": "Phòng 306 tháp Tây tòa chung cư học viện Quốc Phòng, KĐT mới Tây Hồ Tây, Phường Xuân La / Nghĩa Đô, TP. Hà Nội",
+      "note": "Khách hàng lưu kho chung HNT Nguyên Khê theo HĐ 12102026/HĐTK/HNT-BÌNH AN.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "cust_daitinphat",
+      "code": "KH073",
+      "name": "CÔNG TY TNHH XNK TM SX ĐẠI TÍN PHÁT",
+      "short": "Đại Tín Phát",
+      "shortName": "Đại Tín Phát",
+      "taxId": "0316507597",
+      "taxNo": "0316507597",
+      "rep": "Ông Lê Thanh Bình - Giám đốc",
+      "phone": "0989711411",
+      "email": "",
+      "group": "custGroup.k2",
+      "address": "Số 18B, Ngõ 4 phố Quang Trung, Phường Quang Trung, Thị xã Sơn Tây, TP. Hà Nội",
+      "note": "Khách hàng lưu kho chung HNT Thanh Oai theo HĐ 06102026/HĐTK/HNT-DAITINPHAT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "cust_donga_kd",
+      "code": "KH074",
+      "name": "CÔNG TY TNHH KINH DOANH ĐÔNG Á",
+      "short": "Kinh Doanh Đông Á",
+      "shortName": "Kinh Doanh Đông Á",
+      "taxId": "0107389540",
+      "taxNo": "0107389540",
+      "rep": "Ông Nguyễn Văn Sỹ - Giám đốc",
+      "phone": "0332619074",
+      "email": "",
+      "group": "custGroup.k2",
+      "address": "N017-LK17-14, Khu Dọc Bún 2, Phường La Khê, Quận Hà Đông, TP. Hà Nội",
+      "note": "Khách hàng lưu kho chung HNT Thanh Oai theo HĐ 06102026/HĐTK/HNT-DONGA.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "cust_nta",
+      "code": "KH075",
+      "name": "CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DỊCH VỤ XNK N.T.A",
+      "short": "XNK N.T.A",
+      "shortName": "XNK N.T.A",
+      "taxId": "0109113770",
+      "taxNo": "0109113770",
+      "rep": "Ông Đỗ Nguyên Đức - Tổng Giám đốc",
+      "phone": "0975375756",
+      "email": "",
+      "group": "custGroup.k2",
+      "address": "Số 19 Liền kề 11A Khu đô thị Mỗ Lao, Phường Mộ Lao, Quận Hà Đông, TP. Hà Nội",
+      "note": "Khách hàng lưu kho chung HNT Thanh Oai theo HĐ 06102026/HĐTK/HNT-N.T.A.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "cust_kkhn",
+      "code": "KH076",
+      "name": "CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI DỊCH VỤ KIM KHÍ HÀ NỘI",
+      "short": "Kim Khí Hà Nội",
+      "shortName": "Kim Khí Hà Nội",
+      "taxId": "0107532367",
+      "taxNo": "0107532367",
+      "rep": "Ông Phạm Văn Tuân - Giám đốc",
+      "phone": "0986889427",
+      "email": "kimkhi.hn@gmail.com",
+      "group": "custGroup.k2",
+      "address": "Số 23 ngách 1002/5 đường Láng, Phường Láng Thượng, Quận Đống Đa, TP. Hà Nội",
+      "note": "Khách hàng thuê kho khoán Nhà kho số 01 (468 m²) tại Trung tâm logistics HNT Thanh Oai theo HĐ 2209/2026/HĐTK/HNT-KKHN.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    }
+  ],
+  "newContracts": [
+    {
+      "id": "ct_phuanvinh_0610_2026",
+      "status": "active",
+      "no": "06102026/HĐTK/HNT-PHUANVINH",
+      "type": "k2",
+      "model": "storage",
+      "cargoType": "normal",
+      "customerId": "cust_phuanvinh",
+      "site": "site.k7_e09e",
+      "signDate": "2026-10-06",
+      "effDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": "",
+      "quantity": 7,
+      "unitPrice": 7500,
+      "monthly": 1575000,
+      "deposit": 5000000,
+      "payCycle": "payCycle.k1",
+      "payDueDays": 10,
+      "priceUp": "",
+      "upRate": "",
+      "upCycle": "",
+      "latePenalty": "150% ngoài giờ, 200% ngày lễ/tết",
+      "terminate": "Báo trước 30 ngày bằng văn bản",
+      "compensate": "Bồi thường theo giá thị trường thời điểm xuất hóa đơn",
+      "damage": "",
+      "fire": "Bảo hiểm nhà kho và hàng hóa tối đa 22.000.000 đ/khối hàng",
+      "force": "",
+      "special": "Chốt số ngày 26 hàng tháng. Bốc xếp tối thiểu 10.000 đ/đơn.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "",
+      "docLiquid": "",
+      "docOther": "Hợp đồng lưu kho hàng hóa trọn gói tại Kho chung HNT Thanh Oai, mức cam kết tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày. Chốt số ngày 26 hàng tháng.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "ct_binhan_1210_2026",
+      "status": "active",
+      "no": "12102026/HĐTK/HNT-BÌNH AN",
+      "type": "k2",
+      "model": "storage",
+      "cargoType": "normal",
+      "customerId": "cust_binhan",
+      "site": "site.k6_4651",
+      "signDate": "2026-10-12",
+      "effDate": "2026-10-15",
+      "endDate": "2027-10-14",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": "",
+      "quantity": 30,
+      "unitPrice": 5000,
+      "monthly": 4500000,
+      "deposit": 10000000,
+      "payCycle": "payCycle.k1",
+      "payDueDays": 10,
+      "priceUp": "",
+      "upRate": "",
+      "upCycle": "",
+      "latePenalty": "",
+      "terminate": "Báo trước 30 ngày bằng văn bản",
+      "compensate": "Bồi thường tối đa 22.000.000 đ/khối",
+      "damage": "",
+      "fire": "Bảo hiểm trách nhiệm kho theo quy định",
+      "force": "",
+      "special": "Chốt số ngày 26 hàng tháng. Bốc xếp 50.000 đ/m³, dán tem phụ 2.000 đ/tem.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "",
+      "docLiquid": "",
+      "docOther": "Hợp đồng lưu kho hàng hóa trọn gói tại Kho chung HNT Nguyên Khê, mức cam kết tối thiểu 30 m³/ngày; đơn giá 5.000 đ/m³/ngày. Chốt số ngày 26 hàng tháng.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "ct_daitinphat_0610_2026",
+      "status": "active",
+      "no": "06102026/HĐTK/HNT-DAITINPHAT",
+      "type": "k2",
+      "model": "storage",
+      "cargoType": "normal",
+      "customerId": "cust_daitinphat",
+      "site": "site.k7_e09e",
+      "signDate": "2026-10-06",
+      "effDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": "",
+      "quantity": 7,
+      "unitPrice": 7500,
+      "monthly": 1575000,
+      "deposit": 5000000,
+      "payCycle": "payCycle.k1",
+      "payDueDays": 10,
+      "priceUp": "",
+      "upRate": "",
+      "upCycle": "",
+      "latePenalty": "150% ngoài giờ, 200% ngày lễ/tết",
+      "terminate": "Báo trước 30 ngày bằng văn bản",
+      "compensate": "Bồi thường theo giá thị trường thời điểm xuất hóa đơn",
+      "damage": "",
+      "fire": "Bảo hiểm tối đa 22.000.000 đ/khối hàng hóa",
+      "force": "",
+      "special": "Chốt số ngày 26 hàng tháng. Nâng hạ nguyên pallet 75.000 đ/lượt, bốc xếp 100.000 đ/tấn/lượt.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "",
+      "docLiquid": "",
+      "docOther": "Hợp đồng lưu kho hàng hóa trọn gói tại Kho chung HNT Thanh Oai, cam kết tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày. Chốt số ngày 26 hàng tháng.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "ct_donga_0610_2026",
+      "status": "active",
+      "no": "06102026/HĐTK/HNT-DONGA",
+      "type": "k2",
+      "model": "storage",
+      "cargoType": "normal",
+      "customerId": "cust_donga_kd",
+      "site": "site.k7_e09e",
+      "signDate": "2026-10-06",
+      "effDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": "",
+      "quantity": 7,
+      "unitPrice": 7500,
+      "monthly": 1575000,
+      "deposit": 5000000,
+      "payCycle": "payCycle.k1",
+      "payDueDays": 10,
+      "priceUp": "",
+      "upRate": "",
+      "upCycle": "",
+      "latePenalty": "150% ngoài giờ, 200% ngày lễ/tết",
+      "terminate": "Báo trước 30 ngày bằng văn bản",
+      "compensate": "Bồi thường theo giá thị trường thời điểm xuất hóa đơn",
+      "damage": "",
+      "fire": "Bảo hiểm tối đa 22.000.000 đ/khối hàng hóa",
+      "force": "",
+      "special": "Chốt số ngày 26 hàng tháng. Nâng hạ nguyên pallet 75.000 đ/lượt, bốc xếp 100.000 đ/tấn/lượt.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "",
+      "docLiquid": "",
+      "docOther": "Hợp đồng lưu kho hàng hóa trọn gói tại Kho chung HNT Thanh Oai, cam kết tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày. Chốt số ngày 26 hàng tháng.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "ct_nta_0610_2026",
+      "status": "active",
+      "no": "06102026/HĐTK/HNT-N.T.A",
+      "type": "k2",
+      "model": "storage",
+      "cargoType": "normal",
+      "customerId": "cust_nta",
+      "site": "site.k7_e09e",
+      "signDate": "2026-10-06",
+      "effDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": "",
+      "quantity": 7,
+      "unitPrice": 7500,
+      "monthly": 1575000,
+      "deposit": 5000000,
+      "payCycle": "payCycle.k1",
+      "payDueDays": 10,
+      "priceUp": "",
+      "upRate": "",
+      "upCycle": "",
+      "latePenalty": "150% ngoài giờ, 200% ngày lễ/tết",
+      "terminate": "Báo trước 30 ngày bằng văn bản",
+      "compensate": "Bồi thường theo giá thị trường thời điểm xuất hóa đơn",
+      "damage": "",
+      "fire": "Bảo hiểm tối đa 22.000.000 đ/khối hàng hóa",
+      "force": "",
+      "special": "Chốt số ngày 26 hàng tháng. Nâng hạ nguyên pallet 75.000 đ/lượt, bốc xếp 100.000 đ/tấn/lượt.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "",
+      "docLiquid": "",
+      "docOther": "Hợp đồng lưu kho hàng hóa trọn gói tại Kho chung HNT Thanh Oai, cam kết tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày. Chốt số ngày 26 hàng tháng.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "ct_kkhn_2209_2026",
+      "status": "active",
+      "no": "2209/2026/HĐTK/HNT-KKHN",
+      "type": "k1",
+      "model": "lease",
+      "cargoType": "normal",
+      "customerId": "cust_kkhn",
+      "site": "site.cmukoahxa78ju1hh",
+      "signDate": "2026-09-22",
+      "effDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "indefinite": "",
+      "signer": "Nguyễn Ngọc Hải",
+      "signerTitle": "Chủ tịch HĐQT",
+      "authOK": "y",
+      "area": 468,
+      "unitPrice": 140000,
+      "monthly": 65520000,
+      "deposit": 131040000,
+      "payCycle": "payCycle.k2",
+      "payDueDays": 10,
+      "priceUp": "y",
+      "upRate": 8,
+      "upCycle": "2 năm",
+      "latePenalty": "0,05%/ngày trên số tiền chậm thanh toán",
+      "terminate": "Báo trước 180 ngày (sau 3 năm thực hiện) hoặc vi phạm 15 ngày không khắc phục",
+      "compensate": "Bồi thường chi phí sửa chữa cải tạo và phạt 02 tháng tiền thuê",
+      "damage": "",
+      "fire": "Bên B chịu trách nhiệm PCCC chung; Bên A chịu trách nhiệm PCCC trong diện tích thuê",
+      "force": "Sự kiện bất khả kháng kéo dài 30 ngày liên tục được chấm dứt HĐ",
+      "special": "Bàn giao ngày 25/09/2026, miễn phí 06 ngày đến hết 30/09/2026. Tính tiền từ 01/10/2026. Đơn giá 140.000 đ/m²/tháng đã gồm phí bảo vệ, vệ sinh vòng ngoài.",
+      "docContract": "y",
+      "docAppendix": "",
+      "docQuote": "",
+      "docNego": "",
+      "docPrice": "y",
+      "docHandover": "y",
+      "docLiquid": "",
+      "docOther": "HĐ thuê kho số 01 (468 m²) Cụm CN Thanh Oai, thời hạn 05 năm (01/10/2026 - 30/09/2031). Giá thuê 140.000 đ/m²/tháng (đã gồm bảo vệ, vệ sinh vòng ngoài). Điều chỉnh giá 02 năm/lần (+8%). Thanh toán 03 tháng/lần.",
+      "isRenewal": "new",
+      "priorYears": 0,
+      "priorContractRef": "",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    }
+  ],
+  "newRentals": [
+    {
+      "id": "rent_phuanvinh_storage_2026",
+      "contractId": "ct_phuanvinh_0610_2026",
+      "kind": "luukho",
+      "unit": "tấn",
+      "per": "day",
+      "unitPrice": 7500,
+      "quantity": 7,
+      "monthlyEstimate": 1575000,
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "note": "Lưu kho chung Thanh Oai (tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày). Tương đương 225.000 đ/tấn/tháng, đạt chuẩn chính sách giá QĐ 11/2025/QĐ-HNT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "rent_binhan_storage_2026",
+      "contractId": "ct_binhan_1210_2026",
+      "kind": "luukho",
+      "unit": "m³",
+      "per": "day",
+      "unitPrice": 5000,
+      "quantity": 30,
+      "monthlyEstimate": 4500000,
+      "startDate": "2026-10-15",
+      "endDate": "2027-10-14",
+      "note": "Lưu kho chung Nguyên Khê (tối thiểu 30 m³/ngày; đơn giá 5.000 đ/m³/ngày). Tương đương 150.000 đ/m³/tháng, đạt chuẩn chính sách giá QĐ 11/2025/QĐ-HNT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "rent_daitinphat_storage_2026",
+      "contractId": "ct_daitinphat_0610_2026",
+      "kind": "luukho",
+      "unit": "tấn",
+      "per": "day",
+      "unitPrice": 7500,
+      "quantity": 7,
+      "monthlyEstimate": 1575000,
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "note": "Lưu kho chung Thanh Oai (tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày). Tương đương 225.000 đ/tấn/tháng, đạt chuẩn chính sách giá QĐ 11/2025/QĐ-HNT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "rent_donga_storage_2026",
+      "contractId": "ct_donga_0610_2026",
+      "kind": "luukho",
+      "unit": "tấn",
+      "per": "day",
+      "unitPrice": 7500,
+      "quantity": 7,
+      "monthlyEstimate": 1575000,
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "note": "Lưu kho chung Thanh Oai (tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày). Tương đương 225.000 đ/tấn/tháng, đạt chuẩn chính sách giá QĐ 11/2025/QĐ-HNT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "rent_nta_storage_2026",
+      "contractId": "ct_nta_0610_2026",
+      "kind": "luukho",
+      "unit": "tấn",
+      "per": "day",
+      "unitPrice": 7500,
+      "quantity": 7,
+      "monthlyEstimate": 1575000,
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "note": "Lưu kho chung Thanh Oai (tối thiểu 07 tấn/ngày; đơn giá 7.500 đ/tấn/ngày). Tương đương 225.000 đ/tấn/tháng, đạt chuẩn chính sách giá QĐ 11/2025/QĐ-HNT.",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "rent_kkhn_kho_2026",
+      "contractId": "ct_kkhn_2209_2026",
+      "kind": "kho",
+      "unit": "m²",
+      "per": "month",
+      "unitPrice": 140000,
+      "quantity": 468,
+      "monthlyEstimate": 65520000,
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "note": "Thuê kho Nhà kho số 01 (468 m²) TT Logistics HNT Thanh Oai. Miễn phí tiền thuê 06 ngày (25/09 - 30/09/2026). Đơn giá 140.000 đ/m²/tháng (đã gồm bảo vệ, vệ sinh vòng ngoài).",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    }
+  ],
+  "newServices": [
+    {
+      "id": "svc_phuanvinh_nangha_x",
+      "contractId": "ct_phuanvinh_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_phuanvinh_nangha_n",
+      "contractId": "ct_phuanvinh_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_phuanvinh_bocxep_x",
+      "contractId": "ct_phuanvinh_0610_2026",
+      "serviceType": "svcType.k7_a10b",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều xuất (tối thiểu 10.000 đ/đơn)",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_phuanvinh_bocxep_n",
+      "contractId": "ct_phuanvinh_0610_2026",
+      "serviceType": "svcType.k6_57e8",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_binhan_bocxep_n",
+      "contractId": "ct_binhan_1210_2026",
+      "serviceType": "svcType.k6_57e8",
+      "method": "svcMethod.k8_4e09",
+      "unit": "m³/lượt",
+      "unitPrice": 50000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-15",
+      "endDate": "2027-10-14",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_binhan_bocxep_x",
+      "contractId": "ct_binhan_1210_2026",
+      "serviceType": "svcType.k7_a10b",
+      "method": "svcMethod.k8_4e09",
+      "unit": "m³/lượt",
+      "unitPrice": 50000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-15",
+      "endDate": "2027-10-14",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_binhan_dantem",
+      "contractId": "ct_binhan_1210_2026",
+      "serviceType": "svcType.k37_8265",
+      "method": "svcMethod.k17_f617",
+      "unit": "tem/lượt",
+      "unitPrice": 2000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-15",
+      "endDate": "2027-10-14",
+      "provider": "HNT",
+      "note": "Dán tem phụ",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_daitinphat_nangha_x",
+      "contractId": "ct_daitinphat_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_daitinphat_nangha_n",
+      "contractId": "ct_daitinphat_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_daitinphat_bocxep_x",
+      "contractId": "ct_daitinphat_0610_2026",
+      "serviceType": "svcType.k7_a10b",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_daitinphat_bocxep_n",
+      "contractId": "ct_daitinphat_0610_2026",
+      "serviceType": "svcType.k6_57e8",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_donga_nangha_x",
+      "contractId": "ct_donga_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_donga_nangha_n",
+      "contractId": "ct_donga_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_donga_bocxep_x",
+      "contractId": "ct_donga_0610_2026",
+      "serviceType": "svcType.k7_a10b",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_donga_bocxep_n",
+      "contractId": "ct_donga_0610_2026",
+      "serviceType": "svcType.k6_57e8",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_nta_nangha_x",
+      "contractId": "ct_nta_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_nta_nangha_n",
+      "contractId": "ct_nta_0610_2026",
+      "serviceType": "svcType.cmufemxkd03bpud0",
+      "method": "svcMethod.k6_178a",
+      "unit": "pallet/lượt",
+      "unitPrice": 75000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Nâng hạ nguyên pallet chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_nta_bocxep_x",
+      "contractId": "ct_nta_0610_2026",
+      "serviceType": "svcType.k7_a10b",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều xuất",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_nta_bocxep_n",
+      "contractId": "ct_nta_0610_2026",
+      "serviceType": "svcType.k6_57e8",
+      "method": "svcMethod.k7_fa30",
+      "unit": "tấn/lượt",
+      "unitPrice": 100000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-06",
+      "endDate": "2027-10-06",
+      "provider": "HNT",
+      "note": "Bốc xếp hàng hoá chiều nhập",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_nuocsh",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.k2",
+      "method": "svcMethod.k4",
+      "unit": "người/tháng",
+      "unitPrice": 80000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Nước sạch, nước thải sinh hoạt chung",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_tiennuoc",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.k2",
+      "method": "svcMethod.k1",
+      "unit": "m³",
+      "unitPrice": 35000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Tiền nước (đồng hồ riêng do Bên B lắp đặt)",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_xulynt",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.cmufgoza94y0w34g",
+      "method": "svcMethod.k1",
+      "unit": "m³",
+      "unitPrice": 22422,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Phí xử lý nước thải",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_xemay",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.cmufgtxjo5sdcbaz",
+      "method": "svcMethod.k2",
+      "unit": "xe/tháng",
+      "unitPrice": 60000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Phí trông xe máy",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_oto",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.cmufgubpmip2hcfp",
+      "method": "svcMethod.k2",
+      "unit": "xe/tháng",
+      "unitPrice": 500000,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Phí trông xe ô tô lưu qua đêm",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    },
+    {
+      "id": "svc_kkhn_rac",
+      "contractId": "ct_kkhn_2209_2026",
+      "serviceType": "svcType.cmufgasbgqf0vuxn",
+      "method": "svcMethod.k8_4e09",
+      "unit": "m³",
+      "unitPrice": 488800,
+      "monthlyEstimate": "",
+      "startDate": "2026-10-01",
+      "endDate": "2031-09-30",
+      "provider": "HNT",
+      "note": "Phí xử lý rác thải",
+      "createdAt": "2026-11-02T16:30:00.000Z",
+      "updatedAt": "2026-11-02T16:30:00.000Z"
+    }
+  ],
+  "checklistUpdates": [
+    {
+      "code": "HD01",
+      "result": "pass",
+      "comment": "Đã rà soát 06 hợp đồng khách hàng mới trong thư mục KH mới: 05 HĐ lưu kho chung (Phú An Vinh, PCCC Bình An, Đại Tín Phát, Kinh Doanh Đông Á, XNK N.T.A) và 01 HĐ thuê kho khoán (Kim Khí Hà Nội 468 m²). Hợp đồng được ký kết đầy đủ bởi Chủ tịch HĐQT, thẩm quyền đại diện pháp luật hợp lệ, có quy định cam kết khối lượng tối thiểu và tiền đặt cọc theo quy định.",
+      "risk": "Theo dõi việc nghiệm thu mặt bằng, bàn giao hàng hóa và thu hồi đủ tiền đặt cọc đúng thời hạn cam kết.",
+      "rec": "Kế toán dự án đối chiếu chốt khối lượng lưu kho định kỳ ngày 26 hàng tháng đối với các kho chung; phát hành hóa đơn và thu hồi công nợ theo đúng hạn 10 ngày."
+    },
+    {
+      "code": "HH01",
+      "result": "pass",
+      "comment": "Đã rà soát điều kiện áp dụng hoa hồng/chiết khấu cho 06 khách hàng mới phát sinh Q4/2026 (Phú An Vinh, Bình An, Đại Tín Phát, Đông Á, N.T.A, Kim Khí Hà Nội). Hiện tại chưa phát sinh tờ trình đề nghị thanh toán hoa hồng môi giới/chiết khấu; khi phát sinh cần kiểm tra phê duyệt của GĐĐH và HĐQT.",
+      "risk": "Tránh lập tờ trình chi vượt định mức hoặc không có thỏa thuận môi giới được phê duyệt.",
+      "rec": "Yêu cầu Phòng Dự án cung cấp tờ trình và phê duyệt HĐQT trước khi hạch toán chi phí hoa hồng khách hàng mới."
+    }
+  ],
+  "newJournal": {
+    "id": "jnl_new_customers_q4_2026",
+    "type": "Hợp đồng",
+    "object": "06 Hợp đồng khách hàng mới Q4/2026 (folder KH mới)",
+    "content": "Cập nhật dữ liệu từ 06 hợp đồng khách hàng mới trong thư mục KH mới: Phú An Vinh (Kho chung Thanh Oai), PCCC Bình An (Kho chung Nguyên Khê), Đại Tín Phát (Kho chung Thanh Oai), Kinh Doanh Đông Á (Kho chung Thanh Oai), XNK N.T.A (Kho chung Thanh Oai) và Kim Khí Hà Nội (thuê kho 468 m² tại TT Thanh Oai). Đồng bộ đầy đủ thông tin pháp nhân (KH071 - KH076), bảng kê gói thuê (rentals), phụ phí dịch vụ (services), và cập nhật checklist kiểm soát nội bộ kỳ Q4/2026.",
+    "result": "Thành công",
+    "note": "Đã hoàn tất đồng bộ 06 khách hàng và hợp đồng mới vào hệ thống kiểm soát nội bộ.",
+    "auto": false,
+    "createdAt": "2026-11-02T16:30:00.000Z"
+  }
+};
+
+  for(const c of (folder5Payload.newCustomers || [])){
+    const cur = DB.get('customers', c.id);
+    if(!cur){
+      await DB.put('customers', c);
+    } else {
+      let changed = false;
+      for(const k of Object.keys(c)){
+        if(k !== 'id' && c[k] && cur[k] !== c[k]){ cur[k] = c[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('customers', cur); }
+    }
+  }
+
+  for(const ct of (folder5Payload.newContracts || [])){
+    const cur = DB.get('contracts', ct.id);
+    if(!cur){
+      await DB.put('contracts', ct);
+    } else {
+      let changed = false;
+      for(const k of Object.keys(ct)){
+        if(k !== 'id' && ct[k] !== undefined && cur[k] !== ct[k]){ cur[k] = ct[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('contracts', cur); }
+    }
+  }
+
+  for(const nr of (folder5Payload.newRentals || [])){
+    const cur = DB.get('rentals', nr.id);
+    if(!cur){
+      await DB.put('rentals', nr);
+    } else {
+      let changed = false;
+      for(const k of Object.keys(nr)){
+        if(k !== 'id' && nr[k] !== undefined && cur[k] !== nr[k]){ cur[k] = nr[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('rentals', cur); }
+    }
+  }
+
+  for(const ns of (folder5Payload.newServices || [])){
+    const cur = DB.get('services', ns.id);
+    if(!cur){
+      await DB.put('services', ns);
+    } else {
+      let changed = false;
+      for(const k of Object.keys(ns)){
+        if(k !== 'id' && ns[k] !== undefined && cur[k] !== ns[k]){ cur[k] = ns[k]; changed = true; }
+      }
+      if(changed){ cur.updatedAt = new Date().toISOString(); await DB.put('services', cur); }
+    }
+  }
+
+  for(const u of (folder5Payload.checklistUpdates || [])){
+    const row = DB.all('checklist').find(x => x.code === u.code && x.periodId === pidQ4);
+    if(row){
+      await DB.put('checklist', Object.assign({}, row, {
+        result: u.result || row.result,
+        comment: u.comment || row.comment,
+        risk: u.risk || row.risk,
+        rec: u.rec || row.rec,
+        updatedAt: new Date().toISOString()
+      }));
+    }
+  }
+
+  if(folder5Payload.newJournal){
+    const jnl5 = folder5Payload.newJournal;
+    const cur = DB.get('journal', jnl5.id);
+    if(!cur || cur.periodId !== pidQ4){
+      await DB.put('journal', Object.assign({}, cur || {}, jnl5, { periodId: pidQ4 }));
+    }
+  }
+}
+
 async function seedDemo(){
   const T=todayStr(),d=n=>addDays(T,n),nowIso=new Date().toISOString(),mk=o=>({id:uid(),createdAt:nowIso,updatedAt:nowIso,...o}),K=catKeyByName,PS=n=>K('person',n);
   const y=+T.slice(0,4),q=Math.ceil(+T.slice(5,7)/3),py=q===1?y-1:y,pq=q===1?4:q-1,qs=(Y,Q)=>`${Y}-${pad(3*(Q-1)+1)}-01`,qe=(Y,Q)=>isoDate(new Date(Y,3*Q,0));
@@ -6683,6 +7651,7 @@ async function boot(){
   await ensurePdaChecklist();
   await ensureSendoProjects();
   await ensureRenewalAppendices();
+  await ensureNewContractsQ4();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
   window.addEventListener('hashchange',renderMain);
   renderMain();

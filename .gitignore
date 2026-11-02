@@ -12,6 +12,12 @@ ehthumbs_vista.db
 .Trashes
 desktop.ini
 $RECYCLE.BIN/
+*.crswap
+*.tmp
+*.bak
+*.backup
+*.old
+scratch/
 
 # ==========================
 # Thư mục build / cache
