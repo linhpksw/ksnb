@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-03T03:04:12.855Z",
+    "backupDate": "2026-11-03T03:06:20.234Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 19,
       "followups": 0
     },
-    "checksum": "630065d"
+    "checksum": "3490f806"
   },
   "settings": {},
   "data": {
@@ -3720,7 +3720,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.845Z",
+        "updatedAt": "2026-11-03T03:06:18.225Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3770,7 +3770,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.845Z",
+        "updatedAt": "2026-11-03T03:06:18.226Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3820,7 +3820,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.846Z",
+        "updatedAt": "2026-11-03T03:06:18.227Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3890,7 +3890,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.848Z",
+        "updatedAt": "2026-11-03T03:06:18.228Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3940,7 +3940,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.847Z",
+        "updatedAt": "2026-11-03T03:06:18.227Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3990,7 +3990,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.844Z",
+        "updatedAt": "2026-11-03T03:06:18.222Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -6549,7 +6549,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-03T03:04:10.834Z",
+        "updatedAt": "2026-11-03T03:06:18.213Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -13150,37 +13150,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.850Z"
-      },
-      {
-        "id": "svc_phuanvinh_nangha_n",
-        "contractId": "ct_phuanvinh_0610_2026",
-        "serviceType": "svcType.cmufemxkd03bpud0",
-        "method": "svcMethod.k6_178a",
-        "unit": "pallet/lượt",
-        "unitPrice": 75000,
-        "monthlyEstimate": "",
-        "startDate": "2026-10-06",
-        "endDate": "2027-10-06",
-        "provider": "HNT",
-        "note": "Nâng hạ nguyên pallet chiều nhập",
-        "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.849Z"
-      },
-      {
-        "id": "svc_phuanvinh_nangha_x",
-        "contractId": "ct_phuanvinh_0610_2026",
-        "serviceType": "svcType.cmufemxkd03bpud0",
-        "method": "svcMethod.k6_178a",
-        "unit": "pallet/lượt",
-        "unitPrice": 75000,
-        "monthlyEstimate": "",
-        "startDate": "2026-10-06",
-        "endDate": "2027-10-06",
-        "provider": "HNT",
-        "note": "Nâng hạ nguyên pallet chiều xuất",
-        "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:04:10.848Z"
+        "updatedAt": "2026-11-03T03:06:18.230Z"
       },
       {
         "id": "svc_phuanvinh_bocxep_x",
@@ -13196,6 +13166,36 @@
         "note": "Bốc xếp hàng hoá chiều xuất (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
         "updatedAt": "2026-11-02T16:30:00.000Z"
+      },
+      {
+        "id": "svc_phuanvinh_nangha_n",
+        "contractId": "ct_phuanvinh_0610_2026",
+        "serviceType": "svcType.cmufemxkd03bpud0",
+        "method": "svcMethod.k6_178a",
+        "unit": "pallet/lượt",
+        "unitPrice": 75000,
+        "monthlyEstimate": "",
+        "startDate": "2026-10-06",
+        "endDate": "2027-10-06",
+        "provider": "HNT",
+        "note": "Nâng hạ nguyên pallet chiều nhập",
+        "createdAt": "2026-11-02T16:30:00.000Z",
+        "updatedAt": "2026-11-03T03:06:18.230Z"
+      },
+      {
+        "id": "svc_phuanvinh_nangha_x",
+        "contractId": "ct_phuanvinh_0610_2026",
+        "serviceType": "svcType.cmufemxkd03bpud0",
+        "method": "svcMethod.k6_178a",
+        "unit": "pallet/lượt",
+        "unitPrice": 75000,
+        "monthlyEstimate": "",
+        "startDate": "2026-10-06",
+        "endDate": "2027-10-06",
+        "provider": "HNT",
+        "note": "Nâng hạ nguyên pallet chiều xuất",
+        "createdAt": "2026-11-02T16:30:00.000Z",
+        "updatedAt": "2026-11-03T03:06:18.229Z"
       }
     ],
     "pricepolicies": [
@@ -17260,7 +17260,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:04:10.836Z"
+        "updatedAt": "2026-11-03T03:06:18.215Z"
       },
       {
         "id": "mvywegkx7x4mn92",
@@ -17277,7 +17277,7 @@
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:04:10.837Z"
+        "updatedAt": "2026-11-03T03:06:18.216Z"
       },
       {
         "id": "mvywegkx9gjam5j",
@@ -17379,7 +17379,7 @@
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:04:10.835Z"
+        "updatedAt": "2026-11-03T03:06:18.214Z"
       },
       {
         "id": "mvywegkxayievqw",
