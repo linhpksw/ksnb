@@ -2949,6 +2949,13 @@ ACT['seed-pda-chk'] = async () => {
 };
 
 async function ensureSendoProjects(){
+  const deletedRecCodes = new Set();
+  for(const j of DB.all('journal')){
+    if(j.type === 'X\u00f3a' && (j.object === 'Ki\u1ebfn ngh\u1ecb' || (j.content && j.content.includes('ki\u1ebfn ngh\u1ecb')))){
+      const matches = (j.content || '').match(/FND-26Q3-\d+-K\d+/g);
+      if(matches) matches.forEach(c => deletedRecCodes.add(c));
+    }
+  }
   const periods = DB.all('periods');
   const pQ3 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 3 || String(x.quarter) === '3')) || periods[0];
   if(!pQ3) return;
@@ -4340,6 +4347,7 @@ async function ensureSendoProjects(){
     }
   ];
   for(const r of sendoRecs){
+    if(deletedRecCodes.has(r.code)) continue;
     const ex = DB.get('recs', r.id);
     if(!ex || (r.id === 'rec_folder1_ck_01' && (ex.content || '').includes('rà soát tình trạng thanh toán khoản chiết khấu 5.000.000 đ')) || ((r.id === 'rec_sendo_da002_01' || r.id === 'rec_halinh_da006_01') && ex.content && ex.content.includes('Chủ đầu tư'))) await DB.put('recs', r);
   }
@@ -5356,6 +5364,7 @@ async function ensureSendoProjects(){
     }
   }
   for(const r of (folder2Payload.newRecs || [])){
+    if(deletedRecCodes.has(r.code)) continue;
     const cur = DB.get('recs', r.id);
     if(!cur || cur.periodId !== pid0){
       await DB.put('recs', Object.assign({}, cur || {}, r, { periodId: pid0 }));
@@ -5899,8 +5908,9 @@ async function ensureSendoProjects(){
     }
   }
   for(const r of (folder3Payload.newRecs || [])){
+    if(deletedRecCodes.has(r.code)) continue;
     const cur = DB.get('recs', r.id);
-    if(!cur || cur.periodId !== pid0 || r.id === 'rec_folder3_cn_01' || r.id === 'rec_folder3_swallow_01'){
+    if(!cur || cur.periodId !== pid0){
       await DB.put('recs', Object.assign({}, cur || {}, r, { periodId: pid0 }));
     }
   }
@@ -7469,6 +7479,7 @@ async function ensureNewContractsQ4(){
   }
 
   for(const ns of (folder5Payload.newServices || [])){
+    if(ns.id === 'svc_phuanvinh_bocxep_x' && DB.all('journal').some(j => j.type === 'X\u00f3a' && j.content && j.content.includes('PHUANVINH') && j.content.includes('B\u1ed1c x\u1ebfp xu\u1ea5t'))) continue;
     const cur = DB.get('services', ns.id);
     if(!cur){
       await DB.put('services', ns);
@@ -7664,6 +7675,41 @@ async function seedDemo(){
 }
 
 /* ---------- Khởi động ---------- */
+async function cleanupDeletedRecords(){
+  const journal = DB.all('journal') || [];
+  const deletedRecCodes = new Set();
+  const deletedSvcIds = new Set();
+  for(const j of journal){
+    if(j.type === 'X\u00f3a'){
+      if(j.object === 'Ki\u1ebfn ngh\u1ecb' || (j.content && j.content.includes('ki\u1ebfn ngh\u1ecb'))){
+        const matches = (j.content || '').match(/FND-26Q3-\d+-K\d+/g);
+        if(matches) matches.forEach(c => deletedRecCodes.add(c));
+      }
+      if(j.object === 'Ph\u00ed ph\u00e1t sinh/d\u1ecbch v\u1ee5' || (j.content && j.content.includes('ph\u00ed ph\u00e1t sinh'))){
+        if(j.content.includes('PHUANVINH') && j.content.includes('B\u1ed1c x\u1ebfp xu\u1ea5t')){
+          deletedSvcIds.add('svc_phuanvinh_bocxep_x');
+        }
+      }
+    }
+  }
+  for(const r of DB.all('recs')){
+    if(deletedRecCodes.has(r.code)){
+      await DB.del('recs', r.id);
+    }
+  }
+  const validRecIds = new Set(DB.all('recs').map(r => r.id));
+  for(const fu of DB.all('followups')){
+    if(!fu.recId || !validRecIds.has(fu.recId)){
+      await DB.del('followups', fu.id);
+    }
+  }
+  for(const s of DB.all('services')){
+    if(deletedSvcIds.has(s.id)){
+      await DB.del('services', s.id);
+    }
+  }
+}
+
 async function boot(){
   await DB.init();
   if(!DB.all('catalogs').length){await seedCatalogs();await DB.setMeta('catMig','1.5')}
@@ -7673,11 +7719,12 @@ async function boot(){
   await seedHntStoragePolicy();
   await seedHntRenewalPolicy();
   await migrateContractModel();
-  await syncFollowups();
   await ensurePdaChecklist();
   await ensureSendoProjects();
   await ensureRenewalAppendices();
   await ensureNewContractsQ4();
+  await cleanupDeletedRecords();
+  await syncFollowups();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
   window.addEventListener('hashchange',renderMain);
   renderMain();
