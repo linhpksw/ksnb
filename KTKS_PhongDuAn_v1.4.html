@@ -2949,10 +2949,12 @@ ACT['seed-pda-chk'] = async () => {
 };
 
 async function ensureSendoProjects(){
-  const P = curPeriod() || DB.all('periods')[0];
-  if(!P) return;
+  const periods = DB.all('periods');
+  const pQ3 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 3 || String(x.quarter) === '3')) || periods[0];
+  if(!pQ3) return;
+  const P = pQ3;
   const now = '2026-10-20T09:15:00.000Z';
-  const pid0 = P.id;
+  const pid0 = pQ3.id;
 
   /* 1. Đảm bảo danh mục Người phê duyệt (Chủ tịch HĐQT, PCT HĐQT & GĐĐH) */
   const newCats = [
@@ -5906,18 +5908,38 @@ async function ensureSendoProjects(){
     const jnl3 = folder3Payload.newJournal;
     const cur = DB.get('journal', jnl3.id);
     if(!cur || cur.periodId !== pid0 || jnl3.id === 'jnl_folder3_import_20261020'){
-      await DB.put('journal', Object.assign({}, cur || {}, jnl3, { periodId: pid0 }));
+      await DB.put('journal', Object.assign({}, cur || {}, jnl3, { periodId: pid0 }));}
     }
+
+  for(const f of DB.all('findings')){
+    if(String(f.code).includes('26Q3') && f.periodId !== pid0){
+      await DB.put('findings', Object.assign({}, f, { periodId: pid0 }));
+    }
+  }
+  for(const r of DB.all('recs')){
+    if(String(r.code).includes('26Q3') && r.periodId !== pid0){
+      await DB.put('recs', Object.assign({}, r, { periodId: pid0 }));
+    }
+  }
+  const pQ4 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 4 || String(x.quarter) === '4'));
+  if(pQ4 && pQ4.id !== pid0){
+    for(const c of DB.all('checklist').filter(x => x.periodId === pQ4.id)){
+      if(c.comment && (c.comment.includes('DA-002') || c.comment.includes('INDCON') || c.comment.includes('Sendo') || c.comment.includes('DA-006') || c.comment.includes('Vietstar') || c.comment.includes('Swallow') || c.comment.includes('TikiNow') || c.comment.includes('DA-005') || c.comment.includes('DA-003') || c.comment.includes('DA-008'))){
+        await DB.put('checklist', Object.assign({}, c, { result: 'todo', comment: '', risk: '', rec: '', evidence: '', updatedAt: new Date().toISOString() }));
+      }
+    }
+    await syncFollowups(pQ4.id);
   }
 
   }
 
 /* ---------- Thư mục 4: 07 PLHĐ Gia hạn (Q4/2026 - GaiA, Bristar, C.L, DGW, HTC, Daesang, Blum) ---------- */
 async function ensureRenewalAppendices(){
-  const P = curPeriod() || DB.all('periods')[0];
-  if(!P) return;
-  const pid0 = P.id;
-  const pQ4 = DB.all('periods').find(x => (x.year === 2026 || x.year === '2026') && (x.quarter === 4 || x.quarter === '4')) || P;
+  const periods = DB.all('periods');
+  const pQ3 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 3 || String(x.quarter) === '3')) || periods[0];
+  const pQ4 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 4 || String(x.quarter) === '4')) || pQ3;
+  if(!pQ3 && !pQ4) return;
+  const pid0 = pQ3 ? pQ3.id : '';
   const pidQ4 = pQ4 ? pQ4.id : pid0;
 
   const folder4Payload = {
@@ -6515,10 +6537,11 @@ async function ensureRenewalAppendices(){
 
 /* ---------- ThÆ° má»¥c 5: 06 Há»£p Ä‘á»“ng khÃ¡ch hÃ ng má»›i Q4/2026 (folder KH má»›i) ---------- */
 async function ensureNewContractsQ4(){
-  const P = curPeriod() || DB.all('periods')[0];
-  if(!P) return;
-  const pid0 = P.id;
-  const pQ4 = DB.all('periods').find(x => (x.year === 2026 || x.year === '2026') && (x.quarter === 4 || x.quarter === '4')) || P;
+  const periods = DB.all('periods');
+  const pQ3 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 3 || String(x.quarter) === '3')) || periods[0];
+  const pQ4 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 4 || String(x.quarter) === '4')) || pQ3;
+  if(!pQ3 && !pQ4) return;
+  const pid0 = pQ3 ? pQ3.id : '';
   const pidQ4 = pQ4 ? pQ4.id : pid0;
 
   const folder5Payload = {

@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-03T03:06:20.234Z",
+    "backupDate": "2026-11-03T03:21:57.189Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -15,9 +15,9 @@
       "checklist": 72,
       "findings": 19,
       "recs": 19,
-      "followups": 0
+      "followups": 19
     },
-    "checksum": "3490f806"
+    "checksum": "4ac2473f"
   },
   "settings": {},
   "data": {
@@ -3720,7 +3720,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.225Z",
+        "updatedAt": "2026-11-03T03:21:55.176Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3770,7 +3770,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.226Z",
+        "updatedAt": "2026-11-03T03:21:55.177Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3820,14 +3820,14 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.227Z",
+        "updatedAt": "2026-11-03T03:21:55.178Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
       },
       {
         "id": "ct_hpr_1008_2026",
-        "status": "ended",
+        "status": "active",
         "no": "10082026/HĐTK/HNT-HPR",
         "type": "k2",
         "model": "storage",
@@ -3835,7 +3835,7 @@
         "site": "k6_4651",
         "signDate": "2026-08-10",
         "effDate": "2026-08-13",
-        "endDate": "2026-09-12",
+        "endDate": "",
         "area": 47.5,
         "unitPrice": 5000,
         "monthly": 7125500,
@@ -3844,7 +3844,35 @@
         "docPrice": "y",
         "docOther": "Tờ trình ngày 14/10/2026 duyệt chiết khấu bán hàng cho P. Dự án: 1.068.000 đ (15% trên DT 7.125.500 đ từ 13/08/2026 đến hết 12/09/2026).",
         "createdAt": "2026-10-20T10:00:00.000Z",
-        "updatedAt": "2026-10-20T10:00:00.000Z"
+        "updatedAt": "2026-11-03T03:08:01.018Z",
+        "cargoType": "",
+        "dangerSurApplied": "",
+        "indefinite": "y",
+        "isRenewal": "",
+        "priorYears": "",
+        "priorContractRef": "",
+        "signer": "",
+        "signerTitle": "",
+        "authOK": "",
+        "storageMinRev": "",
+        "payCycle": "",
+        "payDueDays": "",
+        "priceUp": "",
+        "upRate": "",
+        "upCycle": "",
+        "latePenalty": "",
+        "earlyTermination": "",
+        "terminate": "",
+        "compensate": "",
+        "damage": "",
+        "fire": "",
+        "force": "",
+        "special": "",
+        "docAppendix": "",
+        "docQuote": "",
+        "docNego": "",
+        "docHandover": "",
+        "docLiquid": ""
       },
       {
         "id": "ct_kkhn_2209_2026",
@@ -3890,7 +3918,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.228Z",
+        "updatedAt": "2026-11-03T03:21:55.179Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3940,7 +3968,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.227Z",
+        "updatedAt": "2026-11-03T03:21:55.178Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3990,7 +4018,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.222Z",
+        "updatedAt": "2026-11-03T03:21:55.175Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -6549,7 +6577,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-03T03:06:18.213Z",
+        "updatedAt": "2026-11-03T03:21:55.142Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -13150,7 +13178,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.230Z"
+        "updatedAt": "2026-11-03T03:21:55.181Z"
       },
       {
         "id": "svc_phuanvinh_bocxep_x",
@@ -13180,7 +13208,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.230Z"
+        "updatedAt": "2026-11-03T03:21:55.180Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13195,7 +13223,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:06:18.229Z"
+        "updatedAt": "2026-11-03T03:21:55.180Z"
       }
     ],
     "pricepolicies": [
@@ -15984,7 +16012,7 @@
       },
       {
         "id": "disc_sale_aica_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muwb5x2v1dzc14w",
         "type": "k1",
         "termCase": "new",
@@ -16005,7 +16033,7 @@
       },
       {
         "id": "disc_sale_bhx_hd20264167",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_bhx_hd20264167",
         "type": "k1",
         "termCase": "new",
@@ -16026,7 +16054,7 @@
       },
       {
         "id": "disc_sale_gagu_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf8472l2vepruz",
         "type": "k1",
         "termCase": "new",
@@ -16047,7 +16075,7 @@
       },
       {
         "id": "disc_sale_hpr_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_hpr_1008_2026",
         "type": "k1",
         "termCase": "new",
@@ -16068,7 +16096,7 @@
       },
       {
         "id": "disc_sale_mk_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bph4q7koc2",
         "type": "k1",
         "termCase": "new",
@@ -16089,7 +16117,7 @@
       },
       {
         "id": "disc_sale_thanhdat_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_thanhdat_2009_2026",
         "type": "k1",
         "termCase": "new",
@@ -16110,7 +16138,7 @@
       },
       {
         "id": "disc_sale_tiki_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_tikinow_pl05_06",
         "type": "k1",
         "termCase": "new",
@@ -16207,7 +16235,7 @@
     "commissions": [
       {
         "id": "comm_mg_aj_1805_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp1piwyd83",
         "periodStart": "2026-05-18",
         "periodNo": 1,
@@ -16231,7 +16259,7 @@
       },
       {
         "id": "comm_mg_banmai_0605_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp196qyou9",
         "periodStart": "2026-05-06",
         "periodNo": 1,
@@ -16255,7 +16283,7 @@
       },
       {
         "id": "comm_mg_bhx_1803_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bp2kq8427w",
         "periodStart": "2026-03-18",
         "periodNo": 1,
@@ -16279,7 +16307,7 @@
       },
       {
         "id": "comm_sale_aica_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muwb5x2v1dzc14w",
         "periodStart": "2026-09-18",
         "periodNo": 1,
@@ -16303,7 +16331,7 @@
       },
       {
         "id": "comm_sale_bhx_hd20264167",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_bhx_hd20264167",
         "periodStart": "2026-08-01",
         "periodNo": 1,
@@ -16327,7 +16355,7 @@
       },
       {
         "id": "comm_sale_gagu_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf8472l2vepruz",
         "periodStart": "2026-07-01",
         "periodNo": 1,
@@ -16351,7 +16379,7 @@
       },
       {
         "id": "comm_sale_hpr_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_hpr_1008_2026",
         "periodStart": "2026-08-13",
         "periodNo": 1,
@@ -16375,7 +16403,7 @@
       },
       {
         "id": "comm_sale_mk_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf85bph4q7koc2",
         "periodStart": "2026-05-13",
         "periodNo": 1,
@@ -16399,7 +16427,7 @@
       },
       {
         "id": "comm_sale_swallow_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_swallow_1806_2026",
         "periodStart": "2026-06-18",
         "periodNo": 1,
@@ -16423,7 +16451,7 @@
       },
       {
         "id": "comm_sale_thanhdat_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_thanhdat_2009_2026",
         "periodStart": "2026-09-20",
         "periodNo": 1,
@@ -16447,7 +16475,7 @@
       },
       {
         "id": "comm_sale_tiki_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "ct_tikinow_pl05_06",
         "periodStart": "2026-07-01",
         "periodNo": 1,
@@ -16471,7 +16499,7 @@
       },
       {
         "id": "comm_sale_vietstar_2026",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "contractId": "muf8472n85ix547",
         "periodStart": "2026-07-22",
         "periodNo": 1,
@@ -16506,13 +16534,13 @@
         "criteria": "Luật Xây dựng; Quy chế đầu tư của Công ty; Tờ trình đầu tư của Phòng Dự án.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "pass",
+        "result": "warn",
         "evidence": "Tờ trình xin chủ trương đầu tư; Báo cáo nghiên cứu khả thi (FS); Bảng tính toán hiệu quả tài chính (IRR, NPV, thời gian hoàn vốn).",
         "comment": "Đã có Tờ trình/Hồ sơ mời thầu cho các gói DA-001 -> DA-008. Tuy nhiên: (1) Gói Khảo sát địa hình Hà Linh (DA-007 - 16,2 tr) bị lưu nhầm file ảnh Tờ trình của gói Khảo sát địa chất (33,53 tr), chưa có Tờ trình LGTHNT-06 đúng nội dung; (2) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) ký trước ngày Tờ trình được duyệt; (3) DA-004 & DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.",
         "risk": "Đầu tư dàn trải, không hiệu quả, thiếu cơ sở pháp lý ban đầu.",
         "rec": "Hoàn thiện Báo cáo FS và phê duyệt chủ trương trước khi chi ngân sách.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-02T06:46:02.569Z"
+        "updatedAt": "2026-10-20T09:15:00.000Z"
       },
       {
         "id": "chk_02_chk_dt_02",
@@ -16795,13 +16823,13 @@
         "criteria": "Quyết định ngày 07/05/2025 (QĐ 11) về sửa đổi giá và CSBH kho chung.",
         "projectId": "",
         "contractId": "muf8472f29mdfdz",
-        "result": "pass",
+        "result": "warn",
         "evidence": "Đơn giá ký trên hợp đồng so với giá niêm yết; Văn bản phê duyệt của HĐQT nếu giảm giá vượt quá 5%.",
         "comment": "Các HĐ có đơn giá thấp hơn giá công bố (như 1703/2025/HĐTK/HNT-TIKINOW giảm 4,35%; 1002/2025/HĐTK/HNT-SDS giảm 3,64%) đều nằm trong biên độ 5% thuộc thẩm quyền HĐQT, nhưng Phòng Dự án chưa lưu kèm văn bản phê duyệt giảm giá trong Thư mục 1.",
         "risk": "Vượt thẩm quyền quyết định giá của cấp điều hành, vi phạm quy định của HĐQT.",
         "rec": "Trình HĐQT phê duyệt hồi tố ngoại lệ hoặc đàm phán điều chỉnh lại đơn giá chuẩn.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-02T06:46:06.680Z"
+        "updatedAt": "2026-10-20T09:15:00.000Z"
       },
       {
         "id": "chk_19_chk_gia_03",
@@ -16897,13 +16925,13 @@
         "criteria": "Quy trình quản lý hồ sơ hợp đồng Phòng Dự án; Điều khoản đặt cọc và điều kiện bàn giao mặt bằng trong Hợp đồng.",
         "projectId": "",
         "contractId": "",
-        "result": "pass",
+        "result": "warn",
         "evidence": "Bản sao/bản gốc Biên bản bàn giao kho có chữ ký giữa Trung tâm (Kho) và khách hàng; Giấy báo Có/Xác nhận của Kế toán về việc đã thu đủ tiền cọc trước thời điểm kho bàn giao.",
         "comment": "[Cập nhật 20/10] Đã nhận Biên bản nghiệm thu, bàn giao/hoàn trả mặt bằng do các Trung tâm Kho cung cấp cho các khách hàng trả kho trong Q3/2026. Cần tiếp tục đối chiếu xác nhận tiền cọc và chứng từ thu/chi của Kế toán.",
         "risk": "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
         "rec": "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-02T06:45:58.297Z"
+        "updatedAt": "2026-11-03T03:21:55.143Z"
       },
       {
         "id": "chk_25_chk_cn_02",
@@ -16931,13 +16959,13 @@
         "criteria": "Quy định chấm dứt và thanh lý hợp đồng; Quy trình hoàn trả mặt bằng và cấn trừ tiền cọc.",
         "projectId": "",
         "contractId": "",
-        "result": "pass",
+        "result": "fail",
         "evidence": "Biên bản kiểm tra hiện trạng và nhận lại mặt bằng do Trung tâm (Kho) lập với khách hàng; Bảng đối chiếu công nợ cuối cùng của Kế toán (cấn trừ tiền thuê, điện nước, bốc xếp và phạt vi phạm vào tiền cọc); Biên bản thanh lý HĐ ký bởi Người đại diện có thẩm quyền.",
         "comment": "[Thư mục 3] Đã nhận 06 BB thanh lý HĐ và Biên bản nghiệm thu, bàn giao/hoàn trả mặt bằng do các Trung tâm Kho cung cấp cho Sendo, AHP, Ngọc Văn, Swallow, MK và Kids Plaza. Hồ sơ vẫn chưa có Bảng đối chiếu công nợ/cấn trừ cọc và chứng từ thu/chi của Phòng Kế toán. Tổng tiền cọc liên quan: phạt 849.468.000 đ (AHP, MK, Sendo), hoàn 378.272.000 đ (Swallow, Kids Plaza); Ngọc Văn không nêu cọc.",
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-02T06:46:00.849Z"
+        "updatedAt": "2026-11-03T03:21:55.143Z"
       },
       {
         "id": "chk_27_chk_ck_01",
@@ -16998,14 +17026,14 @@
         "content": "Kiểm tra việc truy thu lại tiền chiết khấu khi khách hàng chủ động chấm dứt hợp đồng trước hạn.",
         "criteria": "Quy định thu hồi chiết khấu tại QĐ 11 và Điều khoản chấm dứt HĐ.",
         "projectId": "",
-        "contractId": "muf85bph4q7koc2",
-        "result": "fail",
+        "contractId": "muf85bp0icho9fr",
+        "result": "warn",
         "evidence": "Thông báo chấm dứt hợp đồng trước hạn của khách hàng; Bảng tính số tiền chiết khấu phải truy thu (clawbackAmt); Khấu trừ tiền truy thu vào tiền đặt cọc hoàn trả.",
         "comment": "[Thư mục 3] BB thanh lý MK (03/09/2026) phạt 02 tháng cọc 129.168.000 đ nhưng hoa hồng 18.532.000 đ đã chi đủ, chưa có bảng tính phân bổ theo thời gian thuê thực tế hoặc xử lý truy thu. HĐ Swallow có thời hạn 02 tháng và thanh lý khi hết hạn nên không thuộc tiêu chí chấm dứt trước hạn.",
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-11-02T06:45:55.152Z"
+        "updatedAt": "2026-11-03T03:21:55.144Z"
       },
       {
         "id": "chk_31_chk_hh_01",
@@ -17186,13 +17214,13 @@
         "criteria": "Dự toán chi phí được duyệt; Bảng đối chiếu chi phí thực tế luỹ kế (Actual Cost).",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "pass",
+        "result": "todo",
         "evidence": "",
-        "comment": "Chi phí quyết toán thực tế của các gói đã hoàn thành đều nằm trong hoặc giảm so với dự toán được duyệt: DA-002 (216.480.600 đ, giảm 90.720 đ), DA-003 (41.365.626 đ), DA-004 (16.430.332 đ), DA-005 (89.318.133 đ), DA-006 (30.774.600 đ, giảm 2.759.400 đ tương ứng -8,23%).",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.165Z"
       },
       {
         "id": "mvywegkx4vcp58r",
@@ -17220,13 +17248,13 @@
         "criteria": "Luật Xây dựng; Quy chế đầu tư của Công ty; Tờ trình đầu tư của Phòng Dự án.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "Đã có Tờ trình/Hồ sơ mời thầu cho các gói DA-001 -> DA-008. Tuy nhiên: (1) Gói Khảo sát địa hình Hà Linh (DA-007 - 16,2 tr) bị lưu nhầm file ảnh Tờ trình của gói Khảo sát địa chất (33,53 tr), chưa có Tờ trình LGTHNT-06 đúng nội dung; (2) HĐ của DA-002 (ký 16/08) và DA-004 (ký 04/08) ký trước ngày Tờ trình được duyệt; (3) DA-004 & DA-005 chưa lưu kèm cam kết nhu cầu nước tối thiểu của KH Ban Mai theo bút phê của Chủ tịch HĐQT.",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.167Z"
       },
       {
         "id": "mvywegkx6lzbb8y",
@@ -17254,13 +17282,13 @@
         "criteria": "Quy định chấm dứt và thanh lý hợp đồng; Quy trình hoàn trả mặt bằng và cấn trừ tiền cọc.",
         "projectId": "",
         "contractId": "",
-        "result": "fail",
+        "result": "todo",
         "evidence": "",
-        "comment": "[Thư mục 3] Đã nhận 06 BB thanh lý HĐ và Biên bản nghiệm thu, bàn giao/hoàn trả mặt bằng do các Trung tâm Kho cung cấp cho Sendo, AHP, Ngọc Văn, Swallow, MK và Kids Plaza. Hồ sơ vẫn chưa có Bảng đối chiếu công nợ/cấn trừ cọc và chứng từ thu/chi của Phòng Kế toán. Tổng tiền cọc liên quan: phạt 849.468.000 đ (AHP, MK, Sendo), hoàn 378.272.000 đ (Swallow, Kids Plaza); Ngọc Văn không nêu cọc.",
-        "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
-        "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
+        "comment": "",
+        "risk": "",
+        "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:06:18.215Z"
+        "updatedAt": "2026-11-03T03:21:55.168Z"
       },
       {
         "id": "mvywegkx7x4mn92",
@@ -17271,13 +17299,13 @@
         "criteria": "Quy định thu hồi chiết khấu tại QĐ 11 và Điều khoản chấm dứt HĐ.",
         "projectId": "",
         "contractId": "muf85bp0icho9fr",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "[Thư mục 3] BB thanh lý MK (03/09/2026) phạt 02 tháng cọc 129.168.000 đ nhưng hoa hồng 18.532.000 đ đã chi đủ, chưa có bảng tính phân bổ theo thời gian thuê thực tế hoặc xử lý truy thu. HĐ Swallow có thời hạn 02 tháng và thanh lý khi hết hạn nên không thuộc tiêu chí chấm dứt trước hạn.",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:06:18.216Z"
+        "updatedAt": "2026-11-03T03:21:55.169Z"
       },
       {
         "id": "mvywegkx9gjam5j",
@@ -17379,7 +17407,7 @@
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-03T03:06:18.214Z"
+        "updatedAt": "2026-11-03T03:19:29.592Z"
       },
       {
         "id": "mvywegkxayievqw",
@@ -17441,13 +17469,13 @@
         "criteria": "Tiêu chuẩn kỹ thuật nghiệm thu; Hợp đồng kinh tế với nhà thầu/đơn vị tư vấn.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "fail",
+        "result": "todo",
         "evidence": "",
-        "comment": "Hồ sơ nghiệm thu kỹ thuật & hoàn công có sai sót cần đính chính: (1) BBNT BBNT/HTCT/01 của DA-002 (Nền Sendo) và BBNT BBNTHT của DA-006 (KSĐC Hà Linh) của nhà thầu INDCON ghi sai số/ngày Hợp đồng tại căn cứ nghiệm thu; (2) Bản vẽ hoàn công TMB-N 01 REV1 của DA-005 (Ống nước Ban Mai) ghi sai Chủ đầu tư thành 'Chi nhánh Công ty CP Quốc tế Phú Linh' & sai tên dự án; (3) Tất cả BBNT của DA-002, DA-003, DA-005, DA-006 đều bỏ trống ngày/tháng nghiệm thu.",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.170Z"
       },
       {
         "id": "mvywegkxg10y3aw",
@@ -17577,13 +17605,13 @@
         "criteria": "Điều lệ Công ty; Quy chế phân quyền tài chính của HĐQT / Ban Tổng Giám đốc.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "Các gói DA-002, DA-003, DA-004, DA-005, DA-006 đã được Chủ tịch HĐQT Nguyễn Ngọc Hải & GĐĐH Nguyễn Văn Thứ phê duyệt đúng thẩm quyền; các gói lớn DA-001 (PCCC NK2) và DA-008 (TVTK XD & PCCC Hà Linh) đã tổ chức mở thầu có HĐQT chứng kiến. Tuy nhiên cả 02 Biên bản họp mở thầu (01/10/2026 và 16/09/2026) đều bỏ trống số hiệu và chưa có chữ ký của các thành viên tham dự ở trang 2.",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.170Z"
       },
       {
         "id": "mvywegkxl18fq37",
@@ -17594,13 +17622,13 @@
         "criteria": "Quy trình thanh toán của Công ty; Bảng xác nhận giá trị khối lượng công việc hoàn thành.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "Giá trị quyết toán khớp khối lượng thực tế (DA-002: 216.480.600 đ; DA-003: 41.365.626 đ; DA-004: 16.430.332 đ; DA-005: 89.318.133 đ; DA-006: 30.774.600 đ), nhưng bộ hồ sơ còn thiếu Hóa đơn GTGT, CO/CQ, UNC và cần đính chính lại số/ngày HĐ trên BBNT (DA-002, DA-006) & khung tên Bản vẽ hoàn công (DA-005).",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.171Z"
       },
       {
         "id": "mvywegkxnzbclzm",
@@ -17645,13 +17673,13 @@
         "criteria": "Bảng chính sách giá ban hành còn hiệu lực của từng Trung tâm (Đông Anh, Nguyên Khê, Thanh Oai, v.v.).",
         "projectId": "",
         "contractId": "muf8472n85ix547",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "Đơn giá thuê kho của Vietstar (135.000 đ/m² tại NK1) và Swallow (145.000 đ/m² tại Thanh Oai II - HĐ đã hết hạn) đều cao hơn giá chuẩn công bố. Tuy nhiên: (1) Công ty chưa ban hành bảng giá chính sách chuẩn cho diện tích thuê Bãi ngoài trời (Vietstar 300m² x 38.500 đ/m²; DGW 2.141,5m² x 37.000 đ/m²; CL 286,5m² x 38.000 đ/m²); (2) Chưa cung cấp tờ trình duyệt giảm giá cho 02 HĐ thấp hơn giá chuẩn là TikiNow (110.000 đ vs 115.000 đ) và SDS (106.000 đ vs 110.000 đ).",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.171Z"
       },
       {
         "id": "mvywegkxsy2q4g7",
@@ -17662,13 +17690,13 @@
         "criteria": "Kế hoạch tiến độ đính kèm Quyết định đầu tư; Báo cáo tuần/tháng của Quản lý dự án.",
         "projectId": "proj_da002_sendo_nen",
         "contractId": "",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "Các gói DA-002, DA-003, DA-005, DA-006 đã hoàn thành 100% khối lượng; riêng gói DA-008 (TVTK Hà Linh) mở thầu ngày 16/09/2026 và đang chờ phê duyệt lựa chọn nhà thầu nên mốc 25/09/2026 bàn giao bản vẽ kiến trúc + kết cấu phục vụ thẩm định PCCC theo Thư mời chào giá 0509/TM-HNT bị chậm.",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.172Z"
       },
       {
         "id": "mvywegkxv1zvrxp",
@@ -17713,19 +17741,19 @@
         "criteria": "Khoản 5, Khoản 6 Quyết định ngày 07/05/2025 (QĐ 11).",
         "projectId": "",
         "contractId": "muf8472n85ix547",
-        "result": "warn",
+        "result": "todo",
         "evidence": "",
-        "comment": "02 Tờ trình chiết khấu tại Thư mục 1 đã được GĐĐH Nguyễn Văn Thứ và Chủ tịch HĐQT Nguyễn Ngọc Hải ký duyệt: (1) HĐ Swallow (1806/2026) ký 18/06/2026 (< 20 ngày tháng đầu) nên tính CK trên DT tháng 7/2026 (53.099.000 đ) với mức khoán 5.000.000 đ (9,42%); (2) HĐ Vietstar (2207/2026) duyệt ngoại lệ 10.000.000 đ (47,62% trên tổng DT kho + bãi 21.000.000 đ, vượt trần 45%) do DT bãi chưa có chính sách riêng. Lưu ý: Tờ trình Vietstar bỏ trống ngày lập ('ngày ... tháng 08 năm 2026').",
+        "comment": "",
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:21:55.173Z"
       }
     ],
     "findings": [
       {
         "id": "fnd_banmai_da004_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-003",
         "group": "k1",
         "riskLevel": "med",
@@ -17747,7 +17775,7 @@
       },
       {
         "id": "fnd_banmai_da005_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-004",
         "group": "k3",
         "riskLevel": "high",
@@ -17769,7 +17797,7 @@
       },
       {
         "id": "fnd_folder1_ck_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-007",
         "group": "k8",
         "riskLevel": "med",
@@ -17791,7 +17819,7 @@
       },
       {
         "id": "fnd_folder2_aj_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-009",
         "group": "k8",
         "riskLevel": "med",
@@ -17813,7 +17841,7 @@
       },
       {
         "id": "fnd_folder2_ckx_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-010",
         "group": "k8",
         "riskLevel": "med",
@@ -17835,7 +17863,7 @@
       },
       {
         "id": "fnd_folder2_mk_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-008",
         "group": "k8",
         "riskLevel": "high",
@@ -17857,7 +17885,7 @@
       },
       {
         "id": "fnd_folder2_sale_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-011",
         "group": "k8",
         "riskLevel": "low",
@@ -17879,7 +17907,7 @@
       },
       {
         "id": "fnd_folder2_storage_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-012",
         "group": "k8",
         "riskLevel": "med",
@@ -17901,7 +17929,7 @@
       },
       {
         "id": "fnd_folder3_broker_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-019",
         "group": "k9",
         "riskLevel": "med",
@@ -17923,7 +17951,7 @@
       },
       {
         "id": "fnd_folder3_cn_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-013",
         "group": "k7",
         "riskLevel": "med",
@@ -17945,7 +17973,7 @@
       },
       {
         "id": "fnd_folder3_draft_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-018",
         "group": "k4",
         "riskLevel": "low",
@@ -17967,7 +17995,7 @@
       },
       {
         "id": "fnd_folder3_early_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-017",
         "group": "k7",
         "riskLevel": "med",
@@ -17989,7 +18017,7 @@
       },
       {
         "id": "fnd_folder3_penalty_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-015",
         "group": "k7",
         "riskLevel": "high",
@@ -18011,7 +18039,7 @@
       },
       {
         "id": "fnd_folder3_sendo_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-016",
         "group": "k7",
         "riskLevel": "high",
@@ -18033,7 +18061,7 @@
       },
       {
         "id": "fnd_folder3_swallow_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-014",
         "group": "k7",
         "riskLevel": "high",
@@ -18055,7 +18083,7 @@
       },
       {
         "id": "fnd_halinh_da006_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-006",
         "group": "k3",
         "riskLevel": "med",
@@ -18077,7 +18105,7 @@
       },
       {
         "id": "fnd_pccc_da001_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-005",
         "group": "k1",
         "riskLevel": "med",
@@ -18099,7 +18127,7 @@
       },
       {
         "id": "fnd_sendo_da002_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-001",
         "group": "k3",
         "riskLevel": "med",
@@ -18121,7 +18149,7 @@
       },
       {
         "id": "fnd_sendo_da003_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "code": "FND-26Q3-002",
         "group": "k3",
         "riskLevel": "med",
@@ -18145,7 +18173,7 @@
     "recs": [
       {
         "id": "rec_banmai_da004_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_banmai_da004_01",
         "code": "FND-26Q3-003-K1",
         "content": "1) Lưu bổ sung văn bản/phụ lục cam kết nhu cầu và mức sử dụng nước tối thiểu của khách hàng Ban Mai theo đúng bút phê ngày 06/08/2026 của Chủ tịch HĐQT Nguyễn Ngọc Hải; 2) Hoàn thiện số hiệu Hợp đồng, Dự toán và chữ ký xác nhận của HNT tại mục 'KHÁCH HÀNG CHẤP NHẬN DỰ TOÁN'; 3) Thu thập Biên bản nghiệm thu bàn giao đưa vào sử dụng, Biên bản thanh lý hợp đồng, Hóa đơn GTGT và UNC của XN Nước sạch Đông Anh.",
@@ -18165,7 +18193,7 @@
       },
       {
         "id": "rec_banmai_da005_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_banmai_da005_01",
         "code": "FND-26Q3-004-K1",
         "content": "1) Yêu cầu Công ty CP Đầu tư Xây lắp Đại Tín chỉnh sửa lại khung tên Bản vẽ hoàn công TMB-N 01 REV1 đúng tên Dự án 'Nhà kho HNT Nguyên Khê 2' và Chủ đầu tư 'Công ty CP Logistics HNT', điền ngày hoàn công và ký đóng dấu lại; 2) Điền đầy đủ ngày/tháng trên Giấy ĐNTT 0826/ĐNTT-ĐT, Bảng tổng hợp giá trị/khối lượng và BBNT 01/BBNT-ĐT, trình ký đủ thành phần nghiệm thu Bên A; 3) Bổ sung Hóa đơn GTGT và chứng chỉ chất lượng CO/CQ của 950m ống cấp nước HDPE D50 PN10 cùng phụ kiện trước khi giải ngân.",
@@ -18185,7 +18213,7 @@
       },
       {
         "id": "rec_folder1_ck_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder1_ck_01",
         "code": "FND-26Q3-007-K1",
         "content": "1) Tham mưu Ban Giám đốc và HĐQT ban hành bổ sung biểu giá chuẩn, khung tỷ lệ chiết khấu đối với diện tích cho thuê Bãi ngoài trời; 2) Điền đầy đủ ngày lập, số hiệu trên Tờ trình chiết khấu Vietstar; 3) Bổ sung tờ trình duyệt giảm giá (nếu có) cho các HĐ TikiNow, SDS. Khoản chiết khấu 5.000.000 đ của HĐ Swallow không phải truy thu vì HĐ có thời hạn 02 tháng và thanh lý khi hết hạn.",
@@ -18205,7 +18233,7 @@
       },
       {
         "id": "rec_folder2_aj_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_aj_01",
         "code": "FND-26Q3-009-K1",
         "content": "1) Lập phụ lục đính chính số tiền bằng chữ trên BBNT ngày 09/07/2026 với môi giới Đinh Công Tiệp khớp đúng 91.008.000 đ; 2) Chỉ duyệt chi trả khi có xác nhận của Phòng Kế toán về việc KH AJ Rental đã thanh toán đủ tiền thuê kho kỳ đầu theo thỏa thuận ngày 08/05/2026; 3) Đối soát kê khai thuế TNCN 3.640.320 đ đảm bảo khớp chứng từ nộp thuế.",
@@ -18225,7 +18253,7 @@
       },
       {
         "id": "rec_folder2_ckx_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_ckx_01",
         "code": "FND-26Q3-010-K1",
         "content": "1) Chuẩn hóa quy trình nghiệm thu dịch vụ môi giới: bổ sung bước xác nhận khách hàng đã nộp tiền thuê kỳ đầu vào BBNT trước khi chuyển Kế toán thanh toán; 2) Đính chính số HĐNT 0103/2026 và công thức III=I+II trên BBNT khách BHX ngày 28/04/2026.",
@@ -18245,7 +18273,7 @@
       },
       {
         "id": "rec_folder2_mk_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_mk_01",
         "code": "FND-26Q3-008-K1",
         "content": "Phối hợp Phòng Kế toán kiểm tra tình trạng thanh toán thực tế của khoản hoa hồng 18.532.000 đ thuộc HĐ 1305/2026 MK Việt Nam; thực hiện truy thu hoặc phân bổ lại theo tỷ lệ thời gian thuê thực tế (~3,7 tháng / thời hạn hợp đồng).",
@@ -18265,7 +18293,7 @@
       },
       {
         "id": "rec_folder2_sale_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_sale_01",
         "code": "FND-26Q3-011-K1",
         "content": "1) Rà soát và đính chính các lỗi đánh máy trên tờ trình chiết khấu bán hàng của AiCa (số HĐ 1809 và số tiền bằng chữ 22.333.275 đ), BHX (viện dẫn đúng QĐ 178/2024), Gagu và HPR; 2) Thiết lập checklist kiểm tra chứng từ trước khi trình GĐĐH và Chủ tịch HĐQT ký duyệt.",
@@ -18285,7 +18313,7 @@
       },
       {
         "id": "rec_folder2_storage_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder2_storage_01",
         "code": "FND-26Q3-012-K1",
         "content": "Tham mưu Ban Giám đốc và HĐQT ban hành Quy chế bán hàng dịch vụ lưu kho chung (kho theo m³, kho theo pallet) quy định cụ thể: căn cứ tính hoa hồng, số kỳ tối đa được hưởng hoa hồng đối với khách hàng cũ tăng sản lượng và cơ chế kiểm soát chi phí bán hàng.",
@@ -18305,7 +18333,7 @@
       },
       {
         "id": "rec_folder3_broker_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_broker_01",
         "code": "FND-26Q3-019-K1",
         "content": "Bổ sung bản sao y GCN ĐKDN đầy đủ ngành nghề và CCHN môi giới của Chính Kho Xưởng; lập danh sách người có CCHN thực hiện dịch vụ; theo dõi hạn CCHN HN-3094 và không chi hoa hồng mới khi chứng chỉ hết hạn.",
@@ -18325,7 +18353,7 @@
       },
       {
         "id": "rec_folder3_cn_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_cn_01",
         "code": "FND-26Q3-013-K1",
         "content": "1) Phối hợp Phòng Kế toán lập Bảng đối chiếu công nợ/cấn trừ cọc và bổ sung chứng từ thu/chi cho 06 HĐ (Sendo, AHP, Ngọc Văn, Swallow, MK, Kids Plaza); 2) Ban hành checklist hồ sơ bắt buộc trước khi trình ký BB thanh lý. Biên bản nghiệm thu, bàn giao/hoàn trả mặt bằng đã được các Trung tâm Kho cung cấp.",
@@ -18345,7 +18373,7 @@
       },
       {
         "id": "rec_folder3_draft_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_draft_01",
         "code": "FND-26Q3-018-K1",
         "content": "Lập văn bản đính chính BB AHP (năm HĐ), MK và Kids Plaza (viện dẫn Điều 5), Sendo (số mục 3.3); thay căn cứ Bộ luật Dân sự bằng Bộ luật Dân sự 2015 và ban hành mẫu BB thanh lý chuẩn có bảng thanh toán, bên đề nghị chấm dứt.",
@@ -18365,7 +18393,7 @@
       },
       {
         "id": "rec_folder3_early_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_early_01",
         "code": "FND-26Q3-017-K1",
         "content": "Giải trình bên đề nghị chấm dứt và lý do không áp phạt đối với Kids Plaza và Ngọc Văn; bổ sung xác nhận công nợ bằng số liệu, chứng từ hoàn cọc 319.680.000 đ (Kids Plaza), tiền cọc của Ngọc Văn; kiểm tra Giấy ủy quyền 06/2023/VBUQ-KP còn hiệu lực.",
@@ -18385,7 +18413,7 @@
       },
       {
         "id": "rec_folder3_penalty_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_penalty_01",
         "code": "FND-26Q3-015-K1",
         "content": "Lập bảng kê chi phí thực tế bù đắp cho 03 HĐ bị phạt cọc (AHP 186.200.000 đ; MK 129.168.000 đ; Sendo 534.100.000 đ) và đề nghị Kế toán xác nhận cách hạch toán khoản cọc bị phạt.",
@@ -18405,7 +18433,7 @@
       },
       {
         "id": "rec_folder3_sendo_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_sendo_01",
         "code": "FND-26Q3-016-K1",
         "content": "1) Lập bảng đối chiếu chi phí hoàn trả mặt bằng DA-002 (216.480.600 đ) và DA-003 (41.365.626 đ) với khoản cọc phạt 534.100.000 đ; 2) Kiểm tra hóa đơn GTGT bán bàn nâng 89.100.000 đ (HNT xuất) và 27.000.000 đ (Sendo xuất) cùng việc ghi nhận tài sản; 3) Quy định không thi công hoàn trả mặt bằng trước khi chốt BB thanh lý.",
@@ -18425,7 +18453,7 @@
       },
       {
         "id": "rec_folder3_swallow_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_folder3_swallow_01",
         "code": "FND-26Q3-014-K1",
         "content": "Phối hợp Kế toán xác nhận Swallow đã nộp công nợ 34.120.008 đ (hạn 24/09/2026) trước khi hoàn cọc 58.592.000 đ; bổ sung bảng đối chiếu công nợ và chứng từ thu/chi. Không yêu cầu giải trình phạt cọc hoặc truy thu chiết khấu vì HĐ thanh lý khi hết hạn.",
@@ -18445,7 +18473,7 @@
       },
       {
         "id": "rec_halinh_da006_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_halinh_da006_01",
         "code": "FND-26Q3-006-K1",
         "content": "1) Yêu cầu Công ty CP INDCON đính chính lại Biên bản nghiệm thu hoàn thành bộ phận công trình (BBNTHT) của gói Khảo sát địa chất Hà Linh (DA-006) ghi đúng số Hợp đồng '1607/2026/HĐ-KSĐC ký ngày 16/07/2026', điền đầy đủ ngày/tháng lập trên BBNTHT và Bảng quyết toán; 2) Bổ sung 04 BBNT khoan (01–04/NTKS), Báo cáo KSĐC, Giấy ĐNTT và Hóa đơn GTGT trước khi giải ngân 30.774.600 đ; 3) Lập và trình ký đúng Tờ trình Đề nghị cấp VT-TB-CC (Mẫu LGTHNT-06) cho gói Khảo sát địa hình (DA-007 - 16.200.000 đ) thay cho file ảnh đang bị lưu nhầm.",
@@ -18465,7 +18493,7 @@
       },
       {
         "id": "rec_pccc_da001_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_pccc_da001_01",
         "code": "FND-26Q3-005-K1",
         "content": "1) Hoàn thiện đầy đủ chữ ký của các thành viên tham dự mở thầu và cấp số hiệu văn bản cho Biên bản họp mở thầu ngày 01/10/2026 (Gói PCCC NK2 - DA-001) và Biên bản họp mở thầu ngày 16/09/2026 (Gói TVTK XD & PCCC Hà Linh - DA-008); 2) Tập hợp và lưu trữ đầy đủ Hồ sơ chào thầu/báo giá gốc của các nhà thầu (Bình Minh, PCCC Dầu khí VN, Vạn Lộc; INDCON, PCCC NTK, An Toàn VN, Bright) cùng Báo cáo đánh giá năng lực – giá trình HĐQT phê duyệt trước khi ký hợp đồng.",
@@ -18485,7 +18513,7 @@
       },
       {
         "id": "rec_sendo_da002_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_sendo_da002_01",
         "code": "FND-26Q3-001-K1",
         "content": "1) Đính chính lại Biên bản nghiệm thu hoàn thành công trình BBNT/HTCT/01 điền đúng số HĐ 1608/2026/HĐKT/HNT-IDC ký ngày 16/08/2026 và ngày tháng nghiệm thu; 2) Thu thập bổ sung Báo giá gốc có dấu của INDCON, Giấy đề nghị thanh toán và Hóa đơn GTGT; 3) Phối hợp Phòng Kế toán đối soát thu hồi khoản chi phí hoàn trả nền (216.480.600 đ) từ khách hàng Sendo theo đúng ghi chú trên tờ trình.",
@@ -18505,7 +18533,7 @@
       },
       {
         "id": "rec_sendo_da003_01",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "findingId": "fnd_sendo_da003_01",
         "code": "FND-26Q3-002-K1",
         "content": "1) Điền đầy đủ ngày/tháng nghiệm thu và lập hồ sơ trên Giấy ĐNTT 0926/ĐNTT-ĐT, Bảng tổng hợp giá trị/khối lượng và BBNT 0926/BBNT-ĐT để xác lập mốc bảo hành 18 tháng; 2) Bổ sung Hóa đơn GTGT và chứng chỉ xuất xưởng CO/CQ của 17 bộ đèn LED Highbay 100W Duhal cùng phụ kiện.",
@@ -18524,7 +18552,255 @@
         "updatedAt": "2026-10-20T09:15:00.000Z"
       }
     ],
-    "followups": [],
+    "followups": [
+      {
+        "id": "fu_040334f3e9e7456",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_pccc_da001_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.391Z"
+      },
+      {
+        "id": "fu_0fdb454e9d524ec",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder2_aj_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.379Z"
+      },
+      {
+        "id": "fu_26a5834a90de4f2",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_banmai_da004_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.344Z"
+      },
+      {
+        "id": "fu_2784137a10b4462",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_banmai_da005_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.377Z"
+      },
+      {
+        "id": "fu_38d30ca892f5431",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_sendo_da002_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.392Z"
+      },
+      {
+        "id": "fu_412c29497f1248a",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder2_mk_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.382Z"
+      },
+      {
+        "id": "fu_49f8bfc7e7614e8",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder2_ckx_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.380Z"
+      },
+      {
+        "id": "fu_4ed115f91f454e6",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_broker_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.384Z"
+      },
+      {
+        "id": "fu_6bb4a8d81b5840e",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_cn_01",
+        "prevStatus": "doing",
+        "curStatus": "doing",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.385Z"
+      },
+      {
+        "id": "fu_788fd8cb2ade456",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_early_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.387Z"
+      },
+      {
+        "id": "fu_7dca742dea564a6",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_sendo_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.388Z"
+      },
+      {
+        "id": "fu_899e784cdd0b482",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder2_sale_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.383Z"
+      },
+      {
+        "id": "fu_965ec85b856b4fb",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_halinh_da006_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.390Z"
+      },
+      {
+        "id": "fu_9a224f45260c438",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_sendo_da003_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.392Z"
+      },
+      {
+        "id": "fu_af3faeb2a67c4b8",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_draft_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.386Z"
+      },
+      {
+        "id": "fu_b4afe40245ab43c",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder1_ck_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.378Z"
+      },
+      {
+        "id": "fu_bab36061ba9e45b",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder2_storage_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.383Z"
+      },
+      {
+        "id": "fu_c65acde8a0d04ee",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_penalty_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.387Z"
+      },
+      {
+        "id": "fu_c97e9a373ae8449",
+        "periodId": "mvywegkvghcehae",
+        "recId": "rec_folder3_swallow_01",
+        "prevStatus": "todo",
+        "curStatus": "todo",
+        "newEvidence": "",
+        "confirmed": "",
+        "confirmDate": "",
+        "confirmBy": "",
+        "ktksNote": "",
+        "createdAt": "2026-11-03T03:16:55.389Z"
+      }
+    ],
     "journal": [
       {
         "id": "jnl_banmai_import_20261020",
@@ -18554,7 +18830,7 @@
       },
       {
         "id": "jnl_folder2_import_20261020",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "ts": "2026-10-20T10:00:00.000Z",
         "user": "Nguyễn Thị Thu Hương",
         "type": "Đối chiếu",
@@ -18567,7 +18843,7 @@
       },
       {
         "id": "jnl_folder3_import_20261020",
-        "periodId": "mvywegkvghcehae",
+        "periodId": "mufq31zn245cq0d",
         "ts": "2026-10-20T14:50:00.000Z",
         "user": "Nguyễn Thị Thu Hương",
         "type": "Đối chiếu",
@@ -30184,6 +30460,19 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-03T03:02:57.907Z"
+      },
+      {
+        "id": "mw03y8hoy3i85g8",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:08:01.020Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 10082026/HĐTK/HNT-HPR – CÔNG TY ĐÀO TẠO THƯƠNG MẠI QUỐC TẾ - HPRGROUP | Ngày hết hạn: 12/09/2026 → ∅; Vô thời hạn (không có ngày hết hạn): ∅ → Có; Trạng thái hợp đồng: Đã thanh lý/kết thúc → Đang hiệu lực",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:08:01.020Z"
       }
     ]
   }
