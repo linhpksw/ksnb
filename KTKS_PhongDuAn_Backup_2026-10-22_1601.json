@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-02T09:58:45.980Z",
+    "backupDate": "2026-11-03T03:04:12.855Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 19,
       "followups": 0
     },
-    "checksum": "2bf69577"
+    "checksum": "630065d"
   },
   "settings": {},
   "data": {
@@ -3720,7 +3720,10 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.845Z",
+        "dangerSurApplied": "",
+        "storageMinRev": "",
+        "earlyTermination": ""
       },
       {
         "id": "ct_daitinphat_0610_2026",
@@ -3767,7 +3770,10 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.845Z",
+        "dangerSurApplied": "",
+        "storageMinRev": "",
+        "earlyTermination": ""
       },
       {
         "id": "ct_donga_0610_2026",
@@ -3814,7 +3820,10 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.846Z",
+        "dangerSurApplied": "",
+        "storageMinRev": "",
+        "earlyTermination": ""
       },
       {
         "id": "ct_hpr_1008_2026",
@@ -3881,7 +3890,10 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.848Z",
+        "dangerSurApplied": "",
+        "storageMinRev": "",
+        "earlyTermination": ""
       },
       {
         "id": "ct_nta_0610_2026",
@@ -3928,7 +3940,10 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.847Z",
+        "dangerSurApplied": "",
+        "storageMinRev": "",
+        "earlyTermination": ""
       },
       {
         "id": "ct_phuanvinh_0610_2026",
@@ -3975,7 +3990,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T09:58:43.974Z",
+        "updatedAt": "2026-11-03T03:04:10.844Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -5008,7 +5023,7 @@
         "earlyTermination": ""
       },
       {
-        "status": "cmuf772l3as72p76",
+        "status": "ended",
         "no": "1000",
         "type": "k2",
         "customerId": "mudvj2eyqpj7n48",
@@ -5045,13 +5060,16 @@
         "docOther": "",
         "id": "muf8472xytacjq6",
         "createdAt": "2026-09-24T07:41:45.561Z",
-        "updatedAt": "2026-09-27T15:31:40.344Z",
+        "updatedAt": "2026-11-03T01:30:30.225Z",
         "model": "storage",
         "cargoType": "",
         "dangerSurApplied": "",
         "indefinite": "",
         "storageMinRev": "",
-        "earlyTermination": ""
+        "earlyTermination": "",
+        "isRenewal": "",
+        "priorYears": "",
+        "priorContractRef": ""
       },
       {
         "status": "active",
@@ -6531,7 +6549,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-02T09:58:43.967Z",
+        "updatedAt": "2026-11-03T03:04:10.834Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -12790,6 +12808,21 @@
         "updatedAt": "2026-10-06T06:45:33.134Z"
       },
       {
+        "contractId": "ct_phuanvinh_0610_2026",
+        "serviceType": "k5",
+        "method": "k6",
+        "unit": "tấn/lượt",
+        "unitPrice": 100000,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "provider": "",
+        "note": "",
+        "id": "mw032tkpzo3cmsr",
+        "createdAt": "2026-11-03T02:43:35.353Z",
+        "updatedAt": "2026-11-03T02:43:35.353Z"
+      },
+      {
         "id": "svc_binhan_bocxep_n",
         "contractId": "ct_binhan_1210_2026",
         "serviceType": "svcType.k6_57e8",
@@ -13117,22 +13150,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
-      },
-      {
-        "id": "svc_phuanvinh_bocxep_x",
-        "contractId": "ct_phuanvinh_0610_2026",
-        "serviceType": "svcType.k7_a10b",
-        "method": "svcMethod.k7_fa30",
-        "unit": "tấn/lượt",
-        "unitPrice": 100000,
-        "monthlyEstimate": "",
-        "startDate": "2026-10-06",
-        "endDate": "2027-10-06",
-        "provider": "HNT",
-        "note": "Bốc xếp hàng hoá chiều xuất (tối thiểu 10.000 đ/đơn)",
-        "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.850Z"
       },
       {
         "id": "svc_phuanvinh_nangha_n",
@@ -13147,7 +13165,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-03T03:04:10.849Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13161,6 +13179,21 @@
         "endDate": "2027-10-06",
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
+        "createdAt": "2026-11-02T16:30:00.000Z",
+        "updatedAt": "2026-11-03T03:04:10.848Z"
+      },
+      {
+        "id": "svc_phuanvinh_bocxep_x",
+        "contractId": "ct_phuanvinh_0610_2026",
+        "serviceType": "svcType.k7_a10b",
+        "method": "svcMethod.k7_fa30",
+        "unit": "tấn/lượt",
+        "unitPrice": 100000,
+        "monthlyEstimate": "",
+        "startDate": "2026-10-06",
+        "endDate": "2027-10-06",
+        "provider": "HNT",
+        "note": "Bốc xếp hàng hoá chiều xuất (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
         "updatedAt": "2026-11-02T16:30:00.000Z"
       }
@@ -17227,7 +17260,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-02T09:58:43.968Z"
+        "updatedAt": "2026-11-03T03:04:10.836Z"
       },
       {
         "id": "mvywegkx7x4mn92",
@@ -17244,7 +17277,7 @@
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-02T09:58:43.969Z"
+        "updatedAt": "2026-11-03T03:04:10.837Z"
       },
       {
         "id": "mvywegkx9gjam5j",
@@ -17346,7 +17379,7 @@
         "risk": "",
         "rec": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-02T09:58:43.967Z"
+        "updatedAt": "2026-11-03T03:04:10.835Z"
       },
       {
         "id": "mvywegkxayievqw",
@@ -29904,6 +29937,253 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-02T09:46:27.961Z"
+      },
+      {
+        "id": "mw00gugs1ok8d47",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T01:30:30.844Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 1000 – CÔNG TY TNHH XÚC TIẾN THƯƠNG MẠI VIỆT TRUNG GLOBAL | Trạng thái hợp đồng: Cần kiểm tra hồ sơ gia hạn → Đã thanh lý/kết thúc",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T01:30:30.844Z"
+      },
+      {
+        "id": "mw02yjcldmj7j49",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:40:15.477Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 12102026/HĐTK/HNT-BÌNH AN – CÔNG TY CỔ PHẦN THIẾT BỊ PCCC BÌNH AN | Dự án/kho/trung tâm: site.k6_4651 → Kho chung HNT Nguyên Khê",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:40:15.477Z"
+      },
+      {
+        "id": "mw02yt76mv5m0mz",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:40:28.242Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-DAITINPHAT – CÔNG TY TNHH XNK TM SX ĐẠI TÍN PHÁT | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:40:28.242Z"
+      },
+      {
+        "id": "mw02z09fpvztcj4",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:40:37.395Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-DONGA – CÔNG TY TNHH KINH DOANH ĐÔNG Á | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:40:37.395Z"
+      },
+      {
+        "id": "mw02zhgl58pd47m",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:40:59.685Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-N.T.A – CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DỊCH VỤ XNK N.T.A | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:40:59.685Z"
+      },
+      {
+        "id": "mw0302g2sqhvlap",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:41:26.882Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 2209/2026/HĐTK/HNT-KKHN – CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI DỊCH VỤ KIM KHÍ HÀ NỘI | Dự án/kho/trung tâm: site.cmukoahxa78ju1hh → Trung tâm logistic HNT Thanh Oai II; Chu kỳ tăng (tháng): ∅ → ∅",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:41:26.882Z"
+      },
+      {
+        "id": "mw032tkz02846xw",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:43:35.363Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Tạo phí phát sinh/dịch vụ Bốc xếp nhập – 06102026/HĐTK/HNT-PHUANVINH",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:43:35.363Z"
+      },
+      {
+        "id": "mw033ilvtp42ybw",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:44:07.795Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Cập nhật phí phát sinh/dịch vụ Bốc xếp xuất – 06102026/HĐTK/HNT-PHUANVINH | Loại dịch vụ: svcType.k6_57e8 → Bốc xếp xuất; Cách tính giá: svcMethod.k7_fa30 → Theo tấn",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:44:07.795Z"
+      },
+      {
+        "id": "mw0346x7ita6wkj",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:44:39.307Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Cập nhật phí phát sinh/dịch vụ svcType.k7_a10b – 06102026/HĐTK/HNT-PHUANVINH | Đơn vị tính: tấn/lượt → ∅; Đơn giá (VND): 100.000 → ∅",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:44:39.307Z"
+      },
+      {
+        "id": "mw034wkbp4zyiy1",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:45:12.539Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Cập nhật phí phát sinh/dịch vụ Nâng hạ – 06102026/HĐTK/HNT-PHUANVINH | Loại dịch vụ: svcType.cmufemxkd03bpud0 → Nâng hạ; Cách tính giá: svcMethod.k6_178a → Theo pallet",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:45:12.539Z"
+      },
+      {
+        "id": "mw035m6zo6n5hnd",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:45:45.755Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Cập nhật phí phát sinh/dịch vụ  – 06102026/HĐTK/HNT-PHUANVINH | Loại dịch vụ: svcType.cmufemxkd03bpud0 → ∅; Cách tính giá: svcMethod.k6_178a → ∅; Đơn vị tính: pallet/lượt → ∅; Đơn giá (VND): 75.000 → ∅ (+2 trường)",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:45:45.755Z"
+      },
+      {
+        "id": "mw03houc7p3kngk",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:55:09.060Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-PHUANVINH – CÔNG TY CỔ PHẦN SX VÀ TM PHÚ AN VINH | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:55:09.060Z"
+      },
+      {
+        "id": "mw03hysr1epf29c",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:55:21.963Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 12102026/HĐTK/HNT-BÌNH AN – CÔNG TY CỔ PHẦN THIẾT BỊ PCCC BÌNH AN | Dự án/kho/trung tâm: site.k6_4651 → Kho chung HNT Nguyên Khê",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:55:21.963Z"
+      },
+      {
+        "id": "mw03i5dvv4a4x3e",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:55:30.499Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-DAITINPHAT – CÔNG TY TNHH XNK TM SX ĐẠI TÍN PHÁT | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:55:30.499Z"
+      },
+      {
+        "id": "mw03idnfcw1m4n8",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:55:41.211Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-DONGA – CÔNG TY TNHH KINH DOANH ĐÔNG Á | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:55:41.211Z"
+      },
+      {
+        "id": "mw03ik0y5yko0o3",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:55:49.474Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-N.T.A – CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DỊCH VỤ XNK N.T.A | Dự án/kho/trung tâm: site.k7_e09e → Kho chung HNT Thanh Oai",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:55:49.474Z"
+      },
+      {
+        "id": "mw03itb6vtbsg7m",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T02:56:01.506Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 2209/2026/HĐTK/HNT-KKHN – CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI DỊCH VỤ KIM KHÍ HÀ NỘI | Dự án/kho/trung tâm: site.cmukoahxa78ju1hh → Trung tâm logistic HNT Thanh Oai II; Chu kỳ tăng (tháng): ∅ → ∅",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T02:56:01.506Z"
+      },
+      {
+        "id": "mw03rorp4h31r4a",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:02:55.525Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Xóa phí phát sinh/dịch vụ Bốc xếp xuất – 06102026/HĐTK/HNT-PHUANVINH",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:02:55.525Z"
+      },
+      {
+        "id": "mw03rqlv3vb6orn",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:02:57.907Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 06102026/HĐTK/HNT-PHUANVINH – CÔNG TY CỔ PHẦN SX VÀ TM PHÚ AN VINH | Dự án/kho/trung tâm: Kho chung HNT Thanh Oai → Kho chung HNT Thanh Oai; Chu kỳ thanh toán: 1 tháng → 1 tháng",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:02:57.907Z"
       }
     ]
   }

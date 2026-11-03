@@ -463,7 +463,7 @@ const DEF_SET={expiryDays:90,backupDays:7,priceTol:0.5,delayPts:10,kpiPass:100,p
 const S=k=>(DB.meta.settings&&DB.meta.settings[k]!=null&&DB.meta.settings[k]!=='')?Number(DB.meta.settings[k]):DEF_SET[k];
 const userName=()=>DB.meta.user||'KTKS';
 const catItems=g=>DB.c.catalogs.filter(x=>x.group===g).sort((a,b)=>(a.order||0)-(b.order||0)||String(a.name).localeCompare(b.name,'vi'));
-const catItem=(g,k)=>DB.c.catalogs.find(x=>x.group===g&&x.key===k);
+const catItem=(g,k)=>DB.c.catalogs.find(x=>x.group===g&&(x.key===k||x.id===k||x.id===`${g}.${k}`||x.key===String(k||'').replace(new RegExp('^'+g+'\\.'),'')));
 const catName=(g,k)=>{const i=catItem(g,k);return i?i.name:(k||'')};
 const catTone=(g,k)=>{const i=catItem(g,k);return i?i.tone||'':''};
 const catKeyByName=(g,name)=>{const i=DB.c.catalogs.find(x=>x.group===g&&x.name===name);return i?i.key:''};
@@ -714,9 +714,9 @@ function inputHtml(f,val){
    case'date':return`<input type="date" ${n} value="${esc(v)}">`;
    case'month':return`<input type="month" ${n} value="${esc(v)}">`;
    case'datetime':return`<input type="datetime-local" ${n} value="${esc(String(v).length>16?nowLocalFromIso(v):v)}">`;
-   case'cat':case'select':case'yn':case'ref':{
-     let o=optsFor(f);if(v!==''&&!o.some(x=>x[0]===v))o=[...o,[v,String(v)+' (không còn trong danh mục)']];
-     return`<select ${n}><option value="">${f.t==='yn'?'— Chưa xác định —':'— Chọn —'}</option>${o.map(([a,b])=>`<option value="${esc(a)}" ${a===v?'selected':''}>${esc(b)}</option>`).join('')}</select>`}
+   case'cat':case'select':case'yn':case'ref':{let valNorm=v;if(f.t==='cat'&&f.g&&valNorm){const ci=catItem(f.g,valNorm);if(ci)valNorm=ci.key}
+     let o=optsFor(f);if(valNorm!==''&&!o.some(x=>x[0]===valNorm))o=[...o,[valNorm,String(valNorm)+' (không còn trong danh mục)']];
+     return`<select ${n}><option value="">${f.t==='yn'?'— Chưa xác định —':'— Chọn —'}</option>${o.map(([a,b])=>`<option value="${esc(a)}" ${a===valNorm?'selected':''}>${esc(b)}</option>`).join('')}</select>`}
    case'auto':return`<input type="text" ${n} value="${esc(v)}" placeholder="Tự động tạo khi lưu" readonly>`;
    case'checkbox':return`<label style="display:flex;align-items:center;gap:8px;font-weight:400;cursor:pointer"><input type="checkbox" ${n} ${v==='y'?'checked':''} style="width:16px;height:16px"><span>${esc(f.checkText||'Có')}</span></label>`;
    case'computed':return`<div class="calc" data-calc="${f.k}"></div>`;
@@ -808,9 +808,9 @@ function openForm(key,id,preset,readOnly){
     if(!P){toast('Chưa có kỳ kiểm tra. Hãy tạo kỳ mới trước.','warn');return}
     if(ent.lockable!==false&&P.status==='done'){toast(`Kỳ ${pLabel(P)} đã hoàn thành – không thể thêm. Hãy mở lại kỳ.`,'warn');return}
   }
-  const ro=!!readOnly||(rec&&!canMod(ent,rec)),base=rec?{...rec}:defaultsFor(ent,preset);
+  const ro=!!readOnly||(rec&&!canMod(ent,rec)),base=rec?{...rec}:defaultsFor(ent,preset),delBtn=rec&&!ro&&ent.canDelete!==false?`<button type="button" class="btn dng" data-act="form-del" style="margin-right:auto">${ic('trash')} Xóa</button>`:'';
   const m=openModal({title:`${ro?'Chi tiết':rec?'Sửa':'Thêm mới'} – ${ent.singular}`,size:ent.size||'',body:formHtml(ent,base),
-   footer:ro?`<button class="btn" data-act="modal-close">Đóng</button>`:`<button class="btn" data-act="modal-close">Hủy</button><button class="btn pri" data-act="modal-save">${ic('check')} Lưu</button>`,
+   footer:ro?`<button class="btn" data-act="modal-close">Đóng</button>`:`${delBtn}<button class="btn" data-act="modal-close">Hủy</button><button class="btn pri" data-act="modal-save">${ic('check')} Lưu</button>`,
    onSave:()=>saveForm(m)});
   m.ctx={ent,id,base,ro};
   const form=m.el.querySelector('form');
@@ -865,6 +865,7 @@ Object.assign(ACT,{
   del:el=>{const e=ENT[el.dataset.e];return e.delFn?e.delFn(el.dataset.id):askDelete(el.dataset.e,el.dataset.id)},
   'modal-close':()=>closeModal(),
   'modal-save':()=>{const m=MODALS[MODALS.length-1];if(m&&m.onSave)return m.onSave()},
+  'form-del':async el=>{const m=MODALS[MODALS.length-1];if(!m||!m.ctx||!m.ctx.id)return;const{ent,id}=m.ctx,r=DB.get(ent.store,id);if(!r)return;if(isLocked(ent,r)){toast('Kỳ đã hoàn thành – không thể xóa','warn');return}const ok=await confirmBox({title:'Xác nhận xóa',danger:true,ok:'Xóa',html:true,msg:`Bạn có chắc muốn xóa <b>${esc(ent.label(r))}</b>?<br><span class="note">Thao tác không thể hoàn tác.</span>`});if(!ok)return;await deleteRecord(ent.key,id);closeModal(m);toast('Đã xóa '+ent.singular.toLowerCase(),'');if(m.after)m.after(null);const parentM=MODALS[MODALS.length-1];if(parentM&&parentM.ctx&&parentM.ctx.ent.key==='contracts')refreshForm(parentM,null);else renderMain()},
   tab:(el)=>{const m=el.closest?el.closest('.modal')||el.closest('.ov'):null;const root=m||MODALS[MODALS.length-1].el;const i=el.dataset.i;
     $$('.tabs button',root).forEach(b=>b.classList.toggle('on',b.dataset.i===String(i)));$$('.tp',root).forEach(p=>p.classList.toggle('on',p.dataset.tp===String(i)))},
   sort:el=>{const st=UI._l(el.dataset.e),cur=st.sort||ENT[el.dataset.e].sort||{};st.sort={k:el.dataset.k,dir:cur.k===el.dataset.k&&cur.dir!=='desc'?'desc':'asc'};renderMain()},
@@ -957,17 +958,18 @@ function priceLinesHtml(v){
   if(!id)return`<div class="ih">Biểu giá theo mô hình: ${esc(modelName(model))}</div>${tip}<div class="note">Bấm <b>Lưu</b> để tạo hợp đồng – hệ thống sẽ mở lại tab này để bạn nhập đơn giá.</div>`;
   const rs=ctrRentals(id),svs=ctrServices(id);
   const btn=(t,a)=>`<button type="button" class="btn sm" data-act="ctr-line" ${a}>${t}</button>`;
+  const rowBtns=(e,lid)=>`<div style="display:inline-flex;gap:5px;flex-shrink:0"><button type="button" class="btn sm" data-act="ctr-line" data-e="${e}" data-id="${lid}">Sửa</button><button type="button" class="btn sm dng" data-act="ctr-line-del" data-e="${e}" data-id="${lid}" title="Xóa dòng này">Xóa</button></div>`;
   const line=(l,edit)=>`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line2)"><span>${l}</span>${edit}</div>`;
   let h=`<div style="grid-column:1/-1"><div class="ih">Biểu giá theo mô hình: ${esc(modelName(model))}</div>${tip}<div class="ih">1. Đơn giá chính</div>`;
   rs.forEach(r=>{const bad=!KIND_OK[model].includes(r.kind);
-    h+=line(`<b>${esc(kindName(r.kind))}</b> – ${esc(priceLabel(r.unit,r.per,r.unitPrice))}${isNum(r.quantity)&&N(r.quantity)>0?` × ${esc(fmtNum(r.quantity))} ${esc(r.unit||'')} = ${esc(fmtMoney(r.monthlyEstimate))} đ/tháng`:''}${bad?' <span class="alp y">không đúng mô hình</span>':''}`,btn('Sửa',`data-e="rentals" data-id="${r.id}"`))});
+    h+=line(`<b>${esc(kindName(r.kind))}</b> – ${esc(priceLabel(r.unit,r.per,r.unitPrice))}${isNum(r.quantity)&&N(r.quantity)>0?` × ${esc(fmtNum(r.quantity))} ${esc(r.unit||'')} = ${esc(fmtMoney(r.monthlyEstimate))} đ/tháng`:''}${bad?' <span class="alp y">không đúng mô hình</span>':''}`,rowBtns('rentals',r.id))});
   const sugM=model==='storage'?[['luukho','Lưu kho (theo m³/tấn/pallet)',0]]:[['kho','Thuê kho',0],['bai','Thuê bãi',1]];
   sugM.forEach(([k,n,opt])=>{if(!rs.some(r=>r.kind===k))h+=line(`<span class="note">${opt?'Chưa có (không bắt buộc)':'Chưa có'}: <b>${esc(n)}</b></span>`,btn('+ Thêm',`data-e="rentals" data-c="${id}" data-kind="${k}"`))});
   if(model==='storage'){
     h+=`<div class="banner b" style="margin:8px 0;font-size:12.5px"><b>QĐ 11/2025/QĐ-HNT Lưu kho:</b> P. Dự án bán đúng giá; HĐQT duyệt giảm tối đa 5%. Hàng nặng ≥ 667 kg/m³ tính theo tấn; Hàng nguy hiểm/giá trị cao +10%. Lưu kho chưa gồm bốc xếp. Ký tháng đầu < 20 ngày: tính CK trên doanh thu tháng kế tiếp.</div>`;
   }
   h+=`<div class="ih" style="margin-top:10px">2. Phí phát sinh &amp; dịch vụ kèm theo</div>`;
-  svs.forEach(s=>{h+=line(`<b>${esc(catName('svcType',s.serviceType)||'(chưa đặt tên)')}</b> – ${esc(priceLabel(s.unit,'',s.unitPrice))}`,btn('Sửa',`data-e="services" data-id="${s.id}"`))});
+  svs.forEach(s=>{h+=line(`<b>${esc(catName('svcType',s.serviceType)||'(chưa đặt tên)')}</b> – ${esc(priceLabel(s.unit,'',s.unitPrice))}`,rowBtns('services',s.id))});
   if(model==='storage'){
     [['Bốc xếp nhập','boc xep'],['Bốc xếp xuất','boc xep']].forEach(([n,key])=>{
       if(!svcHas(id,key)&&!svs.some(s=>norm(catName('svcType',s.serviceType)).includes(key)))
@@ -977,6 +979,7 @@ function priceLinesHtml(v){
   h+=`<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">${btn('+ Thêm phí phát sinh/dịch vụ'+(model==='lease'?' (điện, nước, bảo vệ…)':' (bốc xếp, tem nhãn, ngoài giờ...)'),`data-e="services" data-c="${id}"`)}${btn('+ Thêm dòng đơn giá chính khác',`data-e="rentals" data-c="${id}"`)}</div></div>`;
   return h;
 }
+ACT['ctr-line-del']=async el=>{const d=el.dataset,e=d.e,id=d.id,ent=ENT[e],r=DB.get(ent.store,id);if(!r)return;if(isLocked(ent,r)){toast('Kỳ đã hoàn thành – không thể xóa','warn');return}const lbl=e==='rentals'?kindName(r.kind):(catName('svcType',r.serviceType)||'(chưa đặt tên)');const ok=await confirmBox({title:'Xác nhận xóa',danger:true,ok:'Xóa',html:true,msg:`Bạn có chắc muốn xóa <b>${esc(lbl)}</b> khỏi hợp đồng?<br><span class="note">Thao tác không thể hoàn tác.</span>`});if(!ok)return;await deleteRecord(e,id);toast('Đã xóa dòng đơn giá','');const m=MODALS[MODALS.length-1];if(m&&m.ctx&&m.ctx.ent.key==='contracts')refreshForm(m,null);else renderMain()};
 ACT['ctr-line']=el=>{
   const d=el.dataset,id=d.id||null;let pre=null;
   if(!id){pre={contractId:d.c};if(d.kind){pre.kind=d.kind;const k=KIND_DEF[d.kind];if(k){pre.unit=k.unit;pre.per=k.per}}if(d.svc)pre.serviceType=catKeyByName('svcType',d.svc)}
@@ -1397,10 +1400,10 @@ defEnt({key:'contracts',title:'Hợp đồng',singular:'Hợp đồng',store:'co
 /* ---------- Dịch vụ kèm theo hợp đồng (điện, nước, bảo vệ, vệ sinh...) ---------- */
 defEnt({key:'services',title:'Phí phát sinh & dịch vụ kèm theo',singular:'Phí phát sinh/dịch vụ',store:'services',size:'lg',
  desc:'Các khoản phát sinh ngoài đơn giá chính. Thuê đứt: điện, nước, bảo vệ, vệ sinh… nếu khách thuê thêm. Lưu kho trọn gói: phí bốc xếp chiều nhập và chiều xuất (mỗi loại một đơn giá). Doanh thu thực tế ghi ở Doanh thu & Công nợ.',
- label:r=>r?`${catName('svcType',r.serviceType)} – ${ctrNo(r.contractId)}`:'',
+ label:r=>r?`${catName('svcType',r.serviceType)||'(chưa đặt tên)'} – ${ctrNo(r.contractId)}`:'',
  tabs:['Dịch vụ & cách tính','Đơn vị cung cấp & ghi chú'],
  fields:[F('contractId','Hợp đồng','ref',{ref:'contracts',req:1,f:1,tab:0,cascade:1}),F('_i','','info',{tab:0,html:v=>infoContract(v.contractId)}),
-  F('serviceType','Loại dịch vụ','cat',{g:'svcType',f:1,tab:0}),F('method','Cách tính giá','cat',{g:'svcMethod',f:1,tab:0}),
+  F('serviceType','Loại dịch vụ','cat',{g:'svcType',req:1,f:1,tab:0}),F('method','Cách tính giá','cat',{g:'svcMethod',f:1,tab:0}),
   F('unit','Đơn vị tính','text',{tab:0,ph:'kWh, m³, tháng, tấn, pallet, người…'}),F('unitPrice','Đơn giá (VND)','money',{tab:0,min:0}),
   F('monthlyEstimate','Số tiền dự kiến/tháng (VND)','money',{tab:0,min:0,help:'Ước tính để đối chiếu với doanh thu thực tế thu được'}),
   F('startDate','Ngày áp dụng','date',{tab:0}),F('endDate','Ngày kết thúc (nếu ngừng áp dụng)','date',{tab:0}),
