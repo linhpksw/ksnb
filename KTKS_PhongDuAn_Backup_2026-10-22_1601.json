@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-04T03:34:19.578Z",
+    "backupDate": "2026-11-04T03:37:53.394Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 1,
       "followups": 1
     },
-    "checksum": "1d521394"
+    "checksum": "fcb11cf1"
   },
   "settings": {},
   "data": {
@@ -3720,7 +3720,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.558Z",
+        "updatedAt": "2026-11-04T03:37:51.375Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3770,7 +3770,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.560Z",
+        "updatedAt": "2026-11-04T03:37:51.376Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3820,7 +3820,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.561Z",
+        "updatedAt": "2026-11-04T03:37:51.376Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3918,7 +3918,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.563Z",
+        "updatedAt": "2026-11-04T03:37:51.378Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3968,7 +3968,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.562Z",
+        "updatedAt": "2026-11-04T03:37:51.377Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4018,7 +4018,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.557Z",
+        "updatedAt": "2026-11-04T03:37:51.375Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -6605,7 +6605,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-04T03:34:17.548Z",
+        "updatedAt": "2026-11-04T03:37:51.367Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -13251,7 +13251,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.566Z"
+        "updatedAt": "2026-11-04T03:37:51.379Z"
       },
       {
         "id": "svc_phuanvinh_nangha_n",
@@ -13266,7 +13266,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.565Z"
+        "updatedAt": "2026-11-04T03:37:51.379Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13281,7 +13281,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-04T03:34:17.564Z"
+        "updatedAt": "2026-11-04T03:37:51.378Z"
       }
     ],
     "pricepolicies": [
@@ -13350,7 +13350,10 @@
         "note": "",
         "id": "muknnwvbgwfy9zv",
         "createdAt": "2026-09-28T02:55:50.567Z",
-        "updatedAt": "2026-09-28T02:58:16.351Z"
+        "updatedAt": "2026-09-28T02:58:16.351Z",
+        "sites": [
+          "k1"
+        ]
       },
       {
         "policyType": "lease",
@@ -13369,7 +13372,10 @@
         "note": "",
         "id": "muknvwxz6jk3gu2",
         "createdAt": "2026-09-28T03:02:03.911Z",
-        "updatedAt": "2026-09-28T03:05:54.447Z"
+        "updatedAt": "2026-09-28T03:05:54.447Z",
+        "sites": [
+          "k3"
+        ]
       },
       {
         "policyType": "lease",
@@ -13388,7 +13394,10 @@
         "note": "",
         "id": "muko4cmuqugzg8l",
         "createdAt": "2026-09-28T03:08:37.494Z",
-        "updatedAt": "2026-10-06T07:03:50.308Z"
+        "updatedAt": "2026-10-06T07:03:50.308Z",
+        "sites": [
+          "k2"
+        ]
       },
       {
         "policyType": "lease",
@@ -13407,7 +13416,10 @@
         "note": "",
         "id": "mukone7qvnakmmg",
         "createdAt": "2026-09-28T03:23:26.006Z",
-        "updatedAt": "2026-09-28T03:24:54.254Z"
+        "updatedAt": "2026-09-28T03:24:54.254Z",
+        "sites": [
+          "cmukoaae6crkhw8i"
+        ]
       },
       {
         "policyType": "lease",
@@ -13426,7 +13438,10 @@
         "note": "",
         "id": "mukp1z0d82f1nng",
         "createdAt": "2026-09-28T03:34:46.141Z",
-        "updatedAt": "2026-09-28T03:36:03.701Z"
+        "updatedAt": "2026-09-28T03:36:03.701Z",
+        "sites": [
+          "cmukoahxa78ju1hh"
+        ]
       },
       {
         "policyType": "lease",
@@ -13445,7 +13460,10 @@
         "note": "",
         "id": "mukp67f1oo7oyro",
         "createdAt": "2026-09-28T03:38:03.661Z",
-        "updatedAt": "2026-09-28T03:40:13.749Z"
+        "updatedAt": "2026-09-28T03:40:13.749Z",
+        "sites": [
+          "k4"
+        ]
       },
       {
         "id": "policy_hnt_renewal_qd176",
@@ -17016,7 +17034,7 @@
         "risk": "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
         "rec": "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-04T03:34:17.549Z"
+        "updatedAt": "2026-11-04T03:37:51.367Z"
       },
       {
         "id": "chk_25_chk_cn_02",
@@ -17050,7 +17068,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-04T03:34:17.550Z"
+        "updatedAt": "2026-11-04T03:37:51.369Z"
       },
       {
         "id": "chk_27_chk_ck_01",
@@ -17118,7 +17136,7 @@
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-11-04T03:34:17.551Z"
+        "updatedAt": "2026-11-04T03:37:51.370Z"
       },
       {
         "id": "chk_31_chk_hh_01",
