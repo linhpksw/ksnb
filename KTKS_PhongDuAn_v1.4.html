@@ -7856,6 +7856,184 @@ async function ensurePricePolicySites(){
   }
 }
 
+
+async function ensureSocSonProjects(){
+  const periods = DB.all('periods');
+  const pQ4 = periods.find(x => (x.year === 2026 || String(x.year) === '2026') && (x.quarter === 4 || String(x.quarter) === '4')) || periods[0];
+  if(!pQ4) return;
+  const pidQ4 = pQ4.id;
+  const now = '2026-10-28T10:00:00.000Z';
+
+  /* 1. Cập nhật phạm vi Q4 */
+  const q4Scope = 'Kiểm tra toàn diện 09 gói thầu/dự án đầu tư – cải tạo hạ tầng (bổ sung DA-009 TT Logistics HNT Sóc Sơn – Giai đoạn III), hợp đồng thương mại, chính sách giá và công tác kiểm soát rủi ro đầu tư xây dựng cơ bản.';
+  if(!pQ4.scope || !pQ4.scope.includes('DA-009')){
+    await DB.put('periods', {
+      ...pQ4,
+      scope: q4Scope,
+      updatedAt: now
+    });
+  }
+
+  /* 2. Dự án DA-009 */
+  const kPhuong = catKeyByName('person','Nguyễn Ngọc Phương') || 'k3';
+  const kHai = catKeyByName('person','Nguyễn Ngọc Hải (Chủ tịch HĐQT)') || 'k9';
+  const kTypeXd = catKeyByName('projectType','Đầu tư xây dựng kho') || 'k1';
+  const kUnitPda = catKeyByName('unit','Phòng Dự án') || 'k1';
+
+  const da009Proj = {
+    id: 'proj_da009_socson_gd3',
+    code: 'DA-009',
+    name: 'Dự án Đầu tư xây dựng Trung tâm Logistics HNT Sóc Sơn – Giai đoạn III',
+    type: kTypeXd,
+    location: 'Km21+200 - QL3, thôn Mai Xuân, xã Sóc Sơn, TP. Hà Nội',
+    owner: kPhuong,
+    status: 'doing',
+    proposeDate: '2026-10-28',
+    startDate: '2027-01-31',
+    endDate: '2028-02-28',
+    total: '',
+    createdAt: now,
+    updatedAt: now
+  };
+  const exProj = DB.get('projects', da009Proj.id);
+  if(!exProj || exProj.total !== ''){
+    await DB.put('projects', da009Proj);
+  }
+
+  /* 3. Quyết định đầu tư (investments) */
+  const da009Inv = {
+    id: 'inv_da009_socson_gd3',
+    periodId: pidQ4,
+    projectId: 'proj_da009_socson_gd3',
+    hasProposal: 'y',
+    proposalNo: 'BB làm việc số 28102026/HNT-LG ngày 28/10/2026',
+    proposalDate: '2026-10-28',
+    drafter: kPhuong,
+    approver: kHai,
+    authOK: 'y',
+    hasResolution: 'y',
+    resNo: 'Thống nhất nguyên tắc phương án hợp tác xây dựng và thuê kho bãi Trung tâm Logistics HNT Sóc Sơn – GĐ III',
+    resDate: '2026-10-28',
+    approvedValue: '',
+    evidence: 'Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026 giữa Công ty CP Logistics HNT và Công ty CP Đầu tư Xây dựng Linh Giang; quy mô thuê 6.700m² kho (đơn giá 94.000 đ/m²/tháng chưa VAT) và 2.500m² sân bãi (miễn phí) trong thời hạn 10 năm; tiền đặt cọc 3 tháng tương đương 1.889.400.000 đ chia 3 đợt.',
+    note: 'Điều kiện tiên quyết ký HĐ chính thức: Chậm nhất 31/01/2027 Bên A phải hoàn thiện đầy đủ Giấy phép xây dựng và Thẩm duyệt PCCC. Nếu quá hạn 31/01/2027 mà chưa có GPXD & PCCC, Bên A phải bồi thường phạt 500.000.000 đ cho HNT.',
+    createdAt: now,
+    updatedAt: now
+  };
+  const exInv = DB.get('investments', da009Inv.id);
+  if(!exInv || exInv.approvedValue !== ''){
+    await DB.put('investments', da009Inv);
+  }
+
+  /* 4. Hồ sơ yêu cầu (docreqs) */
+  const da009Docreqs = [
+    {
+      id: 'docreq_da009_bb',
+      stt: 1,
+      group: 'k1',
+      name: 'Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026',
+      content: 'Biên bản thỏa thuận nguyên tắc giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về hợp tác XD và thuê kho bãi Sóc Sơn GĐ III',
+      periodId: pidQ4,
+      reqDate: '2026-10-28',
+      deadline: '2026-10-29',
+      recvDate: '2026-10-28',
+      provider: kPhuong,
+      status: 'recv',
+      evidence: 'File PDF: BB LAM VIEC HNT-LINHGIANG V.V XD TTLGTHNT SS GĐ III_20261028_0001.pdf (04 trang đủ chữ ký Bên A và Bên B).',
+      note: 'Đã nhận đầy đủ biên bản làm việc gốc có chữ ký của Chủ tịch HĐQT Nguyễn Ngọc Hải và GĐĐH Nguyễn Văn Thứ.',
+      createdAt: now,
+      updatedAt: now
+    },
+    {
+      id: 'docreq_da009_gpxd',
+      stt: 2,
+      group: 'k1',
+      name: 'Giấy phép xây dựng và Hồ sơ thẩm duyệt PCCC Sóc Sơn GĐ III',
+      content: 'Giấy phép xây dựng được cơ quan có thẩm quyền cấp và Giấy chứng nhận thẩm duyệt thiết kế PCCC do Công an PCCC cấp cho cụm kho GĐ III',
+      periodId: pidQ4,
+      reqDate: '2026-10-28',
+      deadline: '2027-01-31',
+      recvDate: '',
+      provider: kPhuong,
+      status: 'wait',
+      evidence: '',
+      note: 'Bên A cam kết hoàn thiện chậm nhất ngày 31/01/2027 làm điều kiện để hai bên ký Hợp đồng thuê kho chính thức.',
+      createdAt: now,
+      updatedAt: now
+    }
+  ];
+  for(const dr of da009Docreqs){
+    if(!DB.get('docreqs', dr.id)) await DB.put('docreqs', dr);
+  }
+
+  /* 5. Điểm lưu ý / Rủi ro KSNB (findings) */
+  const da009Fnd = {
+    id: 'fnd_da009_socson_cocs',
+    periodId: pidQ4,
+    code: 'FND-26Q4-001',
+    group: 'k1',
+    riskLevel: 'med',
+    projectId: 'proj_da009_socson_gd3',
+    contractId: '',
+    checklistId: '',
+    content: 'Kiểm soát điều kiện pháp lý (GPXD, PCCC) và mốc thanh toán tiền cọc 1,889 tỷ đồng dự án Sóc Sơn Giai đoạn III',
+    basis: 'Quy định kiểm soát rủi ro đầu tư của Tập đoàn; Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.',
+    actual: '1) Thỏa thuận ký hợp đồng chính thức và tiến độ thanh toán tiền cọc 3 tháng (1.889.400.000 đ) chia 3 đợt gắn với mốc khởi công của Bên A; 2) Điều kiện tiên quyết: Chậm nhất 31/01/2027 Bên A phải hoàn tất GPXD và Thẩm duyệt PCCC; nếu không hoàn thành Bên A phải bồi thường phạt 500 triệu đồng; 3) Cần kiểm soát chặt chẽ tính pháp lý quyền sử dụng đất của Bên A và chỉ giải ngân tiền cọc đợt 1 sau khi HĐ chính thức có hiệu lực và Bên A thực tế khởi công xây dựng.',
+    evidence: 'Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.',
+    cause: 'Dự án thuê kho quy mô lớn (6.700m² kho, 2.500m² bãi) trong 10 năm theo hình thức đối tác xây dựng theo yêu cầu của HNT nên tiềm ẩn rủi ro chậm tiến độ cấp phép xây dựng/PCCC của đối tác.',
+    impact: 'Nếu không kiểm soát chặt chẽ mốc cấp phép 31/01/2027 và điều kiện khởi công, có nguy cơ tồn đọng vốn đặt cọc hoặc chậm kế hoạch đưa kho vào vận hành kinh doanh (12/2027 - 02/2028).',
+    risk: 'Rủi ro pháp lý dự án và rủi ro chậm bàn giao kho khai thác thương mại.',
+    amount: 1889400000,
+    deptOpinion: '',
+    conclusion: 'Đề nghị Phòng Dự án và Ban Giám đốc theo dõi sát sao mốc 31/01/2027 về GPXD & Thẩm duyệt PCCC của Công ty Linh Giang; chỉ ký HĐ và giải ngân tiền cọc khi đối tác đáp ứng đầy đủ điều kiện pháp lý và khởi công thực tế.',
+    createdAt: now,
+    updatedAt: now
+  };
+  const exFnd = DB.get('findings', da009Fnd.id);
+  if(!exFnd) await DB.put('findings', da009Fnd);
+
+  /* 6. Kiến nghị KSNB (recs) */
+  const da009Rec = {
+    id: 'rec_da009_socson_01',
+    periodId: pidQ4,
+    findingId: 'fnd_da009_socson_cocs',
+    code: 'REC-26Q4-001',
+    content: 'Phòng Dự án đôn đốc và giám sát Công ty CP Đầu tư Xây dựng Linh Giang cung cấp Giấy phép xây dựng và Thẩm duyệt PCCC chậm nhất ngày 31/01/2027; kiểm tra thực địa công tác khởi công trước khi trình duyệt chuyển tiền đặt cọc Đợt 1 (30% = 566.820.000 đ).',
+    unit: kUnitPda,
+    owner: kPhuong,
+    commitDate: '2026-10-28',
+    deadline: '2027-01-31',
+    measure: 'Thu thập đầy đủ bản sao chứng thực GPXD, Giấy chứng nhận thẩm duyệt PCCC và lập biên bản xác nhận khởi công thực tế trước khi giải ngân.',
+    status: 'todo',
+    fixEvidence: '',
+    unitOpinion: '',
+    ktksOpinion: '',
+    closeDate: '',
+    confirmer: '',
+    createdAt: now,
+    updatedAt: now
+  };
+  const exRec = DB.get('recs', da009Rec.id);
+  if(!exRec) await DB.put('recs', da009Rec);
+
+  /* 7. Nhật ký (journal) */
+  const da009Jnl = {
+    id: 'jnl_socson_da009_20261028',
+    periodId: pidQ4,
+    ts: '2026-10-28T14:30:00.000Z',
+    user: 'Nguyễn Thị Thu Hương',
+    type: 'Đối chiếu',
+    object: 'Dự án DA-009 (TT Logistics HNT Sóc Sơn - Giai đoạn III)',
+    content: 'Tiếp nhận và rà soát Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026 giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về việc thuê kho 6.700m² và bãi 2.500m² tại Sóc Sơn (GĐ III). Cập nhật danh mục dự án DA-009 và lập lưu ý KSNB về điều kiện cấp phép GPXD/PCCC trước 31/01/2027 cùng tiến độ đặt cọc 1,889 tỷ đồng.',
+    result: 'Đã cập nhật DA-009 vào hệ thống; ghi nhận 01 Lưu ý KSNB & 01 Kiến nghị',
+    note: '',
+    auto: 0,
+    createdAt: '2026-10-28T14:30:00.000Z'
+  };
+  if(!DB.get('journal', da009Jnl.id)) await DB.put('journal', da009Jnl);
+}
+
+
 async function boot(){
   await DB.init();
   if(!DB.all('catalogs').length){await seedCatalogs();await DB.setMeta('catMig','1.5')}
@@ -7868,6 +8046,7 @@ async function boot(){
   await ensurePricePolicySites();
   await ensurePdaChecklist();
   await ensureSendoProjects();
+  await ensureSocSonProjects();
   await ensureRenewalAppendices();
   await ensureNewContractsQ4();
   await cleanupDeletedRecords();
