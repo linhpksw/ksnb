@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-03T03:39:08.042Z",
+    "backupDate": "2026-11-04T03:34:19.578Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 1,
       "followups": 1
     },
-    "checksum": "92a96383"
+    "checksum": "1d521394"
   },
   "settings": {},
   "data": {
@@ -48,12 +48,12 @@
         "inspector": "k1",
         "head": "k2",
         "status": "doing",
-        "scope": "Kiểm tra toàn diện 08 gói thầu/dự án đầu tư – cải tạo hạ tầng (DA-001 Thiết kế & Thẩm định nâng cấp PCCC NK2; DA-002 Cải tạo hoàn trả nền kho Sendo NK1; DA-003 Lắp đặt bổ sung đèn chiếu sáng kho Sendo NK1; DA-004 Đấu nối & lắp cụm đồng hồ nước sạch Ban Mai NK2; DA-005 Kéo đường ống cấp nước HDPE D50 kho Ban Mai NK2; DA-006 Khảo sát địa chất dự án Hà Linh; DA-007 Khảo sát địa hình 1/500 dự án Hà Linh; DA-008 TVTK tổng thể xây dựng & PCCC dự án Hà Linh), 70 hợp đồng thuê kho/lưu kho (bao gồm cả hợp đồng đã hủy/thanh lý trong kỳ), chính sách giá – chiết khấu (QĐ 11/2025/QĐ-HNT, QĐ 176/2024/QĐ-HNT), công nợ và KPI 5 nhân sự Phòng Dự án.",
+        "scope": "",
         "objective": "Đánh giá tính tuân thủ quy trình đầu tư xây dựng – cải tạo kho, thẩm quyền phê duyệt dự toán, nghiệm thu – thanh quyết toán nhà thầu, quản lý hợp đồng thương mại và nhận diện sớm các rủi ro kiểm soát nội bộ.",
         "note": "",
         "conclusion": "",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-10-20T09:15:00.000Z"
+        "updatedAt": "2026-11-03T03:47:15.586Z"
       }
     ],
     "catalogs": [
@@ -2056,13 +2056,13 @@
         "type": "k1",
         "location": "Nhà kho HNT Nguyên Khê 2 (Số 28 TT HNT Nguyên Khê, Khu đất Công ty CP Phúc Thịnh, xã Phúc Thịnh, TP. Hà Nội)",
         "owner": "k3",
-        "status": "doing",
+        "status": "done",
         "proposeDate": "2026-08-05",
-        "startDate": "2026-08-04",
+        "startDate": "2026-08-06",
         "endDate": "2026-08-31",
         "total": 16430332,
         "createdAt": "2026-10-20T07:32:00.000Z",
-        "updatedAt": "2026-10-20T07:32:00.000Z"
+        "updatedAt": "2026-11-03T04:08:44.857Z"
       },
       {
         "id": "proj_da005_banmai_onghdpe",
@@ -3720,7 +3720,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.139Z",
+        "updatedAt": "2026-11-04T03:34:17.558Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3770,7 +3770,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.140Z",
+        "updatedAt": "2026-11-04T03:34:17.560Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3820,7 +3820,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.141Z",
+        "updatedAt": "2026-11-04T03:34:17.561Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3918,7 +3918,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.142Z",
+        "updatedAt": "2026-11-04T03:34:17.563Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3968,7 +3968,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.142Z",
+        "updatedAt": "2026-11-04T03:34:17.562Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4018,7 +4018,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.137Z",
+        "updatedAt": "2026-11-04T03:34:17.557Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4106,7 +4106,7 @@
         "site": "cmukoahxa78ju1hh",
         "signDate": "2026-09-20",
         "effDate": "2026-09-20",
-        "endDate": "2026-11-20",
+        "endDate": "2026-11-30",
         "area": 366.2,
         "unitPrice": 140000,
         "monthly": 49437000,
@@ -4115,7 +4115,35 @@
         "docPrice": "y",
         "docOther": "Tờ trình ngày 14/10/2026 duyệt chiết khấu bán hàng cho P. Dự án: 961.275 đ (tỷ lệ 35% x 2/36 tháng). Đơn giá kho 135.000 + DV 5.000 đ/m²/tháng.",
         "createdAt": "2026-10-20T10:00:00.000Z",
-        "updatedAt": "2026-10-20T10:00:00.000Z"
+        "updatedAt": "2026-11-03T03:49:49.882Z",
+        "cargoType": "",
+        "dangerSurApplied": "",
+        "indefinite": "",
+        "isRenewal": "",
+        "priorYears": "",
+        "priorContractRef": "",
+        "signer": "",
+        "signerTitle": "",
+        "authOK": "",
+        "storageMinRev": "",
+        "payCycle": "",
+        "payDueDays": "",
+        "priceUp": "",
+        "upRate": "",
+        "upCycle": "",
+        "latePenalty": "",
+        "earlyTermination": "",
+        "terminate": "",
+        "compensate": "",
+        "damage": "",
+        "fire": "",
+        "force": "",
+        "special": "",
+        "docAppendix": "",
+        "docQuote": "",
+        "docNego": "",
+        "docHandover": "",
+        "docLiquid": ""
       },
       {
         "id": "ct_tikinow_pl05_06",
@@ -5088,7 +5116,7 @@
         "docOther": "",
         "id": "muf8472xytacjq6",
         "createdAt": "2026-09-24T07:41:45.561Z",
-        "updatedAt": "2026-11-03T01:30:30.225Z",
+        "updatedAt": "2026-11-04T02:07:47.180Z",
         "model": "storage",
         "cargoType": "",
         "dangerSurApplied": "",
@@ -6577,7 +6605,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-03T03:34:56.118Z",
+        "updatedAt": "2026-11-04T03:34:17.548Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -8242,6 +8270,21 @@
         "id": "muwb7wjreh20g7e",
         "createdAt": "2026-10-06T06:40:42.375Z",
         "updatedAt": "2026-10-06T06:40:42.375Z"
+      },
+      {
+        "kind": "luukho",
+        "per": "day",
+        "contractId": "muf8472xytacjq6",
+        "unit": "m³",
+        "unitPrice": 5160,
+        "quantity": 0,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "note": "",
+        "id": "mw1h7lno2nyr2a0",
+        "createdAt": "2026-11-04T02:06:59.172Z",
+        "updatedAt": "2026-11-04T02:06:59.172Z"
       },
       {
         "id": "rent_binhan_storage_2026",
@@ -12851,6 +12894,36 @@
         "updatedAt": "2026-11-03T02:43:35.353Z"
       },
       {
+        "contractId": "muf8472xytacjq6",
+        "serviceType": "k5",
+        "method": "k7",
+        "unit": "m3/lượt",
+        "unitPrice": 60000,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "provider": "",
+        "note": "",
+        "id": "mw1h87dvx66tleh",
+        "createdAt": "2026-11-04T02:07:27.331Z",
+        "updatedAt": "2026-11-04T02:07:27.331Z"
+      },
+      {
+        "contractId": "muf8472xytacjq6",
+        "serviceType": "k6",
+        "method": "k8_4e09",
+        "unit": "m3/lượt",
+        "unitPrice": 60000,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "provider": "",
+        "note": "",
+        "id": "mw1h8lffdhjv9y9",
+        "createdAt": "2026-11-04T02:07:45.531Z",
+        "updatedAt": "2026-11-04T02:07:45.531Z"
+      },
+      {
         "id": "svc_binhan_bocxep_n",
         "contractId": "ct_binhan_1210_2026",
         "serviceType": "svcType.k6_57e8",
@@ -13178,22 +13251,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.144Z"
-      },
-      {
-        "id": "svc_phuanvinh_bocxep_x",
-        "contractId": "ct_phuanvinh_0610_2026",
-        "serviceType": "svcType.k7_a10b",
-        "method": "svcMethod.k7_fa30",
-        "unit": "tấn/lượt",
-        "unitPrice": 100000,
-        "monthlyEstimate": "",
-        "startDate": "2026-10-06",
-        "endDate": "2027-10-06",
-        "provider": "HNT",
-        "note": "Bốc xếp hàng hoá chiều xuất (tối thiểu 10.000 đ/đơn)",
-        "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-02T16:30:00.000Z"
+        "updatedAt": "2026-11-04T03:34:17.566Z"
       },
       {
         "id": "svc_phuanvinh_nangha_n",
@@ -13208,7 +13266,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.144Z"
+        "updatedAt": "2026-11-04T03:34:17.565Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13223,7 +13281,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-03T03:34:56.143Z"
+        "updatedAt": "2026-11-04T03:34:17.564Z"
       }
     ],
     "pricepolicies": [
@@ -15928,7 +15986,34 @@
         "policyCompliance": "y",
         "amount": 23409000,
         "createdAt": "2026-11-02T07:56:02.079Z",
-        "updatedAt": "2026-11-02T07:56:02.079Z"
+        "updatedAt": "2026-11-03T03:52:42.530Z",
+        "termCase": "renew_qd176",
+        "related": 129465000,
+        "receiver": "",
+        "type": "k1",
+        "isPrior3Years": "auto",
+        "priorProof": "",
+        "renewMonths": 65,
+        "oneMonthRentBase": 129465000,
+        "volQty": "",
+        "volUnit": "",
+        "firstMonthApplied": "",
+        "policy": "",
+        "allowedRate": 30,
+        "actualRate": "",
+        "gddhProposed": "",
+        "gddhProposalDoc": "",
+        "hdqtApproved": "",
+        "hdqtApprovalDoc": "",
+        "gddhApproved": "",
+        "earlyTermBy": "",
+        "actualMonthsUsed": "",
+        "clawbackAmt": "",
+        "proposer": "",
+        "approveDate": "",
+        "docs": "",
+        "okPolicy": "",
+        "exception": ""
       },
       {
         "beneficiary": "Chi nhánh Công ty CP Thế Giới Số",
@@ -16931,7 +17016,7 @@
         "risk": "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
         "rec": "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-03T03:34:56.122Z"
+        "updatedAt": "2026-11-04T03:34:17.549Z"
       },
       {
         "id": "chk_25_chk_cn_02",
@@ -16965,7 +17050,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-03T03:34:56.122Z"
+        "updatedAt": "2026-11-04T03:34:17.550Z"
       },
       {
         "id": "chk_27_chk_ck_01",
@@ -17033,7 +17118,7 @@
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-11-03T03:34:56.123Z"
+        "updatedAt": "2026-11-04T03:34:17.551Z"
       },
       {
         "id": "chk_31_chk_hh_01",
@@ -30451,6 +30536,214 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-03T03:39:06.026Z"
+      },
+      {
+        "id": "mw05cpac3nz78rv",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:47:15.588Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Kỳ kiểm tra",
+        "content": "Cập nhật kỳ kiểm tra Q4/2026",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:47:15.588Z"
+      },
+      {
+        "id": "mw05g0ccai2kg51",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:49:49.884Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 2009/2026/HĐTK/HNT-TĐ – CÔNG TY CỔ PHẦN XUẤT NHẬP KHẨU VÀ PHÁT TRIỂN CÔNG NGHỆ THÀNH ĐẠT | Ngày hết hạn: 20/11/2026 → 30/11/2026",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:49:49.884Z"
+      },
+      {
+        "id": "mw05gujgzdfndiq",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:50:29.020Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Theo dõi tái tục",
+        "content": "Tự tạo 5 bản ghi tái tục từ hợp đồng sắp/đã hết hạn",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:50:29.020Z"
+      },
+      {
+        "id": "mw05hbzxrwy0czk",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:50:51.645Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 1703/2025/HĐTK/HNT-TIKINOW_PL05-06",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:50:51.645Z"
+      },
+      {
+        "id": "mw05hdjoslts2ir",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:50:53.652Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 0811/2024/HĐTK/HNT-KAM",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:50:53.652Z"
+      },
+      {
+        "id": "mw05hh0tolbr0ja",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:50:58.157Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 2009/2026/HĐTK/HNT-TĐ",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:50:58.157Z"
+      },
+      {
+        "id": "mw05hjmt2uo73xk",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:51:01.541Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 2511/2025/HĐTK/HNT-MTV",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:51:01.541Z"
+      },
+      {
+        "id": "mw05hljoeaspoke",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:51:04.020Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Theo dõi tái tục",
+        "content": "Xóa theo dõi tái tục Tái tục 1211/2025/HĐTK/HNT-MK",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:51:04.020Z"
+      },
+      {
+        "id": "mw05jpk4mzqke92",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T03:52:42.532Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Chiết khấu",
+        "content": "Cập nhật chiết khấu Chiết khấu 2006/2023/HĐTK/HNT-DAESANG | Trường hợp thời hạn & chấm dứt HĐ: ∅ → Khách gia hạn HĐ - Phòng Dự án (QĐ 176/2024/QĐ-HNT); Doanh thu liên quan (VND): ∅ → 129.465.000; Loại (đối tượng hưởng CK): ∅ → Phòng Dự án; Khách hàng đã ký HĐ từ ≥ 3 năm trở lên (QĐ 176)?: ∅ → Tự động nhận diện từ hệ thống (≥ 3 năm) (+3 trường)",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T03:52:42.532Z"
+      },
+      {
+        "id": "mw064c3gby90vwk",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-03T04:08:44.860Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Dự án",
+        "content": "Cập nhật dự án DA-004 – Gói thầu thi công điểm đấu nối và lắp đặt cụm đồng hồ nước sạch tại TTNK2 (Khách hàng Ban Mai) | Trạng thái: Đang thực hiện → Hoàn thành; Ngày bắt đầu: 04/08/2026 → 06/08/2026",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-03T04:08:44.860Z"
+      },
+      {
+        "id": "mw1h7lntb4rdp7m",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:06:59.177Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Đơn giá chính",
+        "content": "Tạo đơn giá chính Lưu kho – 1000",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:06:59.177Z"
+      },
+      {
+        "id": "mw1h87dx3j9iizp",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:07:27.333Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Tạo phí phát sinh/dịch vụ Bốc xếp nhập – 1000",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:07:27.333Z"
+      },
+      {
+        "id": "mw1h8lfhrovva72",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:07:45.533Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Tạo phí phát sinh/dịch vụ Bốc xếp xuất – 1000",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:07:45.533Z"
+      },
+      {
+        "id": "mw1h8mp9oclw5dx",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:07:47.181Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 1000 – CÔNG TY TNHH XÚC TIẾN THƯƠNG MẠI VIỆT TRUNG GLOBAL",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:07:47.181Z"
+      },
+      {
+        "id": "mw1ixw8hs3t51g9",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:55:25.553Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Chính sách giá",
+        "content": "Cập nhật chính sách giá CS giá – Trung tâm logistic HNT Nguyên Khê | Dự án/kho áp dụng: ∅ → Trung tâm logistic HNT Nguyên Khê",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:55:25.553Z"
+      },
+      {
+        "id": "mw1iy039zk45uwi",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T02:55:30.549Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Xóa",
+        "object": "Chính sách giá",
+        "content": "Xóa chính sách giá CS giá – Trung tâm logistic HNT Nguyên Khê (kèm 3 bản ghi liên quan)",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T02:55:30.549Z"
       }
     ]
   }

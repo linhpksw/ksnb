@@ -568,7 +568,7 @@ const YN={y:'Có',n:'Không',na:'N/A'};
 
 function optsFor(f){
   if(f.opts)return f.opts;
-  if(f.t==='cat'||(f.t==='computed'&&f.fmt==='cat'))return catItems(f.g).map(i=>[i.key,i.name]);
+  if(f.t==='cat'||f.t==='cats'||(f.t==='computed'&&f.fmt==='cat'))return catItems(f.g).map(i=>[i.key,i.name]);
   if(f.t==='yn')return[['y','Có'],['n','Không'],['na','N/A']];
   if(f.t==='ref'){const e=ENT[f.ref];return DB.all(e.store).filter(x=>!f.where||f.where(x)).map(x=>[x.id,e.label(x)]).sort((a,b)=>a[1].localeCompare(b[1],'vi'))}
   return[];
@@ -576,6 +576,10 @@ function optsFor(f){
 function fmtVal(f,v){
   if(v==null||v==='')return'';
   const t=fType(f);
+  if(t==='cats'||Array.isArray(v)){
+    const arr=Array.isArray(v)?v:[v];
+    return arr.map(k=>catName(f.g||'site',k)).filter(Boolean).join(', ');
+  }
   switch(t){
    case'money':return fmtMoney(v);case'pct':return fmtPct(v);case'number':return fmtNum(v);case'days':return fmtNum(v)+' ngày';
    case'date':return fmtDate(v);case'month':return fmtMonth(v);case'datetime':return fmtDT(v);
@@ -601,6 +605,16 @@ function cellHtml(ent,f,r){
     return`<select class="inl" data-chg="inl" data-e="${ent.key}" data-id="${r.id}" data-k="${f.k}" aria-label="${esc(f.l)}"><option value=""></option>${optsFor(f).map(([a,b])=>`<option value="${esc(a)}" ${a===cur?'selected':''}>${esc(b)}</option>`).join('')}</select>`;
   }
   if(t==='html')return v==null?'':String(v);
+  if(t==='cats'||f.k==='sites'||(f.t==='cat'&&r.sites&&r.sites.length>1)){
+    const arr=Array.isArray(v)?v:(r.sites&&r.sites.length)?r.sites:(v?[v]:[]);
+    if(!arr.length)return f.dash?'<span class="note">—</span>':'';
+    const allCount=catItems(f.g||'site').length;
+    if(allCount>1&&arr.length>=allCount)return badge(`Tất cả các kho (${arr.length})`,'blue');
+    if(arr.length<=2)return arr.map(k=>badge(catName(f.g||'site',k),catTone(f.g||'site',k))).join(' ');
+    const firstTwo=arr.slice(0,2).map(k=>badge(catName(f.g||'site',k),catTone(f.g||'site',k))).join(' ');
+    const restTooltip=arr.map(k=>catName(f.g||'site',k)).join(', ');
+    return`<span style="display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap">${firstTwo} <span class="badge gray" title="${esc(restTooltip)}" style="cursor:help">+${arr.length-2} kho</span></span>`;
+  }
   if(v==null||v==='')return f.dash?'<span class="note">—</span>':'';
   if(t==='cat')return badge(catName(f.g,v),catTone(f.g,v));
   if(t==='yn')return badge(YN[v]||v,ynTone(f,v));
@@ -630,7 +644,16 @@ function filteredRows(ent){
   const st=UI._l(ent.key);let a=scopedRows(ent);
   for(const[k,val]of Object.entries(st.flt)){
     if(val===''||val==null)continue;const vf=(ent.vfilters||[]).find(x=>x.k===k);
-    if(vf)a=a.filter(r=>vf.get(r)===val);else{const f=fieldOf(ent,k);a=a.filter(r=>{const x=f?fieldVal(f,r):r[k];return String(x==null?'':x)===val})}
+    if(vf)a=a.filter(r=>vf.get(r)===val);else{
+      const f=fieldOf(ent,k);
+      a=a.filter(r=>{
+        const x=f?fieldVal(f,r):r[k];
+        if(Array.isArray(x))return x.includes(val);
+        if(k==='sites'&&r.sites)return Array.isArray(r.sites)?r.sites.includes(val):r.sites===val;
+        if(k==='site'&&r.sites)return(Array.isArray(r.sites)&&r.sites.includes(val))||r.site===val;
+        return String(x==null?'':x)===val;
+      });
+    }
   }
   if(st.rule)a=a.filter(r=>alertsFor(ent.key,r).some(x=>x.id===st.rule));
   if(st.q){const q=norm(st.q);a=a.filter(r=>norm(rowText(ent,r)).includes(q))}
@@ -717,6 +740,26 @@ function inputHtml(f,val){
    case'cat':case'select':case'yn':case'ref':{let valNorm=v;if(f.t==='cat'&&f.g&&valNorm){const ci=catItem(f.g,valNorm);if(ci)valNorm=ci.key}
      let o=optsFor(f);if(valNorm!==''&&!o.some(x=>x[0]===valNorm))o=[...o,[valNorm,String(valNorm)+' (không còn trong danh mục)']];
      return`<select ${n}><option value="">${f.t==='yn'?'— Chưa xác định —':'— Chọn —'}</option>${o.map(([a,b])=>`<option value="${esc(a)}" ${a===valNorm?'selected':''}>${esc(b)}</option>`).join('')}</select>`}
+   case'cats':{
+     const selectedArr=Array.isArray(v)?v:(v?[v]:[]);
+     let o=optsFor(f);
+     let h=`<div class="cats-wrap" data-catk="${f.k}" style="display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:var(--bg2,#f8fafc);border:1px solid var(--line2,#e2e8f0);border-radius:8px">`;
+     h+=`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;padding-bottom:6px;border-bottom:1px dashed var(--line2,#cbd5e1)">`;
+     h+=`<span style="font-size:12px;color:var(--text3,#64748b)">Đã chọn: <b class="cats-count" style="color:var(--pri,#2563eb)">${selectedArr.length}</b> / ${o.length} kho áp dụng</span>`;
+     h+=`<div style="display:flex;gap:6px">`;
+     h+=`<button type="button" class="btn xs" data-act="cats-all" data-k="${f.k}" style="font-size:11.5px;padding:2px 8px">Chọn tất cả</button>`;
+     h+=`<button type="button" class="btn xs ghost" data-act="cats-none" data-k="${f.k}" style="font-size:11.5px;padding:2px 8px">Bỏ chọn tất cả</button>`;
+     h+=`</div></div>`;
+     h+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px;max-height:220px;overflow-y:auto;padding:2px">`;
+     o.forEach(([a,b])=>{
+       const chk=selectedArr.includes(a);
+       h+=`<label style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:${chk?'var(--pri-bg,#eff6ff)':'var(--card,#fff)'};border:1px solid ${chk?'var(--pri,#2563eb)':'var(--line,#e2e8f0)'};border-radius:6px;cursor:pointer;font-size:12.5px;line-height:1.3;transition:all .15s" class="cats-item ${chk?'on':''}">`;
+       h+=`<input type="checkbox" name="${f.k}" value="${esc(a)}" ${chk?'checked':''} style="width:16px;height:16px;cursor:pointer;flex-shrink:0" data-chg="cats-item">`;
+       h+=`<span style="flex:1">${esc(b)}</span></label>`;
+     });
+     h+=`</div></div>`;
+     return h;
+   }
    case'auto':return`<input type="text" ${n} value="${esc(v)}" placeholder="Tự động tạo khi lưu" readonly>`;
    case'checkbox':return`<label style="display:flex;align-items:center;gap:8px;font-weight:400;cursor:pointer"><input type="checkbox" ${n} ${v==='y'?'checked':''} style="width:16px;height:16px"><span>${esc(f.checkText||'Có')}</span></label>`;
    case'computed':return`<div class="calc" data-calc="${f.k}"></div>`;
@@ -747,6 +790,11 @@ function readForm(ent,form){
   const v={};
   ent.fields.forEach(f=>{
     if(['computed','info','auto'].includes(f.t)||f.noForm)return;
+    if(f.t==='cats'){
+      const cbs=form.querySelectorAll(`input[name="${f.k}"]:checked`);
+      v[f.k]=Array.from(cbs).map(cb=>cb.value);
+      return;
+    }
     const el=form.elements[f.k];if(!el)return;
     v[f.k]=f.t==='checkbox'?(el.checked?'y':''):(f.t==='number'||f.t==='money'||f.t==='pct')?(el.value===''?'':parseFloat(el.value)):(f.t==='datetime'&&el.value?new Date(el.value).toISOString():el.value.trim?el.value.trim():el.value);
     if(f.t==='datetime'&&!el.value)v[f.k]='';
@@ -770,7 +818,7 @@ function validateForm(ent,v,id,base){
   const errs={};
   ent.fields.forEach(f=>{
     if(['computed','info','auto'].includes(f.t)||f.noForm)return;const x=v[f.k];
-    if(f.req&&(x===''||x==null))errs[f.k]='Bắt buộc nhập';
+    if(f.req&&(x===''||x==null||(Array.isArray(x)&&!x.length)))errs[f.k]=f.t==='cats'?'Bắt buộc chọn ít nhất một kho áp dụng':'Bắt buộc nhập';
     else if(['number','money','pct'].includes(f.t)&&x!==''){
       if(typeof x!=='number'||isNaN(x))errs[f.k]='Phải là số hợp lệ';
       else if(f.min!=null&&x<f.min)errs[f.k]=`Không được nhỏ hơn ${f.min}`;else if(f.max!=null&&x>f.max)errs[f.k]=`Không được lớn hơn ${f.max}`}
@@ -789,7 +837,9 @@ function showErrors(m,errs){
 }
 function diffText(ent,old,rec){
   const ch=[];ent.fields.forEach(f=>{if(['computed','info','auto','textarea'].includes(f.t)||f.noForm)return;
-    if(String(old[f.k]==null?'':old[f.k])!==String(rec[f.k]==null?'':rec[f.k]))ch.push(`${f.l}: ${fmtVal(f,old[f.k])||'∅'} → ${fmtVal(f,rec[f.k])||'∅'}`)});
+    const oldV = Array.isArray(old[f.k]) ? [...old[f.k]].sort().join(',') : String(old[f.k]==null?'':old[f.k]);
+    const newV = Array.isArray(rec[f.k]) ? [...rec[f.k]].sort().join(',') : String(rec[f.k]==null?'':rec[f.k]);
+    if(oldV!==newV)ch.push(`${f.l}: ${fmtVal(f,old[f.k])||'∅'} → ${fmtVal(f,rec[f.k])||'∅'}`)});
   return ch.length?' | '+ch.slice(0,4).join('; ')+(ch.length>4?` (+${ch.length-4} trường)`:''):'';
 }
 async function commit(ent,rec,old){
@@ -809,6 +859,9 @@ function openForm(key,id,preset,readOnly){
     if(ent.lockable!==false&&P.status==='done'){toast(`Kỳ ${pLabel(P)} đã hoàn thành – không thể thêm. Hãy mở lại kỳ.`,'warn');return}
   }
   const ro=!!readOnly||(rec&&!canMod(ent,rec)),base=rec?{...rec}:defaultsFor(ent,preset),delBtn=rec&&!ro&&ent.canDelete!==false?`<button type="button" class="btn dng" data-act="form-del" style="margin-right:auto">${ic('trash')} Xóa</button>`:'';
+  if(key==='pricepolicies'){
+    if((!base.sites||!base.sites.length)&&base.site) base.sites=[base.site];
+  }
   const m=openModal({title:`${ro?'Chi tiết':rec?'Sửa':'Thêm mới'} – ${ent.singular}`,size:ent.size||'',body:formHtml(ent,base),
    footer:ro?`<button class="btn" data-act="modal-close">Đóng</button>`:`${delBtn}<button class="btn" data-act="modal-close">Hủy</button><button class="btn pri" data-act="modal-save">${ic('check')} Lưu</button>`,
    onSave:()=>saveForm(m)});
@@ -874,8 +927,39 @@ Object.assign(ACT,{
   csv:el=>{const ent=ENT[el.dataset.e];download(`${ent.title.replace(/[^\w\u00C0-\u1EF9]+/g,'_')}_${fileTag()}.csv`,csvOfEntity(ent,filteredRows(ent)),'text/csv;charset=utf-8');toast('Đã xuất CSV ('+filteredRows(ent).length+' dòng)')},
   ra:el=>{const ent=ENT[el.dataset.e],a=ent.rowActions.find(x=>x.id===el.dataset.ra),r=DB.get(ent.store,el.dataset.id);if(a&&r)return a.run(r)},
   go:el=>{const f={};(el.dataset.f||'').split('&').filter(Boolean).forEach(p=>{const[a,...b]=p.split('=');f[a]=b.join('=')});go(el.dataset.go,Object.keys(f).length?f:(ENT[el.dataset.go]?{}:undefined))},
-  hamb:()=>document.body.classList.toggle('nav-open')
+  hamb:()=>document.body.classList.toggle('nav-open'),
+  'cats-all':el=>{
+    const k=el.dataset.k,wrap=el.closest('.cats-wrap');if(!wrap)return;
+    wrap.querySelectorAll(`input[name="${k}"]`).forEach(cb=>{
+      cb.checked=true;
+      const item=cb.closest('.cats-item');if(item){item.classList.add('on');item.style.borderColor='var(--pri,#2563eb)';item.style.background='var(--pri-bg,#eff6ff)'}
+    });
+    const cnt=wrap.querySelector('.cats-count'),total=wrap.querySelectorAll(`input[name="${k}"]`).length;
+    if(cnt)cnt.textContent=total;
+    const fld=wrap.closest('.fld');if(fld&&fld.classList.contains('err')){fld.classList.remove('err');fld.querySelector('.em').textContent=''}
+    const m=MODALS[MODALS.length-1];if(m&&m.ctx)refreshForm(m,k);
+  },
+  'cats-none':el=>{
+    const k=el.dataset.k,wrap=el.closest('.cats-wrap');if(!wrap)return;
+    wrap.querySelectorAll(`input[name="${k}"]`).forEach(cb=>{
+      cb.checked=false;
+      const item=cb.closest('.cats-item');if(item){item.classList.remove('on');item.style.borderColor='var(--line,#e2e8f0)';item.style.background='var(--card,#fff)'}
+    });
+    const cnt=wrap.querySelector('.cats-count');if(cnt)cnt.textContent='0';
+    const m=MODALS[MODALS.length-1];if(m&&m.ctx)refreshForm(m,k);
+  }
 });
+CHG['cats-item']=el=>{
+  const wrap=el.closest('.cats-wrap');if(!wrap)return;
+  const item=el.closest('.cats-item');
+  if(item){
+    if(el.checked){item.classList.add('on');item.style.borderColor='var(--pri,#2563eb)';item.style.background='var(--pri-bg,#eff6ff)'}
+    else{item.classList.remove('on');item.style.borderColor='var(--line,#e2e8f0)';item.style.background='var(--card,#fff)'}
+  }
+  const checkedCount=wrap.querySelectorAll('input[type="checkbox"]:checked').length;
+  const cnt=wrap.querySelector('.cats-count');if(cnt)cnt.textContent=checkedCount;
+  if(checkedCount>0){const fld=wrap.closest('.fld');if(fld&&fld.classList.contains('err')){fld.classList.remove('err');fld.querySelector('.em').textContent=''}}
+};
 CHG.flt=el=>{const st=UI._l(el.dataset.e),k=el.dataset.k;if(k==='@rule')st.rule=el.value||null;else if(k==='@scope')st.scope=el.value||null;else st.flt[k]=el.value;st.page=1;refreshBody(el.dataset.e)};
 CHG.psize=el=>{UI._l(el.dataset.e).size=+el.value;UI._l(el.dataset.e).page=1;refreshBody(el.dataset.e)};
 CHG.inl=async el=>{
@@ -1118,12 +1202,29 @@ function suggestDiscRate(v){
   return isNum(a)?a:null;
 }
 const policy=id=>id?DB.get('pricepolicies',id):null;
-const policyName=id=>{const p=policy(id);return p?`${p.no||'CS giá'} – ${catName('site',p.site)}`:''};
+const policyName=id=>{
+  const p=policy(id);
+  if(!p)return'';
+  const sitesList=(p.sites&&p.sites.length)?p.sites:(p.site?[p.site]:[]);
+  let siteStr='';
+  const allCount=catItems('site').length;
+  if(sitesList.length&&allCount>1&&sitesList.length>=allCount)siteStr='Tất cả các kho';
+  else if(sitesList.length>2)siteStr=sitesList.slice(0,2).map(s=>catName('site',s)).join(', ')+` (+${sitesList.length-2} kho)`;
+  else siteStr=sitesList.map(s=>catName('site',s)).filter(Boolean).join(', ');
+  return `${p.no||'CS giá'}${siteStr?' – '+siteStr:''}`;
+};
 function policyStatus(p){if(!p)return['',''];const t=todayStr();if(p.effFrom&&p.effFrom>t)return['Chưa hiệu lực','gray'];if(p.effTo&&p.effTo<t)return['Hết hiệu lực','gray'];return['Đang áp dụng','green']}
 const policyTiers=id=>id?DB.all('policytiers').filter(x=>x.policyId===id):[];
-function sitePolicyFor(siteId,dateStr){
+function sitePolicyFor(siteId,dateStr,preferType){
   if(!siteId)return null;const d=dateStr||todayStr();
-  const cands=DB.all('pricepolicies').filter(p=>(p.site===siteId||(p.sites&&p.sites.includes(siteId)))&&(!p.effFrom||p.effFrom<=d)&&(!p.effTo||p.effTo>=d));
+  let cands=DB.all('pricepolicies').filter(p=>(p.site===siteId||(p.sites&&p.sites.includes(siteId)))&&(!p.effFrom||p.effFrom<=d)&&(!p.effTo||p.effTo>=d));
+  if(preferType){
+    const matched=cands.filter(p=>p.policyType===preferType);
+    if(matched.length)cands=matched;
+  }else{
+    const nonRenewal=cands.filter(p=>p.policyType!=='renewal');
+    if(nonRenewal.length)cands=nonRenewal;
+  }
   if(!cands.length){
     const sn=norm(catName('site',siteId));
     if(sn.includes('hnt')||sn.includes('dong anh')||sn.includes('nguyen khe')||sn.includes('thanh oai')){
@@ -1199,10 +1300,19 @@ ACT['policy-line']=el=>{
   if(m)m.after=()=>{const t=MODALS[MODALS.length-1];if(t&&t.ctx&&t.ctx.ent.key==='pricepolicies')refreshForm(t,null)};
 };
 defEnt({key:'pricepolicies',title:'Chính sách giá',singular:'Chính sách giá',store:'pricepolicies',size:'lg',
- desc:'Giá bán/giá dịch vụ chuẩn và bậc chiết khấu tối đa theo từng dự án/kho – căn cứ để đối chiếu với giá và chiết khấu thực tế trên hợp đồng. Nhập một lần, dùng lại cho mọi hợp đồng của kho đó. Có 2 loại: Thuê kho (thuê đứt, đơn giá theo m²) và Lưu kho trọn gói (đơn giá theo sản lượng m³/tấn/pallet, chiết khấu theo thời hạn HĐ + sản lượng).',
- label:r=>r?`${r.no||'CS giá'} – ${catName('site',r.site)}`:'',
+ desc:'Giá bán/giá dịch vụ chuẩn và bậc chiết khấu tối đa theo từng dự án/kho – căn cứ để đối chiếu với giá và chiết khấu thực tế trên hợp đồng. Nhập một lần, có thể chọn áp dụng cho một hoặc nhiều kho cùng lúc. Có 2 loại: Thuê kho (thuê đứt, đơn giá theo m²) và Lưu kho trọn gói (đơn giá theo sản lượng m³/tấn/pallet, chiết khấu theo thời hạn HĐ + sản lượng).',
+ label:r=>{
+   if(!r)return'';
+   const sitesList=(r.sites&&r.sites.length)?r.sites:(r.site?[r.site]:[]);
+   let siteStr='';
+   const allCount=catItems('site').length;
+   if(sitesList.length&&allCount>1&&sitesList.length>=allCount)siteStr='Tất cả các kho';
+   else if(sitesList.length>2)siteStr=sitesList.slice(0,2).map(s=>catName('site',s)).join(', ')+` (+${sitesList.length-2} kho)`;
+   else siteStr=sitesList.map(s=>catName('site',s)).filter(Boolean).join(', ');
+   return `${r.no||'CS giá'}${siteStr?' – '+siteStr:''}`;
+ },
  tabs:['Thông tin chung','Bảng giá dịch vụ & bậc sản lượng (Lưu kho)','Bậc chiết khấu'],
- fields:[F('site','Dự án/kho áp dụng','cat',{g:'site',req:1,f:1,tab:0}),
+ fields:[F('sites','Dự án/kho áp dụng','cats',{g:'site',req:1,f:1,full:1,tab:0,help:'Tích chọn một hoặc nhiều kho áp dụng cùng chính sách giá này mà không cần nhân bản'}),
   F('policyType','Loại chính sách','select',{opts:POLICY_TYPES,def:'lease',req:1,f:1,tab:0,help:'Thuê kho: đơn giá chuẩn + bậc CK theo giá bán. Lưu kho trọn gói: bảng giá dịch vụ theo sản lượng + bậc CK theo thời hạn HĐ và sản lượng'}),
   F('no','Số quyết định ban hành','text',{tab:0,ph:'VD: 12/2021/QĐ-HNT'}),F('issueDate','Ngày ban hành','date',{tab:0}),
   F('effFrom','Hiệu lực từ','date',{req:1,tab:0}),F('effTo','Hiệu lực đến','date',{tab:0,help:'Bỏ trống = áp dụng đến khi có chính sách mới'}),
@@ -1215,14 +1325,24 @@ defEnt({key:'pricepolicies',title:'Chính sách giá',singular:'Chính sách gi�
   F('_pt','','info',{tab:2,html:v=>policyTiersHtml(v)}),
   areaOf('specialTerms','Điều khoản đặc biệt (chấm dứt trước hạn, gia hạn, HĐ ngắn hạn...)',{tab:0,rows:3}),
   areaOf('note','Ghi chú',{tab:0,rows:2})],
- cols:['no','site','policyType','basePrice','effFrom','effTo','status'],sort:{k:'effFrom',dir:'desc'},
+ cols:['no','sites','policyType','basePrice','effFrom','effTo','status'],sort:{k:'effFrom',dir:'desc'},
+ beforeSave:rec=>{
+   if(Array.isArray(rec.sites)&&rec.sites.length){
+     rec.site=rec.sites[0];
+   }else if(rec.site){
+     rec.sites=[rec.site];
+   }else{
+     rec.sites=[];
+     rec.site='';
+   }
+ },
  afterSave:(rec,isNew)=>{if(isNew)setTimeout(()=>{const m=openForm('pricepolicies',rec.id);if(m){ACT.tab({dataset:{i:1},closest:()=>m.el});toast(rec.policyType==='storage'?'Chính sách đã tạo – hãy nhập Bảng giá dịch vụ, Bậc sản lượng rồi đến Bậc chiết khấu':'Chính sách đã tạo – hãy nhập các bậc chiết khấu ở tab “Bậc chiết khấu”','')}},120)},
  rowActions:[{id:'dup',label:'Nhân bản (dùng cho kho khác)',icon:'copy',run:async r=>{
-   const nr={...r,id:uid(),site:'',no:'',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};await DB.put('pricepolicies',nr);
+   const nr={...r,id:uid(),site:'',sites:[],no:'',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};await DB.put('pricepolicies',nr);
    for(const t of policyTiers(r.id))await DB.put('policytiers',{...t,id:uid(),policyId:nr.id,createdAt:new Date().toISOString()});
    for(const sv of policyServicesFor(r.id))await DB.put('policyservices',{...sv,id:uid(),policyId:nr.id,createdAt:new Date().toISOString()});
    for(const vt of policyVolTiersFor(r.id))await DB.put('policyvoltiers',{...vt,id:uid(),policyId:nr.id,createdAt:new Date().toISOString()});
-   toast('Đã nhân bản – hãy chọn kho khác cho bản sao');renderMain();openForm('pricepolicies',nr.id);
+   toast('Đã nhân bản – hãy chọn kho áp dụng cho bản sao');renderMain();openForm('pricepolicies',nr.id);
  }}],
  validate:v=>v.effTo&&v.effFrom&&v.effTo<v.effFrom?{effTo:'Ngày hết hiệu lực phải sau ngày bắt đầu'}:{}});
 defEnt({key:'policytiers',title:'Bậc chiết khấu CS',singular:'Bậc chiết khấu',store:'policytiers',
@@ -2292,6 +2412,16 @@ function parseFieldValue(f,raw){
   raw=(raw==null?'':String(raw)).trim();
   if(raw==='')return{v:'',ok:true};
   const t=f.t;
+  if(t==='cats'){
+    const opts=optsFor(f);
+    const parts=raw.split(/[,;\n]+/).map(s=>s.trim()).filter(Boolean);
+    const matched=[];
+    for(const p of parts){
+      const hit=opts.find(([k,l])=>norm(l)===norm(p)||norm(k)===norm(p));
+      if(hit&&!matched.includes(hit[0]))matched.push(hit[0]);
+    }
+    return matched.length?{v:matched,ok:true}:{v:[],ok:false,err:`không tìm thấy kho nào hợp lệ từ "${raw}"`};
+  }
   if(t==='cat'||t==='select'||t==='yn'){
     const opts=optsFor(f),hit=opts.find(([k,l])=>norm(l)===norm(raw)||norm(k)===norm(raw));
     return hit?{v:hit[0],ok:true}:{v:'',ok:false,err:`giá trị "${raw}" không khớp danh mục cho phép`};
@@ -7710,6 +7840,22 @@ async function cleanupDeletedRecords(){
   }
 }
 
+async function ensurePricePolicySites(){
+  const allSites=DB.all('catalogs').filter(c=>c.group==='site').map(c=>c.key);
+  for(const p of DB.all('pricepolicies')){
+    let changed=false;
+    if(!p.sites||!Array.isArray(p.sites)||!p.sites.length){
+      p.sites=p.site?[p.site]:[];
+      changed=true;
+    }
+    if(p.no==='176/2024/QĐ-HNT'&&(!p.sites||p.sites.length<allSites.length)&&allSites.length>1){
+      p.sites=allSites;
+      changed=true;
+    }
+    if(changed)await DB.put('pricepolicies',p);
+  }
+}
+
 async function boot(){
   await DB.init();
   if(!DB.all('catalogs').length){await seedCatalogs();await DB.setMeta('catMig','1.5')}
@@ -7719,6 +7865,7 @@ async function boot(){
   await seedHntStoragePolicy();
   await seedHntRenewalPolicy();
   await migrateContractModel();
+  await ensurePricePolicySites();
   await ensurePdaChecklist();
   await ensureSendoProjects();
   await ensureRenewalAppendices();
