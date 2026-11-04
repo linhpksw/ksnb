@@ -3,21 +3,21 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.3",
     "backupVersion": 1,
-    "backupDate": "2026-11-04T07:33:13.185Z",
+    "backupDate": "2026-11-04T08:27:48.737Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
     "counts": {
       "periods": 2,
       "projects": 8,
-      "contracts": 81,
-      "customers": 75,
+      "contracts": 82,
+      "customers": 76,
       "checklist": 72,
       "findings": 19,
       "recs": 1,
       "followups": 1
     },
-    "checksum": "e2c235ef"
+    "checksum": "e6f6f586"
   },
   "settings": {},
   "data": {
@@ -3664,6 +3664,19 @@
         "id": "mw1kwyvvcgn7f4u",
         "createdAt": "2026-11-04T03:50:41.563Z",
         "updatedAt": "2026-11-04T03:50:41.563Z"
+      },
+      {
+        "code": "KH078",
+        "name": "CÔNG TY CP NỘI THẤT HƯƠNG TOÀN CẦU VIỆT NAM",
+        "taxId": "",
+        "rep": "",
+        "phone": "",
+        "email": "",
+        "group": "k2",
+        "address": "",
+        "id": "mw1uq82ffwicyhe",
+        "createdAt": "2026-11-04T08:25:23.031Z",
+        "updatedAt": "2026-11-04T08:25:23.031Z"
       }
     ],
     "contracts": [
@@ -7247,6 +7260,52 @@
         "id": "mw1l08mz6vghrx3",
         "createdAt": "2026-11-04T03:53:14.171Z",
         "updatedAt": "2026-11-04T03:54:06.467Z"
+      },
+      {
+        "model": "storage",
+        "cargoType": "normal",
+        "isRenewal": "new",
+        "status": "active",
+        "earlyTermination": "none",
+        "no": "3009/2026/BUC/HNT-HTC",
+        "type": "k1",
+        "customerId": "mw1uq82ffwicyhe",
+        "site": "k6_4651",
+        "dangerSurApplied": "",
+        "signDate": "2026-09-30",
+        "effDate": "",
+        "endDate": "",
+        "indefinite": "y",
+        "priorYears": "",
+        "priorContractRef": "",
+        "signer": "",
+        "signerTitle": "",
+        "authOK": "",
+        "storageMinRev": "",
+        "deposit": "",
+        "payCycle": "",
+        "payDueDays": "",
+        "priceUp": "",
+        "upRate": "",
+        "upCycle": "",
+        "latePenalty": "",
+        "terminate": "",
+        "compensate": "",
+        "damage": "",
+        "fire": "",
+        "force": "",
+        "special": "",
+        "docContract": "",
+        "docAppendix": "",
+        "docQuote": "",
+        "docNego": "",
+        "docPrice": "",
+        "docHandover": "",
+        "docLiquid": "",
+        "docOther": "",
+        "id": "mw1urqhjma6wytp",
+        "createdAt": "2026-11-04T08:26:33.559Z",
+        "updatedAt": "2026-11-04T08:27:46.711Z"
       }
     ],
     "rentals": [
@@ -8629,6 +8688,21 @@
         "id": "mw1su3q38wzrj5v",
         "createdAt": "2026-11-04T07:32:24.795Z",
         "updatedAt": "2026-11-04T07:32:24.795Z"
+      },
+      {
+        "kind": "luukho",
+        "per": "day",
+        "contractId": "mw1urqhjma6wytp",
+        "unit": "m³",
+        "unitPrice": 6500,
+        "quantity": "",
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "note": "",
+        "id": "mw1us3vism2dvhw",
+        "createdAt": "2026-11-04T08:26:50.910Z",
+        "updatedAt": "2026-11-04T08:26:50.910Z"
       }
     ],
     "services": [
@@ -13491,6 +13565,36 @@
         "id": "mw1sv23vgz4vl4n",
         "createdAt": "2026-11-04T07:33:09.355Z",
         "updatedAt": "2026-11-04T07:33:09.355Z"
+      },
+      {
+        "contractId": "mw1urqhjma6wytp",
+        "serviceType": "k5",
+        "method": "k8_4e09",
+        "unit": "m3/lượt",
+        "unitPrice": 60000,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "provider": "",
+        "note": "",
+        "id": "mw1usl4nd09vfri",
+        "createdAt": "2026-11-04T08:27:13.271Z",
+        "updatedAt": "2026-11-04T08:27:13.271Z"
+      },
+      {
+        "contractId": "mw1urqhjma6wytp",
+        "serviceType": "k6",
+        "method": "k8_4e09",
+        "unit": "m3/lượt",
+        "unitPrice": 60000,
+        "monthlyEstimate": "",
+        "startDate": "",
+        "endDate": "",
+        "provider": "",
+        "note": "",
+        "id": "mw1uswmft4oej45",
+        "createdAt": "2026-11-04T08:27:28.167Z",
+        "updatedAt": "2026-11-04T08:27:28.167Z"
       }
     ],
     "pricepolicies": [
@@ -30136,6 +30240,84 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-04T07:33:11.051Z"
+      },
+      {
+        "id": "mw1uq84ckli03wg",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:25:23.100Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Khách hàng",
+        "content": "Tạo khách hàng KH078 – CÔNG TY CP NỘI THẤT HƯƠNG TOÀN CẦU VIỆT NAM",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:25:23.100Z"
+      },
+      {
+        "id": "mw1urqj43sew50k",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:26:33.616Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Hợp đồng",
+        "content": "Tạo hợp đồng 3009/2026/BUC/HNT-HTC – CÔNG TY CP NỘI THẤT HƯƠNG TOÀN CẦU VIỆT NAM",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:26:33.616Z"
+      },
+      {
+        "id": "mw1us3wndwmn9nb",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:26:50.951Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Đơn giá chính",
+        "content": "Tạo đơn giá chính Lưu kho – 3009/2026/BUC/HNT-HTC",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:26:50.951Z"
+      },
+      {
+        "id": "mw1usl50c23iuep",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:27:13.284Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Tạo phí phát sinh/dịch vụ Bốc xếp nhập – 3009/2026/BUC/HNT-HTC",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:27:13.284Z"
+      },
+      {
+        "id": "mw1uswmgx9v3pk0",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:27:28.168Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Tạo mới",
+        "object": "Phí phát sinh/dịch vụ",
+        "content": "Tạo phí phát sinh/dịch vụ Bốc xếp xuất – 3009/2026/BUC/HNT-HTC",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:27:28.168Z"
+      },
+      {
+        "id": "mw1utaxt9uo1zq4",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-04T08:27:46.721Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Hợp đồng",
+        "content": "Cập nhật hợp đồng 3009/2026/BUC/HNT-HTC – CÔNG TY CP NỘI THẤT HƯƠNG TOÀN CẦU VIỆT NAM",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-04T08:27:46.721Z"
       }
     ]
   }
