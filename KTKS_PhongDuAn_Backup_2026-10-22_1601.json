@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.4",
     "backupVersion": 1,
-    "backupDate": "2026-11-05T02:45:09.350Z",
+    "backupDate": "2026-11-05T02:57:13.465Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 2,
       "followups": 1
     },
-    "checksum": "7901ddad"
+    "checksum": "e03f878d"
   },
   "settings": {},
   "data": {
@@ -746,6 +746,81 @@
         "tone": "yellow",
         "order": 2,
         "lock": 1
+      },
+      {
+        "id": "relType.addon",
+        "group": "relType",
+        "key": "addon",
+        "name": "HĐ bổ sung/mở rộng (A bổ sung cho B)",
+        "tone": "green",
+        "order": 5,
+        "lock": 1
+      },
+      {
+        "id": "relType.appendix",
+        "group": "relType",
+        "key": "appendix",
+        "name": "Phụ lục của HĐ (A là phụ lục của B)",
+        "tone": "green",
+        "order": 4,
+        "lock": 1
+      },
+      {
+        "id": "relType.branch",
+        "group": "relType",
+        "key": "branch",
+        "name": "Chi nhánh (A là chi nhánh của B)",
+        "tone": "blue",
+        "order": 3
+      },
+      {
+        "id": "relType.linked",
+        "group": "relType",
+        "key": "linked",
+        "name": "Liên kết – ghi phí cho nhau",
+        "tone": "blue",
+        "order": 0
+      },
+      {
+        "id": "relType.linkedctr",
+        "group": "relType",
+        "key": "linkedctr",
+        "name": "Hợp đồng liên quan",
+        "tone": "gray",
+        "order": 7
+      },
+      {
+        "id": "relType.other",
+        "group": "relType",
+        "key": "other",
+        "name": "Khác",
+        "tone": "gray",
+        "order": 8
+      },
+      {
+        "id": "relType.parent",
+        "group": "relType",
+        "key": "parent",
+        "name": "Công ty mẹ – con (A là mẹ của B)",
+        "tone": "blue",
+        "order": 2
+      },
+      {
+        "id": "relType.replace",
+        "group": "relType",
+        "key": "replace",
+        "name": "Gia hạn/Thay thế (A thay thế B)",
+        "tone": "yellow",
+        "order": 6,
+        "lock": 1
+      },
+      {
+        "id": "relType.sameowner",
+        "group": "relType",
+        "key": "sameowner",
+        "name": "Cùng chủ sở hữu",
+        "tone": "blue",
+        "order": 1
       },
       {
         "id": "renewStatus.cancel",
@@ -1591,81 +1666,6 @@
         "name": "Ngày",
         "tone": "",
         "order": 5
-      },
-      {
-        "id": "relType.linked",
-        "group": "relType",
-        "key": "linked",
-        "name": "Liên kết – ghi phí cho nhau",
-        "tone": "blue",
-        "order": 0
-      },
-      {
-        "id": "relType.sameowner",
-        "group": "relType",
-        "key": "sameowner",
-        "name": "Cùng chủ sở hữu",
-        "tone": "blue",
-        "order": 1
-      },
-      {
-        "id": "relType.parent",
-        "group": "relType",
-        "key": "parent",
-        "name": "Công ty mẹ – con (A là mẹ của B)",
-        "tone": "blue",
-        "order": 2
-      },
-      {
-        "id": "relType.branch",
-        "group": "relType",
-        "key": "branch",
-        "name": "Chi nhánh (A là chi nhánh của B)",
-        "tone": "blue",
-        "order": 3
-      },
-      {
-        "id": "relType.appendix",
-        "group": "relType",
-        "key": "appendix",
-        "name": "Phụ lục của HĐ (A là phụ lục của B)",
-        "tone": "green",
-        "order": 4,
-        "lock": 1
-      },
-      {
-        "id": "relType.addon",
-        "group": "relType",
-        "key": "addon",
-        "name": "HĐ bổ sung/mở rộng (A bổ sung cho B)",
-        "tone": "green",
-        "order": 5,
-        "lock": 1
-      },
-      {
-        "id": "relType.replace",
-        "group": "relType",
-        "key": "replace",
-        "name": "Gia hạn/Thay thế (A thay thế B)",
-        "tone": "yellow",
-        "order": 6,
-        "lock": 1
-      },
-      {
-        "id": "relType.linkedctr",
-        "group": "relType",
-        "key": "linkedctr",
-        "name": "Hợp đồng liên quan",
-        "tone": "gray",
-        "order": 7
-      },
-      {
-        "id": "relType.other",
-        "group": "relType",
-        "key": "other",
-        "name": "Khác",
-        "tone": "gray",
-        "order": 8
       }
     ],
     "docreqs": [
@@ -3889,7 +3889,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.697Z",
+        "updatedAt": "2026-11-05T02:48:37.766Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3939,7 +3939,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.698Z",
+        "updatedAt": "2026-11-05T02:48:37.767Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3989,7 +3989,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.698Z",
+        "updatedAt": "2026-11-05T02:48:37.769Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4087,7 +4087,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.700Z",
+        "updatedAt": "2026-11-05T02:48:37.770Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4137,7 +4137,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.699Z",
+        "updatedAt": "2026-11-05T02:48:37.770Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4187,7 +4187,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.696Z",
+        "updatedAt": "2026-11-05T02:48:37.765Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -6774,7 +6774,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-05T02:32:07.669Z",
+        "updatedAt": "2026-11-05T02:48:37.756Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -13707,7 +13707,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.702Z"
+        "updatedAt": "2026-11-05T02:48:37.773Z"
       },
       {
         "id": "svc_phuanvinh_nangha_n",
@@ -13722,7 +13722,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.701Z"
+        "updatedAt": "2026-11-05T02:48:37.772Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13737,7 +13737,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-05T02:32:07.701Z"
+        "updatedAt": "2026-11-05T02:48:37.771Z"
       }
     ],
     "pricepolicies": [
@@ -16434,7 +16434,7 @@
         "risk": "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
         "rec": "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-05T02:32:07.670Z"
+        "updatedAt": "2026-11-05T02:48:37.757Z"
       },
       {
         "id": "chk_25_chk_cn_02",
@@ -16468,7 +16468,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-05T02:32:07.671Z"
+        "updatedAt": "2026-11-05T02:48:37.758Z"
       },
       {
         "id": "chk_27_chk_ck_01",
@@ -16536,7 +16536,7 @@
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-11-05T02:32:07.671Z"
+        "updatedAt": "2026-11-05T02:48:37.759Z"
       },
       {
         "id": "chk_31_chk_hh_01",
@@ -30542,45 +30542,38 @@
         "note": "",
         "auto": 1,
         "createdAt": "2026-11-05T02:45:07.337Z"
+      },
+      {
+        "id": "mw2yg0lt1nrs4ws",
+        "periodId": "mvywegkvghcehae",
+        "ts": "2026-11-05T02:57:11.441Z",
+        "user": "Nguyễn Thị Thu Hương",
+        "type": "Cập nhật",
+        "object": "Quan hệ",
+        "content": "Gom nhóm 4 khách hàng (3 liên kết mới, 0 cập nhật)",
+        "result": "",
+        "note": "",
+        "auto": 1,
+        "createdAt": "2026-11-05T02:57:11.441Z"
       }
     ],
     "relations": [
+      {
+        "id": "rel_seed_bhx",
+        "a": "contracts:ct_bhx_hd20264167",
+        "b": "contracts:muf85bp2kq8427w",
+        "relType": "linkedctr",
+        "basis": "Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)",
+        "note": "",
+        "createdAt": "2026-11-05T02:25:00.000Z",
+        "updatedAt": "2026-11-05T02:25:00.000Z"
+      },
       {
         "id": "rel_seed_bristar_cnv",
         "a": "customers:mudvhgxbdtpueze",
         "b": "customers:mudvhgxet3emnp3",
         "relType": "linked",
         "basis": "HĐ 2804/2023/HĐTK/HNT-BRISTAR ghi “Bổ sung HĐ 300m2 Cầu nối việt”; 2 HĐ ký cùng ngày 28/04/2023",
-        "note": "",
-        "createdAt": "2026-11-05T02:25:00.000Z",
-        "updatedAt": "2026-11-05T02:25:00.000Z"
-      },
-      {
-        "id": "rel_seed_tiki_pl3",
-        "a": "contracts:mukpm2yc8f8trj4",
-        "b": "contracts:muf85borpho6kx4",
-        "relType": "appendix",
-        "basis": "PL3 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
-        "note": "",
-        "createdAt": "2026-11-05T02:25:00.000Z",
-        "updatedAt": "2026-11-05T02:25:00.000Z"
-      },
-      {
-        "id": "rel_seed_tiki_pl0506",
-        "a": "contracts:ct_tikinow_pl05_06",
-        "b": "contracts:muf85borpho6kx4",
-        "relType": "appendix",
-        "basis": "PL05-06 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
-        "note": "",
-        "createdAt": "2026-11-05T02:25:00.000Z",
-        "updatedAt": "2026-11-05T02:25:00.000Z"
-      },
-      {
-        "id": "rel_seed_tiki_pl9",
-        "a": "contracts:mukpoqhowembjk7",
-        "b": "contracts:muf85borpho6kx4",
-        "relType": "appendix",
-        "basis": "PL9 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
         "note": "",
         "createdAt": "2026-11-05T02:25:00.000Z",
         "updatedAt": "2026-11-05T02:25:00.000Z"
@@ -30596,14 +30589,67 @@
         "updatedAt": "2026-11-05T02:25:00.000Z"
       },
       {
-        "id": "rel_seed_bhx",
-        "a": "contracts:ct_bhx_hd20264167",
-        "b": "contracts:muf85bp2kq8427w",
-        "relType": "linkedctr",
-        "basis": "Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)",
+        "id": "rel_seed_tiki_pl0506",
+        "a": "contracts:ct_tikinow_pl05_06",
+        "b": "contracts:muf85borpho6kx4",
+        "relType": "appendix",
+        "basis": "PL05-06 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
         "note": "",
         "createdAt": "2026-11-05T02:25:00.000Z",
         "updatedAt": "2026-11-05T02:25:00.000Z"
+      },
+      {
+        "id": "rel_seed_tiki_pl3",
+        "a": "contracts:mukpm2yc8f8trj4",
+        "b": "contracts:muf85borpho6kx4",
+        "relType": "appendix",
+        "basis": "PL3 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
+        "note": "",
+        "createdAt": "2026-11-05T02:25:00.000Z",
+        "updatedAt": "2026-11-05T02:25:00.000Z"
+      },
+      {
+        "id": "rel_seed_tiki_pl9",
+        "a": "contracts:mukpoqhowembjk7",
+        "b": "contracts:muf85borpho6kx4",
+        "relType": "appendix",
+        "basis": "PL9 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
+        "note": "",
+        "createdAt": "2026-11-05T02:25:00.000Z",
+        "updatedAt": "2026-11-05T02:25:00.000Z"
+      },
+      {
+        "id": "mw2yg0lpela08l4",
+        "a": "customers:cust_phuanvinh",
+        "b": "customers:cust_daitinphat",
+        "relType": "linked",
+        "groupName": "",
+        "basis": "Cùng chủ sở hữu",
+        "note": "",
+        "createdAt": "2026-11-05T02:57:11.436Z",
+        "updatedAt": "2026-11-05T02:57:11.436Z"
+      },
+      {
+        "id": "mw2yg0lp8q8sxb2",
+        "a": "customers:cust_phuanvinh",
+        "b": "customers:cust_donga_kd",
+        "relType": "linked",
+        "groupName": "",
+        "basis": "Cùng chủ sở hữu",
+        "note": "",
+        "createdAt": "2026-11-05T02:57:11.436Z",
+        "updatedAt": "2026-11-05T02:57:11.436Z"
+      },
+      {
+        "id": "mw2yg0lppoayp6c",
+        "a": "customers:cust_phuanvinh",
+        "b": "customers:cust_nta",
+        "relType": "linked",
+        "groupName": "",
+        "basis": "Cùng chủ sở hữu",
+        "note": "",
+        "createdAt": "2026-11-05T02:57:11.436Z",
+        "updatedAt": "2026-11-05T02:57:11.436Z"
       }
     ]
   }

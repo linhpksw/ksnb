@@ -1737,17 +1737,20 @@ INP['rg-q']=el=>{const m=MODALS[MODALS.length-1];if(!m||!m.rg)return;$('#rgList'
 INP.relq=el=>{UI.relQ=el.value;const l=$('#relList');if(l)l.innerHTML=relListHtml()};
 async function ensureRelations(){
   for(const[k,name,tone,order,lock]of REL_SYS){if(DB.all('catalogs').some(x=>x.group==='relType'&&x.key===k))continue;const rec={id:'relType.'+k,group:'relType',key:k,name,tone,order};if(lock)rec.lock=1;await DB.put('catalogs',rec)}
-  if(DB.meta.relSeed)return;
+  if(DB.meta.relSeed==='2')return;
   const seeds=[
    {id:'rel_seed_bristar_cnv',a:'customers:mudvhgxbdtpueze',b:'customers:mudvhgxet3emnp3',relType:'linked',basis:'HĐ 2804/2023/HĐTK/HNT-BRISTAR ghi “Bổ sung HĐ 300m2 Cầu nối việt”; 2 HĐ ký cùng ngày 28/04/2023',note:''},
    {id:'rel_seed_tiki_pl3',a:'contracts:mukpm2yc8f8trj4',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL3 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
    {id:'rel_seed_tiki_pl0506',a:'contracts:ct_tikinow_pl05_06',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL05-06 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
    {id:'rel_seed_tiki_pl9',a:'contracts:mukpoqhowembjk7',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL9 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
    {id:'rel_seed_pnd',a:'contracts:muf8472td1n6tq7',b:'contracts:mugnndgcg5pz2ab',relType:'linkedctr',basis:'Cùng khách hàng PND Việt Nam (HĐ 2026 và HĐ 2025)',note:''},
-   {id:'rel_seed_bhx',a:'contracts:ct_bhx_hd20264167',b:'contracts:muf85bp2kq8427w',relType:'linkedctr',basis:'Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)',note:''}];
+   {id:'rel_seed_bhx',a:'contracts:ct_bhx_hd20264167',b:'contracts:muf85bp2kq8427w',relType:'linkedctr',basis:'Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)',note:''},
+   {id:'mw2yg0lpela08l4',a:'customers:cust_phuanvinh',b:'customers:cust_daitinphat',relType:'linked',groupName:'',basis:'Cùng chủ sở hữu',note:''},
+   {id:'mw2yg0lp8q8sxb2',a:'customers:cust_phuanvinh',b:'customers:cust_donga_kd',relType:'linked',groupName:'',basis:'Cùng chủ sở hữu',note:''},
+   {id:'mw2yg0lppoayp6c',a:'customers:cust_phuanvinh',b:'customers:cust_nta',relType:'linked',groupName:'',basis:'Cùng chủ sở hữu',note:''}];
   const now=new Date().toISOString(),add=seeds.filter(s=>!DB.get('relations',s.id)&&relValid(s)).map(s=>({...s,createdAt:now,updatedAt:now}));
   if(add.length)await DB.putMany('relations',add);
-  if(seeds.every(s=>DB.get('relations',s.id)))await DB.setMeta('relSeed','1');
+  if(seeds.every(s=>DB.get('relations',s.id)))await DB.setMeta('relSeed','2');
 }
 
 /* ---------- Dịch vụ kèm theo hợp đồng (điện, nước, bảo vệ, vệ sinh...) ---------- */
