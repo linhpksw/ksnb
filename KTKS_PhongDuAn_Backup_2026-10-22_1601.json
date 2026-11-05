@@ -1,23 +1,23 @@
 {
     "meta":  {
                  "app":  "KTKS_PhongDuAn",
-                 "appVersion":  "1.5.3",
+                 "appVersion":  "1.5.4",
                  "backupVersion":  1,
-                 "backupDate":  "2026-11-04T08:27:48.737Z",
+                 "backupDate":  "2026-11-04T09:16:14.477Z",
                  "scope":  "all",
                  "periodId":  null,
                  "periodLabel":  null,
                  "counts":  {
                                 "periods":  2,
-                                "projects":  8,
+                                "projects":  9,
                                 "contracts":  82,
                                 "customers":  76,
                                 "checklist":  72,
-                                "findings":  19,
-                                "recs":  1,
+                                "findings":  20,
+                                "recs":  2,
                                 "followups":  1
                             },
-                 "checksum":  "e6f6f586"
+                 "checksum":  "49b3b53"
              },
     "settings":  {
 
@@ -1593,6 +1593,81 @@
                                       "name":  "Ngày",
                                       "tone":  "",
                                       "order":  5
+                                  },
+                                  {
+                                      "id":  "relType.linked",
+                                      "group":  "relType",
+                                      "key":  "linked",
+                                      "name":  "Liên kết – ghi phí cho nhau",
+                                      "tone":  "blue",
+                                      "order":  0
+                                  },
+                                  {
+                                      "id":  "relType.sameowner",
+                                      "group":  "relType",
+                                      "key":  "sameowner",
+                                      "name":  "Cùng chủ sở hữu",
+                                      "tone":  "blue",
+                                      "order":  1
+                                  },
+                                  {
+                                      "id":  "relType.parent",
+                                      "group":  "relType",
+                                      "key":  "parent",
+                                      "name":  "Công ty mẹ – con (A là mẹ của B)",
+                                      "tone":  "blue",
+                                      "order":  2
+                                  },
+                                  {
+                                      "id":  "relType.branch",
+                                      "group":  "relType",
+                                      "key":  "branch",
+                                      "name":  "Chi nhánh (A là chi nhánh của B)",
+                                      "tone":  "blue",
+                                      "order":  3
+                                  },
+                                  {
+                                      "id":  "relType.appendix",
+                                      "group":  "relType",
+                                      "key":  "appendix",
+                                      "name":  "Phụ lục của HĐ (A là phụ lục của B)",
+                                      "tone":  "green",
+                                      "order":  4,
+                                      "lock":  1
+                                  },
+                                  {
+                                      "id":  "relType.addon",
+                                      "group":  "relType",
+                                      "key":  "addon",
+                                      "name":  "HĐ bổ sung/mở rộng (A bổ sung cho B)",
+                                      "tone":  "green",
+                                      "order":  5,
+                                      "lock":  1
+                                  },
+                                  {
+                                      "id":  "relType.replace",
+                                      "group":  "relType",
+                                      "key":  "replace",
+                                      "name":  "Gia hạn/Thay thế (A thay thế B)",
+                                      "tone":  "yellow",
+                                      "order":  6,
+                                      "lock":  1
+                                  },
+                                  {
+                                      "id":  "relType.linkedctr",
+                                      "group":  "relType",
+                                      "key":  "linkedctr",
+                                      "name":  "Hợp đồng liên quan",
+                                      "tone":  "gray",
+                                      "order":  7
+                                  },
+                                  {
+                                      "id":  "relType.other",
+                                      "group":  "relType",
+                                      "key":  "other",
+                                      "name":  "Khác",
+                                      "tone":  "gray",
+                                      "order":  8
                                   }
                               ],
                  "docreqs":  [
@@ -1801,6 +1876,40 @@
                                      "updatedAt":  "2026-10-15T08:50:00.000Z"
                                  },
                                  {
+                                     "id":  "docreq_da009_bb",
+                                     "stt":  1,
+                                     "group":  "k1",
+                                     "name":  "Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026",
+                                     "content":  "Biên bản thỏa thuận nguyên tắc giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về hợp tác XD và thuê kho bãi Sóc Sơn GĐ III",
+                                     "periodId":  "mvywegkvghcehae",
+                                     "reqDate":  "2026-10-28",
+                                     "deadline":  "2026-10-29",
+                                     "recvDate":  "2026-10-28",
+                                     "provider":  "k3",
+                                     "status":  "recv",
+                                     "evidence":  "File PDF: BB LAM VIEC HNT-LINHGIANG V.V XD TTLGTHNT SS GĐ III_20261028_0001.pdf (04 trang đủ chữ ký Bên A và Bên B).",
+                                     "note":  "Đã nhận đầy đủ biên bản làm việc gốc có chữ ký của Chủ tịch HĐQT Nguyễn Ngọc Hải và GĐĐH Nguyễn Văn Thứ.",
+                                     "createdAt":  "2026-10-28T10:00:00.000Z",
+                                     "updatedAt":  "2026-10-28T10:00:00.000Z"
+                                 },
+                                 {
+                                     "id":  "docreq_da009_gpxd",
+                                     "stt":  2,
+                                     "group":  "k1",
+                                     "name":  "Giấy phép xây dựng và Hồ sơ thẩm duyệt PCCC Sóc Sơn GĐ III",
+                                     "content":  "Giấy phép xây dựng được cơ quan có thẩm quyền cấp và Giấy chứng nhận thẩm duyệt thiết kế PCCC do Công an PCCC cấp cho cụm kho GĐ III",
+                                     "periodId":  "mvywegkvghcehae",
+                                     "reqDate":  "2026-10-28",
+                                     "deadline":  "2027-01-31",
+                                     "recvDate":  "",
+                                     "provider":  "k3",
+                                     "status":  "wait",
+                                     "evidence":  "",
+                                     "note":  "Bên A cam kết hoàn thiện chậm nhất ngày 31/01/2027 làm điều kiện để hai bên ký Hợp đồng thuê kho chính thức.",
+                                     "createdAt":  "2026-10-28T10:00:00.000Z",
+                                     "updatedAt":  "2026-10-28T10:00:00.000Z"
+                                 },
+                                 {
                                      "id":  "mvywegl12rg38yi",
                                      "stt":  8,
                                      "group":  "k4",
@@ -2003,40 +2112,6 @@
                                      "note":  "",
                                      "createdAt":  "2026-11-02T06:48:54.895Z",
                                      "updatedAt":  "2026-11-02T06:48:54.895Z"
-                                 },
-                                 {
-                                     "id":  "docreq_da009_bb",
-                                     "stt":  1,
-                                     "group":  "k1",
-                                     "name":  "Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026",
-                                     "content":  "Biên bản thỏa thuận nguyên tắc giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về hợp tác XD và thuê kho bãi Sóc Sơn GĐ III",
-                                     "periodId":  "mvywegkvghcehae",
-                                     "reqDate":  "2026-10-28",
-                                     "deadline":  "2026-10-29",
-                                     "recvDate":  "2026-10-28",
-                                     "provider":  "k3",
-                                     "status":  "recv",
-                                     "evidence":  "File PDF: BB LAM VIEC HNT-LINHGIANG V.V XD TTLGTHNT SS GĐ III_20261028_0001.pdf (04 trang đủ chữ ký Bên A và Bên B).",
-                                     "note":  "Đã nhận đầy đủ biên bản làm việc gốc có chữ ký của Chủ tịch HĐQT Nguyễn Ngọc Hải và GĐĐH Nguyễn Văn Thứ.",
-                                     "createdAt":  "2026-10-28T10:00:00.000Z",
-                                     "updatedAt":  "2026-10-28T10:00:00.000Z"
-                                 },
-                                 {
-                                     "id":  "docreq_da009_gpxd",
-                                     "stt":  2,
-                                     "group":  "k1",
-                                     "name":  "Giấy phép xây dựng và Hồ sơ thẩm duyệt PCCC Sóc Sơn GĐ III",
-                                     "content":  "Giấy phép xây dựng được cơ quan có thẩm quyền cấp và Giấy chứng nhận thẩm duyệt thiết kế PCCC do Công an PCCC cấp cho cụm kho GĐ III",
-                                     "periodId":  "mvywegkvghcehae",
-                                     "reqDate":  "2026-10-28",
-                                     "deadline":  "2027-01-31",
-                                     "recvDate":  "",
-                                     "provider":  "k3",
-                                     "status":  "wait",
-                                     "evidence":  "",
-                                     "note":  "Bên A cam kết hoàn thiện chậm nhất ngày 31/01/2027 làm điều kiện để hai bên ký Hợp đồng thuê kho chính thức.",
-                                     "createdAt":  "2026-10-28T10:00:00.000Z",
-                                     "updatedAt":  "2026-10-28T10:00:00.000Z"
                                  }
                              ],
                  "projects":  [
@@ -3816,7 +3891,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.375Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.454Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -3866,7 +3941,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.376Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.456Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -3916,7 +3991,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.376Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.457Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -4014,7 +4089,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.378Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.459Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -4064,7 +4139,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.377Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.458Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -4114,7 +4189,7 @@
                                        "priorYears":  0,
                                        "priorContractRef":  "",
                                        "createdAt":  "2026-11-02T16:30:00.000Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.375Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.453Z",
                                        "dangerSurApplied":  "",
                                        "storageMinRev":  "",
                                        "earlyTermination":  ""
@@ -6701,7 +6776,7 @@
                                        "docOther":  "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
                                        "id":  "muf85bph4q7koc2",
                                        "createdAt":  "2026-09-24T07:42:38.213Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.367Z",
+                                       "updatedAt":  "2026-11-04T09:16:12.448Z",
                                        "model":  "lease",
                                        "earlyTermination":  "client"
                                    },
@@ -8475,6 +8550,66 @@
                                      "updatedAt":  "2026-11-04T02:06:59.172Z"
                                  },
                                  {
+                                     "kind":  "luukho",
+                                     "per":  "day",
+                                     "contractId":  "mw1l08mz6vghrx3",
+                                     "unit":  "m³",
+                                     "unitPrice":  8000,
+                                     "quantity":  "",
+                                     "monthlyEstimate":  "",
+                                     "startDate":  "",
+                                     "endDate":  "",
+                                     "note":  "",
+                                     "id":  "mw1l0ljv7laj7sm",
+                                     "createdAt":  "2026-11-04T03:53:30.907Z",
+                                     "updatedAt":  "2026-11-04T03:53:30.907Z"
+                                 },
+                                 {
+                                     "kind":  "luukho",
+                                     "per":  "day",
+                                     "contractId":  "ct_hpr_1008_2026",
+                                     "unit":  "m³",
+                                     "unitPrice":  5000,
+                                     "quantity":  "",
+                                     "monthlyEstimate":  "",
+                                     "startDate":  "",
+                                     "endDate":  "",
+                                     "note":  "",
+                                     "id":  "mw1sriav23xy5cf",
+                                     "createdAt":  "2026-11-04T07:30:23.719Z",
+                                     "updatedAt":  "2026-11-04T07:30:23.719Z"
+                                 },
+                                 {
+                                     "kind":  "kho",
+                                     "per":  "month",
+                                     "contractId":  "ct_thanhdat_2009_2026",
+                                     "unit":  "m²",
+                                     "unitPrice":  140000,
+                                     "quantity":  366.2,
+                                     "monthlyEstimate":  51268000,
+                                     "startDate":  "",
+                                     "endDate":  "",
+                                     "note":  "",
+                                     "id":  "mw1su3q38wzrj5v",
+                                     "createdAt":  "2026-11-04T07:32:24.795Z",
+                                     "updatedAt":  "2026-11-04T07:32:24.795Z"
+                                 },
+                                 {
+                                     "kind":  "luukho",
+                                     "per":  "day",
+                                     "contractId":  "mw1urqhjma6wytp",
+                                     "unit":  "m³",
+                                     "unitPrice":  6500,
+                                     "quantity":  "",
+                                     "monthlyEstimate":  "",
+                                     "startDate":  "",
+                                     "endDate":  "",
+                                     "note":  "",
+                                     "id":  "mw1us3vism2dvhw",
+                                     "createdAt":  "2026-11-04T08:26:50.910Z",
+                                     "updatedAt":  "2026-11-04T08:26:50.910Z"
+                                 },
+                                 {
                                      "id":  "rent_binhan_storage_2026",
                                      "contractId":  "ct_binhan_1210_2026",
                                      "kind":  "luukho",
@@ -8713,66 +8848,6 @@
                                      "note":  "Đơn giá thuê kho thực tế 145.000 đ/m²/tháng × 366,2 m² = 53.099.000 đ/tháng (tháng 7/2026) theo Tờ trình ngày 20/07/2026. Hợp đồng có thời hạn 02 tháng và được thanh lý khi hết hạn từ 05/09/2026.",
                                      "createdAt":  "2026-10-20T09:15:00.000Z",
                                      "updatedAt":  "2026-10-20T09:15:00.000Z"
-                                 },
-                                 {
-                                     "kind":  "luukho",
-                                     "per":  "day",
-                                     "contractId":  "mw1l08mz6vghrx3",
-                                     "unit":  "m³",
-                                     "unitPrice":  8000,
-                                     "quantity":  "",
-                                     "monthlyEstimate":  "",
-                                     "startDate":  "",
-                                     "endDate":  "",
-                                     "note":  "",
-                                     "id":  "mw1l0ljv7laj7sm",
-                                     "createdAt":  "2026-11-04T03:53:30.907Z",
-                                     "updatedAt":  "2026-11-04T03:53:30.907Z"
-                                 },
-                                 {
-                                     "kind":  "luukho",
-                                     "per":  "day",
-                                     "contractId":  "ct_hpr_1008_2026",
-                                     "unit":  "m³",
-                                     "unitPrice":  5000,
-                                     "quantity":  "",
-                                     "monthlyEstimate":  "",
-                                     "startDate":  "",
-                                     "endDate":  "",
-                                     "note":  "",
-                                     "id":  "mw1sriav23xy5cf",
-                                     "createdAt":  "2026-11-04T07:30:23.719Z",
-                                     "updatedAt":  "2026-11-04T07:30:23.719Z"
-                                 },
-                                 {
-                                     "kind":  "kho",
-                                     "per":  "month",
-                                     "contractId":  "ct_thanhdat_2009_2026",
-                                     "unit":  "m²",
-                                     "unitPrice":  140000,
-                                     "quantity":  366.2,
-                                     "monthlyEstimate":  51268000,
-                                     "startDate":  "",
-                                     "endDate":  "",
-                                     "note":  "",
-                                     "id":  "mw1su3q38wzrj5v",
-                                     "createdAt":  "2026-11-04T07:32:24.795Z",
-                                     "updatedAt":  "2026-11-04T07:32:24.795Z"
-                                 },
-                                 {
-                                     "kind":  "luukho",
-                                     "per":  "day",
-                                     "contractId":  "mw1urqhjma6wytp",
-                                     "unit":  "m³",
-                                     "unitPrice":  6500,
-                                     "quantity":  "",
-                                     "monthlyEstimate":  "",
-                                     "startDate":  "",
-                                     "endDate":  "",
-                                     "note":  "",
-                                     "id":  "mw1us3vism2dvhw",
-                                     "createdAt":  "2026-11-04T08:26:50.910Z",
-                                     "updatedAt":  "2026-11-04T08:26:50.910Z"
                                  }
                              ],
                  "services":  [
@@ -13172,6 +13247,141 @@
                                       "updatedAt":  "2026-11-04T02:07:45.531Z"
                                   },
                                   {
+                                      "contractId":  "mw1l08mz6vghrx3",
+                                      "serviceType":  "k5",
+                                      "method":  "k7",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  80000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1l0zs3ifk5we9",
+                                      "createdAt":  "2026-11-04T03:53:49.347Z",
+                                      "updatedAt":  "2026-11-04T03:53:49.347Z"
+                                  },
+                                  {
+                                      "contractId":  "mw1l08mz6vghrx3",
+                                      "serviceType":  "k6",
+                                      "method":  "k8_4e09",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  80000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1l1b8b7shovuh",
+                                      "createdAt":  "2026-11-04T03:54:04.187Z",
+                                      "updatedAt":  "2026-11-04T03:54:04.187Z"
+                                  },
+                                  {
+                                      "contractId":  "ct_hpr_1008_2026",
+                                      "serviceType":  "k5",
+                                      "method":  "k8_4e09",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  50000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1srugyud5pv1r",
+                                      "createdAt":  "2026-11-04T07:30:39.490Z",
+                                      "updatedAt":  "2026-11-04T07:30:39.490Z"
+                                  },
+                                  {
+                                      "contractId":  "ct_hpr_1008_2026",
+                                      "serviceType":  "k6",
+                                      "method":  "k8_4e09",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  50000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1ss7x2gor5a4s",
+                                      "createdAt":  "2026-11-04T07:30:56.918Z",
+                                      "updatedAt":  "2026-11-04T07:30:56.918Z"
+                                  },
+                                  {
+                                      "contractId":  "ct_hpr_1008_2026",
+                                      "serviceType":  "cmuff9dut7dcx5s9",
+                                      "method":  "k9_d43a",
+                                      "unit":  "đơn/lượt",
+                                      "unitPrice":  10000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1ssqczt6ids31",
+                                      "createdAt":  "2026-11-04T07:31:20.819Z",
+                                      "updatedAt":  "2026-11-04T07:31:20.819Z"
+                                  },
+                                  {
+                                      "contractId":  "ct_thanhdat_2009_2026",
+                                      "serviceType":  "k1",
+                                      "method":  "cmufgazqj66yc2fq",
+                                      "unit":  "",
+                                      "unitPrice":  3700,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1suiiaoi1ouoo",
+                                      "createdAt":  "2026-11-04T07:32:43.954Z",
+                                      "updatedAt":  "2026-11-04T07:32:43.954Z"
+                                  },
+                                  {
+                                      "contractId":  "ct_thanhdat_2009_2026",
+                                      "serviceType":  "cmufemxkd03bpud0",
+                                      "method":  "k6_178a",
+                                      "unit":  "pallet/lượt",
+                                      "unitPrice":  50000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1sv23vgz4vl4n",
+                                      "createdAt":  "2026-11-04T07:33:09.355Z",
+                                      "updatedAt":  "2026-11-04T07:33:09.355Z"
+                                  },
+                                  {
+                                      "contractId":  "mw1urqhjma6wytp",
+                                      "serviceType":  "k5",
+                                      "method":  "k8_4e09",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  60000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1usl4nd09vfri",
+                                      "createdAt":  "2026-11-04T08:27:13.271Z",
+                                      "updatedAt":  "2026-11-04T08:27:13.271Z"
+                                  },
+                                  {
+                                      "contractId":  "mw1urqhjma6wytp",
+                                      "serviceType":  "k6",
+                                      "method":  "k8_4e09",
+                                      "unit":  "m3/lượt",
+                                      "unitPrice":  60000,
+                                      "monthlyEstimate":  "",
+                                      "startDate":  "",
+                                      "endDate":  "",
+                                      "provider":  "",
+                                      "note":  "",
+                                      "id":  "mw1uswmft4oej45",
+                                      "createdAt":  "2026-11-04T08:27:28.167Z",
+                                      "updatedAt":  "2026-11-04T08:27:28.167Z"
+                                  },
+                                  {
                                       "id":  "svc_binhan_bocxep_n",
                                       "contractId":  "ct_binhan_1210_2026",
                                       "serviceType":  "svcType.k6_57e8",
@@ -13499,7 +13709,7 @@
                                       "provider":  "HNT",
                                       "note":  "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
                                       "createdAt":  "2026-11-02T16:30:00.000Z",
-                                      "updatedAt":  "2026-11-04T03:37:51.379Z"
+                                      "updatedAt":  "2026-11-04T09:16:12.461Z"
                                   },
                                   {
                                       "id":  "svc_phuanvinh_nangha_n",
@@ -13514,7 +13724,7 @@
                                       "provider":  "HNT",
                                       "note":  "Nâng hạ nguyên pallet chiều nhập",
                                       "createdAt":  "2026-11-02T16:30:00.000Z",
-                                      "updatedAt":  "2026-11-04T03:37:51.379Z"
+                                      "updatedAt":  "2026-11-04T09:16:12.461Z"
                                   },
                                   {
                                       "id":  "svc_phuanvinh_nangha_x",
@@ -13529,142 +13739,7 @@
                                       "provider":  "HNT",
                                       "note":  "Nâng hạ nguyên pallet chiều xuất",
                                       "createdAt":  "2026-11-02T16:30:00.000Z",
-                                      "updatedAt":  "2026-11-04T03:37:51.378Z"
-                                  },
-                                  {
-                                      "contractId":  "mw1l08mz6vghrx3",
-                                      "serviceType":  "k5",
-                                      "method":  "k7",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  80000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1l0zs3ifk5we9",
-                                      "createdAt":  "2026-11-04T03:53:49.347Z",
-                                      "updatedAt":  "2026-11-04T03:53:49.347Z"
-                                  },
-                                  {
-                                      "contractId":  "mw1l08mz6vghrx3",
-                                      "serviceType":  "k6",
-                                      "method":  "k8_4e09",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  80000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1l1b8b7shovuh",
-                                      "createdAt":  "2026-11-04T03:54:04.187Z",
-                                      "updatedAt":  "2026-11-04T03:54:04.187Z"
-                                  },
-                                  {
-                                      "contractId":  "ct_hpr_1008_2026",
-                                      "serviceType":  "k5",
-                                      "method":  "k8_4e09",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  50000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1srugyud5pv1r",
-                                      "createdAt":  "2026-11-04T07:30:39.490Z",
-                                      "updatedAt":  "2026-11-04T07:30:39.490Z"
-                                  },
-                                  {
-                                      "contractId":  "ct_hpr_1008_2026",
-                                      "serviceType":  "k6",
-                                      "method":  "k8_4e09",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  50000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1ss7x2gor5a4s",
-                                      "createdAt":  "2026-11-04T07:30:56.918Z",
-                                      "updatedAt":  "2026-11-04T07:30:56.918Z"
-                                  },
-                                  {
-                                      "contractId":  "ct_hpr_1008_2026",
-                                      "serviceType":  "cmuff9dut7dcx5s9",
-                                      "method":  "k9_d43a",
-                                      "unit":  "đơn/lượt",
-                                      "unitPrice":  10000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1ssqczt6ids31",
-                                      "createdAt":  "2026-11-04T07:31:20.819Z",
-                                      "updatedAt":  "2026-11-04T07:31:20.819Z"
-                                  },
-                                  {
-                                      "contractId":  "ct_thanhdat_2009_2026",
-                                      "serviceType":  "k1",
-                                      "method":  "cmufgazqj66yc2fq",
-                                      "unit":  "",
-                                      "unitPrice":  3700,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1suiiaoi1ouoo",
-                                      "createdAt":  "2026-11-04T07:32:43.954Z",
-                                      "updatedAt":  "2026-11-04T07:32:43.954Z"
-                                  },
-                                  {
-                                      "contractId":  "ct_thanhdat_2009_2026",
-                                      "serviceType":  "cmufemxkd03bpud0",
-                                      "method":  "k6_178a",
-                                      "unit":  "pallet/lượt",
-                                      "unitPrice":  50000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1sv23vgz4vl4n",
-                                      "createdAt":  "2026-11-04T07:33:09.355Z",
-                                      "updatedAt":  "2026-11-04T07:33:09.355Z"
-                                  },
-                                  {
-                                      "contractId":  "mw1urqhjma6wytp",
-                                      "serviceType":  "k5",
-                                      "method":  "k8_4e09",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  60000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1usl4nd09vfri",
-                                      "createdAt":  "2026-11-04T08:27:13.271Z",
-                                      "updatedAt":  "2026-11-04T08:27:13.271Z"
-                                  },
-                                  {
-                                      "contractId":  "mw1urqhjma6wytp",
-                                      "serviceType":  "k6",
-                                      "method":  "k8_4e09",
-                                      "unit":  "m3/lượt",
-                                      "unitPrice":  60000,
-                                      "monthlyEstimate":  "",
-                                      "startDate":  "",
-                                      "endDate":  "",
-                                      "provider":  "",
-                                      "note":  "",
-                                      "id":  "mw1uswmft4oej45",
-                                      "createdAt":  "2026-11-04T08:27:28.167Z",
-                                      "updatedAt":  "2026-11-04T08:27:28.167Z"
+                                      "updatedAt":  "2026-11-04T09:16:12.460Z"
                                   }
                               ],
                  "pricepolicies":  [
@@ -16367,7 +16442,7 @@
                                        "risk":  "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
                                        "rec":  "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.367Z"
+                                       "updatedAt":  "2026-11-04T09:16:12.449Z"
                                    },
                                    {
                                        "id":  "chk_25_chk_cn_02",
@@ -16401,7 +16476,7 @@
                                        "risk":  "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
                                        "rec":  "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
                                        "createdAt":  "2026-10-15T07:55:19.692Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.369Z"
+                                       "updatedAt":  "2026-11-04T09:16:12.449Z"
                                    },
                                    {
                                        "id":  "chk_27_chk_ck_01",
@@ -16469,7 +16544,7 @@
                                        "risk":  "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
                                        "rec":  "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
                                        "createdAt":  "2026-10-15T08:14:16.495Z",
-                                       "updatedAt":  "2026-11-04T03:37:51.370Z"
+                                       "updatedAt":  "2026-11-04T09:16:12.450Z"
                                    },
                                    {
                                        "id":  "chk_31_chk_hh_01",
@@ -17232,6 +17307,28 @@
                                       "updatedAt":  "2026-10-20T09:15:00.000Z"
                                   },
                                   {
+                                      "id":  "fnd_da009_socson_cocs",
+                                      "periodId":  "mvywegkvghcehae",
+                                      "code":  "FND-26Q4-001",
+                                      "group":  "k1",
+                                      "riskLevel":  "med",
+                                      "projectId":  "proj_da009_socson_gd3",
+                                      "contractId":  "",
+                                      "checklistId":  "",
+                                      "content":  "Kiểm soát điều kiện pháp lý (GPXD, PCCC) và mốc thanh toán tiền cọc 1,889 tỷ đồng dự án Sóc Sơn Giai đoạn III",
+                                      "basis":  "Quy định kiểm soát rủi ro đầu tư của Tập đoàn; Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.",
+                                      "actual":  "1) Thỏa thuận ký hợp đồng chính thức và tiến độ thanh toán tiền cọc 3 tháng (1.889.400.000 đ) chia 3 đợt gắn với mốc khởi công của Bên A; 2) Điều kiện tiên quyết: Chậm nhất 31/01/2027 Bên A phải hoàn tất GPXD và Thẩm duyệt PCCC; nếu không hoàn thành Bên A phải bồi thường phạt 500 triệu đồng; 3) Cần kiểm soát chặt chẽ tính pháp lý quyền sử dụng đất của Bên A và chỉ giải ngân tiền cọc đợt 1 sau khi HĐ chính thức có hiệu lực và Bên A thực tế khởi công xây dựng.",
+                                      "evidence":  "Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.",
+                                      "cause":  "Dự án thuê kho quy mô lớn (6.700m² kho, 2.500m² bãi) trong 10 năm theo hình thức đối tác xây dựng theo yêu cầu của HNT nên tiềm ẩn rủi ro chậm tiến độ cấp phép xây dựng/PCCC của đối tác.",
+                                      "impact":  "Nếu không kiểm soát chặt chẽ mốc cấp phép 31/01/2027 và điều kiện khởi công, có nguy cơ tồn đọng vốn đặt cọc hoặc chậm kế hoạch đưa kho vào vận hành kinh doanh (12/2027 - 02/2028).",
+                                      "risk":  "Rủi ro pháp lý dự án và rủi ro chậm bàn giao kho khai thác thương mại.",
+                                      "amount":  1889400000,
+                                      "deptOpinion":  "",
+                                      "conclusion":  "Đề nghị Phòng Dự án và Ban Giám đốc theo dõi sát sao mốc 31/01/2027 về GPXD \u0026 Thẩm duyệt PCCC của Công ty Linh Giang; chỉ ký HĐ và giải ngân tiền cọc khi đối tác đáp ứng đầy đủ điều kiện pháp lý và khởi công thực tế.",
+                                      "createdAt":  "2026-10-28T10:00:00.000Z",
+                                      "updatedAt":  "2026-10-28T10:00:00.000Z"
+                                  },
+                                  {
                                       "id":  "fnd_folder1_ck_01",
                                       "periodId":  "mufq31zn245cq0d",
                                       "code":  "FND-26Q3-007",
@@ -17604,51 +17701,9 @@
                                       "conclusion":  "Yêu cầu bổ sung ngày tháng nghiệm thu hoàn thành (để làm mốc tính bảo hành 18 tháng), hoàn thiện chữ ký và bổ sung Hóa đơn GTGT, CO/CQ vật tư trước khi tất toán.",
                                       "createdAt":  "2026-10-20T09:15:00.000Z",
                                       "updatedAt":  "2026-10-20T09:15:00.000Z"
-                                  },
-                                  {
-                                      "id":  "fnd_da009_socson_cocs",
-                                      "periodId":  "mvywegkvghcehae",
-                                      "code":  "FND-26Q4-001",
-                                      "group":  "k1",
-                                      "riskLevel":  "med",
-                                      "projectId":  "proj_da009_socson_gd3",
-                                      "contractId":  "",
-                                      "checklistId":  "",
-                                      "content":  "Kiểm soát điều kiện pháp lý (GPXD, PCCC) và mốc thanh toán tiền cọc 1,889 tỷ đồng dự án Sóc Sơn Giai đoạn III",
-                                      "basis":  "Quy định kiểm soát rủi ro đầu tư của Tập đoàn; Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.",
-                                      "actual":  "1) Thỏa thuận ký hợp đồng chính thức và tiến độ thanh toán tiền cọc 3 tháng (1.889.400.000 đ) chia 3 đợt gắn với mốc khởi công của Bên A; 2) Điều kiện tiên quyết: Chậm nhất 31/01/2027 Bên A phải hoàn tất GPXD và Thẩm duyệt PCCC; nếu không hoàn thành Bên A phải bồi thường phạt 500 triệu đồng; 3) Cần kiểm soát chặt chẽ tính pháp lý quyền sử dụng đất của Bên A và chỉ giải ngân tiền cọc đợt 1 sau khi HĐ chính thức có hiệu lực và Bên A thực tế khởi công xây dựng.",
-                                      "evidence":  "Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026.",
-                                      "cause":  "Dự án thuê kho quy mô lớn (6.700m² kho, 2.500m² bãi) trong 10 năm theo hình thức đối tác xây dựng theo yêu cầu của HNT nên tiềm ẩn rủi ro chậm tiến độ cấp phép xây dựng/PCCC của đối tác.",
-                                      "impact":  "Nếu không kiểm soát chặt chẽ mốc cấp phép 31/01/2027 và điều kiện khởi công, có nguy cơ tồn đọng vốn đặt cọc hoặc chậm kế hoạch đưa kho vào vận hành kinh doanh (12/2027 - 02/2028).",
-                                      "risk":  "Rủi ro pháp lý dự án và rủi ro chậm bàn giao kho khai thác thương mại.",
-                                      "amount":  1889400000,
-                                      "deptOpinion":  "",
-                                      "conclusion":  "Đề nghị Phòng Dự án và Ban Giám đốc theo dõi sát sao mốc 31/01/2027 về GPXD \u0026 Thẩm duyệt PCCC của Công ty Linh Giang; chỉ ký HĐ và giải ngân tiền cọc khi đối tác đáp ứng đầy đủ điều kiện pháp lý và khởi công thực tế.",
-                                      "createdAt":  "2026-10-28T10:00:00.000Z",
-                                      "updatedAt":  "2026-10-28T10:00:00.000Z"
                                   }
                               ],
                  "recs":  [
-                              {
-                                  "id":  "rec_folder2_mk_01",
-                                  "periodId":  "mufq31zn245cq0d",
-                                  "findingId":  "fnd_folder2_mk_01",
-                                  "code":  "FND-26Q3-008-K1",
-                                  "content":  "Phối hợp Phòng Kế toán kiểm tra tình trạng thanh toán thực tế của khoản hoa hồng 18.532.000 đ thuộc HĐ 1305/2026 MK Việt Nam; thực hiện truy thu hoặc phân bổ lại theo tỷ lệ thời gian thuê thực tế (~3,7 tháng / thời hạn hợp đồng).",
-                                  "unit":  "k1",
-                                  "owner":  "k2",
-                                  "commitDate":  "2026-10-20",
-                                  "deadline":  "2026-11-10",
-                                  "measure":  "Có biên bản đối soát với Kế toán và phiếu thu/cấn trừ tiền hoa hồng đã chi vượt cho HĐ MK.",
-                                  "status":  "closed",
-                                  "fixEvidence":  "",
-                                  "unitOpinion":  "",
-                                  "ktksOpinion":  "",
-                                  "closeDate":  "2026-11-03",
-                                  "confirmer":  "Nguyễn Thị Thu Hương",
-                                  "createdAt":  "2026-10-20T10:00:00.000Z",
-                                  "updatedAt":  "2026-11-03T03:29:34.642Z"
-                              },
                               {
                                   "id":  "rec_da009_socson_01",
                                   "periodId":  "mvywegkvghcehae",
@@ -17668,6 +17723,26 @@
                                   "confirmer":  "",
                                   "createdAt":  "2026-10-28T10:00:00.000Z",
                                   "updatedAt":  "2026-10-28T10:00:00.000Z"
+                              },
+                              {
+                                  "id":  "rec_folder2_mk_01",
+                                  "periodId":  "mufq31zn245cq0d",
+                                  "findingId":  "fnd_folder2_mk_01",
+                                  "code":  "FND-26Q3-008-K1",
+                                  "content":  "Phối hợp Phòng Kế toán kiểm tra tình trạng thanh toán thực tế của khoản hoa hồng 18.532.000 đ thuộc HĐ 1305/2026 MK Việt Nam; thực hiện truy thu hoặc phân bổ lại theo tỷ lệ thời gian thuê thực tế (~3,7 tháng / thời hạn hợp đồng).",
+                                  "unit":  "k1",
+                                  "owner":  "k2",
+                                  "commitDate":  "2026-10-20",
+                                  "deadline":  "2026-11-10",
+                                  "measure":  "Có biên bản đối soát với Kế toán và phiếu thu/cấn trừ tiền hoa hồng đã chi vượt cho HĐ MK.",
+                                  "status":  "closed",
+                                  "fixEvidence":  "",
+                                  "unitOpinion":  "",
+                                  "ktksOpinion":  "",
+                                  "closeDate":  "2026-11-03",
+                                  "confirmer":  "Nguyễn Thị Thu Hương",
+                                  "createdAt":  "2026-10-20T10:00:00.000Z",
+                                  "updatedAt":  "2026-11-03T03:29:34.642Z"
                               }
                           ],
                  "followups":  [
@@ -17800,6 +17875,19 @@
                                      "note":  "",
                                      "auto":  0,
                                      "createdAt":  "2026-10-20T07:10:00.000Z"
+                                 },
+                                 {
+                                     "id":  "jnl_socson_da009_20261028",
+                                     "periodId":  "mvywegkvghcehae",
+                                     "ts":  "2026-10-28T14:30:00.000Z",
+                                     "user":  "Nguyễn Thị Thu Hương",
+                                     "type":  "Đối chiếu",
+                                     "object":  "Dự án DA-009 (TT Logistics HNT Sóc Sơn - Giai đoạn III)",
+                                     "content":  "Tiếp nhận và rà soát Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026 giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về việc thuê kho 6.700m² và bãi 2.500m² tại Sóc Sơn (GĐ III). Cập nhật danh mục dự án DA-009 và lập lưu ý KSNB về điều kiện cấp phép GPXD/PCCC trước 31/01/2027 cùng tiến độ đặt cọc 1,889 tỷ đồng.",
+                                     "result":  "Đã cập nhật DA-009 vào hệ thống; ghi nhận 01 Lưu ý KSNB \u0026 01 Kiến nghị",
+                                     "note":  "",
+                                     "auto":  0,
+                                     "createdAt":  "2026-10-28T14:30:00.000Z"
                                  },
                                  {
                                      "id":  "mufq31zq0smgo53",
@@ -30436,20 +30524,69 @@
                                      "note":  "",
                                      "auto":  1,
                                      "createdAt":  "2026-11-04T08:27:46.721Z"
-                                 },
-                                 {
-                                     "id":  "jnl_socson_da009_20261028",
-                                     "periodId":  "mvywegkvghcehae",
-                                     "ts":  "2026-10-28T14:30:00.000Z",
-                                     "user":  "Nguyễn Thị Thu Hương",
-                                     "type":  "Đối chiếu",
-                                     "object":  "Dự án DA-009 (TT Logistics HNT Sóc Sơn - Giai đoạn III)",
-                                     "content":  "Tiếp nhận và rà soát Biên bản làm việc số 28102026/HNT-LG ngày 28/10/2026 giữa HNT và Công ty CP Đầu tư Xây dựng Linh Giang về việc thuê kho 6.700m² và bãi 2.500m² tại Sóc Sơn (GĐ III). Cập nhật danh mục dự án DA-009 và lập lưu ý KSNB về điều kiện cấp phép GPXD/PCCC trước 31/01/2027 cùng tiến độ đặt cọc 1,889 tỷ đồng.",
-                                     "result":  "Đã cập nhật DA-009 vào hệ thống; ghi nhận 01 Lưu ý KSNB \u0026 01 Kiến nghị",
-                                     "note":  "",
-                                     "auto":  0,
-                                     "createdAt":  "2026-10-28T14:30:00.000Z"
                                  }
-                             ]
+                             ],
+                 "relations":  [
+                                   {
+                                       "id":  "rel_seed_bristar_cnv",
+                                       "a":  "customers:mudvhgxbdtpueze",
+                                       "b":  "customers:mudvhgxet3emnp3",
+                                       "relType":  "linked",
+                                       "basis":  "HĐ 2804/2023/HĐTK/HNT-BRISTAR ghi “Bổ sung HĐ 300m2 Cầu nối việt”; 2 HĐ ký cùng ngày 28/04/2023",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   },
+                                   {
+                                       "id":  "rel_seed_tiki_pl3",
+                                       "a":  "contracts:mukpm2yc8f8trj4",
+                                       "b":  "contracts:muf85borpho6kx4",
+                                       "relType":  "appendix",
+                                       "basis":  "PL3 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   },
+                                   {
+                                       "id":  "rel_seed_tiki_pl0506",
+                                       "a":  "contracts:ct_tikinow_pl05_06",
+                                       "b":  "contracts:muf85borpho6kx4",
+                                       "relType":  "appendix",
+                                       "basis":  "PL05-06 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   },
+                                   {
+                                       "id":  "rel_seed_tiki_pl9",
+                                       "a":  "contracts:mukpoqhowembjk7",
+                                       "b":  "contracts:muf85borpho6kx4",
+                                       "relType":  "appendix",
+                                       "basis":  "PL9 của HĐ 1703/2025/HĐTK/HNT-TIKINOW",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   },
+                                   {
+                                       "id":  "rel_seed_pnd",
+                                       "a":  "contracts:muf8472td1n6tq7",
+                                       "b":  "contracts:mugnndgcg5pz2ab",
+                                       "relType":  "linkedctr",
+                                       "basis":  "Cùng khách hàng PND Việt Nam (HĐ 2026 và HĐ 2025)",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   },
+                                   {
+                                       "id":  "rel_seed_bhx",
+                                       "a":  "contracts:ct_bhx_hd20264167",
+                                       "b":  "contracts:muf85bp2kq8427w",
+                                       "relType":  "linkedctr",
+                                       "basis":  "Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)",
+                                       "note":  "",
+                                       "createdAt":  "2026-11-05T02:25:00.000Z",
+                                       "updatedAt":  "2026-11-05T02:25:00.000Z"
+                                   }
+                               ]
              }
 }

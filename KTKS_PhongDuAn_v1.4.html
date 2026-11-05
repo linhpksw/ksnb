@@ -193,6 +193,23 @@ table.t td .code{font-weight:650;color:var(--pri-d);cursor:pointer}
 .sumline b.r{color:var(--r)}
 .note{font-size:12.5px;color:var(--mute)}
 .kv{display:grid;grid-template-columns:170px 1fr;gap:6px 14px;font-size:13.5px}
+/* Sơ đồ quan hệ KH – HĐ */
+.rel-wrap{display:grid;grid-template-columns:310px 1fr;gap:14px;align-items:start}
+.rel-gl{display:flex;flex-direction:column;gap:5px;max-height:62vh;overflow:auto;margin-top:8px}
+.rel-gi{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 10px;cursor:pointer;font:inherit;font-size:13px;color:var(--ink)}
+.rel-gi:hover{border-color:var(--pri)}
+.rel-gi.on{background:var(--pri-l);border-color:var(--pri);color:var(--pri-d)}
+.rel-gi small{display:block;color:var(--mute);font-size:11.5px;margin-top:2px}
+.rel-sum{display:flex;flex-wrap:wrap;gap:18px;padding:10px 14px;margin-bottom:12px;background:#f5f9f9;border:1px solid var(--line);border-radius:var(--rad);font-size:13px}
+.rel-sum b{display:block;font-size:17px;color:var(--pri-d)}
+.rel-cu{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden;background:var(--card)}
+.rel-cuh{background:var(--pri-l);padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rel-cuh .nm{font-weight:650;color:var(--pri-d);cursor:pointer}
+.rel-ct{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 12px;border-top:1px dashed var(--line2);font-size:13px}
+.rel-ct .no{font-weight:650;color:var(--pri-d);cursor:pointer}
+.rel-ct .mt{color:var(--mute);font-size:12.5px}
+.rel-ln{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line2);font-size:13px}
+@media(max-width:900px){.rel-wrap{grid-template-columns:1fr}}
 .kv dt{color:var(--mute)}.kv dd{margin:0}
 .opt{display:flex;gap:9px;align-items:flex-start;padding:6px 0}
 .opt input{margin-top:3px;width:auto;min-height:0}
@@ -277,12 +294,12 @@ input[type=file]{border:1px solid #c9d3d9;border-radius:var(--rad);padding:6px 8
    KTKS Phòng Dự án – Ứng dụng kiểm tra kiểm soát nội bộ hàng quý
    Chạy hoàn toàn offline • Dữ liệu lưu trong IndexedDB của trình duyệt
    ===================================================================== */
-const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.3',BACKUP_VERSION=1,DB_VERSION=7;
+const APP_ID='KTKS_PhongDuAn',APP_VERSION='1.5.4',BACKUP_VERSION=1,DB_VERSION=8;
 const HANDLE_STORE='_handles';
-const STORES=['periods','catalogs','docreqs','projects','investments','progcosts','payments','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','prices','renewals','revenues','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal','meta'];
+const STORES=['periods','catalogs','docreqs','projects','investments','progcosts','payments','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','prices','renewals','revenues','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal','relations','meta'];
 const DATA_STORES=STORES.filter(s=>s!=='meta');
 const PERIOD_STORES=['docreqs','investments','progcosts','payments','prices','renewals','discounts','commissions','kpis','tasks','checklist','findings','recs','followups','journal'];
-const GLOBAL_STORES=['catalogs','projects','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','revenues'];
+const GLOBAL_STORES=['catalogs','projects','customers','contracts','rentals','services','pricepolicies','policytiers','policyservices','policyvoltiers','revenues','relations'];
 
 /* ---------- Tiện ích ---------- */
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -520,7 +537,7 @@ const MENU=[
  {r:'dashboard',l:'Dashboard',top:1},
  {g:'Kỳ kiểm tra',ic:'cal',items:[['period','Thông tin kỳ'],['docreqs','Yêu cầu hồ sơ'],['journal','Nhật ký']]},
  {g:'Dự án',ic:'folder',items:[['projects','Danh sách dự án'],['investments','Quyết định đầu tư'],['progcosts','Tiến độ & Chi phí'],['payments','Nghiệm thu & Thanh toán']]},
- {g:'Kinh doanh/Hợp đồng',ic:'brief',items:[['customers','Khách hàng'],['contracts','Hợp đồng'],['rentals','Đơn giá chính'],['services','Phí phát sinh & dịch vụ'],['pricepolicies','Chính sách giá'],['policytiers','Bậc chiết khấu CS'],['policyservices','Bảng giá dịch vụ CS'],['policyvoltiers','Bậc sản lượng CS'],['prices','Giá & Báo giá'],['renewals','Tái tục'],['revenues','Doanh thu & Công nợ'],['discounts','Chiết khấu'],['commissions','Hoa hồng KH mới']]},
+ {g:'Kinh doanh/Hợp đồng',ic:'brief',items:[['customers','Khách hàng'],['contracts','Hợp đồng'],['relmap','Sơ đồ quan hệ KH – HĐ'],['relations','Danh sách quan hệ'],['rentals','Đơn giá chính'],['services','Phí phát sinh & dịch vụ'],['pricepolicies','Chính sách giá'],['policytiers','Bậc chiết khấu CS'],['policyservices','Bảng giá dịch vụ CS'],['policyvoltiers','Bậc sản lượng CS'],['prices','Giá & Báo giá'],['renewals','Tái tục'],['revenues','Doanh thu & Công nợ'],['discounts','Chiết khấu'],['commissions','Hoa hồng KH mới']]},
  {g:'Kế hoạch & KPI',ic:'target',items:[['kpis','KPI'],['tasks','Nhiệm vụ Phòng Dự án']]},
  {g:'Kiểm tra',ic:'check',items:[['checklist','Checklist'],['findings','Finding'],['recs','Kiến nghị & Khắc phục'],['followups','Follow-up kỳ trước']]},
  {g:'Báo cáo',ic:'file',items:[['summary','Tổng hợp'],['report','Báo cáo kiểm tra quý']]},
@@ -571,6 +588,7 @@ function optsFor(f){
   if(f.t==='cat'||f.t==='cats'||(f.t==='computed'&&f.fmt==='cat'))return catItems(f.g).map(i=>[i.key,i.name]);
   if(f.t==='yn')return[['y','Có'],['n','Không'],['na','N/A']];
   if(f.t==='ref'){const e=ENT[f.ref];return DB.all(e.store).filter(x=>!f.where||f.where(x)).map(x=>[x.id,e.label(x)]).sort((a,b)=>a[1].localeCompare(b[1],'vi'))}
+  if(f.t==='party')return partyOpts().map(o=>[o[0],(o[2]==='Khách hàng'?'KH ':'HĐ ')+o[1]]);
   return[];
 }
 function fmtVal(f,v){
@@ -584,7 +602,7 @@ function fmtVal(f,v){
    case'money':return fmtMoney(v);case'pct':return fmtPct(v);case'number':return fmtNum(v);case'days':return fmtNum(v)+' ngày';
    case'date':return fmtDate(v);case'month':return fmtMonth(v);case'datetime':return fmtDT(v);
    case'cat':return catName(f.g,v);
-   case'ref':{const e=ENT[f.ref],r=DB.get(e.store,v);return r?e.label(r):'(đã xóa)'}
+   case'ref':{const e=ENT[f.ref],r=DB.get(e.store,v);return r?e.label(r):'(đã xóa)'}case'party':return partyLabel(v);
    case'yn':return YN[v]||v;
    case'select':{const o=optsFor(f).find(x=>x[0]===v);return o?o[1]:v}
    case'badge':return Array.isArray(v)?v[0]:(v.text||'');
@@ -760,7 +778,8 @@ function inputHtml(f,val){
      h+=`</div></div>`;
      return h;
    }
-   case'auto':return`<input type="text" ${n} value="${esc(v)}" placeholder="Tự động tạo khi lưu" readonly>`;
+   case'party':{const o=partyOpts(),grp=g=>o.filter(x=>x[2]===g).map(([a,b])=>`<option value="${esc(a)}" ${a===v?'selected':''}>${esc(b)}</option>`).join('');return`<select ${n}><option value="">— Chọn khách hàng hoặc hợp đồng —</option><optgroup label="Khách hàng">${grp('Khách hàng')}</optgroup><optgroup label="Hợp đồng">${grp('Hợp đồng')}</optgroup></select>`}
+    case'auto':return`<input type="text" ${n} value="${esc(v)}" placeholder="Tự động tạo khi lưu" readonly>`;
    case'checkbox':return`<label style="display:flex;align-items:center;gap:8px;font-weight:400;cursor:pointer"><input type="checkbox" ${n} ${v==='y'?'checked':''} style="width:16px;height:16px"><span>${esc(f.checkText||'Có')}</span></label>`;
    case'computed':return`<div class="calc" data-calc="${f.k}"></div>`;
    case'info':return`<div class="info" data-info="${f.k}"></div>`;
@@ -904,6 +923,7 @@ async function askDelete(key,id){
   const ent=ENT[key],r=DB.get(ent.store,id);if(!r)return;
   if(isLocked(ent,r)){toast('Kỳ đã hoàn thành – không thể xóa','warn');return}
   const used=[];Object.values(ENT).forEach(E=>E.fields.forEach(f=>{if(f.t==='ref'&&f.ref===key&&!f.soft&&!f.cascade){const n=DB.all(E.store).filter(x=>x[f.k]===id).length;if(n)used.push(`${E.title} (${n})`)}}));
+  if(key==='customers'||key==='contracts'){const n=DB.all('relations').filter(x=>x.a===key+':'+id||x.b===key+':'+id).length;if(n)used.push(`Quan hệ KH – HĐ (${n})`)}
   if(used.length){await infoBox('Không thể xóa',`<b>${esc(ent.label(r))}</b> đang được sử dụng ở: ${esc(used.join(', '))}.<br>Hãy xóa hoặc chuyển các bản ghi đó trước.`);return}
   const casc=collectCascade(key,id),cnt={};casc.forEach(([k])=>cnt[ENT[k].title]=(cnt[ENT[k].title]||0)+1);
   const ok=await confirmBox({title:'Xác nhận xóa',danger:true,ok:'Xóa',html:true,msg:`Bạn có chắc muốn xóa <b>${esc(ent.label(r))}</b>?`+(casc.length?`<br><br>Sẽ xóa kèm: ${Object.entries(cnt).map(([a,b])=>`${esc(a)} (${b})`).join(', ')}.`:'')+`<br><span class="note">Thao tác không thể hoàn tác (hãy sao lưu nếu cần).</span>`});
@@ -1480,8 +1500,11 @@ defEnt({key:'payments',title:'Nghiệm thu & Thanh toán',singular:'Đợt thanh
 defEnt({key:'customers',title:'Khách hàng',singular:'Khách hàng',store:'customers',desc:'Danh sách khách hàng dùng chung cho hợp đồng, giá, công nợ, chiết khấu.',label:r=>r?`${r.code} – ${r.name}`:'',
  fields:[F('code','Mã KH','text',{req:1,unique:1,main:1,def:()=>'KH'+String(DB.all('customers').length+1).padStart(3,'0')}),F('name','Tên khách hàng','text',{req:1,full:1}),F('taxId','Mã số thuế','text'),F('rep','Người đại diện','text'),
   F('phone','Điện thoại','text'),F('email','Email','text',{email:1}),F('group','Nhóm khách hàng','cat',{g:'custGroup',f:1}),F('address','Địa chỉ','text',{full:1}),
-  F('nContracts','Số hợp đồng','computed',{fmt:'number',noForm:1,calc:r=>DB.all('contracts').filter(c=>c.customerId===r.id).length})],
- cols:['code','name','taxId','rep','phone','group','nContracts'],sort:{k:'code',dir:'asc'},
+  F('nContracts','Số hợp đồng','computed',{fmt:'number',noForm:1,calc:r=>DB.all('contracts').filter(c=>c.customerId===r.id).length}),
+   F('relCount','Quan hệ','computed',{fmt:'badge',noForm:1,sv:r=>relsOfCustomer(r.id).length,calc:r=>{const n=relsOfCustomer(r.id).length;return n?[n+' quan hệ','blue']:''}}),
+   F('_rel','','info',{html:v=>relPanelHtml('customers',v.id)})],
+  vfilters:[{k:'hasRel',l:'Quan hệ',get:r=>relsOfCustomer(r.id).length?'y':'n',opts:()=>[['y','Có quan hệ'],['n','Chưa có quan hệ']]}],
+ cols:['code','name','taxId','rep','phone','group','nContracts','relCount'],sort:{k:'code',dir:'asc'},
  validate:v=>{const e={};if(v.taxId&&!/^\d{10}(-?\d{3})?$/.test(v.taxId.replace(/\s/g,'')))e.taxId='MST gồm 10 hoặc 13 chữ số';if(v.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email))e.email='Email không hợp lệ';return e}});
 
 const CT_DOCS=[['docContract','Hợp đồng'],['docAppendix','Phụ lục'],['docQuote','Báo giá'],['docNego','Biên bản thương thảo'],['docPrice','Phê duyệt giá'],['docHandover','Biên bản bàn giao'],['docLiquid','Biên bản thanh lý']];
@@ -1501,7 +1524,7 @@ defEnt({key:'contracts',title:'Hợp đồng',singular:'Hợp đồng',store:'co
   F('qd176Eligible','Điều kiện CK gia hạn QĐ 176','computed',{fmt:'badge',tab:0,calc:r=>{const hist=custContractHistory(r.customerId);return(hist.isGe3Years||(isNum(r.priorYears)&&N(r.priorYears)>=3))?['Đủ ĐK ≥ 3 năm (QĐ 176)','green']:['Chưa đủ 3 năm','gray']}}),
   F('status','Trạng thái hợp đồng','cat',{g:'contractStatus',def:'active',f:1,inl:1,req:1,tab:0}),
   F('signer','Người ký','text',{tab:0}),F('signerTitle','Chức danh','text',{tab:0}),F('authOK','Đúng thẩm quyền?','yn',{tab:0}),
-  F('daysLeft','Thời hạn còn lại','computed',{fmt:'badge',tab:0,sv:r=>{const d=daysLeft(r);return d==null?9e9:d},calc:r=>{if(r.status==='ended')return['Đã kết thúc','gray'];if(r.indefinite==='y')return['Vô thời hạn','blue'];const d=daysLeft(r);if(d==null)return'';return d<0?[`Quá hạn ${-d} ngày`,'red']:[d+' ngày',d<=30?'red':d<=90?'yellow':'gray']}}),
+  F('daysLeft','Thời hạn còn lại','computed',{fmt:'badge',tab:0,sv:r=>{const d=daysLeft(r);return d==null?9e9:d},calc:r=>{if(r.status==='ended')return['Đã kết thúc','gray'];if(r.indefinite==='y')return['Vô thời hạn','blue'];const d=daysLeft(r);if(d==null)return'';return d<0?[`Quá hạn ${-d} ngày`,'red']:[d+' ngày',d<=30?'red':d<=90?'yellow':'gray']}}),F('_rel','','info',{tab:0,html:v=>relPanelHtml('contracts',v.id)}),
   F('_pl','','info',{tab:1,html:v=>priceLinesHtml(v)}),F('monthly','Tiền thuê cố định/tháng (VND)','computed',{fmt:'money',tab:1,sv:r=>N(ctrMonthly(r)),calc:ctrMonthly}),F('modelTag','Mô hình','computed',{fmt:'badge',noForm:1,sv:r=>ctrModel(r),calc:r=>ctrModel(r)==='storage'?['Lưu kho trọn gói','blue']:['Thuê đứt','green']}),F('priceSum','Đơn giá chính','computed',{fmt:'text',noForm:1,sv:r=>ctrPriceText(r),calc:ctrPriceText}),
   F('policyApplied','Chính sách giá áp dụng','computed',{fmt:'text',tab:1,sv:r=>{const p=sitePolicyFor(r.site,r.effDate||todayStr());return p?p.basePrice:''},calc:r=>{const p=sitePolicyFor(r.site,r.effDate||todayStr());return p?`${policyName(p.id)} – Giá chuẩn ${fmtMoney(p.basePrice)} đ/${p.unit||''}/tháng`:'Chưa có chính sách giá cho kho này'}}),
   F('storageMinRev','Doanh thu lưu kho tối thiểu/tháng (VND)','money',{min:0,tab:1,help:'Theo Điều 2 QĐ 11: Doanh thu lưu kho tối thiểu áp dụng chính sách chiết khấu là 5.000.000 đ/tháng'}),
@@ -1516,6 +1539,145 @@ defEnt({key:'contracts',title:'Hợp đồng',singular:'Hợp đồng',store:'co
  beforeSave:rec=>{if(rec.indefinite==='y')rec.endDate=''},
  afterSave:(rec,isNew)=>{if(isNew)setTimeout(()=>{const m=openForm('contracts',rec.id);if(m){ACT.tab({dataset:{i:1},closest:()=>m.el});toast('Hợp đồng đã tạo – hãy nhập biểu giá ở tab “Biểu giá & thanh toán”','')}},120)},
  validate:v=>{const e={};if(v.effDate&&v.signDate&&v.effDate<v.signDate)e.effDate='Ngày hiệu lực trước ngày ký – kiểm tra lại';if(v.indefinite!=='y'){if(!v.endDate)e.endDate='Bắt buộc nhập (hoặc tích "Vô thời hạn")';else if(v.effDate&&v.endDate<v.effDate)e.endDate='Ngày hết hạn phải sau ngày hiệu lực'}return e}});
+
+/* ---------- Quan hệ Khách hàng – Hợp đồng ---------- */
+/* Mỗi bản ghi nối 2 bên bất kỳ: "customers:<id>" hoặc "contracts:<id>". Các KH nối với nhau tự gom thành nhóm. */
+const REL_HIER=['appendix','addon','replace'];   /* HĐ A là con của HĐ B (dùng dựng cây HĐ gốc → PL) */
+const REL_SYS=[['linked','Liên kết – ghi phí cho nhau','blue',0,0],['sameowner','Cùng chủ sở hữu','blue',1,0],['parent','Công ty mẹ – con (A là mẹ của B)','blue',2,0],['branch','Chi nhánh (A là chi nhánh của B)','blue',3,0],
+ ['appendix','Phụ lục của HĐ (A là phụ lục của B)','green',4,1],['addon','HĐ bổ sung/mở rộng (A bổ sung cho B)','green',5,1],['replace','Gia hạn/Thay thế (A thay thế B)','yellow',6,1],['linkedctr','Hợp đồng liên quan','gray',7,0],['other','Khác','gray',8,0]];
+const partyParse=v=>{const m=String(v||'').match(/^(customers|contracts):(.+)$/);return m?{t:m[1],id:m[2]}:null};
+const partyRec=v=>{const p=partyParse(v);return p?DB.get(p.t,p.id):null};
+const custShort=c=>c?(c.shortName||c.short||c.name||''):'';
+function partyLabel(v){const p=partyParse(v);if(!p)return'';const r=DB.get(p.t,p.id);if(!r)return'(đã xóa)';return p.t==='customers'?`KH ${r.code} – ${r.name}`:`HĐ ${r.no} – ${custShort(cust(r.customerId))}`}
+const partyShort=v=>{const p=partyParse(v);if(!p)return'';const r=DB.get(p.t,p.id);if(!r)return'(đã xóa)';return p.t==='customers'?custShort(r):`HĐ ${r.no}`};
+const partyCust=v=>{const p=partyParse(v);if(!p)return null;if(p.t==='customers')return DB.get('customers',p.id)?p.id:null;const c=ctr(p.id);return c&&cust(c.customerId)?c.customerId:null};
+function partyOpts(){
+  const by=(a,b)=>a[1].localeCompare(b[1],'vi',{numeric:true});
+  return[...DB.all('customers').map(c=>['customers:'+c.id,`${c.code} – ${c.name}`,'Khách hàng']).sort(by),...DB.all('contracts').map(c=>['contracts:'+c.id,`${c.no} – ${custShort(cust(c.customerId))}`,'Hợp đồng']).sort(by)];
+}
+const relValid=r=>partyRec(r.a)&&partyRec(r.b);
+function relsOfCustomer(id){const keys=new Set(['customers:'+id,...DB.all('contracts').filter(c=>c.customerId===id).map(c=>'contracts:'+c.id)]);return DB.all('relations').filter(r=>keys.has(r.a)||keys.has(r.b))}
+const relBadge=t=>badge(catName('relType',t)||'(chưa chọn loại)',catTone('relType',t)||'gray');
+
+defEnt({key:'relations',title:'Danh sách quan hệ KH – HĐ',singular:'Quan hệ',store:'relations',
+ desc:'Tự khai báo mối quan hệ giữa 2 bên bất kỳ (khách hàng hoặc hợp đồng). Các khách hàng nối với nhau sẽ tự gom thành một nhóm ở màn hình Sơ đồ quan hệ.',
+ label:r=>r?`${partyShort(r.a)} ↔ ${partyShort(r.b)}`:'',addLabel:'Thêm quan hệ',
+ toolbar:()=>`<a class="btn" href="#/relmap">${ic('link')} Xem sơ đồ quan hệ</a>`,
+ fields:[F('a','Bên A','party',{req:1,full:1,help:'Chọn một khách hàng hoặc một hợp đồng'}),
+  F('relType','Loại quan hệ','cat',{g:'relType',req:1,f:1,help:'Loại có ghi “(A … B)” đọc theo chiều Bên A → Bên B. Muốn thêm loại mới: Hệ thống → Quản lý danh mục → Loại quan hệ KH – HĐ.'}),
+  F('b','Bên B','party',{req:1,full:1}),
+  F('basis','Căn cứ','text',{full:1,ph:'VD: PLHĐ số…, văn bản 3 bên, ĐKKD cùng chủ sở hữu…'}),
+  areaOf('note','Ghi chú')],
+ cols:['a','relType','b','basis'],sort:{k:'a',dir:'asc'},
+ validate:(v,c,base)=>{const e={};
+  if(v.a&&v.b&&v.a===v.b)e.b='Bên B phải khác Bên A';
+  if(REL_HIER.includes(v.relType)&&!(/^contracts:/.test(v.a||'')&&/^contracts:/.test(v.b||'')))e.relType='Loại quan hệ này chỉ dùng giữa 2 hợp đồng';
+  if(!e.b&&v.a&&v.b&&DB.all('relations').some(r=>r.id!==(base&&base.id)&&r.relType===v.relType&&((r.a===v.a&&r.b===v.b)||(r.a===v.b&&r.b===v.a))))e.b='Quan hệ này đã có';
+  return e}});
+
+/* Nhóm liên kết = các KH nối với nhau (trực tiếp hoặc qua hợp đồng) */
+function relGroups(){
+  const par={},find=x=>{while(par[x]!==x){par[x]=par[par[x]];x=par[x]}return x},add=x=>{if(!(x in par))par[x]=x};
+  const rels=DB.all('relations').filter(relValid);
+  rels.forEach(r=>{const a=partyCust(r.a),b=partyCust(r.b);if(!a||!b)return;add(a);add(b);const ra=find(a),rb=find(b);if(ra!==rb)par[ra]=rb});
+  const map={};Object.keys(par).forEach(c=>{const k=find(c);(map[k]=map[k]||[]).push(c)});
+  return Object.values(map).map(cs=>{const set=new Set(cs),custs=cs.map(cust).filter(Boolean).sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true}));
+    return{key:[...cs].sort()[0],custs,rels:rels.filter(r=>set.has(partyCust(r.a))),name:custs.map(custShort).join(' – ')}}).sort((a,b)=>a.name.localeCompare(b.name,'vi'));
+}
+function relGroupOf(custId){const g=relGroups().find(g=>g.custs.some(c=>c.id===custId));if(g)return g;const c=cust(custId);return c?{key:custId,custs:[c],rels:[],name:custShort(c),solo:1}:null}
+
+function relCtrRow(c,depth,viaType,parentCust,rels){
+  const d=daysLeft(c),st=catItem('contractStatus',c.status);
+  const dl=c.status==='ended'?'':c.indefinite==='y'?badge('Vô thời hạn','blue'):d==null?'':d<0?badge(`Quá hạn ${-d} ngày`,'red'):badge(`Còn ${d} ngày`,d<=30?'red':d<=S('expiryDays')?'yellow':'gray');
+  const links=rels.filter(r=>!REL_HIER.includes(r.relType)&&(r.a==='contracts:'+c.id||r.b==='contracts:'+c.id)).map(r=>{const o=r.a==='contracts:'+c.id?r.b:r.a;return`<span class="badge gray" title="${esc(catName('relType',r.relType))}">↔ ${esc(partyShort(o))}</span>`}).join(' ');
+  const mo=ctrMonthly(c);
+  return`<div class="rel-ct" style="padding-left:${12+depth*26}px">${depth?'<span class="mt">└─</span>':''}${viaType?relBadge(viaType):''}<span class="no" data-act="edit" data-e="contracts" data-id="${c.id}" title="Mở hợp đồng">${esc(c.no)}</span>`+
+   (parentCust&&parentCust!==c.customerId?`<span class="badge yellow">KH: ${esc(custShort(cust(c.customerId)))}</span>`:'')+
+   `<span class="mt">${esc(catName('site',c.site)||'')}</span><span class="mt">${fmtDate(c.effDate)||'?'} → ${c.indefinite==='y'?'Vô thời hạn':(fmtDate(c.endDate)||'?')}</span>`+
+   (isNum(mo)&&N(mo)>0?`<span class="mt">${fmtMoney(mo)} đ/tháng</span>`:'')+(st?badge(st.name,st.tone):'')+dl+links+`</div>`;
+}
+function relTreeHtml(g){
+  const cids=new Set(g.custs.map(c=>c.id)),cts=DB.all('contracts').filter(c=>cids.has(c.customerId)),inG=new Set(cts.map(c=>c.id));
+  const parentOf={},kids={};
+  g.rels.forEach(r=>{if(!REL_HIER.includes(r.relType))return;const a=partyParse(r.a),b=partyParse(r.b);
+    if(!a||!b||a.t!=='contracts'||b.t!=='contracts'||!inG.has(a.id)||!inG.has(b.id)||parentOf[a.id])return;
+    parentOf[a.id]={pid:b.id,type:r.relType};(kids[b.id]=kids[b.id]||[]).push({id:a.id,type:r.relType})});
+  const seen=new Set(),byDate=(x,y)=>String(x.effDate||x.signDate||'').localeCompare(String(y.effDate||y.signDate||''));
+  const node=(c,depth,type,pc)=>{if(!c||seen.has(c.id))return'';seen.add(c.id);
+    return relCtrRow(c,depth,type,pc,g.rels)+(kids[c.id]||[]).map(k=>({k,c:ctr(k.id)})).sort((x,y)=>byDate(x.c,y.c)).map(({k,c:cc})=>node(cc,depth+1,k.type,c.customerId)).join('')};
+  return g.custs.map(cu=>{
+    const roots=cts.filter(c=>c.customerId===cu.id&&!parentOf[c.id]).sort(byDate);
+    let body=roots.map(c=>node(c,0,'',null)).join('');
+    body+=cts.filter(c=>c.customerId===cu.id&&!seen.has(c.id)).map(c=>node(c,0,'',null)).join('');   /* phòng vòng lặp */
+    const own=g.rels.filter(r=>r.a==='customers:'+cu.id||r.b==='customers:'+cu.id).map(r=>{const o=r.a==='customers:'+cu.id?r.b:r.a;return`${relBadge(r.relType)} <span class="mt">với</span> <b>${esc(partyShort(o))}</b>`}).join(' &nbsp; ');
+    const nAll=cts.filter(c=>c.customerId===cu.id).length;
+    return`<div class="rel-cu"><div class="rel-cuh"><span class="nm" data-act="edit" data-e="customers" data-id="${cu.id}" title="Mở hồ sơ khách hàng">${esc(cu.code)} – ${esc(cu.name)}</span>${cu.taxId?`<span class="mt">MST ${esc(cu.taxId)}</span>`:''}<span class="badge gray">${nAll} HĐ</span>${own?`<span style="flex-basis:100%;font-size:12.5px">${own}</span>`:''}</div>${body||'<div class="rel-ct mt">Chưa có hợp đồng</div>'}</div>`;
+  }).join('');
+}
+function relListHtml(){
+  const q=norm(UI.relQ||''),gs=relGroups().filter(g=>!q||norm(g.name+' '+g.custs.map(c=>c.code+' '+c.name).join(' ')).includes(q));
+  const cur=UI.relSel||'';
+  if(!gs.length)return`<div class="note" style="padding:8px">${q?'Không có nhóm phù hợp.':'Chưa có nhóm nào. Bấm “Thêm quan hệ” để bắt đầu.'}</div>`;
+  return gs.map(g=>{const nC=DB.all('contracts').filter(c=>g.custs.some(x=>x.id===c.customerId)).length,on=cur==='g:'+g.key||(cur.startsWith('c:')&&g.custs.some(c=>'c:'+c.id===cur));
+    return`<button class="rel-gi ${on?'on':''}" data-act="rel-sel" data-k="g:${g.key}">${esc(g.name)}<small>${g.custs.length} khách hàng · ${nC} hợp đồng · ${g.rels.length} quan hệ</small></button>`}).join('');
+}
+VIEWS.relmap={render(){
+  const gs=relGroups();let sel=UI.relSel||'',g=null;
+  if(sel.startsWith('c:'))g=relGroupOf(sel.slice(2));else if(sel.startsWith('g:'))g=gs.find(x=>x.key===sel.slice(2));
+  if(!g&&gs.length){g=gs[0];UI.relSel='g:'+g.key}
+  let h=phead('Sơ đồ quan hệ Khách hàng – Hợp đồng','Xem các khách hàng liên quan với nhau và toàn bộ hợp đồng của họ (HĐ gốc → phụ lục/HĐ bổ sung). Bấm vào tên khách hàng hoặc số hợp đồng để mở hồ sơ.',
+   `<a class="btn" href="#/relations">Danh sách quan hệ</a><button class="btn pri" data-act="rel-add" data-a="${g?'customers:'+g.custs[0].id:''}">${ic('plus')} Thêm quan hệ</button>`);
+  const custOpts=[...DB.all('customers')].sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true})).map(c=>`<option value="${c.id}" ${sel==='c:'+c.id?'selected':''}>${esc(c.code)} – ${esc(c.name)}</option>`).join('');
+  h+=`<div class="rel-wrap"><div class="card"><div class="cb" style="padding:10px">
+    <div class="fld"><label>Xem một khách hàng bất kỳ</label><select data-chg="rel-cust"><option value="">— Chọn khách hàng —</option>${custOpts}</select></div>
+    <div class="ih" style="margin:12px 0 4px;font-weight:650;color:var(--pri-d)">Nhóm liên kết (${gs.length})</div>
+    <input type="search" placeholder="Tìm nhóm/khách hàng…" value="${esc(UI.relQ||'')}" data-inp="relq" aria-label="Tìm nhóm">
+    <div class="rel-gl" id="relList">${relListHtml()}</div></div></div><div>`;
+  if(!g){h+=`<div class="empty"><b>Chưa có quan hệ nào</b>Bấm “Thêm quan hệ” để nối hai khách hàng hoặc hai hợp đồng với nhau.</div></div></div>`;return h}
+  const cids=new Set(g.custs.map(c=>c.id)),cts=DB.all('contracts').filter(c=>cids.has(c.customerId)),act=cts.filter(c=>c.status==='active');
+  h+=`<div class="rel-sum"><div>Nhóm<b>${esc(g.name)}</b></div><div>Khách hàng<b>${g.custs.length}</b></div><div>Hợp đồng (đang hiệu lực)<b>${cts.length} (${act.length})</b></div><div>Giá trị/tháng HĐ đang hiệu lực<b>${fmtMoney(sumBy(act,c=>ctrMonthly(c)))} đ</b></div></div>`;
+  if(g.solo)h+=`<div class="banner b" style="margin-bottom:12px">${ic('link')}<div>Khách hàng này chưa có quan hệ với bên nào. Bấm <b>Thêm quan hệ</b> để nối với khách hàng/hợp đồng khác.</div></div>`;
+  h+=relTreeHtml(g);
+  h+=`<div class="card"><h3>Các mối quan hệ trong nhóm (${g.rels.length})<span class="sp" style="flex:1"></span><button class="btn sm pri" data-act="rel-add" data-a="customers:${g.custs[0].id}">${ic('plus')} Thêm quan hệ</button></h3><div class="cb">`+
+   (g.rels.map(r=>`<div class="rel-ln"><b>${esc(partyLabel(r.a))}</b>${relBadge(r.relType)}<b>${esc(partyLabel(r.b))}</b>${r.basis?`<span class="mt note">– ${esc(r.basis)}</span>`:''}<span style="flex:1"></span><button class="ibtn" title="Sửa" data-act="rel-edit" data-id="${r.id}">${ic('edit')}</button><button class="ibtn del" title="Xóa" data-act="rel-del" data-id="${r.id}">${ic('trash')}</button></div>`).join('')||'<div class="note">Chưa có quan hệ nào.</div>')+`</div></div>`;
+  return h+`</div></div>`;
+}};
+/* Ô “Các bên liên quan” trong form Khách hàng / Hợp đồng */
+function relPanelHtml(t,id){
+  if(!id)return'<div style="grid-column:1/-1" class="note">Các bên liên quan: lưu bản ghi trước, sau đó có thể thêm quan hệ.</div>';
+  const key=t+':'+id,rels=t==='customers'?relsOfCustomer(id):DB.all('relations').filter(r=>r.a===key||r.b===key);
+  const custId=t==='customers'?id:((ctr(id)||{}).customerId||'');
+  let h=`<div style="grid-column:1/-1"><div class="ih" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Các bên liên quan (${rels.length})<span style="flex:1"></span><button type="button" class="btn sm pri" data-act="rel-add" data-a="${key}">${ic('plus')} Thêm quan hệ</button>${custId?`<button type="button" class="btn sm" data-act="rel-map" data-c="${custId}">${ic('link')} Xem sơ đồ</button>`:''}</div>`;
+  if(!rels.length)h+='<div class="note">Chưa có quan hệ nào.</div>';
+  rels.forEach(r=>{h+=`<div class="rel-ln"><span>${esc(partyShort(r.a))}</span>${relBadge(r.relType)}<span>${esc(partyShort(r.b))}</span>${r.basis?`<span class="note">– ${esc(r.basis)}</span>`:''}<span style="flex:1"></span><button type="button" class="btn sm" data-act="rel-edit" data-id="${r.id}">Sửa</button><button type="button" class="btn sm dng" data-act="rel-del" data-id="${r.id}">Xóa</button></div>`});
+  return h+'</div>';
+}
+const relRefresh=p=>{if(p&&p.ctx&&MODALS.includes(p))refreshForm(p,null)};
+Object.assign(ACT,{
+  'rel-add':el=>{const p=MODALS[MODALS.length-1];const m=openForm('relations',null,el.dataset.a?{a:el.dataset.a}:{});if(m)m.after=()=>relRefresh(p)},
+  'rel-edit':el=>{const p=MODALS[MODALS.length-1];const m=openForm('relations',el.dataset.id);if(m)m.after=()=>relRefresh(p)},
+  'rel-del':async el=>{const p=MODALS[MODALS.length-1],r=DB.get('relations',el.dataset.id);if(!r)return;
+    if(!await confirmBox({title:'Xác nhận xóa',danger:true,ok:'Xóa',html:true,msg:`Xóa quan hệ <b>${esc(partyShort(r.a))}</b> ↔ <b>${esc(partyShort(r.b))}</b>?`}))return;
+    await deleteRecord('relations',r.id);toast('Đã xóa quan hệ');relRefresh(p);renderMain()},
+  'rel-map':el=>{while(MODALS.length)closeModal();UI.relSel='c:'+el.dataset.c;go('relmap')},
+  'rel-sel':el=>{UI.relSel=el.dataset.k;renderMain()}
+});
+CHG['rel-cust']=el=>{if(!el.value)return;UI.relSel='c:'+el.value;renderMain()};
+INP.relq=el=>{UI.relQ=el.value;const l=$('#relList');if(l)l.innerHTML=relListHtml()};
+async function ensureRelations(){
+  for(const[k,name,tone,order,lock]of REL_SYS){if(DB.all('catalogs').some(x=>x.group==='relType'&&x.key===k))continue;const rec={id:'relType.'+k,group:'relType',key:k,name,tone,order};if(lock)rec.lock=1;await DB.put('catalogs',rec)}
+  if(DB.meta.relSeed)return;
+  const seeds=[
+   {id:'rel_seed_bristar_cnv',a:'customers:mudvhgxbdtpueze',b:'customers:mudvhgxet3emnp3',relType:'linked',basis:'HĐ 2804/2023/HĐTK/HNT-BRISTAR ghi “Bổ sung HĐ 300m2 Cầu nối việt”; 2 HĐ ký cùng ngày 28/04/2023',note:''},
+   {id:'rel_seed_tiki_pl3',a:'contracts:mukpm2yc8f8trj4',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL3 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
+   {id:'rel_seed_tiki_pl0506',a:'contracts:ct_tikinow_pl05_06',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL05-06 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
+   {id:'rel_seed_tiki_pl9',a:'contracts:mukpoqhowembjk7',b:'contracts:muf85borpho6kx4',relType:'appendix',basis:'PL9 của HĐ 1703/2025/HĐTK/HNT-TIKINOW',note:''},
+   {id:'rel_seed_pnd',a:'contracts:muf8472td1n6tq7',b:'contracts:mugnndgcg5pz2ab',relType:'linkedctr',basis:'Cùng khách hàng PND Việt Nam (HĐ 2026 và HĐ 2025)',note:''},
+   {id:'rel_seed_bhx',a:'contracts:ct_bhx_hd20264167',b:'contracts:muf85bp2kq8427w',relType:'linkedctr',basis:'Cùng khách hàng Bách Hóa Xanh (2 HĐ năm 2026)',note:''}];
+  const now=new Date().toISOString(),add=seeds.filter(s=>!DB.get('relations',s.id)&&relValid(s)).map(s=>({...s,createdAt:now,updatedAt:now}));
+  if(add.length)await DB.putMany('relations',add);
+  if(seeds.every(s=>DB.get('relations',s.id)))await DB.setMeta('relSeed','1');
+}
 
 /* ---------- Dịch vụ kèm theo hợp đồng (điện, nước, bảo vệ, vệ sinh...) ---------- */
 defEnt({key:'services',title:'Phí phát sinh & dịch vụ kèm theo',singular:'Phí phát sinh/dịch vụ',store:'services',size:'lg',
@@ -2227,7 +2389,7 @@ ACT.print=()=>window.print();
 const sheetOf=(name,ent,rows)=>{const fs=ent.fields.filter(f=>f.t!=='info');return{name,head:fs.map(f=>f.l),rows:rows.map(r=>fs.map(f=>exportVal(f,r)))}};
 const RULE_TONE={r:'Nghiêm trọng',y:'Cần chú ý',b:'Thông tin'};
 function ruleRowsAll(rule){const ent=ENT[rule.ent];const c=ctx();return DB.all(ent.store).filter(r=>safe(()=>rule.test(r,c)))}
-const RECON_ORDER=['customers','contracts','rentals','services','pricepolicies','policytiers','prices','discounts','commissions','renewals','revenues','projects','investments','progcosts','payments','docreqs','checklist','findings','recs','followups','kpis','tasks','journal'];
+const RECON_ORDER=['customers','contracts','relations','rentals','services','pricepolicies','policytiers','prices','discounts','commissions','renewals','revenues','projects','investments','progcosts','payments','docreqs','checklist','findings','recs','followups','kpis','tasks','journal'];
 ACT['export-all']=()=>{
   const ents=RECON_ORDER.filter(k=>ENT[k]);
   const cntRows=ents.map(k=>[ENT[k].title,DB.all(ENT[k].store).length]);
@@ -2264,7 +2426,7 @@ ACT['rpt-csv']=el=>{const ent=ENT[el.dataset.e],P=curPeriod(),rows=el.dataset.e=
 
 /* ---------- Quản lý danh mục ---------- */
 const CAT_DEFS=[
- ['projectType','Loại dự án'],['contractType','Loại hợp đồng'],['site','Trung tâm/Kho'],['docGroup','Nhóm hồ sơ'],['kpiGroup','Nhóm KPI'],['unitKpi','Đơn vị tính KPI'],['custGroup','Nhóm khách hàng'],['person','Người phụ trách'],['unit','Đơn vị chịu trách nhiệm'],['chkGroup','Nhóm checklist/Finding'],['payCycle','Chu kỳ thanh toán'],['discType','Loại chiết khấu'],['svcType','Loại dịch vụ kèm theo'],['svcMethod','Cách tính giá dịch vụ'],
+ ['projectType','Loại dự án'],['contractType','Loại hợp đồng'],['site','Trung tâm/Kho'],['docGroup','Nhóm hồ sơ'],['kpiGroup','Nhóm KPI'],['unitKpi','Đơn vị tính KPI'],['custGroup','Nhóm khách hàng'],['relType','Loại quan hệ KH – HĐ',1],['person','Người phụ trách'],['unit','Đơn vị chịu trách nhiệm'],['chkGroup','Nhóm checklist/Finding'],['payCycle','Chu kỳ thanh toán'],['discType','Loại chiết khấu'],['svcType','Loại dịch vụ kèm theo'],['svcMethod','Cách tính giá dịch vụ'],
  ['projStatus','Trạng thái dự án',1],['docStatus','Trạng thái hồ sơ',1],['periodStatus','Trạng thái kỳ',1],['chkResult','Kết quả checklist',1],['riskLevel','Mức rủi ro',1],['recStatus','Trạng thái kiến nghị',1],['taskStatus','Trạng thái nhiệm vụ',1],['renewStatus','Trạng thái tái tục',1],['contractStatus','Trạng thái hợp đồng',1]];
 const TONES=[['gray','Xám'],['green','Xanh'],['yellow','Vàng'],['red','Đỏ'],['blue','Xanh dương'],['dark','Đỏ đậm']];
 const SETTING_DEFS=[['expiryDays','Cảnh báo hợp đồng sắp hết hạn trong (ngày)'],['backupDays','Nhắc sao lưu nếu quá (ngày)'],['priceTol','Ngưỡng chênh lệch giá so chính sách được bỏ qua (%)'],['delayPts','Cảnh báo chậm tiến độ khi thực tế thấp hơn kế hoạch (điểm %)'],['kpiPass','KPI đạt khi % hoàn thành ≥'],['commPeriods','Số kỳ đầu được tính hoa hồng khách hàng mới theo chính sách'],['pageSize','Số dòng mỗi trang mặc định']];
@@ -2431,6 +2593,10 @@ function parseFieldValue(f,raw){
     let hit=rows.find(x=>norm(e.label(x))===norm(raw))||rows.find(x=>norm(String(x.code||x.no||''))===norm(raw))||rows.find(x=>norm(e.label(x)).startsWith(norm(raw)));
     return hit?{v:hit.id,ok:true}:{v:'',ok:false,err:`không tìm thấy "${raw}" trong ${e.title}`};
   }
+  if(t==='party'){
+    const opts=partyOpts(),hit=opts.find(([k,l,g])=>norm(l)===norm(raw)||norm((g==='Khách hàng'?'KH ':'HĐ ')+l)===norm(raw)||norm(k)===norm(raw)||norm(l).startsWith(norm(raw)));
+    return hit?{v:hit[0],ok:true}:{v:'',ok:false,err:`không tìm thấy "${raw}" trong danh sách khách hàng / hợp đồng`};
+  }
   if(['money','number','pct','days'].includes(t)){
     const n=parseMoneyNumber(raw);
     return isNaN(n)?{v:'',ok:false,err:`"${raw}" không phải là số hợp lệ`}:{v:n,ok:true};
@@ -2451,6 +2617,7 @@ function parseFieldValue(f,raw){
 function fieldExampleText(f){
   if(f.t==='cat'||f.t==='select'||f.t==='yn'){const o=optsFor(f);return o.length?o[0][1]:''}
   if(f.t==='ref'){const rows=DB.all(ENT[f.ref].store).filter(x=>!f.where||f.where(x));return rows.length?ENT[f.ref].label(rows[0]):''}
+  if(f.t==='party'){const o=partyOpts();return o.length?(o[0][2]==='Khách hàng'?'KH ':'HĐ ')+o[0][1]:''}
   if(f.t==='date')return todayStr();
   if(f.t==='month')return todayStr().slice(0,7);
   if(f.t==='datetime')return todayStr()+' 08:00';
@@ -2586,7 +2753,7 @@ ACT['bk-all']=()=>backupAll();
 ACT['bk-period']=()=>{const id=$('#bkPeriod')&&$('#bkPeriod').value;if(id)backupPeriod(id);else toast('Chưa có kỳ để sao lưu','warn')};
 
 /* ---------- Kiểm tra file phục hồi ---------- */
-const REQ_FIELDS={periods:['year','quarter'],findings:['periodId','code'],recs:['findingId'],contracts:['no'],projects:['code'],customers:['code'],catalogs:['group','key'],checklist:['periodId'],followups:['recId']};
+const REQ_FIELDS={periods:['year','quarter'],findings:['periodId','code'],recs:['findingId'],contracts:['no'],projects:['code'],customers:['code'],catalogs:['group','key'],checklist:['periodId'],followups:['recId'],relations:['a','b','relType']};
 function validateBackup(o){
   const errors=[],warnings=[];
   if(!o||typeof o!=='object'||Array.isArray(o))return{ok:false,errors:['Nội dung file không phải một đối tượng JSON hợp lệ'],warnings};
@@ -2624,7 +2791,7 @@ function mergePlan(o){
     a.forEach(r=>{const e=ex.get(r.id);if(!e)nw++;else if(JSON.stringify(e)===JSON.stringify(r))same++;else diff++});out[s]={total:a.length,nw,diff,same}});
   return out;
 }
-const STORE_TITLE={periods:'Kỳ kiểm tra',catalogs:'Danh mục',docreqs:'Yêu cầu hồ sơ',projects:'Dự án',investments:'Quyết định đầu tư',progcosts:'Tiến độ & chi phí',payments:'Thanh toán',customers:'Khách hàng',contracts:'Hợp đồng',prices:'Giá',renewals:'Tái tục',revenues:'Doanh thu & công nợ',discounts:'Chiết khấu',commissions:'Hoa hồng KH mới',services:'Phí phát sinh & dịch vụ',rentals:'Đơn giá chính',kpis:'KPI',tasks:'Nhiệm vụ',checklist:'Checklist',findings:'Finding',recs:'Kiến nghị',followups:'Follow-up',journal:'Nhật ký'};
+const STORE_TITLE={periods:'Kỳ kiểm tra',catalogs:'Danh mục',docreqs:'Yêu cầu hồ sơ',projects:'Dự án',investments:'Quyết định đầu tư',progcosts:'Tiến độ & chi phí',payments:'Thanh toán',customers:'Khách hàng',contracts:'Hợp đồng',relations:'Quan hệ KH – HĐ',prices:'Giá',renewals:'Tái tục',revenues:'Doanh thu & công nợ',discounts:'Chiết khấu',commissions:'Hoa hồng KH mới',services:'Phí phát sinh & dịch vụ',rentals:'Đơn giá chính',kpis:'KPI',tasks:'Nhiệm vụ',checklist:'Checklist',findings:'Finding',recs:'Kiến nghị',followups:'Follow-up',journal:'Nhật ký'};
 
 VIEWS.backup={render(){
   const lb=DB.meta.lastBackup,per=periodsSorted().reverse(),R=UI.restore;
@@ -8049,6 +8216,7 @@ async function boot(){
   await ensureSocSonProjects();
   await ensureRenewalAppendices();
   await ensureNewContractsQ4();
+  await ensureRelations();
   await cleanupDeletedRecords();
   await syncFollowups();
   $('#userChip').addEventListener('click',()=>ACT['edit-user']());
