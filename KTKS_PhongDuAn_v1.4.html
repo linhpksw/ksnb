@@ -1562,13 +1562,14 @@ const relBadge=t=>badge(catName('relType',t)||'(chưa chọn loại)',catTone('r
 defEnt({key:'relations',title:'Danh sách quan hệ KH – HĐ',singular:'Quan hệ',store:'relations',
  desc:'Tự khai báo mối quan hệ giữa 2 bên bất kỳ (khách hàng hoặc hợp đồng). Các khách hàng nối với nhau sẽ tự gom thành một nhóm ở màn hình Sơ đồ quan hệ.',
  label:r=>r?`${partyShort(r.a)} ↔ ${partyShort(r.b)}`:'',addLabel:'Thêm quan hệ',
- toolbar:()=>`<a class="btn" href="#/relmap">${ic('link')} Xem sơ đồ quan hệ</a>`,
+ toolbar:()=>`<button class="btn pri" data-act="rel-grp">${ic('plus')} Tạo nhóm nhiều KH</button><a class="btn" href="#/relmap">${ic('link')} Xem sơ đồ quan hệ</a>`,
  fields:[F('a','Bên A','party',{req:1,full:1,help:'Chọn một khách hàng hoặc một hợp đồng'}),
   F('relType','Loại quan hệ','cat',{g:'relType',req:1,f:1,help:'Loại có ghi “(A … B)” đọc theo chiều Bên A → Bên B. Muốn thêm loại mới: Hệ thống → Quản lý danh mục → Loại quan hệ KH – HĐ.'}),
   F('b','Bên B','party',{req:1,full:1}),
+  F('groupName','Tên nhóm liên kết (tùy chọn)','text',{full:1,ph:'VD: Nhóm công ty ông Nguyễn Văn A (để trống sẽ tự ghép tên các KH)'}),
   F('basis','Căn cứ','text',{full:1,ph:'VD: PLHĐ số…, văn bản 3 bên, ĐKKD cùng chủ sở hữu…'}),
   areaOf('note','Ghi chú')],
- cols:['a','relType','b','basis'],sort:{k:'a',dir:'asc'},
+ cols:['a','relType','b','groupName','basis'],sort:{k:'a',dir:'asc'},
  validate:(v,c,base)=>{const e={};
   if(v.a&&v.b&&v.a===v.b)e.b='Bên B phải khác Bên A';
   if(REL_HIER.includes(v.relType)&&!(/^contracts:/.test(v.a||'')&&/^contracts:/.test(v.b||'')))e.relType='Loại quan hệ này chỉ dùng giữa 2 hợp đồng';
@@ -1581,8 +1582,10 @@ function relGroups(){
   const rels=DB.all('relations').filter(relValid);
   rels.forEach(r=>{const a=partyCust(r.a),b=partyCust(r.b);if(!a||!b)return;add(a);add(b);const ra=find(a),rb=find(b);if(ra!==rb)par[ra]=rb});
   const map={};Object.keys(par).forEach(c=>{const k=find(c);(map[k]=map[k]||[]).push(c)});
-  return Object.values(map).map(cs=>{const set=new Set(cs),custs=cs.map(cust).filter(Boolean).sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true}));
-    return{key:[...cs].sort()[0],custs,rels:rels.filter(r=>set.has(partyCust(r.a))),name:custs.map(custShort).join(' – ')}}).sort((a,b)=>a.name.localeCompare(b.name,'vi'));
+  return Object.values(map).map(cs=>{const set=new Set(cs),custs=cs.map(cust).filter(Boolean).sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true})),grels=rels.filter(r=>set.has(partyCust(r.a)));
+    const custom=(grels.find(r=>r.groupName&&r.groupName.trim())||{}).groupName||'';
+    const defName=custs.length>3?custs.slice(0,3).map(custShort).join(' – ')+` (+${custs.length-3} KH)`:custs.map(custShort).join(' – ');
+    return{key:[...cs].sort()[0],custs,rels:grels,customName:custom,name:custom||defName}}).sort((a,b)=>a.name.localeCompare(b.name,'vi'));
 }
 function relGroupOf(custId){const g=relGroups().find(g=>g.custs.some(c=>c.id===custId));if(g)return g;const c=cust(custId);return c?{key:custId,custs:[c],rels:[],name:custShort(c),solo:1}:null}
 
@@ -1626,35 +1629,96 @@ VIEWS.relmap={render(){
   if(sel.startsWith('c:'))g=relGroupOf(sel.slice(2));else if(sel.startsWith('g:'))g=gs.find(x=>x.key===sel.slice(2));
   if(!g&&gs.length){g=gs[0];UI.relSel='g:'+g.key}
   let h=phead('Sơ đồ quan hệ Khách hàng – Hợp đồng','Xem các khách hàng liên quan với nhau và toàn bộ hợp đồng của họ (HĐ gốc → phụ lục/HĐ bổ sung). Bấm vào tên khách hàng hoặc số hợp đồng để mở hồ sơ.',
-   `<a class="btn" href="#/relations">Danh sách quan hệ</a><button class="btn pri" data-act="rel-add" data-a="${g?'customers:'+g.custs[0].id:''}">${ic('plus')} Thêm quan hệ</button>`);
+   `<a class="btn" href="#/relations">Danh sách quan hệ</a><button class="btn" data-act="rel-add" data-a="${g?'customers:'+g.custs[0].id:''}">${ic('plus')} Thêm quan hệ 2 bên</button><button class="btn pri" data-act="rel-grp">${ic('plus')} Tạo nhóm nhiều KH (3–5+ KH)</button>`);
   const custOpts=[...DB.all('customers')].sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true})).map(c=>`<option value="${c.id}" ${sel==='c:'+c.id?'selected':''}>${esc(c.code)} – ${esc(c.name)}</option>`).join('');
   h+=`<div class="rel-wrap"><div class="card"><div class="cb" style="padding:10px">
     <div class="fld"><label>Xem một khách hàng bất kỳ</label><select data-chg="rel-cust"><option value="">— Chọn khách hàng —</option>${custOpts}</select></div>
     <div class="ih" style="margin:12px 0 4px;font-weight:650;color:var(--pri-d)">Nhóm liên kết (${gs.length})</div>
     <input type="search" placeholder="Tìm nhóm/khách hàng…" value="${esc(UI.relQ||'')}" data-inp="relq" aria-label="Tìm nhóm">
     <div class="rel-gl" id="relList">${relListHtml()}</div></div></div><div>`;
-  if(!g){h+=`<div class="empty"><b>Chưa có quan hệ nào</b>Bấm “Thêm quan hệ” để nối hai khách hàng hoặc hai hợp đồng với nhau.</div></div></div>`;return h}
+  if(!g){h+=`<div class="empty"><b>Chưa có quan hệ nào</b>Bấm “Tạo nhóm nhiều KH” hoặc “Thêm quan hệ 2 bên” để bắt đầu.</div></div></div>`;return h}
   const cids=new Set(g.custs.map(c=>c.id)),cts=DB.all('contracts').filter(c=>cids.has(c.customerId)),act=cts.filter(c=>c.status==='active');
-  h+=`<div class="rel-sum"><div>Nhóm<b>${esc(g.name)}</b></div><div>Khách hàng<b>${g.custs.length}</b></div><div>Hợp đồng (đang hiệu lực)<b>${cts.length} (${act.length})</b></div><div>Giá trị/tháng HĐ đang hiệu lực<b>${fmtMoney(sumBy(act,c=>ctrMonthly(c)))} đ</b></div></div>`;
-  if(g.solo)h+=`<div class="banner b" style="margin-bottom:12px">${ic('link')}<div>Khách hàng này chưa có quan hệ với bên nào. Bấm <b>Thêm quan hệ</b> để nối với khách hàng/hợp đồng khác.</div></div>`;
+  h+=`<div class="rel-sum"><div>Nhóm<b>${esc(g.name)}</b></div><div>Khách hàng<b>${g.custs.length}</b></div><div>Hợp đồng (đang hiệu lực)<b>${cts.length} (${act.length})</b></div><div>Giá trị/tháng HĐ đang hiệu lực<b>${fmtMoney(sumBy(act,c=>ctrMonthly(c)))} đ</b></div><div style="margin-left:auto;display:flex;align-items:center;gap:6px"><button class="btn sm" data-act="rel-grp" data-cids="${g.custs.map(c=>c.id).join(',')}" data-gn="${esc(g.customName||'')}">${ic('plus')} Thêm nhiều KH vào nhóm này</button></div></div>`;
+  if(g.solo)h+=`<div class="banner b" style="margin-bottom:12px">${ic('link')}<div>Khách hàng này chưa có quan hệ với bên nào. Bấm <b>Thêm nhiều KH vào nhóm này</b> hoặc <b>Thêm quan hệ 2 bên</b> để nối với khách hàng/hợp đồng khác.</div></div>`;
   h+=relTreeHtml(g);
-  h+=`<div class="card"><h3>Các mối quan hệ trong nhóm (${g.rels.length})<span class="sp" style="flex:1"></span><button class="btn sm pri" data-act="rel-add" data-a="customers:${g.custs[0].id}">${ic('plus')} Thêm quan hệ</button></h3><div class="cb">`+
-   (g.rels.map(r=>`<div class="rel-ln"><b>${esc(partyLabel(r.a))}</b>${relBadge(r.relType)}<b>${esc(partyLabel(r.b))}</b>${r.basis?`<span class="mt note">– ${esc(r.basis)}</span>`:''}<span style="flex:1"></span><button class="ibtn" title="Sửa" data-act="rel-edit" data-id="${r.id}">${ic('edit')}</button><button class="ibtn del" title="Xóa" data-act="rel-del" data-id="${r.id}">${ic('trash')}</button></div>`).join('')||'<div class="note">Chưa có quan hệ nào.</div>')+`</div></div>`;
+  h+=`<div class="card"><h3>Các mối quan hệ trong nhóm (${g.rels.length})<span class="sp" style="flex:1"></span><button class="btn sm" data-act="rel-grp" data-cids="${g.custs.map(c=>c.id).join(',')}" data-gn="${esc(g.customName||'')}">${ic('plus')} Gom thêm nhiều KH</button> <button class="btn sm pri" data-act="rel-add" data-a="customers:${g.custs[0].id}">${ic('plus')} Thêm quan hệ 2 bên</button></h3><div class="cb">`+
+   (g.rels.map(r=>`<div class="rel-ln"><b>${esc(partyLabel(r.a))}</b>${relBadge(r.relType)}<b>${esc(partyLabel(r.b))}</b>${r.groupName?`<span class="badge blue">${esc(r.groupName)}</span>`:''}${r.basis?`<span class="mt note">– ${esc(r.basis)}</span>`:''}<span style="flex:1"></span><button class="ibtn" title="Sửa" data-act="rel-edit" data-id="${r.id}">${ic('edit')}</button><button class="ibtn del" title="Xóa" data-act="rel-del" data-id="${r.id}">${ic('trash')}</button></div>`).join('')||'<div class="note">Chưa có quan hệ nào.</div>')+`</div></div>`;
   return h+`</div></div>`;
 }};
 /* Ô “Các bên liên quan” trong form Khách hàng / Hợp đồng */
 function relPanelHtml(t,id){
   if(!id)return'<div style="grid-column:1/-1" class="note">Các bên liên quan: lưu bản ghi trước, sau đó có thể thêm quan hệ.</div>';
   const key=t+':'+id,rels=t==='customers'?relsOfCustomer(id):DB.all('relations').filter(r=>r.a===key||r.b===key);
-  const custId=t==='customers'?id:((ctr(id)||{}).customerId||'');
-  let h=`<div style="grid-column:1/-1"><div class="ih" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Các bên liên quan (${rels.length})<span style="flex:1"></span><button type="button" class="btn sm pri" data-act="rel-add" data-a="${key}">${ic('plus')} Thêm quan hệ</button>${custId?`<button type="button" class="btn sm" data-act="rel-map" data-c="${custId}">${ic('link')} Xem sơ đồ</button>`:''}</div>`;
+  const custId=t==='customers'?id:((ctr(id)||{}).customerId||''),grp=custId?relGroupOf(custId):null;
+  let h=`<div style="grid-column:1/-1"><div class="ih" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">Các bên liên quan (${rels.length}${grp&&grp.custs.length>1?` · Nhóm ${grp.custs.length} KH`:''})<span style="flex:1"></span>${t==='customers'?`<button type="button" class="btn sm" data-act="rel-grp" data-cids="${(grp?grp.custs.map(c=>c.id):[id]).join(',')}" data-gn="${esc(grp&&grp.customName||'')}">${ic('plus')} Gom nhóm nhiều KH</button>`:''}<button type="button" class="btn sm pri" data-act="rel-add" data-a="${key}">${ic('plus')} Thêm quan hệ</button>${custId?`<button type="button" class="btn sm" data-act="rel-map" data-c="${custId}">${ic('link')} Xem sơ đồ</button>`:''}</div>`;
   if(!rels.length)h+='<div class="note">Chưa có quan hệ nào.</div>';
   rels.forEach(r=>{h+=`<div class="rel-ln"><span>${esc(partyShort(r.a))}</span>${relBadge(r.relType)}<span>${esc(partyShort(r.b))}</span>${r.basis?`<span class="note">– ${esc(r.basis)}</span>`:''}<span style="flex:1"></span><button type="button" class="btn sm" data-act="rel-edit" data-id="${r.id}">Sửa</button><button type="button" class="btn sm dng" data-act="rel-del" data-id="${r.id}">Xóa</button></div>`});
   return h+'</div>';
 }
+/* Tạo / bổ sung nhóm nhiều khách hàng cùng lúc (3, 4, 5+ khách) */
+function openGroupLinkModal(initIds=[],initName=''){
+  const pModal=MODALS[MODALS.length-1];
+  const sel=new Set(initIds.filter(Boolean));
+  const allCusts=[...DB.all('customers')].sort((a,b)=>String(a.code).localeCompare(String(b.code),'vi',{numeric:true}));
+  const ctCnt={};DB.all('contracts').forEach(c=>{ctCnt[c.customerId]=(ctCnt[c.customerId]||0)+1});
+  const relTypes=catItems('relType').filter(x=>!REL_HIER.includes(x.key));
+  const renderList=(q='')=>{
+    const nq=norm(q);
+    const list=allCusts.filter(c=>!nq||norm(c.code+' '+c.name+' '+(c.taxId||'')).includes(nq)).sort((a,b)=>(sel.has(b.id)?1:0)-(sel.has(a.id)?1:0)||String(a.code).localeCompare(String(b.code),'vi',{numeric:true}));
+    return list.map(c=>{const ck=sel.has(c.id);
+      return`<label style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:${ck?'var(--pri-l)':'#fff'};border:1px solid ${ck?'var(--pri)':'var(--line)'};border-radius:6px;cursor:pointer;font-size:12.5px"><input type="checkbox" value="${esc(c.id)}" ${ck?'checked':''} data-chg="rg-ck" style="width:16px;height:16px;flex-shrink:0"><span style="flex:1"><b>${esc(c.code)}</b> – ${esc(c.name)} ${c.taxId?`<span class="note">(MST: ${esc(c.taxId)})</span>`:''}</span><span class="badge gray">${ctCnt[c.id]||0} HĐ</span></label>`}).join('')||'<div class="note">Không tìm thấy khách hàng phù hợp</div>';
+  };
+  const renderAnchor=(cur='')=>{
+    const arr=[...sel].map(cust).filter(Boolean);
+    if(!arr.length)return'<option value="">— Tích chọn khách hàng ở trên trước —</option>';
+    const pick=sel.has(cur)?cur:arr[0].id;
+    return arr.map(c=>`<option value="${esc(c.id)}" ${c.id===pick?'selected':''}>${esc(c.code)} – ${esc(c.name)}</option>`).join('');
+  };
+  const m=openModal({title:'Tạo / Gộp nhóm nhiều khách hàng liên kết (2, 4, 5+ KH)',size:'lg',
+    body:`<div class="fgrid">
+      <div class="fld full"><label>1. Tích chọn các khách hàng trong cùng nhóm (chọn từ 2 khách hàng trở lên)<span class="rq">*</span></label>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><input type="search" id="rgQ" placeholder="Gõ mã KH, tên công ty hoặc MST để lọc nhanh…" data-inp="rg-q" style="flex:1"><span class="badge blue" id="rgCnt">Đã chọn: ${sel.size} KH</span></div>
+        <div id="rgList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:6px;max-height:240px;overflow-y:auto;padding:8px;background:#f8fafc;border:1px solid var(--line);border-radius:8px">${renderList()}</div>
+        <div class="em" id="rgErr"></div>
+      </div>
+      <div class="fld"><label>2. Khách hàng đầu mối / đại diện chính</label><select id="rgAnchor">${renderAnchor(initIds[0]||'')}</select><div class="hp">Các khách hàng khác trong nhóm sẽ được nối về khách hàng đầu mối này.</div></div>
+      <div class="fld"><label>3. Loại quan hệ với đầu mối<span class="rq">*</span></label><select id="rgType">${relTypes.map(i=>`<option value="${esc(i.key)}">${esc(i.name)}</option>`).join('')}</select></div>
+      <div class="fld full"><label>4. Tên nhóm hiển thị (tùy chọn)</label><input type="text" id="rgName" value="${esc(initName)}" placeholder="VD: Cụm 5 công ty liên kết ghi phí linh hoạt (để trống hệ thống tự ghép tên)"></div>
+      <div class="fld full"><label>5. Căn cứ / Ghi chú chung</label><input type="text" id="rgBasis" placeholder="VD: Cùng chủ sở hữu / thỏa thuận ghi phí linh hoạt theo tháng với kế toán"></div>
+    </div>`,
+    footer:`<button class="btn" data-act="modal-close">Hủy</button><button class="btn pri" data-act="modal-save">${ic('check')} Lưu nhóm (${sel.size} KH)</button>`,
+    async onSave(){
+      if(sel.size<2){$('#rgErr',m.el).textContent='Vui lòng tích chọn ít nhất 2 khách hàng để tạo nhóm';toast('Chọn ít nhất 2 khách hàng','warn');return}
+      const anchor=$('#rgAnchor',m.el).value||[...sel][0],relType=$('#rgType',m.el).value||'linked',groupName=$('#rgName',m.el).value.trim(),basis=$('#rgBasis',m.el).value.trim();
+      const now=new Date().toISOString(),aKey='customers:'+anchor,toPut=[];let created=0,updated=0;
+      const existing=DB.all('relations');
+      for(const cid of sel){
+        if(cid===anchor)continue;
+        const bKey='customers:'+cid;
+        const hit=existing.find(r=>(r.a===aKey&&r.b===bKey)||(r.a===bKey&&r.b===aKey));
+        if(hit){
+          const upd={...hit,updatedAt:now};
+          if(groupName)upd.groupName=groupName;
+          if(basis&&!upd.basis)upd.basis=basis;
+          toPut.push(upd);updated++;
+        }else{
+          toPut.push({id:uid(),a:aKey,b:bKey,relType,groupName,basis,note:'',createdAt:now,updatedAt:now});created++;
+        }
+      }
+      if(groupName){
+        existing.filter(r=>sel.has(partyCust(r.a))&&sel.has(partyCust(r.b))&&!toPut.some(x=>x.id===r.id)).forEach(r=>{toPut.push({...r,groupName,updatedAt:now})});
+      }
+      if(toPut.length)await DB.putMany('relations',toPut);
+      await logAct('Cập nhật','Quan hệ',`Gom nhóm ${sel.size} khách hàng (${created} liên kết mới, ${updated} cập nhật)${groupName?' – '+groupName:''}`);
+      closeModal(m);toast(`Đã lưu nhóm ${sel.size} khách hàng (${created} liên kết mới)`);
+      UI.relSel='c:'+anchor;relRefresh(pModal);renderMain();
+    }});
+  m.rg={sel,renderList,renderAnchor};
+}
 const relRefresh=p=>{if(p&&p.ctx&&MODALS.includes(p))refreshForm(p,null)};
 Object.assign(ACT,{
   'rel-add':el=>{const p=MODALS[MODALS.length-1];const m=openForm('relations',null,el.dataset.a?{a:el.dataset.a}:{});if(m)m.after=()=>relRefresh(p)},
+  'rel-grp':el=>openGroupLinkModal((el.dataset.cids||'').split(',').filter(Boolean),el.dataset.gn||''),
   'rel-edit':el=>{const p=MODALS[MODALS.length-1];const m=openForm('relations',el.dataset.id);if(m)m.after=()=>relRefresh(p)},
   'rel-del':async el=>{const p=MODALS[MODALS.length-1],r=DB.get('relations',el.dataset.id);if(!r)return;
     if(!await confirmBox({title:'Xác nhận xóa',danger:true,ok:'Xóa',html:true,msg:`Xóa quan hệ <b>${esc(partyShort(r.a))}</b> ↔ <b>${esc(partyShort(r.b))}</b>?`}))return;
@@ -1663,6 +1727,13 @@ Object.assign(ACT,{
   'rel-sel':el=>{UI.relSel=el.dataset.k;renderMain()}
 });
 CHG['rel-cust']=el=>{if(!el.value)return;UI.relSel='c:'+el.value;renderMain()};
+CHG['rg-ck']=el=>{const m=MODALS[MODALS.length-1];if(!m||!m.rg)return;const{sel,renderAnchor}=m.rg;if(el.checked)sel.add(el.value);else sel.delete(el.value);
+  const lbl=el.closest('label');if(lbl){lbl.style.background=el.checked?'var(--pri-l)':'#fff';lbl.style.borderColor=el.checked?'var(--pri)':'var(--line)'}
+  $('#rgCnt',m.el).textContent=`Đã chọn: ${sel.size} KH`;$('#rgErr',m.el).textContent='';
+  const curA=$('#rgAnchor',m.el).value;$('#rgAnchor',m.el).innerHTML=renderAnchor(curA);
+  const saveBtn=m.el.querySelector('[data-act="modal-save"]');if(saveBtn)saveBtn.innerHTML=`${ic('check')} Lưu nhóm (${sel.size} KH)`;
+};
+INP['rg-q']=el=>{const m=MODALS[MODALS.length-1];if(!m||!m.rg)return;$('#rgList',m.el).innerHTML=m.rg.renderList(el.value)};
 INP.relq=el=>{UI.relQ=el.value;const l=$('#relList');if(l)l.innerHTML=relListHtml()};
 async function ensureRelations(){
   for(const[k,name,tone,order,lock]of REL_SYS){if(DB.all('catalogs').some(x=>x.group==='relType'&&x.key===k))continue;const rec={id:'relType.'+k,group:'relType',key:k,name,tone,order};if(lock)rec.lock=1;await DB.put('catalogs',rec)}
