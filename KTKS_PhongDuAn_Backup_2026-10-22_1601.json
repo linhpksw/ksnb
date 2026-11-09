@@ -3,7 +3,7 @@
     "app": "KTKS_PhongDuAn",
     "appVersion": "1.5.4",
     "backupVersion": 1,
-    "backupDate": "2026-11-09T07:30:00.000Z",
+    "backupDate": "2026-11-09T07:46:21.733Z",
     "scope": "all",
     "periodId": null,
     "periodLabel": null,
@@ -17,7 +17,7 @@
       "recs": 2,
       "followups": 1
     },
-    "checksum": "562196e1"
+    "checksum": "a95b3c97"
   },
   "settings": {},
   "data": {
@@ -3364,7 +3364,7 @@
         "address": "B6-TT9, Khu đô thị mới Xuân Phương, Phường Xuân Phương, TP. Hà Nội, Việt Nam",
         "id": "mudvhgxxjhmf8o1",
         "createdAt": "2026-09-23T09:00:23.685Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.704Z"
       },
       {
         "code": "KH033",
@@ -3906,7 +3906,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.310Z",
+        "updatedAt": "2026-11-09T07:46:19.710Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -3956,7 +3956,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.311Z",
+        "updatedAt": "2026-11-09T07:46:19.710Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4006,7 +4006,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.312Z",
+        "updatedAt": "2026-11-09T07:46:19.711Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4104,7 +4104,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.313Z",
+        "updatedAt": "2026-11-09T07:46:19.713Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4154,7 +4154,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.312Z",
+        "updatedAt": "2026-11-09T07:46:19.712Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4204,7 +4204,7 @@
         "priorYears": 0,
         "priorContractRef": "",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.310Z",
+        "updatedAt": "2026-11-09T07:46:19.709Z",
         "dangerSurApplied": "",
         "storageMinRev": "",
         "earlyTermination": ""
@@ -4724,7 +4724,6 @@
         "signerTitle": "Chủ tịch HĐQT",
         "authOK": "y",
         "area": "",
-        "quantity": 50,
         "unitPrice": 310000,
         "monthly": 15500000,
         "deposit": "",
@@ -4748,18 +4747,19 @@
         "docHandover": "",
         "docLiquid": "",
         "docOther": "PLHĐ số 01 ký ngày 25/06/2026 (đính kèm HĐ lưu kho hàng hóa số 27062025/HĐTK/HNT-T&T ngày 27/06/2025) gia hạn thời hạn hợp đồng thêm 24 tháng, từ ngày 30/06/2026 đến hết ngày 29/06/2028; các điều khoản khác của Hợp đồng giữ nguyên (đơn giá lưu kho 310.000 đ/m³/tháng, sàn 50 m³/tháng).",
-        "isRenewal": "renewal",
-        "priorYears": 1,
-        "priorContractRef": "27062025/HĐTK/HNT-T&T ngày 27/06/2025",
         "id": "muf8472j8vbns86",
         "createdAt": "2026-09-24T07:41:45.547Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z",
+        "updatedAt": "2026-11-09T07:46:19.704Z",
         "model": "storage",
         "cargoType": "",
         "dangerSurApplied": "",
         "indefinite": "",
         "storageMinRev": "",
-        "earlyTermination": ""
+        "earlyTermination": "",
+        "quantity": 50,
+        "isRenewal": "renewal",
+        "priorYears": 1,
+        "priorContractRef": "27062025/HĐTK/HNT-T&T ngày 27/06/2025"
       },
       {
         "status": "active",
@@ -6795,7 +6795,7 @@
         "docOther": "Tờ trình ngày 02/07/2026 duyệt chiết khấu bán hàng cho P. Dự án: 18.532.000 đ (30% trên DT kho 61.776.000 đ/tháng). Lưu ý: HĐ kết thúc trước hạn ngày 04/09/2026 nhưng đã chi đủ hoa hồng không phân bổ theo thời gian thực tế. BB THANH LY HD THUE KHO VA CAC DV HNT-MK TT THANH OAI 2_20260924_0001.pdf (2 trang, BB ký 03/09/2026, file scan 24/09/2026; Điều 3 viện dẫn \"Điều 5\" không tồn tại).",
         "id": "muf85bph4q7koc2",
         "createdAt": "2026-09-24T07:42:38.213Z",
-        "updatedAt": "2026-11-09T07:17:55.300Z",
+        "updatedAt": "2026-11-09T07:46:19.693Z",
         "model": "lease",
         "earlyTermination": "client"
       },
@@ -7669,7 +7669,7 @@
         "note": "Sàn 50 m³/tháng; gia hạn 24 tháng (30/06/2026 - 29/06/2028) theo PLHĐ số 01 ký ngày 25/06/2026; giữ nguyên đơn giá 310.000 đ/m³/tháng",
         "id": "muff6xhsl3470qc",
         "createdAt": "2026-09-24T10:59:50.416Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.705Z"
       },
       {
         "kind": "kho",
@@ -13791,7 +13791,7 @@
         "provider": "HNT",
         "note": "Bốc xếp hàng hoá chiều nhập (tối thiểu 10.000 đ/đơn)",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.315Z"
+        "updatedAt": "2026-11-09T07:46:19.717Z"
       },
       {
         "id": "svc_phuanvinh_nangha_n",
@@ -13806,7 +13806,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều nhập",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.314Z"
+        "updatedAt": "2026-11-09T07:46:19.715Z"
       },
       {
         "id": "svc_phuanvinh_nangha_x",
@@ -13821,7 +13821,7 @@
         "provider": "HNT",
         "note": "Nâng hạ nguyên pallet chiều xuất",
         "createdAt": "2026-11-02T16:30:00.000Z",
-        "updatedAt": "2026-11-09T07:17:55.314Z"
+        "updatedAt": "2026-11-09T07:46:19.714Z"
       },
       {
         "id": "svc_hht_bocxep_n",
@@ -16564,7 +16564,7 @@
         "risk": "Thiếu hồ sơ chứng minh thời điểm bắt đầu tính tiền thuê/diện tích thực tế; rủi ro Trung tâm bàn giao kho khi khách hàng chưa nộp đủ tiền cọc.",
         "rec": "Phòng Dự án phải thu hồi và lưu trữ đầy đủ Biên bản bàn giao từ Trung tâm (Kho) vào bộ hồ sơ hợp đồng trong vòng 03 ngày làm việc kể từ ngày bàn giao.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-09T07:17:55.301Z"
+        "updatedAt": "2026-11-09T07:46:19.694Z"
       },
       {
         "id": "chk_25_chk_cn_02",
@@ -16598,7 +16598,7 @@
         "risk": "Ký thanh lý hoặc giải tỏa cọc khi Kế toán chưa đối trừ hết các khoản nợ phát sinh, dẫn đến khó thu hồi công nợ.",
         "rec": "Chỉ giải tỏa cọc và đóng hồ sơ thanh lý sau khi có Bảng xác nhận hết nợ/cấn trừ cọc cùng chứng từ thu/chi của Phòng Kế toán.",
         "createdAt": "2026-10-15T07:55:19.692Z",
-        "updatedAt": "2026-11-09T07:17:55.301Z"
+        "updatedAt": "2026-11-09T07:46:19.695Z"
       },
       {
         "id": "chk_27_chk_ck_01",
@@ -16666,7 +16666,7 @@
         "risk": "Khách hàng hưởng chiết khấu dài hạn nhưng bỏ ngang, Công ty không truy thu được khoản tiền ưu đãi.",
         "rec": "Bắt buộc tính toán và khấu trừ khoản tiền chiết khấu truy thu ngay trong biên bản thanh lý.",
         "createdAt": "2026-10-15T08:14:16.495Z",
-        "updatedAt": "2026-11-09T07:17:55.304Z"
+        "updatedAt": "2026-11-09T07:46:19.696Z"
       },
       {
         "id": "chk_31_chk_hh_01",
@@ -16836,7 +16836,7 @@
         "risk": "Theo dõi việc nghiệm thu mặt bằng, bàn giao hàng hóa và thu hồi đủ tiền đặt cọc đúng thời hạn cam kết.",
         "rec": "Kế toán dự án đối chiếu chốt khối lượng lưu kho định kỳ đối với các kho chung; phát hành hóa đơn và thu hồi công nợ đúng thời hạn cam kết.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.719Z"
       },
       {
         "id": "mvywegkx4cv2ayf",
@@ -16904,7 +16904,7 @@
         "risk": "Kiểm soát theo dõi thời điểm kích hoạt đơn giá mới và kỳ thanh toán.",
         "rec": "Lưu trữ hồ sơ scan bản gốc vào kho dữ liệu KSNB; đồng bộ thời hạn thuê mới lên phần mềm.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.707Z"
       },
       {
         "id": "mvywegkx730im05",
@@ -17023,7 +17023,7 @@
         "risk": "Tránh lập tờ trình chi vượt định mức hoặc không có thỏa thuận môi giới được phê duyệt.",
         "rec": "Yêu cầu Phòng Dự án cung cấp tờ trình và phê duyệt HĐQT trước khi hạch toán chi phí hoa hồng khách hàng mới.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.719Z"
       },
       {
         "id": "mvywegkxaut4wx6",
@@ -17176,7 +17176,7 @@
         "risk": "Tránh lập tờ trình duyệt chiết khấu gia hạn vượt khung hoặc chi cho khách hàng chưa đủ điều kiện thâm niên 3 năm.",
         "rec": "Khi Phòng Dự án lập tờ trình chiết khấu gia hạn cho GaiA, Bristar, C.L, DGW, Daesang cần kiểm tra đúng trần 20% và phải có phê duyệt của GĐĐH và HĐQT theo đúng QĐ 176.",
         "createdAt": "2026-11-02T06:48:54.895Z",
-        "updatedAt": "2026-11-09T07:30:00.000Z"
+        "updatedAt": "2026-11-09T07:46:19.706Z"
       },
       {
         "id": "mvywegkxi7kqgjh",
@@ -17943,7 +17943,7 @@
         "result": "Thành công",
         "note": "Đã hoàn tất đồng bộ 07 khách hàng và hợp đồng mới vào hệ thống kiểm soát nội bộ.",
         "auto": false,
-        "createdAt": "2026-11-09T07:30:00.000Z",
+        "createdAt": "2026-11-09T07:00:00.000Z",
         "periodId": "mvywegkvghcehae"
       },
       {
@@ -17975,7 +17975,7 @@
       {
         "id": "jnl_plhd_giahan_q4_2026",
         "periodId": "mvywegkvghcehae",
-        "ts": "2026-11-09T07:30:00.000Z",
+        "ts": "2026-11-09T07:00:00.000Z",
         "user": "KTKS",
         "type": "Hợp đồng",
         "object": "08 PLHĐ Gia hạn Q4/2026",
@@ -17983,7 +17983,7 @@
         "result": "Thành công",
         "note": "Đã hoàn tất đồng bộ toàn diện 08 phụ lục và thông tin pháp nhân khách hàng.",
         "auto": false,
-        "createdAt": "2026-11-09T07:30:00.000Z"
+        "createdAt": "2026-11-09T07:00:00.000Z"
       },
       {
         "id": "jnl_sendo_import_20261020",
